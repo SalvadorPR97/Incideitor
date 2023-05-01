@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesion</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="img/incidencia_logo.png">
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+
+    <header>
+        <div class="group">
+            <ul class="navigation">
+                <img class="icon" src="img/incidencia_logo.png" alt="logo" id="logo">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="#">ESTADÍSTICAS</a></li>
+                <li><a href="#">SOBRE NOSOTROS</a></li>
+                <li><a href="#">INCIDENCIAS</a></li>
+                <li><a href="login.html">ACCESO</a></li>
+            </ul>
+        </div>        
+    </header>
+
+    <div class="cover">
+        <img src="img/incidencia.png" alt="incidencias">
+    </div>
+
+    <section class="login">
+        <div class="formulario">
+            <h1>Iniciar sesión</h1>
+            <form method="post">
+                <div class="email">
+                    <input type="email" required placeholder="Correo electrónico"/>
+                    
+                    <img src="img/mail.png" alt="mail" class="mail">
+                </div>
+                <div class="password__class">
+                    <input type="password"  id="password" placeholder="Contraseña" required/>
+                    
+                    <img src="img/view.png" alt="view" id="view"  class="view">
+                </div>  
+                <div class="remember"> ¿Has olvidado tu contraseña?</div>
+                <button type="submit">Iniciar sesión</button>
+                <div class="register">
+                    ¿Todavía no te has registrado? <a href="#">Registrarse</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="js/script_login.js"></script>
+</body>
+</html>
