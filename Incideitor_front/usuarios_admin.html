@@ -17,9 +17,11 @@
 
 <body>
     <div class="container-fluid">
+        <!--Header-->
         <header class="row tittle d-flex align-items-center">
             <h1 class="ayuntamiento text-center">Ayuntamiento de Mijas</h1>
         </header>
+        <!--Navbar-->
         <div class="col-12">
             <nav class="nav navbar navbar-expand-lg" aria-label="Eleventh navbar example">
                 <div class="container-fluid d-flex">
@@ -70,75 +72,62 @@
         </div>
 
         <main class="container ">
+            <!--Header y filtros-->
             <div>
-                <h1>Incidencias</h1>
-                <button type="button" class="btn btn-primary">Nueva Incidencia</button>
+                <h1>Usuarios</h1>
+                <button type="button" onclick="location.href='URL DESTINO'" class="btn btn-primary mb-sm-0 mb-1">Nuevo Usuario</button>
                 <form action="#" method="get">
-                    <input type="text" placeholder="Término a Filtrar" name="filtro">
-                    <select name="tipoIncidencia" id="">
-                        <option value="0">Acerado</option>
-                        <option value="1">Aguas</option>
-                        <option value="2">Alumbrado</option>
-                        <option value="3">Arquetas</option>
-                        <option value="4">Cableado</option>
-                        <option value="5">Calzada</option>
-                        <option value="6">Carril bici</option>
-                        <option value="7">Fuentes</option>
-                        <option value="8">Jardines y zonas verdes</option>
-                        <option value="9">Limpieza</option>
-                        <option value="10">Medio ambiente</option>
-                        <option value="11">Mobiliario urbano</option>
-                        <option value="12">Monumentos</option>
-                        <option value="13/taxi">Parada bus/taxi</option>
-                        <option value="14">Parques infantiles</option>
-                        <option value="15">Plagas</option>
-                        <option value="16">Playas</option>
-                        <option value="17">Saneamiento</option>
-                        <option value="18">Semáforos</option>
-                        <option value="19">Tráfico y señalización</option>
-                        <option value="20">Vallas de obra</option>
-                    </select>
-                    <input type="submit" value="Filtrar" class="btn btn-secondary">
+                    <input type="text" placeholder="Nombre o email" name="filtro">
+                
+                    <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-sm-0 mt-1">
                 </form>
             </div>
+            <!--Tabla-->
             <div>
-                <table class="table">
+                <table class="table" id="myTable2">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
+                        <th scope="col" onclick="sortTable(0)">#</th>
+                        <th scope="col" onclick="sortTable(1)">Nombre</th>
+                        <th scope="col" onclick="sortTable(2)">Apellido</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col" onclick="sortTable(5)">Sexo</th>
+                        <th scope="col" onclick="sortTable(6)">Verificado</th>
                         <th scope="col">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">1</th>
+                        <td scope="row">1</td>
                         <td>Mark</td>
                         <td>Otto</td>
+                        <td>@Otto</td>
+                        <td>74125896H</td>
+                        <td>V</td>
+                        <td>SI</td>
                         <td>
-                            <button type="button" class="btn btn-primary" onclick="location.href='URL DESTINO'"><i class="bi-eye me-2"></i>Ver</button>
-                            <button type="button" class="btn btn-primary"><i class="bi-pencil-square me-2"></i>Editar</button>
-                            <button type="button" class="btn btn-danger"><i class="bi-trash3 me-2"></i>Borrar</button>
+                            <button type="button" class="btn btn-primary b_admin mb-sm-0 mb-1" onclick="location.href='URL DESTINO'"><i class="bi-eye me-2"></i>Ver</button>
+                            <button type="button" class="btn btn-primary b_admin mb-sm-0 mb-1" onclick="location.href='URL DESTINO'"><i class="bi-pencil-square me-2"></i>Editar</button>
+                            <button type="button" class="btn btn-danger b_admin" onclick="location.href='URL DESTINO'"><i class="bi-trash3 me-2"></i>Borrar</button>
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row">2</th>
+                        <td scope="row">2</td>
                         <td>Jacob</td>
                         <td>Thornton</td>
                         <td>@fat</td>
                       </tr>
                       <tr>
-                        <th scope="row">3</th>
+                        <td scope="row">3</td>
                         <td colspan="2">Larry the Bird</td>
                         <td>@twitter</td>
                       </tr>
                     </tbody>
                   </table>
             </div>
-            
         </main>
-
+        <!--Footer-->
         <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-5 px-5 border-top">
             <div class="col mb-3">
                 <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
@@ -186,6 +175,64 @@
                 </ul>
             </div>
         </footer>
+        
     </div>  
+    <script>
+        function sortTable(n) {
+          var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+          table = document.getElementById("myTable2");
+          switching = true;
+          // Set the sorting direction to ascending:
+          dir = "asc";
+          /* Make a loop that will continue until
+          no switching has been done: */
+          while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+              // Start by saying there should be no switching:
+              shouldSwitch = false;
+              /* Get the two elements you want to compare,
+              one from current row and one from the next: */
+              x = rows[i].getElementsByTagName("TD")[n];
+              y = rows[i + 1].getElementsByTagName("TD")[n];
+              /* Check if the two rows should switch place,
+              based on the direction, asc or desc: */
+              
+              if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                  // If so, mark as a switch and break the loop:
+                  shouldSwitch = true;
+                  break;
+                }
+              } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                  // If so, mark as a switch and break the loop:
+                  shouldSwitch = true;
+                  break;
+                }
+              }
+            }
+            if (shouldSwitch) {
+              /* If a switch has been marked, make the switch
+              and mark that a switch has been done: */
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+              // Each time a switch is done, increase this count by 1:
+              switchcount ++;
+            } else {
+              /* If no switching has been done AND the direction is "asc",
+              set the direction to "desc" and run the while loop again. */
+              if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+              }
+            }
+          }
+        }
+        </script>
 </body>
 </html>

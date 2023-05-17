@@ -8,27 +8,19 @@
 /*Header*/
 .ayuntamiento{
     text-transform: uppercase; 
-    color: #333;
+    color: black;
     padding: 0.5em;
        
 }
 
 
 /*Nav*/
-.nav{
-    background: #fff;
-    
-}
 header[class~=tittle]{
     height: 75px;
     background-image: url("../img/VistaPanoramicaMijas.jpg");
-    background-position: 50% 25%;
+    background-position: 50% 5%;
     background-repeat: no-repeat;
     background-size: cover;
-}
-/*Letras del nav y del footer*/
-.nav-item{
-    font-weight: 500;
 }
 
 
@@ -63,4 +55,10 @@ header[class~=tittle]{
 footer{
     background-image: url(/img/shutterstock_617032220.0.jpg);
     background-size: cover;
+}
+
+/* Administracion */
+tr{
+    text-align: center;
+    vertical-align: middle;
 }
