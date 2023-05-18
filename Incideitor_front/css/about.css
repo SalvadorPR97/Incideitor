@@ -1,0 +1,59 @@
+/*Contenedor Sobre Nosotros*/
+
+.about{
+    background-image: url(/img/131392-light-blue-polygon-background.jpg);
+    background-position: 100% 40%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+/*Contenedor Nuestro Equipo*/
+
+/*Titulo*/
+.ourteam{
+    background-image: url(/img/130991-abstract-blue-and-white-polygonal-background-design.jpg);
+    background-position: 100% 15%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*Fondo donde se colocan las tarjetas*/
+.team{
+    background: #7ccdfd;
+    padding: 2em;
+}
+
+/*Circulos donde estan los iconos de las redes sociales*/
+
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.social-link:hover, .social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+}
+
+/*Footer*/
+
+footer{
+    background-image: url(/img/YyTLwz.jpg);
+    background-position: 100% 40%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+
+

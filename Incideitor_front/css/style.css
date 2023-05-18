@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+/*Header*/
+.ayuntamiento{
+    text-transform: uppercase; 
+    color: black;
+    padding: 0.5em;
+       
+}
+
+
+
+/*Nav*/
+header[class~=tittle]{
+    height: 75px;
+    background-image: url("../img/VistaPanoramicaMijas.jpg");
+    background-position: 50% 5%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*Nav hover*/
+.navbar-nav .nav-link:hover{
+    opacity: 80%;
+    
+}
+
+
+/* Tutorial*/
+
+.tutorial{
+    background-image: url(../img/wall.jpg); 
+    background-position: 50%;
+}
+.video_tutorial{
+    min-height: 300px;
+    max-width: 100%;
+}
+
+
+.texto{
+    background-color: #ffffff;
+    padding: 1em;
+    border-radius: 2px;
+}
+
+/*Seccion noticias*/
+.noticias{
+    background: #ffffff;
+    padding: 1em;
+    color: #333;
+}
+
+
+.noticias h3{
+    background: #83B5D1;
+    padding: 0.5em;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+/*Footer*/
+
+footer{
+    background-image: url(/img/shutterstock_617032220.0.jpg);
+    background-size: cover;
+}
+
+/* Administracion */
+tr{
+    text-align: center;
+    vertical-align: middle;
+}
+
+/*Media Querys Nav*/
+
+
+@media (min-width: 992px) {
+    .navbar-nav .nav-link {
+        margin-right: 10px;
+        margin-left: 10px;
+        }
+}
+
+@media (min-width: 1200px) {
+    .navbar-nav .nav-link {
+        margin-right: 25px;
+        margin-left: 25px;
+        }
+}
+
+
+
+@media (min-width: 1286px) {
+    .navbar-nav .nav-link {
+    margin-right: 50px;
+    margin-left: 50px;
+    }
+}
+
+/*Media Query foto footer borrosa*/
+
+@media (max-width: 768px) {
+    footer{
+        background-image: url(/img/cielos_despejados_y_calor.jpg);
+    }
+}
