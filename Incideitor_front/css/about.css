@@ -33,16 +33,46 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
+    color: #7ccdfd;
     border-radius: 50%;
     transition: all 0.3s;
     font-size: 0.9rem;
 }
 
 .social-link:hover, .social-link:focus {
-    background: #ddd;
+    background:#1591d8;
     text-decoration: none;
     color: #555;
+}
+
+
+.linkedin{
+    background-image: url(/img/linkedin.png);
+    background-size: cover;
+    background-position-x: center;
+    border-radius: 50%;
+}
+
+.github{
+    background-image: url(/img/Github-Logo-Transparent-Background-PNG.png);
+    background-size: cover;
+    border-radius: 50%;
+    background-position-x: center;
+}
+
+.infojobs{
+    background-image: url(/img/th-3840748636.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    border-radius: 50%;
+}
+
+.gmail{
+    background-image: url(/img/logo-gmail-2048.png);
+    background-size: cover;
+    border-radius: 50%;
+    background-position-x: center;
 }
 
 /*Footer*/
@@ -54,6 +84,3 @@ footer{
     background-size: cover;
     
 }
-
-
-
