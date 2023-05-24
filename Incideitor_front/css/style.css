@@ -18,7 +18,7 @@
 /*Nav*/
 header[class~=tittle]{
     height: 75px;
-    background-image: url("../img/VistaPanoramicaMijas.jpg");
+    background-image: url("../img/131392-light-blue-polygon-background.jpg");
     background-position: 50% 5%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -67,7 +67,9 @@ header[class~=tittle]{
 /*Footer*/
 
 footer{
-    background-image: url(/img/shutterstock_617032220.0.jpg);
+    background-image: url(/img/YyTLwz.jpg);
+    background-position: 100% 40%;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
