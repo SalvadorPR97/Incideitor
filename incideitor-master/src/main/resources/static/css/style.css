@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+/*Header*/
+.ayuntamiento{
+    text-transform: uppercase; 
+    color: black;
+    padding: 0.5em;
+       
+}
+
+
+/*Nav*/
+header[class~=tittle]{
+    height: 75px;
+    background-image: url("../img/VistaPanoramicaMijas.jpg");
+    background-position: 50% 5%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* Tutorial*/
+
+.tutorial{
+    background-image: url(../img/wall.jpg); 
+    background-position: 50%;
+}
+.video_tutorial{
+    min-height: 300px;
+    max-width: 100%;
+}
+
+/*Seccion noticias*/
+.noticias{
+    background: #ffffff;
+    padding: 1em;
+    color: #333;
+}
+
+
+.noticias h3{
+    background: #83B5D1;
+    padding: 0.5em;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+/*Footer*/
+
+footer{
+    background-image: url(/img/shutterstock_617032220.0.jpg);
+    background-size: cover;
+}
+
+/* Administracion */
+tr{
+    text-align: center;
+    vertical-align: middle;
+}
+.sidebar{
+    min-height: 70vh;
+}
+li::marker{
+    font-size: 0px;
+}
