@@ -1,6 +1,7 @@
 package com.example.eoi.incideitor.controllers;
 
 
+import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
 import com.example.eoi.incideitor.services.UserService;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 @RequestMapping("/incidencias")
 @Controller
-public class IncidenciasController {
+public class IncidenciasController extends MiControladorGenerico {
     @Autowired
     UserService userService;
 

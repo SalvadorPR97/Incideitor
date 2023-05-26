@@ -12,15 +12,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Incidencia {
+public class Reporte {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private int categoria;
+    private String descripcion;
 
-    private String titulo;
-    private String apellido;
-
+    @ManyToOne
+    private Usuario usuario;
 
 }
