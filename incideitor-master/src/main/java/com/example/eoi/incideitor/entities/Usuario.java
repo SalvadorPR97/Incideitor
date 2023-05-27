@@ -1,9 +1,6 @@
 package com.example.eoi.incideitor.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +18,23 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String password;
-    private String email;
     private String nombre;
+    private String apellido;
+    private String avatar;
+    private String email;
+    private String DNI;
+    private String contraseña;
+    private int sexo;
+
+    @ManyToOne
+    private Ayuntamiento ayuntamiento;
+
+    @OneToMany
+    private Reporte reporte;
+
+    private int permitirNotificaciones;
+    private int borradoLogico;
+    private String departamento;
+    private String extension;
 
 }
