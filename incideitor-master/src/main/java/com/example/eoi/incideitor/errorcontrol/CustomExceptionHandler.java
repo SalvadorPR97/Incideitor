@@ -1,7 +1,7 @@
 package com.example.eoi.incideitor.errorcontrol;
 
-import com.eoi.ejemplospringboot.errorcontrol.exceptions.MiEntidadNoEncontradaException;
-import com.eoi.ejemplospringboot.errorcontrol.exceptions.ParametrosIncorrectosException;
+import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.example.eoi.incideitor.errorcontrol.exceptions.ParametrosIncorrectosException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

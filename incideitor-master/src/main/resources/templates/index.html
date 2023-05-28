@@ -1,26 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
-<head th:replace="fragments/head :: head">
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"> </head>
 <body>
-<header th:replace="fragments/header :: header">
-</header>
-<div class="container">
-    <div class="row">
-        <div class="col-sm">
-            One of three columns
-        </div>
-        <div class="col-sm">
-            <h2>Columna principal</h2>
-        </div>
-        <div class="col-sm">
-            One of three columns
-        </div>
-    </div>
-</div>
-<footer>
-    footer @2023
-</footer>
 
+<div class="container-fluid">
+    <header th:replace="fragments/header :: header">
+    </header>
+    <div class="col-12">
+        <nav class="nav navbar navbar-expand-lg" aria-label="Eleventh navbar example">
+            <div class="container-fluid d-flex">
+                <a class="navbar-brand" href="index.html"> <img src="/static/img/aytoResponde.png" alt="logo"
+                                                                style="width: 50px;"> </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarsExample09">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-black" aria-current="page" href="index.html">INICIO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="#">INCIDENCIAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="#">AYUNTAMIENTO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="login.html">NUEVA INCIDENCIA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="login.html">ACCESO</a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle text-black" href="#" role="button" id="dropdown"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/static/img/logoUsuario.png" alt="Logo" width="20" height="20"
+                                     class="d-inline-block align-text-top">
+                                ÁREA PERSONAL
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">
+                                    Mi perfil</a></li>
+                                <li><a class="dropdown-item" href="#">Mis incidencias</a></li>
+                                <li><a class="dropdown-item" href="#">Nueva incidencia</a></li>
+                                <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <div class="text-center row tutorial py-5">
+            <div class="col-12 col-lg-6 p-lg-12 mx-auto ">
+                <video src="#" class="video_tutorial" controls> Video</video>
+            </div>
+            <div class="col-md-6 d-none d-lg-block">
+                    <span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique recusandae aperiam veritatis voluptatem, ipsum aut sunt
+                        perspiciatis in minima eum facere doloribus qui, molestias ducimus dolores ab eius nemo tenetur.</span>
+            </div>
+        </div>
+        <section class="row noticias">
+            <div class="arreglos col-12">
+                <h3 class="text-center">Arreglos recientes</h3>
+            </div>
+            <div class="album bg-body-tertiary">
+                <div class="container-fluid">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5 px-5 py-3">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                <div class="card-body">
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                        <small class="text-body-secondary">9 mins</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                <div class="card-body">
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                        <small class="text-body-secondary">9 mins</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                <div class="card-body">
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                        <small class="text-body-secondary">9 mins</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+</div>
 </body>
 </html>

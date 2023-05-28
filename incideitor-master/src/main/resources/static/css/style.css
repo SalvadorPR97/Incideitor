@@ -14,13 +14,20 @@
 }
 
 
+
 /*Nav*/
 header[class~=tittle]{
     height: 75px;
-    background-image: url("../img/VistaPanoramicaMijas.jpg");
+    background-image: url("../img/131392-light-blue-polygon-background.jpg");
     background-position: 50% 5%;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+/*Nav hover*/
+.navbar-nav .nav-link:hover{
+    opacity: 80%;
+    
 }
 
 
@@ -33,6 +40,13 @@ header[class~=tittle]{
 .video_tutorial{
     min-height: 300px;
     max-width: 100%;
+}
+
+
+.texto{
+    background-color: #ffffff;
+    padding: 1em;
+    border-radius: 2px;
 }
 
 /*Seccion noticias*/
@@ -53,7 +67,9 @@ header[class~=tittle]{
 /*Footer*/
 
 footer{
-    background-image: url(/img/shutterstock_617032220.0.jpg);
+    background-image: url(/img/YyTLwz.jpg);
+    background-position: 100% 40%;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
@@ -67,4 +83,38 @@ tr{
 }
 li::marker{
     font-size: 0px;
+}
+
+/*Media Querys Nav*/
+
+
+@media (min-width: 992px) {
+    .navbar-nav .nav-link {
+        margin-right: 10px;
+        margin-left: 10px;
+        }
+}
+
+@media (min-width: 1200px) {
+    .navbar-nav .nav-link {
+        margin-right: 25px;
+        margin-left: 25px;
+        }
+}
+
+
+
+@media (min-width: 1286px) {
+    .navbar-nav .nav-link {
+    margin-right: 50px;
+    margin-left: 50px;
+    }
+}
+
+/*Media Query foto footer borrosa*/
+
+@media (max-width: 768px) {
+    footer{
+        background-image: url(/img/cielos_despejados_y_calor.jpg);
+    }
 }
