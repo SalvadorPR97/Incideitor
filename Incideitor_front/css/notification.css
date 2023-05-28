@@ -2,7 +2,7 @@ body{
   background-color: #fcfcfc;
 }
 
-.row{
+.notifications_container{
   margin:auto;
   padding: 30px;
   width: 80%;
@@ -19,23 +19,16 @@ body{
 
 .card-body{
   padding: 0.5rem;
-  table{
-    width: 100%;
-    tr{
-      display:flex;
-      td{
-        a.btn{
-          font-size: 0.8rem;
-          padding: 3px;
-        }
-      }
-      td:nth-child(2){
-        text-align:right;
-        justify-content: space-around;
-      }
-    }
-  }
 
+}
+
+.notification_table{
+  width: 100%;
+}
+
+.buttonsright{
+  text-align:right;
+  justify-content: space-around;
 }
 
 .card-title:before{

@@ -15,15 +15,16 @@
     <title>Title</title>
 </head>
 <body>
-<div class="row notification-container">
+<div class="row notification-container notifications_container">
     <h2 class="text-center">Mis Notificaciones</h2>
-    <p class="dismiss text-right"><a id="dismiss-all" href="#">Descartar todo</a></p>
+    <p class="dismiss" style="text-align: right;"><a id="dismiss-all" href="#">Descartar todo</a></p>
+
     <div class="card notification-card notification-invitation">
         <div class="card-body">
-            <table>
+            <table class="notification_table">
                 <tr>
                     <td style="width:70%"><div class="card-title">Jane invited you to join '<b>Familia</b>' group</div></td>
-                    <td style="width:30%;" class="text-right">
+                    <td style="width:30%;" class="buttonsright">
                         <a href="#" class="btn btn-primary">Ver</a>
                         <a href="#" class="btn btn-danger dismiss-notification">Descartar</a>
                     </td>
@@ -34,10 +35,10 @@
 
     <div class="card notification-card notification-warning">
         <div class="card-body">
-            <table>
+            <table class="notification_table">
                 <tr>
                     <td style="width:70%"><div class="card-title">Your expenses for '<b>Groceries</b>' has exceeded its budget</div></td>
-                    <td style="width:30%;" class="text-right">
+                    <td style="width:30%;" class="buttonsright">
                         <a href="#" class="btn btn-primary">Ver</a>
                         <a href="#" class="btn btn-danger dismiss-notification">Descartar</a>
                     </td>
@@ -48,10 +49,10 @@
 
     <div class="card notification-card notification-danger">
         <div class="card-body">
-            <table>
+            <table class="notification_table">
                 <tr>
                     <td style="width:70%"><div class="card-title">Insufficient budget to create '<b>Clothing</b>' budget category</div></td>
-                    <td style="width:30%;" class="text-right">
+                    <td style="width:30%;" class="buttonsright">
                         <a href="#" class="btn btn-primary">Ver</a>
                         <a href="#" class="btn btn-danger dismiss-notification">Descartar</a>
                     </td>
@@ -62,10 +63,10 @@
 
     <div class="card notification-card notification-reminder">
         <div class="card-body">
-            <table>
+            <table class="notification_table">
                 <tr>
                     <td style="width:70%"><div class="card-title">You have <b>2</b> upcoming payment(s) this week</div></td>
-                    <td style="width:30%;">
+                    <td style="width:30%;" class="buttonsright">
                         <a href="#" class="btn btn-primary">Ver</a>
                         <a href="#" class="btn btn-danger dismiss-notification">Descartar</a>
                     </td>
@@ -73,7 +74,8 @@
             </table>
         </div>
     </div>
+
 </div>
 </body>
-<script src="../js/script_notification.js"></script>
+<script src="/js/script_notification.js "></script>
 </html>
