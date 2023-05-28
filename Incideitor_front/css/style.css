@@ -78,6 +78,12 @@ tr{
     text-align: center;
     vertical-align: middle;
 }
+.sidebar{
+    min-height: 70vh;
+}
+li::marker{
+    font-size: 0px;
+}
 
 /*Media Querys Nav*/
 
