@@ -6,31 +6,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-
+import java.util.Collection;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-public class Incidencia {
-
+@AllArgsConstructor
+@NoArgsConstructor
+public class Lugares {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String titulo;
+    private Collection<Incidencia> incidencias;
+    private Double latitud;
+    private Double longitud;
+    private String direccion;
     private String descripcion;
-    private Date fecha;
-
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
-    @OneToMany
-    @JoinColumn(name = "ayuntamiento_id")
-    private Ayuntamiento ayuntamiento;
-
 
 }
