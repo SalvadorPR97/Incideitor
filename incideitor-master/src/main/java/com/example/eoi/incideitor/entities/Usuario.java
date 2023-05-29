@@ -6,12 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Collection;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Usuario {
 
     @Id
@@ -30,7 +32,7 @@ public class Usuario {
     private Ayuntamiento ayuntamiento;
 
     @OneToMany
-    private Reporte reporte;
+    private Collection<Reporte> reporte;
 
     private int permitirNotificaciones;
     private int borradoLogico;
