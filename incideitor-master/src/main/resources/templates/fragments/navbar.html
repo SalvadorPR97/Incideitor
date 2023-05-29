@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <body>
 
     <!-- navbar-->
-    <div class="col-12 sticky-top"> 
+    <div th:fragment="navbar" class="col-12">
         <nav class="nav navbar navbar-expand-lg" aria-label="Eleventh navbar example">
             <div class="container-fluid d-flex">
-                <a class="navbar-brand" href="index.html"> <img src="/static/img/Escudo_de_Mijas_(Málaga).svg.png" alt="logo"
-                        style="width: 50px;"> </a>
+                <a class="navbar-brand" href="index.html"> <img src="img/Escudo_de_Mijas_(Málaga).svg.png" alt="logo"
+                                                                style="width: 50px;"> </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                        data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -21,30 +21,27 @@
                             <a class="nav-link active text-black" aria-current="page" href="index.html">INICIO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="#">AYUNTAMIENTO</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-black" href="#">INCIDENCIAS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="#">MIS INCIDENCIAS</a>
+                            <a class="nav-link text-black" href="#">AYUNTAMIENTO</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-black" href="login.html">NUEVA INCIDENCIA</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="login.html">INICIAR SESION</a>
+                            <a class="nav-link text-black" href="login.html">ACCESO</a>
                         </li>
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-black" href="#" role="button" id="dropdown"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="/static/img/logoUsuario.png" alt="Logo" width="20" height="20"
-                                    class="d-inline-block align-text-top">
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="img/logoUsuario.png" alt="Logo" width="20" height="20"
+                                     class="d-inline-block align-text-top">
                                 ÁREA PERSONAL
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">
-                                        Mi perfil</a></li>
+                                    Mi perfil</a></li>
                                 <li><a class="dropdown-item" href="#">Mis incidencias</a></li>
                                 <li><a class="dropdown-item" href="#">Nueva incidencia</a></li>
                                 <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
