@@ -14,19 +14,5 @@ import java.util.Optional;
 @Service
 public class ReporteService {
 
-    @Autowired
-    ReporteRepository reporteRepository;
-
-    public Optional<Reporte> getUserByID(Integer reporteId)
-    {
-        return reporteRepository.findById(reporteId);
-    }
-
-        public List<Reporte> findAll()
-    {
-        return reporteRepository.findAll();
-    }
-
-
 
 }

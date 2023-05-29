@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Collection;
 
@@ -35,6 +36,8 @@ public class Usuario {
     private Collection<Reporte> reporte;
 
     private int permitirNotificaciones;
+
+    @Value(value = "0")
     private int borradoLogico;
     private String departamento;
     private String extension;

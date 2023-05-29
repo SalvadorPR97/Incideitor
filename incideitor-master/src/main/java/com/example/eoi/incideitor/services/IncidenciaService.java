@@ -14,19 +14,6 @@ import java.util.Optional;
 @Service
 public class IncidenciaService {
 
-    @Autowired
-    IncidenciaRepository incidenciaRepository;
-
-    public Optional<Incidencia> getUserByID(Integer incidenciaId)
-    {
-        return incidenciaRepository.findById(incidenciaId);
-    }
-
-    public List<Incidencia> findAll()
-    {
-        return incidenciaRepository.findAll();
-    }
-
 
 
 }

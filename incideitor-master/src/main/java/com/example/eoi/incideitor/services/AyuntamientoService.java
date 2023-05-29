@@ -14,19 +14,6 @@ import java.util.Optional;
 @Service
 public class AyuntamientoService {
 
-    @Autowired
-    AyuntamientoRepository ayuntamientoRepository;
-
-    public Optional<Ayuntamiento> getUserByID(Integer ayuntamientoId)
-    {
-        return ayuntamientoRepository.findById(ayuntamientoId);
-    }
-
-    public List<Ayuntamiento> findAll()
-    {
-        return ayuntamientoRepository.findAll();
-    }
-
 
 
 }
