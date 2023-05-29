@@ -1,1 +1,1 @@
-INSERT INTO usuario (id,email, nombre) VALUES ('1', 'mail.alejandro.teixeira@gmail.com', 'Juan');
+INSERT INTO usuario (id,nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ('1', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', 'Juan', 'Juan', 'Juan', '1', 'Juan', 'Juan');

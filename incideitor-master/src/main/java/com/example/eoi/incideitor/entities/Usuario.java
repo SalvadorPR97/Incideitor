@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 
 
@@ -25,8 +26,8 @@ public class Usuario {
     private String apellido;
     private String avatar;
     private String email;
-    private String DNI;
-    private String contraseña;
+    private String dni;
+    private String contrasena;
     private int sexo;
 
     @ManyToOne
@@ -35,10 +36,10 @@ public class Usuario {
     @OneToMany
     private Collection<Reporte> reporte;
 
-    private int permitirNotificaciones;
+    //private int permitirNotificaciones;
 
-    @Value(value = "0")
-    private int borradoLogico;
+    //private int borradoLogico;
+
     private String departamento;
     private String extension;
 
