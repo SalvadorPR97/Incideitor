@@ -15,6 +15,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class Votos {
 
+
+    @Id
     @ManyToOne
     @JoinColumn(name = "incidencia_id")
     private Incidencia incidencia;

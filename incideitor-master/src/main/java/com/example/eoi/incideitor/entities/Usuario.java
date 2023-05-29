@@ -34,7 +34,10 @@ public class Usuario {
     private Ayuntamiento ayuntamiento;
 
     @OneToMany
-    private Collection<Reporte> reporte;
+    private Collection<Reporte> reportes;
+
+    @OneToMany
+    private Collection<Incidencia> incidencias;
 
     //private int permitirNotificaciones;
 

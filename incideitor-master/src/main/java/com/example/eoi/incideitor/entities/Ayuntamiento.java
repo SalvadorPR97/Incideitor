@@ -25,7 +25,7 @@ public class Ayuntamiento {
     private String foto3;
     private String foto4;
 
-    @OneToMany(mappedBy = "ayuntamiento")
+    @OneToMany
     private Collection<Usuario> usuario;
 
 }

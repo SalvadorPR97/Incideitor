@@ -25,11 +25,9 @@ public class Incidencia {
     private Date fecha;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany
-    @JoinColumn(name = "ayuntamiento_id")
+    @ManyToOne
     private Ayuntamiento ayuntamiento;
 
 
