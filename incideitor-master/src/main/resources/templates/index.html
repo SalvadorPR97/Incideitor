@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
-    <meta charset="UTF-8">
-    <title>Bienvenido</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <link href="/webjars/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="../static/css/style.css" rel="stylesheet">
-    <script src="../static/js/script.js"></script>
-</head>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head}"> </head>
 <body>
-<div class="container" >
-    <div th:replace="~{fragments/navbar :: navbar}">Navbar</div>
-    <div th:replace="~{fragments/__${entityName}__/__${nombreVista}__ :: __${nombreVista}__}">Contenido principal</div>
 
+<div class="container-fluid" >
+    <header th:replace="~{fragments/header :: header}"></header>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <main th:replace="~{fragments/main :: main}"></main>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </div>
-<div th:replace="~{fragments/footer :: footer}">&copy; EOI</div>
-<!-- Cargamos el script de Bootstrap al final del archivo para mejorar la velocidad de carga -->
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 

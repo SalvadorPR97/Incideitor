@@ -29,8 +29,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *     la implementación de controladores.</li>
  * </ul>
  *
- * @param <Usuario> El tipo de entidad gestionada por el controlador.
- * @Author Alejandro Teixeira Muñoz
+ * "@param <Usuario>" El tipo de entidad gestionada por el controlador.
+ * "@Author Alejandro Teixeira Muñoz
  */
 @Controller
 @RequestMapping("${url.usuario}")
@@ -39,7 +39,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @Value("${url.usuario}")
     private String url;
 
-    private String entityName = "usuario";
+    private String entityName = "usuarios";
 
     /**
      * Constructor de la clase UsuarioController.
