@@ -30,5 +30,6 @@ public class Voto {
     private Usuario usuario;
 
     private Boolean voto;
+
     private Date fecha;
 }
