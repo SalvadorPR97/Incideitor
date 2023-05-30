@@ -1,31 +1,22 @@
 package com.example.eoi.incideitor.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Reporte {
-
+public class Permisos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private int categoria;
-    private String descripcion;
-
-    @ManyToOne
-    private Incidencia incidencia;
-
-    @ManyToOne
-    private Usuario usuario;
-
+    private String nombre;
 }

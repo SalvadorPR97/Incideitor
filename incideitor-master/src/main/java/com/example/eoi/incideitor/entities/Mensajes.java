@@ -6,26 +6,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Reporte {
-
+public class Mensajes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private int categoria;
-    private String descripcion;
-
-    @ManyToOne
-    private Incidencia incidencia;
-
-    @ManyToOne
-    private Usuario usuario;
+    @OneToOne
+    private Usuario usuarioEmisor;
+    @OneToOne
+    private Usuario usuarioReceptor;
+    private Date fecha;
+    private String contenido;
+    private Boolean leido;
 
 }

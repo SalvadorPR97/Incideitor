@@ -6,26 +6,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Reporte {
-
+public class Lugares {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private int categoria;
-    private String descripcion;
-
-    @ManyToOne
+    @OneToOne
     private Incidencia incidencia;
 
-    @ManyToOne
-    private Usuario usuario;
+    private double latitud;
+    private double longitud;
+    private String direccion;
+    private String descripcion;
+
+
 
 }

@@ -6,26 +6,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Reporte {
-
+public class Notificaciones {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private int categoria;
     private String descripcion;
-
     @ManyToOne
     private Incidencia incidencia;
-
-    @ManyToOne
-    private Usuario usuario;
-
+    private Date fechaNotificacion;
 }

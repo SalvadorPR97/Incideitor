@@ -6,26 +6,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Reporte {
-
+public class Fotos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private int categoria;
-    private String descripcion;
-
     @ManyToOne
     private Incidencia incidencia;
+    private String foto;
+    private int orden;
 
-    @ManyToOne
-    private Usuario usuario;
 
 }
