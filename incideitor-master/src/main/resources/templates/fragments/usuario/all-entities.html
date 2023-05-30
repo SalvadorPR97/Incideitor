@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head th:replace="fragments/head :: head">
-</head>
+
 <body>
-<header th:replace="fragments/header :: header">
-</header>
-<h1>Hola <span th:text="${nombre}"></span></h1>
-<table>
+
+<table th:fragment="all-entities">
     <thead>
         <tr>
             <th>
@@ -15,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr th:each="usuario: ${usuarios}">
+        <tr th:each="usuario: ${entities}">
             <td>
                 <span th:text="${usuario.nombre}"> </span>
                 <a class="btn btn-danger" th:href="@{/usuarios/delete/{id}(id=${usuario.id})}">Eliminar</a>

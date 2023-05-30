@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/head :: head}"> </head>
+
 <body>
 
-<div class="container-fluid">
-    <header th:replace="~{fragments/header :: header}"></header>
-    <div th:replace="~{fragments/navbar :: navbar}"></div>
+<div th:fragment="principal" class="container-fluid">
 
     <main>
         <div class="text-center row tutorial py-5">
@@ -74,8 +71,6 @@
             </div>
         </section>
     </main>
-
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
 </div>
 </body>
 </html>

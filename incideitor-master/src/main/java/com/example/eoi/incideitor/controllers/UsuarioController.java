@@ -39,7 +39,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @Value("${url.usuario}")
     private String url;
 
-    private String entityName = "usuarios";
+    private String entityName = "usuario";
 
     /**
      * Constructor de la clase UsuarioController.
