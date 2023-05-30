@@ -6,24 +6,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Lugares {
+public class Mensaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @OneToOne
-    private Incidencia incidencia;
-
-    private double latitud;
-    private double longitud;
-    private String direccion;
-    private String descripcion;
-
-
+    private Usuario usuarioEmisor;
+    @OneToOne
+    private Usuario usuarioReceptor;
+    private Date fecha;
+    private String contenido;
+    private Boolean leido;
 
 }

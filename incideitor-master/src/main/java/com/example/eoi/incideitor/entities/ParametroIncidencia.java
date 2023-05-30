@@ -11,7 +11,7 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class ParametrosIncidencia {
+public class ParametroIncidencia {
     @Id
     @OneToOne
     @JoinColumn(name = "incidencia_id", nullable = false)

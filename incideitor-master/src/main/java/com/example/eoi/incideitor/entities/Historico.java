@@ -22,7 +22,7 @@ public class Historico {
     private Incidencia incidencia;
     @Id
     @OneToOne
-    private Estados estado;
+    private Estado estado;
     @Id
     private Date fechaCambioEstado;
     private String mensajeAdicional;
