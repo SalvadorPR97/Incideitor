@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Votos {
 
-
+// se ha añadido un id porque pedia una PK
     @Id
     @ManyToOne
     @JoinColumn(name = "incidencia_id")

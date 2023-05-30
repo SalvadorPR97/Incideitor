@@ -1,5 +1,6 @@
 package com.example.eoi.incideitor.abstractcomponents;
 
+
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -76,7 +77,7 @@ public abstract class GenericServiceWithJPA<T, ID> implements GenericService<T> 
     /**
      * Actualiza una entidad existente.
      *
-     * @param "id"     El identificador de la entidad a actualizar.
+     * @param id     El identificador de la entidad a actualizar.
      * @param entity La entidad actualizada.
      * @return La entidad actualizada.
      */

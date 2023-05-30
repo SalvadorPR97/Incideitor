@@ -54,7 +54,7 @@ public abstract class MiControladorGenerico<T> {
         protected Class<T> tClass;
 
         protected String entityName;
-        protected String entityPrefix;
+        protected String url;
 
         @Autowired
         protected GenericServiceWithJPA<T,?> service;
@@ -68,12 +68,25 @@ public abstract class MiControladorGenerico<T> {
          */
         @GetMapping("/all")
         public String getAll(Model model) {
-            this.entityPrefix = entityName + "/";
+            this.url = entityName + "/";
             List<T> entities = service.listAll();
             model.addAttribute("entities", entities);
-            model.addAttribute("nombreVista", entityName);
+            model.addAttribute("url", url);
+            model.addAttribute("entityName", entityName);
+            model.addAttribute("nombreVista", "all-entities");
             return "index"; // Nombre de la plantilla para mostrar todas las entidades
         }
+
+    @GetMapping("/allAdmin")
+    public String getAllAdmin(Model model) {
+        this.url = entityName + "/";
+        List<T> entities = service.listAll();
+        model.addAttribute("entities", entities);
+        model.addAttribute("url", url);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "admin");
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+    }
 
 
     /**
@@ -86,11 +99,16 @@ public abstract class MiControladorGenerico<T> {
      */
     @GetMapping("/{id}")
     public String getById(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
-            this.entityPrefix = entityName + "/";
+            this.url = entityName + "/";
             try {
+
                 T entity = service.getById(id);
                 model.addAttribute("entity", entity);
-                return entityPrefix+"entity-details"; // Nombre de la plantilla para mostrar los detalles de una entidad
+                model.addAttribute("url", url);
+                model.addAttribute("entityName", entityName);
+                model.addAttribute("nombreVista", "entity-details");
+                return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
+
             } catch (MiEntidadNoEncontradaException ex) {
                 model.addAttribute("mensaje", "Entidad no encontrada");
                 model.addAttribute("error", ex.getMessage());
@@ -110,7 +128,7 @@ public abstract class MiControladorGenerico<T> {
         public String create(Model model) {
             T entity=null;
             model.addAttribute("entity", entity);
-            return entityPrefix+"entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad creada
+            return url + "/"+ "entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad creada
         }
 
         /**
@@ -124,10 +142,10 @@ public abstract class MiControladorGenerico<T> {
         @PostMapping(value={"","/"})
         public String update( @ModelAttribute T entity, Model model)
         {
-            this.entityPrefix = entityName + "/";
+            this.url = entityName + "/";
             T updatedEntity = service.update((T) entity);
             model.addAttribute("entity", updatedEntity);
-            return entityPrefix+"entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad actualizada
+            return url + "/" +"entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad actualizada
 
         }
 
@@ -140,9 +158,9 @@ public abstract class MiControladorGenerico<T> {
          */
         @DeleteMapping("/{id}")
         public String delete(@PathVariable Object id) {
-            this.entityPrefix = entityName + "/";
+            this.url = entityName + "/";
             service.delete(id);
-            return "redirect:/"+ entityName +"/all"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+            return "redirect:/"+ url + "/" +"all"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
         }
     }
 

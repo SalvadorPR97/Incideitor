@@ -43,7 +43,7 @@ public interface GenericService<T> {
     /**
      * Actualiza una entidad existente.
      *
-     * @param "id"     El identificador de la entidad a actualizar.
+     * @param id     El identificador de la entidad a actualizar.
      * @param entity La entidad actualizada.
      * @return La entidad actualizada.
      */

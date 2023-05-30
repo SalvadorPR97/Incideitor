@@ -1,0 +1,23 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:object="${usuario}" th:method="POST" th:action="@{/usuarios/save}">
+
+    <input type="text" th:field="*{nombre}">
+    <input type="email" th:field="*{email}">
+
+    <button type="submit">Enviar</button>
+
+</form>
+
+
+
+
+</body>
+</html>

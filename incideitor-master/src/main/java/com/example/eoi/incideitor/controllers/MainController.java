@@ -17,9 +17,11 @@ public class MainController {
     UsuarioRepository usuarioRepository;
 
 
-    @GetMapping(value={"/",""})
-    public String showIndex(Model model)
+    @GetMapping(value={"","/"})
+    public String mostrarIndex(Model model)
     {
+        model.addAttribute("entityName", "index");
+        model.addAttribute("nombreVista", "principal");
         return "index";
     }
 
