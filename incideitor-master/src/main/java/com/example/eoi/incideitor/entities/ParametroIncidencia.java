@@ -13,9 +13,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ParametroIncidencia {
     @Id
+    private Integer id;
+
     @OneToOne
     @JoinColumn(name = "incidencia_id", nullable = false)
     private Incidencia incidencia;
+
     private String nombre;
     private String valor;
 }

@@ -16,11 +16,11 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 public class Historico {
-    //El Id esta puesto porque no me dejaba crearlo sin Id pero en el modelo no tiene primary key
-    @Id
+
+
     @OneToOne
     private Incidencia incidencia;
-    @Id
+
     @OneToOne
     private Estado estado;
     @Id
