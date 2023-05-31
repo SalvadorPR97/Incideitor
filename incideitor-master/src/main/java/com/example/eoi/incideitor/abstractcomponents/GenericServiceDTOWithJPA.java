@@ -2,6 +2,7 @@ package com.example.eoi.incideitor.abstractcomponents;
 
 
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -26,10 +27,17 @@ import java.util.List;
  * @param <T> El tipo de entidad gestionado por el servicio.
  * @param <ID> El tipo de dato utilizado como identificador de la entidad.
  */
-public abstract class GenericServiceWithJPA<T, ID> implements GenericService<T> {
+public abstract class GenericServiceDTOWithJPA<T, ID, DTO, MAPPER> implements GenericService<T> {
 
     @Autowired
     protected JpaRepository<T, ID> repository;
+
+
+    private final MAPPER serviceMapper;
+
+    protected GenericServiceDTOWithJPA(MAPPER serviceMapper) {
+        this.serviceMapper = serviceMapper;
+    }
 
     /**
      * Obtiene todas las entidades.
@@ -61,6 +69,13 @@ public abstract class GenericServiceWithJPA<T, ID> implements GenericService<T> 
     @Override
     public T getById(Object id) {
         return repository.findById((ID) id).orElseThrow(MiEntidadNoEncontradaException::new);
+    }
+
+    public DTO getDTOById(Object id) {
+        T entity = repository.findById((ID) id).orElseThrow(MiEntidadNoEncontradaException::new);
+
+
+        return this.serviceMapper.toDto(entity);
     }
 
     /**

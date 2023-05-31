@@ -77,16 +77,16 @@ public abstract class MiControladorGenerico<T> {
             return "index"; // Nombre de la plantilla para mostrar todas las entidades
         }
 
-    @GetMapping("/allAdmin")
-    public String getAllAdmin(Model model) {
-        this.url = entityName + "/";
-        List<T> entities = service.listAll();
-        model.addAttribute("entities", entities);
-        model.addAttribute("url", url);
-        model.addAttribute("entityName", entityName);
-        model.addAttribute("nombreVista", "admin");
-        return "index"; // Nombre de la plantilla para mostrar todas las entidades
-    }
+        @GetMapping("/allAdmin")
+        public String getAllAdmin(Model model) {
+            this.url = entityName + "/";
+            List<T> entities = service.listAll();
+            model.addAttribute("entities", entities);
+            model.addAttribute("url", url);
+            model.addAttribute("entityName", entityName);
+            model.addAttribute("nombreVista", "admin");
+            return "index"; // Nombre de la plantilla para mostrar todas las entidades
+        }
 
 
     /**

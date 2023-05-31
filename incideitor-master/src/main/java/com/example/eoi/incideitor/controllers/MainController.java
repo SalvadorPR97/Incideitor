@@ -18,7 +18,7 @@ public class MainController {
     @GetMapping(value={"","/"})
     public String mostrarIndex(Model model)
     {
-        model.addAttribute("entityName", "index");
+        model.addAttribute("entityName", "home");
         model.addAttribute("nombreVista", "principal");
         return "index";
     }
