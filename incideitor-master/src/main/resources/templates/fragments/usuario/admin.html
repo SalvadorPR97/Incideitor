@@ -1,49 +1,10 @@
 <!DOCTYPE html>
 
 <body>
-    <div th:fragment="admin" class="container-fluid">
-        <!--Main: Sidebar + Contenido-->
-        <main class="container-fluid flex-nowrap d-flex">
-            <!--Sidebar-->
-            <div class="col-auto px-0 mt-2 sidebar bg-body-secondary rounded-1 border">
-                <div class="d-flex flex-column m-2">
-                    <a href="../../admin/home_admin.html" class="d-flex align-items-center mb-md-0 me-md-auto text-black text-decoration-none">
-                        <span class="fs-5 d-none d-md-inline">Panel de <br class="d-lg-none"> Administración</span>
-                    </a>
-                    <hr class="p-0 d-none d-md-inline">
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                        <li class="nav-item">
-                            <a href="../../admin/home_admin.html" class="nav-link align-middle px-0">
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../incidencia/incidencias_admin.html" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-card-list"></i> <span class="ms-1 d-none d-sm-inline">Incidencias</span></a>
-                        </li>
-                        <li>
-                            <a href="admin.html" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Usuarios</span> </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-danger">
-                                <i class="fs-4 bi-flag"></i> <span class="ms-1 d-none d-sm-inline">Reportes</span> </a>
-                            <ul class="collapse flex-column ms-1 ps-2" id="submenu1" data-bs-parent="#menu">
-                                <li>
-                                    <a href="#" class="nav-link px-0 text-danger"><i class="fs-4 bi-list-check"></i> <span class="d-none d-sm-inline">Incidencias</span></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0 text-danger"><i class="fs-4 bi-bug"></i> <span class="d-none d-sm-inline">Bugs</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--Contenido-->
-            <div class="col-10 py-2 mx-3">
-                <!--Header y filtros-->
-                <div>
+    <main th:fragment="admin" class="container-fluid flex-nowrap d-flex">
+        <div class="col-10 py-2 mx-3">
+            <!--Header y filtros-->
+            <div>
                     <h1>Usuarios</h1>
                     <button type="button" onclick="location.href='URL DESTINO'"
                         class="btn btn-primary mb-1">Nueva Incidencia</button>
@@ -75,8 +36,8 @@
                         <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
                     </form>
                 </div>
-                <!--Tabla-->
-                <div>
+            <!--Tabla-->
+            <div>
                     <table class="table" id="myTable2">
                         <thead>
                             <tr>
@@ -124,114 +85,8 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </main>
-        <!--Footer-->
-        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-5 px-5 border-top">
-            <div class="col mb-3">
-                <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
-                    <img src="img/incidencia_logo.png" alt="" style="width: 120px; filter: hue-rotate(250deg);">
-                </a>
-                <p style="font-weight: 400;">© Incideitor 2023</p>
-            </div>
+        </div>
+    </main>
 
-            <div class="col mb-3">
-                <h5>ACCESO</h5>
-                <ul class="nav flex-column" style="background: none;">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Inicio</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Mi Cuenta</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Mis incidencias</a>
-                    </li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Ultimas
-                            incidencias</a></li>
-                </ul>
-            </div>
-
-            <div class="col mb-3">
-                <h5 style="visibility: hidden;">ACCESO</h5>
-                <ul class="nav flex-column" style="background: none;">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Incidencias por
-                            ubicación</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Busqueda avanzada</a>
-                    </li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Sobre Nosotros</a>
-                    </li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Preguntas
-                            frecuentes</a></li>
-
-                </ul>
-            </div>
-
-            <div class="col mb-3">
-                <h5>CONDICIONES</h5>
-                <ul class="nav flex-column" style="background: none;">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Aviso legal</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Condiciones de
-                            uso</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Cookies</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Política de
-                            privacidad</a></li>
-                </ul>
-            </div>
-        </footer>
-
-    </div>
-    <script>
-        function sortTable(n) {
-            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-            table = document.getElementById("myTable2");
-            switching = true;
-            // Set the sorting direction to ascending:
-            dir = "asc";
-            /* Make a loop that will continue until
-            no switching has been done: */
-            while (switching) {
-                // Start by saying: no switching is done:
-                switching = false;
-                rows = table.rows;
-                /* Loop through all table rows (except the
-                first, which contains table headers): */
-                for (i = 1; i < (rows.length - 1); i++) {
-                    // Start by saying there should be no switching:
-                    shouldSwitch = false;
-                    /* Get the two elements you want to compare,
-                    one from current row and one from the next: */
-                    x = rows[i].getElementsByTagName("TD")[n];
-                    y = rows[i + 1].getElementsByTagName("TD")[n];
-                    /* Check if the two rows should switch place,
-                    based on the direction, asc or desc: */
-
-                    if (dir == "asc") {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            // If so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else if (dir == "desc") {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            // If so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                }
-                if (shouldSwitch) {
-                    /* If a switch has been marked, make the switch
-                    and mark that a switch has been done: */
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                    // Each time a switch is done, increase this count by 1:
-                    switchcount++;
-                } else {
-                    /* If no switching has been done AND the direction is "asc",
-                    set the direction to "desc" and run the while loop again. */
-                    if (switchcount == 0 && dir == "asc") {
-                        dir = "desc";
-                        switching = true;
-                    }
-                }
-            }
-        }
-    </script>
 </body>
 </html>

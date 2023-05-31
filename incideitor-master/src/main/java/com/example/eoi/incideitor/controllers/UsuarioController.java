@@ -74,7 +74,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "entity-details");
-        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+        return "redirect: /usuario/all "; // Nombre de la plantilla para mostrar todas las entidades
     }
 
 }

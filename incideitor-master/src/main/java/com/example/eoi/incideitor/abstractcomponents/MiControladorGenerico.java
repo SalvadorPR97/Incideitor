@@ -77,7 +77,7 @@ public abstract class MiControladorGenerico<T> {
             return "index"; // Nombre de la plantilla para mostrar todas las entidades
         }
 
-        @GetMapping("/allAdmin")
+        @GetMapping("/admin")
         public String getAllAdmin(Model model) {
             this.url = entityName + "/";
             List<T> entities = service.listAll();
@@ -156,11 +156,10 @@ public abstract class MiControladorGenerico<T> {
          * @param id El identificador de la entidad a eliminar.
          * @return La URL de redirección a la página de listar todas las entidades después de eliminar una entidad.
          */
-        @DeleteMapping("/{id}")
+        @PostMapping("delete/{id}")
         public String delete(@PathVariable Object id) {
-            this.url = entityName + "/";
             service.delete(id);
-            return "redirect:/"+ url + "/" +"all"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+            return "redirect:/"+ this.entityName + "/" +"all"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
         }
     }
 

@@ -1,23 +1,23 @@
 <!DOCTYPE html >
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+
 <body>
-
-<form th:object="${usuario}" th:method="POST" th:action="@{/usuarios/save}">
-
-    <input type="text" th:field="*{nombre}">
-    <input type="email" th:field="*{email}">
-
-    <button type="submit">Enviar</button>
-
-</form>
-
-
-
-
+<div th:fragment="entity-details" class="container">
+    <h1>Editar Empleado</h1>
+    <form th:action="@{/usuario/{id}(id=${id})}" th:method="post">
+        <div class="mb-3">
+            <label for="email" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="email" name="email" th:field="*{entity.email}">
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{entity.nombre}">
+        </div>
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" name="apellido" th:field="*{entity.apellido}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
 </body>
 </html>
