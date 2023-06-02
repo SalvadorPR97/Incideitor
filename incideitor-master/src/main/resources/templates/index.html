@@ -17,8 +17,8 @@
 <div class="container-fluid" >
     <header th:replace="~{fragments/header :: header}"></header>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
-    <div th:if="${nombreVista}  == 'admin' or ${entityName}  == 'admin'" > <div th:replace="~{fragments/sidebar :: sidebar}">Sidebar</div></div>
-    <div th:replace="~{fragments/__${entityName}__/__${nombreVista}__ :: __${nombreVista}__}">Contenido principal</div>
+    <div th:if="${nombreVista}  == 'admin' or ${entityName}  == 'admin'" > <div th:replace="~{fragments/sidebar :: sidebar}"></div></div>
+    <div th:replace="~{fragments/__${entityName}__/__${nombreVista}__ :: __${nombreVista}__}"></div>
     <div th:replace="~{fragments/footer :: footer}"></div>
 </div>
 </body>

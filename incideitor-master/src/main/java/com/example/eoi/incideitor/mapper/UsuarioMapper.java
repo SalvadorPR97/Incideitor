@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioMapper {
-    //Convertir de entidad a dtoç
+    //Convertir de entidad a dto
 
     public UsuarioDatosPrivados toDto(Usuario entidad){
         final UsuarioDatosPrivados dto = new UsuarioDatosPrivados();

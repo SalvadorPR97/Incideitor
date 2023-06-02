@@ -1,23 +1,55 @@
-<!DOCTYPE html >
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+
 <body>
-
-<form th:object="${usuario}" th:method="POST" th:action="@{/usuarios/save}">
-
-    <input type="text" th:field="*{nombre}">
-    <input type="email" th:field="*{email}">
-
-    <button type="submit">Enviar</button>
-
-</form>
-
-
-
+    <div th:fragment="entity-details" class="container-fluid">
+        <div class="fondo row">
+        <main class="container"> 
+            <div class="border-bottom"></div>
+                <div class="row col-12 mb-5">
+                    <div class="col-md-5 col-sm-6 mt-4 mb-3 px-5">
+                        <div id="carouselExample" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            <img src="/img/juan.jpg" class="d-block w-100" alt="Imagen 1" style="height: 425px;">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="/img/fotoo.jpg" class="d-block w-100" alt="Imagen 2" style="height: 425px;">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="/img/foto.jpg" class="d-block w-100" alt="Imagen 3" style="height: 425px;">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-6 mt-4 mb-5 px-4" style="background-color: #ffffff;">
+                        <form th:action="@{/incidencia/{id}(id=${id})}" th:method="post">
+                            <div class="col-md-12 mt-3 border-bottom">
+                                <label for="titulo" class="form-label">Titulo</label>
+                                <input type="text" class="form-control" id="titulo" name="titulo" th:field="*{entity.titulo}">
+                            </div>
+                            <div class="col-md-12 mt-4">
+                                <label for="fecha" class="form-label">Fecha: </label>
+                                <input type="date" class="form-control" id="fecha" name="fecha" th:field="*{entity.fecha}">
+                            </div>
+                            <div class="col-md-12 mt-5">
+                                <label for="descripcion" class="form-label">Descripcion</label>
+                                <textarea class="form-control" id="descripcion" name="descripcion" th:field="*{entity.descripcion}"> </textarea>
+                            </div>
+                        </form>
+                        <button type="submit" class="btn btn-primary mt-5">Guardar</button>
+                    </div>
+                </div>    
+        </main>
+</div>
 
 </body>
 </html>
