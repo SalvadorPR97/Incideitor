@@ -128,7 +128,7 @@ public abstract class MiControladorGenerico<T> {
         public String create(Model model) {
             T entity=null;
             model.addAttribute("entity", entity);
-            return url + "/"+ "entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad creada
+            return entityName + "/"+ "entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad creada
         }
 
         /**

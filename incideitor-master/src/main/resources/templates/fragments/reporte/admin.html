@@ -1,0 +1,83 @@
+<html lang="en">
+
+<body>
+        <!--Main: Sidebar + Contenido-->
+        <main class="container-fluid flex-nowrap d-flex" th:fragment="admin" xmlns:th="http://www.thymeleaf.org">
+            <!--Contenido-->
+            <div class="col-12 py-2 mx-3">
+                <!--Header y filtros-->
+                <div>
+                    <h1>Reportes Incidencias</h1>
+                    <button type="button" onclick="location.href='URL DESTINO'"
+                        class="btn btn-primary mb-1">Nueva Incidencia</button>
+                    <form action="#" method="get">
+                        <input type="text" placeholder="Término a Filtrar" name="filtro">
+                        <select name="tipoIncidencia" id="">
+                            <option value="0">Acerado</option>
+                            <option value="1">Aguas</option>
+                            <option value="2">Alumbrado</option>
+                            <option value="3">Arquetas</option>
+                            <option value="4">Cableado</option>
+                            <option value="5">Calzada</option>
+                            <option value="6">Carril bici</option>
+                            <option value="7">Fuentes</option>
+                            <option value="8">Jardines y zonas verdes</option>
+                            <option value="9">Limpieza</option>
+                            <option value="10">Medio ambiente</option>
+                            <option value="11">Mobiliario urbano</option>
+                            <option value="12">Monumentos</option>
+                            <option value="13/taxi">Parada bus/taxi</option>
+                            <option value="14">Parques infantiles</option>
+                            <option value="15">Plagas</option>
+                            <option value="16">Playas</option>
+                            <option value="17">Saneamiento</option>
+                            <option value="18">Semáforos</option>
+                            <option value="19">Tráfico y señalización</option>
+                            <option value="20">Vallas de obra</option>
+                        </select>
+                        <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
+                    </form>
+                </div>
+                <!--Tabla-->
+                <div>
+                    <table class="table" id="myTable2">
+                        <thead>
+                            <tr>
+                                <th scope="col" onclick="sortTable(0)">#</th>
+                                <th scope="col" >Titulo</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col" onclick="sortTable(4)">IdUsuario</th>
+                                <th scope="col" onclick="sortTable(5)">IdAyuntamiento</th>
+                                <th scope="col">Fecha Resolucion</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">1</td>
+                                <td>Boton no esta</td>
+                                <td>No aparece el boton de borrar mi incidencia</td>
+                                <td>19/05/2023</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>19/05/2023</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary mb-1 mb-lg-0 px-2"
+                                        onclick="location.href='URL DESTINO'"><i class="bi-eye me-2"></i>Ver</button>
+                                    <button type="button" class="btn btn-primary mb-1 mb-lg-0 px-md-2 py-md-1 px-0"
+                                        onclick="location.href='URL DESTINO'"><i
+                                            class="bi-pencil-square me-2"></i>Editar</button>
+                                    <button type="button" class="btn btn-danger px-md-2 py-md-1 px-0"
+                                        onclick="location.href='URL DESTINO'"><i
+                                            class="bi-trash3 me-2 "></i>Borrar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </main>
+</body>
+
+</html>
