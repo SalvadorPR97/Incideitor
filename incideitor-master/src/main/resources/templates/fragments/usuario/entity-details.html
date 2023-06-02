@@ -5,6 +5,10 @@
     <h1>Editar Empleado</h1>
     <form th:action="@{/usuario/{id}(id=${id})}" th:method="post">
         <div class="mb-3">
+            <label for="id" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="id" name="id" th:field="*{entity.id}">
+        </div>
+        <div class="mb-3">
             <label for="email" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="email" name="email" th:field="*{entity.email}">
         </div>

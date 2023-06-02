@@ -3,11 +3,13 @@ package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Usuario;
+import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -74,8 +76,9 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "entity-details");
-        return "redirect: /usuario/all "; // Nombre de la plantilla para mostrar todas las entidades
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
+
 
 }
 

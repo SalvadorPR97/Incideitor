@@ -1,6 +1,6 @@
 package com.example.eoi.incideitor.abstractcomponents;
 
-
+import com.example.eoi.incideitor.abstractcomponents.GenericServiceWithJPA;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -51,115 +51,99 @@ import java.util.List;
  */
 public abstract class MiControladorGenerico<T> {
 
-        protected Class<T> tClass;
+    protected Class<T> tClass;
 
-        protected String entityName;
-        protected String url;
+    protected String entityName;
+    protected String url;
 
-        @Autowired
-        protected GenericServiceWithJPA<T,?> service;
+    @Autowired
+    protected GenericServiceWithJPA<T, ?> service;
 
-
-        /**
-         * Maneja la solicitud GET para obtener todas las entidades.
-         *
-         * @param model El objeto Model para agregar los atributos necesarios.
-         * @return El nombre de la plantilla para mostrar todas las entidades.
-         */
-        @GetMapping("/all")
-        public String getAll(Model model) {
-            this.url = entityName + "/";
-            List<T> entities = service.listAll();
-            model.addAttribute("entities", entities);
-            model.addAttribute("url", url);
-            model.addAttribute("entityName", entityName);
-            model.addAttribute("nombreVista", "all-entities");
-            return "index"; // Nombre de la plantilla para mostrar todas las entidades
-        }
-
-        @GetMapping("/admin")
-        public String getAllAdmin(Model model) {
-            this.url = entityName + "/";
-            List<T> entities = service.listAll();
-            model.addAttribute("entities", entities);
-            model.addAttribute("url", url);
-            model.addAttribute("entityName", entityName);
-            model.addAttribute("nombreVista", "admin");
-            return "index"; // Nombre de la plantilla para mostrar todas las entidades
-        }
+    /**
+     * Maneja la solicitud GET para obtener todas las entidades.
+     *
+     * @param model El objeto Model para agregar los atributos necesarios.
+     * @return El nombre de la plantilla para mostrar todas las entidades.
+     */
+    @GetMapping("/all")
+    public String getAll(@RequestParam(defaultValue = "false") boolean mostrarTarjetas,
+                         Model model) {
+        List<T> entities = service.listAll();
+        model.addAttribute("entities", entities);
+        model.addAttribute("url", url);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "all-entities");
+        model.addAttribute("mostrarTarjetas",mostrarTarjetas);
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+    }
 
 
     /**
      * Maneja la solicitud GET para obtener una entidad por su identificador.
      *
-     * @param id     El identificador de la entidad.
-     * @param model  El objeto Model para agregar los atributos necesarios.
+     * @param id    El identificador de la entidad.
+     * @param model El objeto Model para agregar los atributos necesarios.
      * @return El nombre de la plantilla para mostrar los detalles de una entidad.
      * @throws MiEntidadNoEncontradaException Si la entidad no se encuentra en la base de datos.
      */
     @GetMapping("/{id}")
-    public String getById(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
-            this.url = entityName + "/";
-            try {
-
-                T entity = service.getById(id);
-                model.addAttribute("entity", entity);
-                model.addAttribute("url", url);
-                model.addAttribute("entityName", entityName);
-                model.addAttribute("nombreVista", "entity-details");
-                return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
-
-            } catch (MiEntidadNoEncontradaException ex) {
-                model.addAttribute("mensaje", "Entidad no encontrada");
-                model.addAttribute("error", ex.getMessage());
-                return "error"; // Nombre de la plantilla para mostrar la página de error
-            }
-    }
-
-
-        /**
-         * Maneja la solicitud POST para crear una nueva entidad.
-         *
-         * param entidad a crear.
-         * param model  El objeto Model para agregar los atributos necesarios.
-         * return El nombre de la plantilla para mostrar los detalles de la entidad creada.
-         */
-        @GetMapping("/create")
-        public String create(Model model) {
-            T entity = null;
+    public String getById(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
+        try {
+            T entity = service.getById(id);
             model.addAttribute("entity", entity);
-            return entityName + "/" + "entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad creada
-        }
+            model.addAttribute("url", url);
+            model.addAttribute("entityName", entityName);
+            return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
 
-        /**
-         * Maneja la solicitud PUT para actualizar una entidad existente.
-         *
-         * param El identificador de la entidad a actualizar.
-         * param entity La entidad actualizada.
-         * param model  El objeto Model para agregar los atributos necesarios.
-         * return El nombre de la plantilla para mostrar los detalles de la entidad actualizada.
-         */
-        @PostMapping(value={"","/"})
-        public String update( @ModelAttribute T entity, Model model)
-        {
-            this.url = entityName + "/";
-            T updatedEntity = service.update((T) entity);
-            model.addAttribute("entity", updatedEntity);
-            return url + "/" +"entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad actualizada
-
-        }
-
-
-        /**
-         * Maneja la solicitud DELETE para eliminar una entidad por su identificador.
-         *
-         * @param id El identificador de la entidad a eliminar.
-         * @return La URL de redirección a la página de listar todas las entidades después de eliminar una entidad.
-         */
-        @PostMapping("delete/{id}")
-        public String delete(@PathVariable Object id) {
-            service.delete(id);
-            return "redirect:/"+ this.entityName + "/" +"all"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+        } catch (MiEntidadNoEncontradaException ex) {
+            model.addAttribute("mensaje", "Entidad no encontrada");
+            model.addAttribute("error", ex.getMessage());
+            return "error"; // Nombre de la plantilla para mostrar la página de error
         }
     }
+
+
+    /**
+     * Maneja la solicitud POST para crear una nueva entidad.
+     *
+     * @param entity La entidad a crear.
+     * @param model  El objeto Model para agregar los atributos necesarios.
+     * @return El nombre de la plantilla para mostrar los detalles de la entidad creada.
+     */
+    @GetMapping("/create")
+    public String create(Model model) {
+        T entity = null;
+        model.addAttribute("entity", entity);
+        return "index"; // Nombre de la plantilla para mostrar los detalles de la entidad creada
+    }
+
+    /**
+     * Maneja la solicitud PUT para actualizar una entidad existente.
+     *
+     * @param id     El identificador de la entidad a actualizar.
+     * @param entity La entidad actualizada.
+     * @param model  El objeto Model para agregar los atributos necesarios.
+     * @return El nombre de la plantilla para mostrar los detalles de la entidad actualizada.
+     */
+    @PostMapping(value = {"", "/"})
+    public String update(@ModelAttribute T entity, Model model) {
+        T updatedEntity = service.update((T) entity);
+        model.addAttribute("entity", updatedEntity);
+        return "index"; // Nombre de la plantilla para mostrar los detalles de la entidad actualizada
+
+    }
+
+
+    /**
+     * Maneja la solicitud DELETE para eliminar una entidad por su identificador.
+     *
+     * @param id El identificador de la entidad a eliminar.
+     * @return La URL de redirección a la página de listar todas las entidades después de eliminar una entidad.
+     */
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Object id) {
+        service.delete(id);
+        return "redirect:index"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+    }
+}
 
