@@ -93,6 +93,7 @@ public abstract class MiControladorGenerico<T> {
             model.addAttribute("entity", entity);
             model.addAttribute("url", url);
             model.addAttribute("entityName", entityName);
+            model.addAttribute("nombreVista","entity-details");
             return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
 
         } catch (MiEntidadNoEncontradaException ex) {
