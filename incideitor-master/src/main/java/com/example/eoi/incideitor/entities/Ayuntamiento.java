@@ -8,11 +8,13 @@ import lombok.Setter;
 
 import java.util.Collection;
 
+
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name = "ayuntamiento")
 public class Ayuntamiento {
 
     @Id
@@ -20,12 +22,17 @@ public class Ayuntamiento {
     private Integer id;
 
     private String nombre;
+
+    @Column(name = "FOTOCABECERA")
     private String fotoCabecera;
+
+    @Column(name = "FOTOLOGIN")
     private String fotoLogin;
+
     private String foto3;
     private String foto4;
 
     @OneToMany
-    private Collection<Usuario> usuario;
+    private Collection<Usuario> usuarios;
 
 }

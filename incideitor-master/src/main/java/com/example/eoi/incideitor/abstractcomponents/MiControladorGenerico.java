@@ -120,24 +120,24 @@ public abstract class MiControladorGenerico<T> {
         /**
          * Maneja la solicitud POST para crear una nueva entidad.
          *
-         * @param entity La entidad a crear.
-         * @param model  El objeto Model para agregar los atributos necesarios.
-         * @return El nombre de la plantilla para mostrar los detalles de la entidad creada.
+         * param entidad a crear.
+         * param model  El objeto Model para agregar los atributos necesarios.
+         * return El nombre de la plantilla para mostrar los detalles de la entidad creada.
          */
         @GetMapping("/create")
         public String create(Model model) {
-            T entity=null;
+            T entity = null;
             model.addAttribute("entity", entity);
-            return url + "/"+ "entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad creada
+            return entityName + "/" + "entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad creada
         }
 
         /**
          * Maneja la solicitud PUT para actualizar una entidad existente.
          *
-         * @param id     El identificador de la entidad a actualizar.
-         * @param entity La entidad actualizada.
-         * @param model  El objeto Model para agregar los atributos necesarios.
-         * @return El nombre de la plantilla para mostrar los detalles de la entidad actualizada.
+         * param El identificador de la entidad a actualizar.
+         * param entity La entidad actualizada.
+         * param model  El objeto Model para agregar los atributos necesarios.
+         * return El nombre de la plantilla para mostrar los detalles de la entidad actualizada.
          */
         @PostMapping(value={"","/"})
         public String update( @ModelAttribute T entity, Model model)
