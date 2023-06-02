@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Reporte {
 
     @Id
@@ -20,6 +21,9 @@ public class Reporte {
 
     private int categoria;
     private String descripcion;
+
+    @ManyToOne
+    private Incidencia incidencia;
 
     @ManyToOne
     private Usuario usuario;

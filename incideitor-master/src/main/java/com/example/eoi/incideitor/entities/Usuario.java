@@ -5,13 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.Collection;
 
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "usuario")
 public class Usuario {
 
     @Id
@@ -22,18 +24,23 @@ public class Usuario {
     private String apellido;
     private String avatar;
     private String email;
-    private String DNI;
-    private String contraseña;
+    private String dni;
+    private String contrasena;
     private int sexo;
 
     @ManyToOne
     private Ayuntamiento ayuntamiento;
 
     @OneToMany
-    private Reporte reporte;
+    private Collection<Reporte> reportes;
 
-    private int permitirNotificaciones;
-    private int borradoLogico;
+    @OneToMany
+    private Collection<Incidencia> incidencias;
+
+    //private int permitirNotificaciones;
+
+    //private int borradoLogico;
+
     private String departamento;
     private String extension;
 

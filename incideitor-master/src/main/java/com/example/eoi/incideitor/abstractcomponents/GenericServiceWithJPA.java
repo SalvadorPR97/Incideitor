@@ -1,5 +1,6 @@
 package com.example.eoi.incideitor.abstractcomponents;
 
+
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -40,7 +41,7 @@ public abstract class GenericServiceWithJPA<T, ID> implements GenericService<T> 
         return repository.findAll();
     }
 
-
+// listAll que devuelva un set en vez de una lista
     /**
      * Obtiene el repositorio asociado al servicio.
      *
