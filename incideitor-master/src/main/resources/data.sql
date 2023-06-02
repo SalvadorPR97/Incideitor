@@ -17,3 +17,5 @@ INSERT INTO ayuntamiento (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES 
 INSERT INTO ayuntamiento (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('alejandro', 'Juan', 'Juan', 'Juan', 'Juan');
 INSERT INTO ayuntamiento (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('alejandro', 'Juan', 'Juan', 'Juan', 'Juan');
 INSERT INTO ayuntamiento (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('alejandro', 'Juan', 'Juan', 'Juan', 'Juan');
+
+INSERT INTO reporte (categoria, descripcion) VALUES ('0', 'No se ve la pantalla')
