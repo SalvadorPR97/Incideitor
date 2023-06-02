@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 @RequestMapping("${url.reporte}")
-public class ReporteController extends MiControladorGenerico<Usuario> {
+public class ReporteController extends MiControladorGenerico<Reporte> {
 
     @Value("${url.reporte}")
     private String url;
