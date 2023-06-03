@@ -1,32 +1,25 @@
-package com.example.eoi.incideitor.entities;
+package com.example.eoi.incideitor.dtos;
 
-import jakarta.persistence.*;
+import com.example.eoi.incideitor.entities.Incidencia;
+import com.example.eoi.incideitor.entities.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "reporte")
-public class Reporte {
+public class ReporteDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
 
     private int categoria;
     private String descripcion;
-
-    @ManyToOne
     private Incidencia incidencia;
-
-    @ManyToOne
     private Usuario usuario;
 
 }
