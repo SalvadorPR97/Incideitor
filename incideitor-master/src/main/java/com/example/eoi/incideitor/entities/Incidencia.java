@@ -15,6 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "INCIDENCIA")
 public class Incidencia {
 
     @Id
@@ -26,9 +27,11 @@ public class Incidencia {
     private Date fecha;
 
     @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @ManyToOne
+    @JoinColumn(name = "ayuntamiento_id")
     private Ayuntamiento ayuntamiento;
 
 

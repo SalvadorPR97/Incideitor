@@ -13,7 +13,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "usuario")
+@Table(name = "USUARIO")
 public class Usuario {
 
     @Id
@@ -29,12 +29,13 @@ public class Usuario {
     private int sexo;
 
     @ManyToOne
+    @JoinColumn(name = "ayuntamiento_id")
     private Ayuntamiento ayuntamiento;
 
-    @OneToMany
+    @OneToMany(mappedBy = "usuario")
     private Collection<Reporte> reportes;
 
-    @OneToMany
+    @OneToMany(mappedBy = "usuario")
     private Collection<Incidencia> incidencias;
 
     //private int permitirNotificaciones;

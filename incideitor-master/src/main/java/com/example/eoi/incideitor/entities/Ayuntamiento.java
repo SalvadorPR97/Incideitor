@@ -14,7 +14,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ayuntamiento")
+@Table(name = "AYUNTAMIENTO")
 public class Ayuntamiento {
 
     @Id
@@ -32,7 +32,7 @@ public class Ayuntamiento {
     private String foto3;
     private String foto4;
 
-    @OneToMany
+    @OneToMany(mappedBy = "ayuntamiento")
     private Collection<Usuario> usuarios;
 
 }

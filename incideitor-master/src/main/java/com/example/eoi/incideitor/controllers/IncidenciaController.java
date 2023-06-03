@@ -2,7 +2,6 @@ package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Incidencia;
-import com.example.eoi.incideitor.entities.Usuario;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -74,7 +73,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "entity-details");
-        return "redirect: /incidencias/all "; // Nombre de la plantilla para mostrar todas las entidades
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
 
 }

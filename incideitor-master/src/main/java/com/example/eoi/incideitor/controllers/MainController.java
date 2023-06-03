@@ -27,6 +27,14 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping(value={"/login","/acceso/login"})
+    public String mostrarLogin(Model model)
+    {
+        model.addAttribute("entityName", "acceso");
+        model.addAttribute("nombreVista", "login");
+        return "index";
+    }
+
 
 
 }

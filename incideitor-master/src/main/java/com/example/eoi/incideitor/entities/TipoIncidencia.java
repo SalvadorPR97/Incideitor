@@ -11,17 +11,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "FOTO")
-public class Foto {
+public class TipoIncidencia {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String nombre;
 
     @ManyToOne
-    @JoinColumn(name = "incidencia_id")
-    private Incidencia incidencia;
-    private String foto;
-    private int orden;
-
-
+    @JoinColumn(name = "PadreIncidencia_id", nullable = false)
+    private TipoIncidencia padreIncidencia;
 }
