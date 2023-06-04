@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "reporte")
+@Table(name = "REPORTES")
 public class Reporte {
 
     @Id
@@ -24,10 +24,12 @@ public class Reporte {
     private String descripcion;
 
     @ManyToOne
+    @JoinColumn(name = "incidencia_id")
     private Incidencia incidencia;
 
     @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    //comentario
+
 }
