@@ -29,4 +29,5 @@ public class Reporte {
     @ManyToOne
     private Usuario usuario;
 
+    //comentario
 }
