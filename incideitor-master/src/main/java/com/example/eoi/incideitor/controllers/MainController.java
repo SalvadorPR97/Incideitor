@@ -35,6 +35,14 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping(value={"/about"})
+    public String mostrarAbout(Model model)
+    {
+        model.addAttribute("entityName", "home");
+        model.addAttribute("nombreVista", "about");
+        return "index";
+    }
+
 
 
 }
