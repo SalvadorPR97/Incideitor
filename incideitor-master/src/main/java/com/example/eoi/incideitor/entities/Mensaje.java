@@ -13,14 +13,18 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "MENSAJES")
 public class Mensaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToOne
+
+    @OneToOne(mappedBy = "mensaje")
     private Usuario usuarioEmisor;
-    @OneToOne
+
+    @OneToOne(mappedBy = "mensaje")
     private Usuario usuarioReceptor;
+
     private Date fecha;
     private String contenido;
     private Boolean leido;

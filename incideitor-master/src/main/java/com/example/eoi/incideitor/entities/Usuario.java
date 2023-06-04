@@ -13,7 +13,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "USUARIOS")
 public class Usuario {
 
     @Id
@@ -44,5 +44,20 @@ public class Usuario {
 
     private String departamento;
     private String extension;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "mensaje_id",referencedColumnName = "id")
+    private Mensaje mensaje;
+
+    @ManyToMany(mappedBy = "usuariosRol")
+    private Collection<Rol> roles;
+
+    @OneToMany(mappedBy = "usuario")
+    private Collection<Voto> votos;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "incidencia_id",referencedColumnName = "id")
+    private Incidencia incidencia;
+
 
 }
