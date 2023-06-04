@@ -31,4 +31,5 @@ public class Reporte {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    //comentario
 }
