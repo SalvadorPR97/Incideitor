@@ -14,7 +14,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "AYUNTAMIENTO")
+@Table(name = "AYUNTAMIENTOS")
 public class Ayuntamiento {
 
     @Id

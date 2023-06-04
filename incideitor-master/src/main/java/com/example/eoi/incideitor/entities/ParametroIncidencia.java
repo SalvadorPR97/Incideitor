@@ -11,12 +11,12 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "PARAMETROS_INCIDENCIA")
 public class ParametroIncidencia {
     @Id
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "incidencia_id", nullable = false)
+    @OneToOne(mappedBy = "parametroIncidencia")
     private Incidencia incidencia;
 
     private String nombre;

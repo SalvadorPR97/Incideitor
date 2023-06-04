@@ -1,9 +1,6 @@
 package com.example.eoi.incideitor.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,16 +13,24 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "HISTORICOS")
 public class Historico {
 
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "incidencia_id")
     private Incidencia incidencia;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "estado_id")
     private Estado estado;
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idEstadoIncidencia")
     private Date fechaCambioEstado;
+
+
     private String mensajeAdicional;
 
 

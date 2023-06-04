@@ -11,12 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "LUGARES")
 public class Lugar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @OneToOne
+    @OneToOne(mappedBy = "lugar")
     private Incidencia incidencia;
 
     private double latitud;
