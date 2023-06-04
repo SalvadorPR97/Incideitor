@@ -64,7 +64,6 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         super.url = url;
     }
 
-
     @Override
     @GetMapping("/create")
     public String create(Model model) {
@@ -75,6 +74,9 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         model.addAttribute("nombreVista", "entity-details");
         return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
+
+
+
 
 }
 
