@@ -14,7 +14,6 @@ public class AdminController {
     UsuarioService usuarioService;
 
 
-
     @GetMapping(value={"/admin"})
     public String mostrarIndex(Model model)
     {

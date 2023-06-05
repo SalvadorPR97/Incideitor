@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
-<body xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
 
-<div th:fragment="all-entities" class="container">
-    <h1>Todos los ayuntamientos</h1>
-    <table class="table table-striped">
+<div th:fragment="admin" class="container-fluid flex-nowrap d-flex">
+    <div class="col-10 py-2 mx-3">
+    <h1>Ayuntamientos</h1>
+    <table class="table">
         <thead>
         <tr>
             <th>ID</th>
@@ -25,5 +26,5 @@
     </table>
     <a th:href="@{/ayuntamiento/create}" class="btn btn-alert">Nuevo</a>
 </div>
+</div>
 </body>
-</html>

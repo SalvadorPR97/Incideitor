@@ -1,0 +1,31 @@
+<!DOCTYPE html >
+
+<body xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="entity-details" class="container">
+    <h1>Editar Ayuntamiento</h1>
+    <form th:action="@{/ayuntamiento/{id}(id=${id})}" th:method="post">
+        <div class="mb-3">
+            <label for="email" class="form-label">Nombre del ayuntamiento</label>
+            <input type="text" class="form-control" id="email" name="email" th:field="*{entity.nombre}">
+        </div>
+        <div class="mb-3">
+            <label for="fotoCabecera" class="form-label">Foto de la cabecera</label>
+            <input type="file" id="fotoCabecera" name="fotoCabecera" th:field="*{entity.fotoCabecera}">
+        </div>
+        <div class="mb-3">
+            <label for="fotoLogin" class="form-label">fotoLogin</label>
+            <input type="file" id="fotoLogin" name="fotoLogin" th:field="*{entity.fotoLogin}">
+        </div>
+        <div class="mb-3">
+            <label for="foto3" class="form-label">Foto 3</label>
+            <input type="file" id="foto3" name="foto3" th:field="*{entity.foto3}">
+        </div>
+        <div class="mb-3">
+            <label for="foto4" class="form-label">Foto 4</label>
+            <input type="file" id="foto4" name="foto4" th:field="*{entity.foto4}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+</body>
+</html>
