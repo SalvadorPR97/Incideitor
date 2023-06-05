@@ -3,14 +3,12 @@ package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Usuario;
+import com.example.eoi.incideitor.services.UsuarioService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Controlador para la entidad Usuario.
@@ -37,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("${url.usuario}")
 public class UsuarioController extends MiControladorGenerico<Usuario> {
+
 
     @Value("${url.usuario}")
     private String url;
@@ -68,14 +67,18 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     }
 
 
-    @PostMapping("/create/{id}")
-    public String create(Model model) {
-        Usuario entity = new Usuario();
-        model.addAttribute("entity", entity);
-        model.addAttribute("url", url);
+    @GetMapping("/create")
+    public String mostrarFormulario(Model model) {
+        model.addAttribute("usuario", new Usuario());
         model.addAttribute("entityName", entityName);
-        model.addAttribute("nombreVista", "login");
-        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+        model.addAttribute("nombreVista", "registro");
+        return "index";
+    }
+
+    @PostMapping("/create")
+    public String crearUsuario(@ModelAttribute Usuario usuario) {
+        service.create(usuario);
+        return "redirect:/usuario/all";
     }
 
 

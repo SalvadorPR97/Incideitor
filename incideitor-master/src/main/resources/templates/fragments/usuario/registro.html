@@ -14,16 +14,12 @@
           
                             <p class="text-center h1 fw-bold mb-5 mt-4">Registrarse</p>
           
-                            <form th:action="@{/usuario/create}" th:method="post">
+                            <form th:action="@{/usuario/create}" th:method="post" th:object="${usuario}" onsubmit="return validarFormulario()">
 
-<!--                              <div class="mb-3">-->
-<!--                                <label for="id" class="form-label"></label>-->
-<!--                                <input type="hidden" class="form-control hidden" id="id" name="id" th:field="*{entity.id}">-->
-<!--                              </div>-->
                               <div class="d-flex flex-row align-items-center mb-4">
                                 <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                 <div class="form-outline flex-fill mb-0">
-                                  <input type="text" id="nombre" class="form-control" th:field="*{entity.nombre}">
+                                  <input type="text" id="nombre" class="form-control" th:field="*{nombre}">
                                   <label class="form-label" for="nombre" style="margin-left: 0px;" name="nombre" >Nombre</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 71.2px;"></div><div class="form-notch-trailing"></div></div></div>
                               </div>
@@ -31,15 +27,15 @@
                               <div class="d-flex flex-row align-items-center mb-4">
                                 <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                 <div class="form-outline flex-fill mb-0">
-                                  <input type="text" id="apellido" class="form-control" th:field="*{entity.apellido}">
+                                  <input type="text" id="apellido" class="form-control" th:field="*{apellido}">
                                   <label class="form-label" for="apellido" style="margin-left: 0px;" name="apellido">Apellido</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 71.2px;"></div><div class="form-notch-trailing"></div></div></div>
                               </div>
                               
-                              <!--<div class="d-flex flex-row align-items-center mb-4">
+                              <div class="d-flex flex-row align-items-center mb-4">
                                 <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                 <div class="form-outline flex-fill mb-0">
-                                  <input type="password" id="contrasena" class="form-control">
+                                  <input type="password" id="contrasena" class="form-control" th:field="*{contrasena}">
                                   <label class="form-label" for="contrasena" style="margin-left: 0px;">Contraseña</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64px;"></div><div class="form-notch-trailing"></div></div></div>
                               </div>
@@ -55,7 +51,7 @@
                               <div class="d-flex flex-row align-items-center mb-4">
                                 <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                 <div class="form-outline">
-                                  <input type="text" id="dni" class="form-control">
+                                  <input type="text" id="dni" class="form-control" th:field="*{dni}">
                                   <label class="form-label" for="dni" style="margin-left: 0px;" name="dni">DNI</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 71.2px;"></div><div class="form-notch-trailing"></div></div></div>
                               </div>
@@ -69,7 +65,8 @@
                                     type="radio"
                                     name="inlineRadioOptions"
                                     id="femaleGender"
-                                    value="option1"
+                                    value="0"
+                                    th:checked="${sexo == '0'}"
                                   />
                                   <label class="form-check-label" for="femaleGender">Mujer</label>
                                 </div>
@@ -80,7 +77,8 @@
                                     type="radio"
                                     name="inlineRadioOptions"
                                     id="maleGender"
-                                    value="option2"
+                                    value="1"
+                                    th:checked="${sexo == '1'}"
                                   />
                                   <label class="form-check-label" for="maleGender">Hombre</label>
                                 </div>
@@ -91,7 +89,8 @@
                                     type="radio"
                                     name="inlineRadioOptions"
                                     id="otherGender"
-                                    value="option3"
+                                    value="0"
+                                    th:checked="${sexo == '0'}"
                                   />
                                   <label class="form-check-label" for="otherGender">Otro</label>
                                 </div>
@@ -102,7 +101,7 @@
                                 <label class="form-check-label" for="form2Example3c">
                                   Acepto todos los términos en <a href="#!">Condiciones de uso</a>
                                 </label>
-                              </div>-->
+                              </div>
           
                               <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                 <button type="submit" class="btn btn-primary btn-lg">Registrarse</button>

@@ -90,7 +90,6 @@ public abstract class GenericServiceWithJPA<T, ID> implements GenericService<T> 
 
     }
 
-
     /**
      * Elimina una entidad por su identificador.
      *
@@ -101,7 +100,5 @@ public abstract class GenericServiceWithJPA<T, ID> implements GenericService<T> 
 
         repository.deleteById((ID) id);
     }
-
-
 }
 
