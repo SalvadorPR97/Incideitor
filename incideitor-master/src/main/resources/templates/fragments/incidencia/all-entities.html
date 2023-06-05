@@ -44,7 +44,6 @@
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Tipo de incidencia</th>
                                     <th scope="col">Usuario</th>
-                                    <th scope="col">Ayuntamiento</th>
                                     <th scope="col">Estado</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
@@ -57,11 +56,10 @@
                                     <td th:text="${incidencia.fecha}"></td>
                                     <td></td>
                                     <td th:text="${incidencia.usuario}"></td>
-                                    <td th:text="${incidencia.ayuntamiento}"></td>
                                     <td></td>
                                     <td>
                                         <a th:href="@{/incidencia/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>
-                                        <a th:href="@{/incidencia/delete/{id}(id=${incidencia.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta entidad?');">Eliminar</a>
+                                        <a th:href="@{/incidencia/delete/{id}(id=${incidencia.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta incidencia?');">Eliminar</a>
                                     </td>
                                 </tr>
                             </tbody>

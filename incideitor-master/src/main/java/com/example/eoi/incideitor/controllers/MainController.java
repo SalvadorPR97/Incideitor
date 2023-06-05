@@ -43,13 +43,7 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping(value={"/crear_incidencias"})
-    public String mostrarCrearIncidencias(Model model)
-    {
-        model.addAttribute("entityName", "incidencia");
-        model.addAttribute("nombreVista", "crear_incidencias");
-        return "index";
-    }
+
 
 
 

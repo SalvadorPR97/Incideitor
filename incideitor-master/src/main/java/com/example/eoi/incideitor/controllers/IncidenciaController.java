@@ -2,8 +2,6 @@ package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Incidencia;
-import com.example.eoi.incideitor.entities.Reporte;
-import com.example.eoi.incideitor.entities.Usuario;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -13,28 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * Controlador para la entidad Usuario.
- *
- * <p>Esta clase se encarga de manejar las solicitudes relacionadas con la entidad Usuario utilizando la funcionalidad proporcionada por
- * la clase {@link MiControladorGenerico}.</p>
- *
- * <p>Los principales componentes de esta clase son:</p>
- * <ul>
- *     <li>Inversión de control (IoC): La clase extiende MiControladorGenerico y utiliza la funcionalidad proporcionada por ella.
- *     Esto permite que los detalles de implementación sean proporcionados por la clase genérica y facilita la reutilización de código
- *     y la consistencia en la implementación de controladores.</li>
- *     <li>Inyección de dependencias (DI): La clase utiliza inyección de dependencias para obtener el nombre de la entidad gestionada.
- *     El valor de entityName se inyecta utilizando la anotación @Value en la propiedad correspondiente. Esto permite la separación de
- *     responsabilidades y mejora la mantenibilidad y escalabilidad del controlador.</li>
- *     <li>Principio de abstracción: La clase extiende la clase genérica MiControladorGenerico, lo que permite una implementación
- *     común de las operaciones CRUD para la entidad Usuario. Esto facilita la reutilización de código y mejora la consistencia en
- *     la implementación de controladores.</li>
- * </ul>
- *
- * "@param <Usuario>" El tipo de entidad gestionada por el controlador.
- * "@Author Alejandro Teixeira Muñoz
- */
+
 @Controller
 @RequestMapping("${url.incidencia}")
 public class IncidenciaController extends MiControladorGenerico<Incidencia> {
@@ -68,7 +45,6 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         super.url = url;
     }
 
-
     @GetMapping("/create")
     public String mostrarFormulario(Model model) {
         model.addAttribute("incidencia", new Incidencia());
@@ -78,7 +54,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     }
 
     @PostMapping("/create")
-    public String crearUsuario(@ModelAttribute Incidencia incidencia) {
+    public String crearIncidencia(@ModelAttribute Incidencia incidencia) {
         service.create(incidencia);
         return "redirect:/incidencia/all";
     }

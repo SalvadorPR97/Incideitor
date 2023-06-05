@@ -18,7 +18,7 @@ function crearListaDesplegable() {
         nuevaListaDesplegable.add(opcion);
         }
                 
-        var contenedor = document.getElementById("contenedor");
-        contenedor.appendChild(nuevaListaDesplegable);
+        var subLista = document.getElementById("subLista");
+        subLista.appendChild(nuevaListaDesplegable);
             }
         }
