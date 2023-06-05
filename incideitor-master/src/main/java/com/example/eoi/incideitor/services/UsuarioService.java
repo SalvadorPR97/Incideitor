@@ -5,6 +5,7 @@ import com.example.eoi.incideitor.abstractcomponents.GenericServiceWithJPA;
 import com.example.eoi.incideitor.dtos.UsuarioDatosPrivadosAyuntamiento;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.mapper.UsuarioMapper;
+import com.example.eoi.incideitor.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -12,10 +13,14 @@ import java.util.Optional;
 @Service
 public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
 
-    private final UsuarioMapper usuarioMapper;
 
-    public UsuarioService(UsuarioMapper usuarioMapper) {
+    private final UsuarioMapper usuarioMapper;
+    private final UsuarioRepository usuarioRepository;
+
+    public UsuarioService(UsuarioMapper usuarioMapper,
+                          UsuarioRepository usuarioRepository) {
         this.usuarioMapper = usuarioMapper;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public UsuarioDatosPrivadosAyuntamiento leerUsuarioAyuntamiento (Integer id){

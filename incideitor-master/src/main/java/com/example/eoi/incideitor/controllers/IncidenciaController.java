@@ -2,11 +2,15 @@ package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Incidencia;
+import com.example.eoi.incideitor.entities.Reporte;
+import com.example.eoi.incideitor.entities.Usuario;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -64,23 +68,20 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         super.url = url;
     }
 
-    @Override
+
     @GetMapping("/create")
-    public String create(Model model) {
-        Incidencia entity = new Incidencia();
-        model.addAttribute("entity", entity);
-        model.addAttribute("url", url);
+    public String mostrarFormulario(Model model) {
+        model.addAttribute("incidencia", new Incidencia());
         model.addAttribute("entityName", entityName);
-        model.addAttribute("nombreVista", "entity-details");
-        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+        model.addAttribute("nombreVista", "registro");
+        return "index";
     }
 
-
-
-
-
-
-
+    @PostMapping("/create")
+    public String crearUsuario(@ModelAttribute Incidencia incidencia) {
+        service.create(incidencia);
+        return "redirect:/incidencia/all";
+    }
 
 }
 
