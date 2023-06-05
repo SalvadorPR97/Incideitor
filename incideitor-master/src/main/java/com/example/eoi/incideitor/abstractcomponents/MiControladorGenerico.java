@@ -4,8 +4,11 @@ package com.example.eoi.incideitor.abstractcomponents;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 /**
@@ -89,48 +92,44 @@ public abstract class MiControladorGenerico<T> {
         }
 
 
-    /**
-     * Maneja la solicitud GET para obtener una entidad por su identificador.
-     *
-     * @param id     El identificador de la entidad.
-     * @param model  El objeto Model para agregar los atributos necesarios.
-     * @return El nombre de la plantilla para mostrar los detalles de una entidad.
-     * @throws MiEntidadNoEncontradaException Si la entidad no se encuentra en la base de datos.
-     */
-    @GetMapping("/{id}")
-    public String getById(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
-            this.url = entityName + "/";
-            try {
+        /**
+         * Maneja la solicitud GET para obtener una entidad por su identificador.
+         *
+         * @param id     El identificador de la entidad.
+         * @param model  El objeto Model para agregar los atributos necesarios.
+         * @return El nombre de la plantilla para mostrar los detalles de una entidad.
+         * @throws MiEntidadNoEncontradaException Si la entidad no se encuentra en la base de datos.
+         */
+        @GetMapping("/{id}")
+        public String getById(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
+                try {
 
-                T entity = service.getById(id);
-                model.addAttribute("entity", entity);
-                model.addAttribute("url", url);
-                model.addAttribute("entityName", entityName);
-                model.addAttribute("nombreVista", "entity-details");
-                return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
+                    T entity = service.getById(id);
+                    model.addAttribute("entity", entity);
+                    model.addAttribute("entityName", entityName);
+                    model.addAttribute("nombreVista", "entity-details");
+                    return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
 
-            } catch (MiEntidadNoEncontradaException ex) {
-                model.addAttribute("mensaje", "Entidad no encontrada");
-                model.addAttribute("error", ex.getMessage());
-                return "error"; // Nombre de la plantilla para mostrar la página de error
-            }
-    }
-
+                } catch (MiEntidadNoEncontradaException ex) {
+                    return "error"; // Nombre de la plantilla para mostrar la página de error
+                }
+        }
 
         /**
          * Maneja la solicitud POST para crear una nueva entidad.
          *
-         * @param entity La entidad a crear.
+         * @param "entity" La entidad a crear.
          * @param model  El objeto Model para agregar los atributos necesarios.
          * @return El nombre de la plantilla para mostrar los detalles de la entidad creada.
          */
         @GetMapping("/create")
         public String create(Model model) {
-            T entity=null;
+            T entity = null;
             model.addAttribute("entity", entity);
-            return entityName + "/"+ "entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad creada
+            model.addAttribute("entityName", entityName);
+            model.addAttribute("nombreVista", "login");
+            return "index"; // Nombre de la plantilla para mostrar los detalles de la entidad creada
         }
-
         /**
          * Maneja la solicitud PUT para actualizar una entidad existente.
          *
@@ -139,16 +138,13 @@ public abstract class MiControladorGenerico<T> {
          * @param model  El objeto Model para agregar los atributos necesarios.
          * @return El nombre de la plantilla para mostrar los detalles de la entidad actualizada.
          */
-        @PostMapping(value={"","/"})
-        public String update( @ModelAttribute T entity, Model model)
-        {
-            this.url = entityName + "/";
-            T updatedEntity = service.update((T) entity);
-            model.addAttribute("entity", updatedEntity);
-            return url + "/" +"entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad actualizada
-
+        @PostMapping("/{id}")
+        public String update(@PathVariable Object id, Model model, T entity) throws MiEntidadNoEncontradaException {
+            service.update(entity);
+            model.addAttribute("entityName", entityName);
+            model.addAttribute("nombreVista", "all-entities");
+            return "redirect:/" + entityName + "/all"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
         }
-
 
         /**
          * Maneja la solicitud DELETE para eliminar una entidad por su identificador.
@@ -156,10 +152,13 @@ public abstract class MiControladorGenerico<T> {
          * @param id El identificador de la entidad a eliminar.
          * @return La URL de redirección a la página de listar todas las entidades después de eliminar una entidad.
          */
-        @PostMapping("delete/{id}")
-        public String delete(@PathVariable Object id) {
+        @GetMapping("delete/{id}")
+        public String delete(@PathVariable Object id , Model model) {
             service.delete(id);
-            return "redirect:/"+ this.entityName + "/" +"all"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+            model.addAttribute("entityName", entityName);
+            model.addAttribute("nombreVista", "all-entities");
+            return "redirect:/" + entityName + "/all"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
         }
-    }
+
+}
 

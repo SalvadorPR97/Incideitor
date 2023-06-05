@@ -69,8 +69,7 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
     }
 
 
-    @Override
-    @GetMapping("/create")
+    @PostMapping("/create/{id}")
     public String create(Model model) {
         Reporte entity = new Reporte();
         model.addAttribute("entity", entity);
