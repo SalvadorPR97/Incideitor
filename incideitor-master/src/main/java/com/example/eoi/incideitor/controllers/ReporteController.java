@@ -68,16 +68,19 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
         super.url = url;
     }
 
-
-    @Override
     @GetMapping("/create")
-    public String create(Model model) {
-        Reporte entity = new Reporte();
-        model.addAttribute("entity", entity);
-        model.addAttribute("url", url);
+    public String mostrarFormulario(Model model) {
+        model.addAttribute("reporte", new Reporte());
         model.addAttribute("entityName", entityName);
-        model.addAttribute("nombreVista", "entity-details");
-        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+        model.addAttribute("nombreVista", "registro");
+        return "index";
     }
+
+    @PostMapping("/create")
+    public String crearUsuario(@ModelAttribute Reporte reporte) {
+        service.create(reporte);
+        return "redirect:/reporte/all";
+    }
+
 
 }

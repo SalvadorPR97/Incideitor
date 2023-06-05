@@ -5,15 +5,15 @@
     <h1>Editar Empleado</h1>
     <form th:action="@{/usuario/{id}(id=${id})}" th:method="post">
         <div class="mb-3">
-            <label for="id" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="id" name="id" th:field="*{entity.id}">
+            <label for="id" class="form-label"></label>
+            <input type="hidden" class="form-control" id="id" name="id" th:field="*{entity.id}">
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">Nombre</label>
+            <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control" id="email" name="email" th:field="*{entity.email}">
         </div>
         <div class="mb-3">
-            <label for="nombre" class="form-label">Apellido</label>
+            <label for="nombre" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{entity.nombre}">
         </div>
         <div class="mb-3">

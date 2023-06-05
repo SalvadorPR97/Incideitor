@@ -10,5 +10,16 @@ document.querySelector('#view').addEventListener('click', e => {
         view.style.opacity = 0.2
     }
 });
+function validarFormulario() {
+    var password = document.getElementById("contrasena").value;
+    var confirmPassword = document.getElementById("contrasena2").value;
+
+    if (password !== confirmPassword) {
+        alert("Las contraseñas no coinciden");
+        return false; // Evita enviar el formulario
+    }
+
+    return true; // Permite enviar el formulario
+}
 
 

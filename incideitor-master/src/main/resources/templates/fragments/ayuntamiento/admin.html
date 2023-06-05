@@ -19,7 +19,7 @@
             <td th:text="${ayuntamiento.nombre}"></td>
             <td>
                 <a th:href="@{/ayuntamiento/{id}(id=${ayuntamiento.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/ayuntamiento/delete/{id}(id=${ayuntamiento.id})}" class="btn btn-danger">Eliminar</a>
+                <a th:href="@{/ayuntamiento/delete/{id}(id=${ayuntamiento.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta entidad?');">Eliminar</a>
             </td> <!-- Columna para los botones de edición y eliminación -->
         </tr>
         </tbody>
