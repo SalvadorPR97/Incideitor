@@ -63,6 +63,10 @@ public class Incidencia {
     @OneToOne(mappedBy = "incidencia")
     private Usuario idGestor;
 
-    @ManyToMany(mappedBy = "incidencias")
+    @ManyToMany
+    @JoinTable(
+            name = "Incidencia_has_tiposIncidencias",
+            joinColumns = @JoinColumn(name = "tipoIncidencia_id"),
+            inverseJoinColumns = @JoinColumn(name = "incidencia_id"))
     private Collection<TipoIncidencia> tiposIncidencia;
 }

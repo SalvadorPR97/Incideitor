@@ -24,10 +24,9 @@ public class TipoIncidencia {
     @JoinColumn(name = "PadreIncidencia_id", nullable = false)
     private TipoIncidencia padreIncidencia;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Incidencia_has_tiposIncidencias",
-            joinColumns = @JoinColumn(name = "tipoIncidencia_id"),
-            inverseJoinColumns = @JoinColumn(name = "incidencia_id"))
+    @OneToMany(mappedBy = "padreIncidencia")
+    private Collection<TipoIncidencia> tiposIncidencia;
+
+    @ManyToMany(mappedBy = "tiposIncidencia")
     private Collection<Incidencia> incidencias;
 }
