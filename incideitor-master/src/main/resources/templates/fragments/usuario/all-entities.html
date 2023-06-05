@@ -11,6 +11,8 @@
             <th>Email</th>
             <th>Nombre</th>
             <th>Apellido</th>
+            <th>Sexo</th>
+            <th>Contrasena</th>
             <th>Acciones</th> <!-- Nueva columna para las acciones -->
         </tr>
         </thead>
@@ -20,6 +22,8 @@
             <td th:text="${usuario.email}"></td>
             <td th:text="${usuario.nombre}"></td>
             <td th:text="${usuario.apellido}"></td>
+            <td th:text="${usuario.sexo}"></td>
+            <td th:text="${usuario.contrasena}"></td>
             <td>
                 <a th:href="@{/usuario/{id}(id=${usuario.id})}" class="btn btn-primary">Editar</a>
                 <a th:href="@{/usuario/delete/{id}(id=${usuario.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta entidad?');">Eliminar</a>
