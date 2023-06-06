@@ -71,10 +71,8 @@ public abstract class MiControladorGenerico<T> {
          */
         @GetMapping("/all")
         public String getAll(Model model) {
-            this.url = entityName + "/";
             List<T> entities = service.listAll();
             model.addAttribute("entities", entities);
-            model.addAttribute("url", url);
             model.addAttribute("entityName", entityName);
             model.addAttribute("nombreVista", "all-entities");
             return "index"; // Nombre de la plantilla para mostrar todas las entidades
@@ -82,10 +80,8 @@ public abstract class MiControladorGenerico<T> {
 
         @GetMapping("/admin")
         public String getAllAdmin(Model model) {
-            this.url = entityName + "/";
             List<T> entities = service.listAll();
             model.addAttribute("entities", entities);
-            model.addAttribute("url", url);
             model.addAttribute("entityName", entityName);
             model.addAttribute("nombreVista", "admin");
             return "index"; // Nombre de la plantilla para mostrar todas las entidades
@@ -135,8 +131,8 @@ public abstract class MiControladorGenerico<T> {
         public String update(@PathVariable Object id, Model model, T entity) throws MiEntidadNoEncontradaException {
             service.update(entity);
             model.addAttribute("entityName", entityName);
-            model.addAttribute("nombreVista", "all-entities");
-            return "redirect:/" + entityName + "/all"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+            model.addAttribute("nombreVista", "admin");
+            return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
         }
 
         /**
@@ -149,8 +145,8 @@ public abstract class MiControladorGenerico<T> {
         public String delete(@PathVariable Object id , Model model) {
             service.delete(id);
             model.addAttribute("entityName", entityName);
-            model.addAttribute("nombreVista", "all-entities");
-            return "redirect:/" + entityName + "/all"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+            model.addAttribute("nombreVista", "admin");
+            return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
         }
 
 }

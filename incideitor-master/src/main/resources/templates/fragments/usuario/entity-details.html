@@ -4,10 +4,8 @@
 <div th:fragment="entity-details" class="container">
     <h1>Editar Empleado</h1>
     <form th:action="@{/usuario/{id}(id=${id})}" th:method="post">
-        <div class="mb-3">
-            <label for="id" class="form-label"></label>
-            <input type="hidden" class="form-control" id="id" name="id" th:field="*{entity.id}">
-        </div>
+
+
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control" id="email" name="email" th:field="*{entity.email}">
@@ -19,6 +17,10 @@
         <div class="mb-3">
             <label for="apellido" class="form-label">Apellido</label>
             <input type="text" class="form-control" id="apellido" name="apellido" th:field="*{entity.apellido}">
+        </div>
+        <div class="mb-3">
+            <label for="avatar" class="form-label">Avatar</label>
+            <input type="text" class="form-control" id="avatar" name="avatar" th:field="*{entity.avatar}">
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

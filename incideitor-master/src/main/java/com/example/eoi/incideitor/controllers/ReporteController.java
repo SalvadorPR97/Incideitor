@@ -70,16 +70,16 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
 
     @GetMapping("/create")
     public String mostrarFormulario(Model model) {
-        model.addAttribute("reporte", new Reporte());
+        model.addAttribute("entity", new Reporte());
         model.addAttribute("entityName", entityName);
-        model.addAttribute("nombreVista", "registro");
+        model.addAttribute("nombreVista", "entity-details");
         return "index";
     }
 
     @PostMapping("/create")
-    public String crearUsuario(@ModelAttribute Reporte reporte) {
+    public String crearReporte(@ModelAttribute Reporte reporte) {
         service.create(reporte);
-        return "redirect:/reporte/all";
+        return "redirect:/reporte/admin";
     }
 
 

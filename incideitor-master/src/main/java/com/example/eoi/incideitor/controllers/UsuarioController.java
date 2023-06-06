@@ -78,7 +78,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @PostMapping("/create")
     public String crearUsuario(@ModelAttribute Usuario usuario) {
         service.create(usuario);
-        return "redirect:/usuario/all";
+        return "redirect:/usuario/admin";
     }
 
 
