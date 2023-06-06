@@ -47,7 +47,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
     @GetMapping("/create")
     public String mostrarFormulario(Model model) {
-        model.addAttribute("incidencia", new Incidencia());
+        model.addAttribute("entity", new Incidencia());
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "registro");
         return "index";
@@ -56,7 +56,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @PostMapping("/create")
     public String crearIncidencia(@ModelAttribute Incidencia incidencia) {
         service.create(incidencia);
-        return "redirect:/incidencia/all";
+        return "redirect:/incidencia/admin";
     }
 
 }
