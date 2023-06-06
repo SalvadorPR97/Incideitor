@@ -48,10 +48,15 @@ public class Usuario {
     private String extension;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "mensaje_id",referencedColumnName = "id")
-    private Mensaje mensaje;
+    @JoinColumn(name = "mensaje_emisor_id",referencedColumnName = "id")
+    private Mensaje mensaje_emisor;
 
-    @ManyToMany(mappedBy = "usuariosRol")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "mensaje_receptor_id",referencedColumnName = "id")
+    private Mensaje mensaje_receptor;
+
+    @ManyToMany(mappedBy = "usuariosRol", fetch = FetchType.EAGER)
+
     private Collection<Rol> roles;
 
     @OneToMany(mappedBy = "usuario")

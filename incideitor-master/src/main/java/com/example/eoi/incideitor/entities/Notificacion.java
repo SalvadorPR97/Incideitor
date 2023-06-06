@@ -25,5 +25,5 @@ public class Notificacion {
     @JoinColumn(name = "incidencia_id")
     private Incidencia incidencia;
 
-    private Date fechaNotificacion;
+    private Date fecha_notificacion;
 }

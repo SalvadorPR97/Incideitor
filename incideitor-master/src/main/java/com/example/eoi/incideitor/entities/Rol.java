@@ -21,7 +21,7 @@ public class Rol {
 
     private String nombre;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Usuario_has_rol",
             joinColumns = @JoinColumn(name = "rol_id"),

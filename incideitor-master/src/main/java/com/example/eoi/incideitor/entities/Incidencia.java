@@ -49,7 +49,7 @@ public class Incidencia {
     private Collection<Notificacion> notificaciones;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parametroIncidencia_id",referencedColumnName = "id")
+    @JoinColumn(name = "parametro_incidencia_id",referencedColumnName = "id")
     private ParametroIncidencia parametroIncidencia;
 
     @OneToMany(mappedBy = "incidencia")

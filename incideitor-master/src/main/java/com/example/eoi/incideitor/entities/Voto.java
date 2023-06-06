@@ -23,11 +23,11 @@ public class Voto {
     private String id;
 
     @ManyToOne
-    @JoinTable(name="votos_incidencia")
+    @JoinColumn(name="incidencia_id")
     private Incidencia incidencia;
 
     @ManyToOne
-    @JoinTable(name="votos_usuarios")
+    @JoinColumn(name="usuario_id")
     private Usuario usuario;
 
     private Boolean voto;

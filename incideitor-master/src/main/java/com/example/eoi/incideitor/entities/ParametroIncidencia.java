@@ -13,7 +13,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "PARAMETROS_INCIDENCIA")
 public class ParametroIncidencia {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @OneToOne(mappedBy = "parametroIncidencia")
