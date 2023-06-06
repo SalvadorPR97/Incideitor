@@ -1,138 +1,77 @@
 <!DOCTYPE html>
 <body>
-        <!--Main: Sidebar + Contenido-->
-        <main th:fragment="admin" class="container-fluid flex-nowrap d-flex">
+<main th:fragment="admin" class="container-fluid flex-nowrap d-flex">
 
-            <!--Contenido-->
-            <div class="col-10 py-2 mx-3">
-                <!--Header y filtros-->
-                <div>
-                    <h1>Incidencias</h1>
-                    <button type="button" onclick="location.href='URL DESTINO'"
-                        class="btn btn-primary mb-1">Nueva Incidencia</button>
-                    <form action="#" method="get">
-                        <input type="text" placeholder="Término a Filtrar" name="filtro">
-                        <select name="tipoIncidencia" id="">
-                            <option value="0">Acerado</option>
-                            <option value="1">Aguas</option>
-                            <option value="2">Alumbrado</option>
-                            <option value="3">Arquetas</option>
-                            <option value="4">Cableado</option>
-                            <option value="5">Calzada</option>
-                            <option value="6">Carril bici</option>
-                            <option value="7">Fuentes</option>
-                            <option value="8">Jardines y zonas verdes</option>
-                            <option value="9">Limpieza</option>
-                            <option value="10">Medio ambiente</option>
-                            <option value="11">Mobiliario urbano</option>
-                            <option value="12">Monumentos</option>
-                            <option value="13/taxi">Parada bus/taxi</option>
-                            <option value="14">Parques infantiles</option>
-                            <option value="15">Plagas</option>
-                            <option value="16">Playas</option>
-                            <option value="17">Saneamiento</option>
-                            <option value="18">Semáforos</option>
-                            <option value="19">Tráfico y señalización</option>
-                            <option value="20">Vallas de obra</option>
-                        </select>
-                        <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
-                    </form>
-                </div>
-                <!--Tabla-->
-                <div>
-                    <table class="table" id="myTable2">
-                        <thead>
-                            <tr>
-                                <th scope="col" onclick="sortTable(0)">#</th>
-                                <th scope="col" onclick="sortTable(1)">Categoría</th>
-                                <th scope="col">Titulo</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">IdUsuario</th>
-                                <th scope="col">IdAyuntamiento</th>
-                                <th scope="col">Fecha Resolucion</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="incidencia: ${entities}">
-                                <td th:text="${incidencia.id}" scope="row"> </td>
-                                <td>5</td>
-                                <td th:text="${incidencia.titulo}"></td>
-                                <td th:text="${incidencia.fecha}"></td>
-                                <td th:text="${incidencia.usuario}"></td>
-                                <td th:text="${incidencia.ayuntamiento}"></td>
-                                <td>19/05/2023</td>
-                                <td>
-                                    <button th:href="@{/incidencia/{id}(id=${incidencia.id})}" type="button" class="btn btn-primary mb-1 mb-lg-0 px-2">
-                                        <i class="bi-eye me-2"></i>Ver</button>
+    <div class="col-12 py-2 mx-3">
+        <!--Header y filtros-->
+        <div>
+            <h1>Incidencias</h1>
+            <button type="button" onclick="location.href='/incidencia/create'" class="btn btn-primary mb-1">Nueva Incidencia</button>
+            <form action="#" method="get">
+                <input type="text" placeholder="Término a Filtrar" name="filtro">
+                <select name="tipoIncidencia" id="">
+                    <option value="0">Acerado</option>
+                    <option value="1">Aguas</option>
+                    <option value="2">Alumbrado</option>
+                    <option value="3">Arquetas</option>
+                    <option value="4">Cableado</option>
+                    <option value="5">Calzada</option>
+                    <option value="6">Carril bici</option>
+                    <option value="7">Fuentes</option>
+                    <option value="8">Jardines y zonas verdes</option>
+                    <option value="9">Limpieza</option>
+                    <option value="10">Medio ambiente</option>
+                    <option value="11">Mobiliario urbano</option>
+                    <option value="12">Monumentos</option>
+                    <option value="13/taxi">Parada bus/taxi</option>
+                    <option value="14">Parques infantiles</option>
+                    <option value="15">Plagas</option>
+                    <option value="16">Playas</option>
+                    <option value="17">Saneamiento</option>
+                    <option value="18">Semáforos</option>
+                    <option value="19">Tráfico y señalización</option>
+                    <option value="20">Vallas de obra</option>
+                </select>
+                <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
+            </form>
+        </div>
+        <!--Tabla-->
+        <div>
+            <table class="table" id="myTable2">
+                <thead>
+                <tr>
+                    <th scope="col" onclick="sortTable(0)">#</th>
+                    <th scope="col" onclick="sortTable(1)">Categoría</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">IdUsuario</th>
+                    <th scope="col">IdAyuntamiento</th>
+                    <th scope="col">Fecha Resolucion</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="incidencia: ${entities}">
+                    <td th:text="${incidencia.id}" scope="row"></td>
+                    <td>5</td>
+                    <td th:text="${incidencia.titulo}"></td>
+                    <td th:text="${incidencia.fecha}"></td>
+                    <td th:text="${incidencia.descripcion}"></td>
+                    <td th:text="${incidencia.usuario}"></td>
+                    <td th:text="${incidencia.ayuntamiento}"></td>
+                    <td>19/05/2023</td>
+                    <td>
+                        <a th:href="@{/incidencia/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/incidencia/delete/{id}(id=${incidencia.id})}" class="btn btn-danger"
+                           onclick="return confirm('Seguro que quieres borrar esta entidad?')" ;>Eliminar</a>
+                    </td>
+                </tr>
 
-                                    <a th:href="@{/incidencia/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>
-                                    <a th:href="@{/incidencia/delete/{id}(id=${incidencia.id})}" class="btn btn-danger">Eliminar</a>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </main>
-
-    <script>
-        function sortTable(n) {
-            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-            table = document.getElementById("myTable2");
-            switching = true;
-            // Set the sorting direction to ascending:
-            dir = "asc";
-            /* Make a loop that will continue until
-            no switching has been done: */
-            while (switching) {
-                // Start by saying: no switching is done:
-                switching = false;
-                rows = table.rows;
-                /* Loop through all table rows (except the
-                first, which contains table headers): */
-                for (i = 1; i < (rows.length - 1); i++) {
-                    // Start by saying there should be no switching:
-                    shouldSwitch = false;
-                    /* Get the two elements you want to compare,
-                    one from current row and one from the next: */
-                    x = rows[i].getElementsByTagName("TD")[n];
-                    y = rows[i + 1].getElementsByTagName("TD")[n];
-                    /* Check if the two rows should switch place,
-                    based on the direction, asc or desc: */
-
-                    if (dir == "asc") {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            // If so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else if (dir == "desc") {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            // If so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                }
-                if (shouldSwitch) {
-                    /* If a switch has been marked, make the switch
-                    and mark that a switch has been done: */
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                    // Each time a switch is done, increase this count by 1:
-                    switchcount++;
-                } else {
-                    /* If no switching has been done AND the direction is "asc",
-                    set the direction to "desc" and run the while loop again. */
-                    if (switchcount == 0 && dir == "asc") {
-                        dir = "desc";
-                        switching = true;
-                    }
-                }
-            }
-        }
-    </script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 </body>
 </html>

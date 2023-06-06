@@ -5,7 +5,7 @@
         <main class="container">
             <div class="row">
                     <div class="mt-5">
-                        <h1>Todas las Incidencias</h1>
+                        <h1>Mis Incidencias</h1>
                         <div class="mt-4">
                             <select name="tabla_incidencia" id="filtro">
                                 <option value="">Selecciona filtro</option>
@@ -55,9 +55,15 @@
                                     <td th:text="${incidencia.titulo}"></td>
                                     <td th:text="${incidencia.descripcion}"></td>
                                     <td th:text="${incidencia.fecha}"></td>
-                                    <td></td>
-                                    <td th:text="${incidencia.usuario.nombre}"></td>
-                                    <td th:text="${incidencia.ayuntamiento.nombre}"></td>
+                                    <td>
+                                        <span th:if="${incidencia.tipoIncidencia != null}" th:text="${incidencia.tipoIncidencia.nombre}"></span>
+                                    </td>
+                                    <td>
+                                        <span th:if="${incidencia.usuario != null}" th:text="${incidencia.usuario.nombre}"></span>
+                                    </td>
+                                    <td>
+                                        <span th:if="${incidencia.ayuntamiento != null}" th:text="${incidencia.ayuntamiento.nombre}"></span>
+                                    </td>
                                     <td></td>
                                     <td>
                                         <a th:href="@{/incidencia/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>
