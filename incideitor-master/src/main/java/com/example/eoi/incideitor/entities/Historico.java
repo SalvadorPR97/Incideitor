@@ -26,8 +26,8 @@ public class Historico {
     private Estado estado;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idEstadoIncidencia")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "fechaCambioEstado")
     private Date fechaCambioEstado;
 
 
