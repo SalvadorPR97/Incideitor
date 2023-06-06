@@ -17,6 +17,12 @@ public class UsuarioMapper {
         modelMapper.map(entidad,dto);
         return dto;
     }
+    public Usuario toEntity (UsuarioDatosPrivados dto) {
+        final Usuario entity = new Usuario();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.map(dto,entity);
+        return entity;
+    }
 
     public UsuarioDatosPrivadosAyuntamiento toDtoAyuntamiento(Usuario entidad){
         final UsuarioDatosPrivadosAyuntamiento dto = new UsuarioDatosPrivadosAyuntamiento();

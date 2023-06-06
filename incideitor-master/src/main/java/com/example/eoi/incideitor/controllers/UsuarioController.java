@@ -2,9 +2,12 @@ package com.example.eoi.incideitor.controllers;
 
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
+import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
 import com.example.eoi.incideitor.entities.Usuario;
+import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.services.UsuarioService;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +44,9 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     private String url;
 
     private String entityName = "usuario";
+
+    @Autowired
+    UsuarioService usuarioService;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -79,6 +85,29 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     public String crearUsuario(@ModelAttribute Usuario usuario) {
         service.create(usuario);
         return "redirect:/usuario/admin";
+    }
+
+    @GetMapping("edit/{id}")
+    public String editDto(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
+        try {
+
+            Usuario usuario = service.getById(id);
+            UsuarioDatosPrivados dto = this.usuarioService.leerUsuarioPrivado(usuario.getId());
+            model.addAttribute("entity", dto);
+            model.addAttribute("entityName", entityName);
+            model.addAttribute("nombreVista", "entity-details");
+            return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
+
+        } catch (MiEntidadNoEncontradaException ex) {
+            return "error"; // Nombre de la plantilla para mostrar la página de error
+        }
+    }
+
+    @PostMapping("edit/{id}")
+    public String saveDto (@ModelAttribute UsuarioDatosPrivados dto){
+        this.usuarioService.guardarUsuarioDatosPrivados(dto);
+        return "redirect:/" + entityName + "/admin";
+
     }
 
 
