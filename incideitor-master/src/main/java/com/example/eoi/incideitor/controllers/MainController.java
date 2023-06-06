@@ -43,6 +43,14 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping(value={"/terminos-y-condiciones"})
+    public String mostrarTerminos(Model model)
+    {
+        model.addAttribute("entityName", "home");
+        model.addAttribute("nombreVista", "terminos-y-condiciones");
+        return "index";
+    }
+
 
 
 
