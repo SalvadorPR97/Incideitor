@@ -38,9 +38,11 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private Collection<Incidencia> incidencias;
 
-    //private int permitirNotificaciones;
+    @Column(columnDefinition = "int default 0")
+    private int permitirNotificaciones;
 
-    //private int borradoLogico;
+    @Column(columnDefinition = "int default 0")
+    private int borradoLogico;
 
     private String departamento;
     private String extension;
