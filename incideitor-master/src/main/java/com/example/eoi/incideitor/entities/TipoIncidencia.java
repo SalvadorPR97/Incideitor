@@ -17,17 +17,12 @@ import java.util.Collection;
 public class TipoIncidencia {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
 
-    @ManyToOne
-    @JoinColumn(name = "PadreIncidencia_id", nullable = false)
-    private TipoIncidencia padreIncidencia;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Incidencia_has_tiposIncidencias",
-            joinColumns = @JoinColumn(name = "tipoIncidencia_id"),
-            inverseJoinColumns = @JoinColumn(name = "incidencia_id"))
-    private Collection<Incidencia> incidencias;
+    @ManyToOne
+    @JoinColumn(name = "incidencia_padre_id")
+    private TipoIncidencia incidenciaPadre;
 }
