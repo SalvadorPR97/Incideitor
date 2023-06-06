@@ -16,6 +16,9 @@ import java.util.Date;
 @Table(name = "HISTORICOS")
 public class Historico {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "incidencia_id")
@@ -25,8 +28,6 @@ public class Historico {
     @JoinColumn(name = "estado_id")
     private Estado estado;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "fechaCambioEstado")
     private Date fechaCambioEstado;
 

@@ -66,4 +66,8 @@ public class Incidencia {
     @ManyToOne
     @JoinColumn(name = "tipo_incidencia_id")
     private TipoIncidencia tipoIncidencia;
+
+    @ManyToOne
+    @JoinColumn(name = "estado_id")
+    private Estado estado;
 }

@@ -64,7 +64,9 @@
                                     <td>
                                         <span th:if="${incidencia.ayuntamiento != null}" th:text="${incidencia.ayuntamiento.nombre}"></span>
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        <span th:if="${incidencia.estado != null}" th:text="${incidencia.estado.nombre}"></span>
+                                    </td>
                                     <td>
                                         <a th:href="@{/incidencia/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>
                                         <a th:href="@{/incidencia/delete/{id}(id=${incidencia.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta incidencia?');">Eliminar</a>
