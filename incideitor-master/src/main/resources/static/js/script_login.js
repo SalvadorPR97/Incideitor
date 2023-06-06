@@ -12,7 +12,7 @@ document.querySelector('#view').addEventListener('click', e => {
 });
 function validarFormulario() {
     var password = document.getElementById("contrasena").value;
-    var confirmPassword = document.getElementById("contrasena2").value;
+    var confirmPassword = document.getElementById("confirmarContrasena").value;
 
     if (password !== confirmPassword) {
         alert("Las contraseñas no coinciden");

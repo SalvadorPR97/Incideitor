@@ -36,7 +36,7 @@
                                 <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                 <div class="form-outline flex-fill mb-0">
                                   <label class="form-label" for="email" style="margin-left: 0px;" name="email">Correo Electrónico</label>
-                                  <input type="text" id="email" class="form-control" required th:field="*{email}">
+                                  <input type="text" id="email" class="form-control" required th:field="*{email}" pattern="^(?=.*@)(?=.*\.)[A-Za-z0-9@.]+$" title="Introduzca un email válido">
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 71.2px;"></div><div class="form-notch-trailing"></div></div></div>
                               </div>
                               
@@ -51,8 +51,8 @@
                               <div class="d-flex flex-row align-items-center mb-4">
                                 <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                 <div class="form-outline flex-fill mb-0">
-                                  <label class="form-label" for="contrasena2" style="margin-left: 0px;" name="contrasena2">Repite tu contraseña</label>
-                                  <input type="password" id="contrasena2" class="form-control">
+                                  <label class="form-label" for="confirmarContrasena" style="margin-left: 0px;" name="confirmarContrasena">Repite tu contraseña</label>
+                                  <input type="password" id="confirmarContrasena" class="form-control">
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 136px;"></div><div class="form-notch-trailing"></div></div></div>
                               </div>
 
