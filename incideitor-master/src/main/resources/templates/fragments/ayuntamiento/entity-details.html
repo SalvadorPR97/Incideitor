@@ -3,26 +3,27 @@
 <body xmlns:th="http://www.w3.org/1999/xhtml">
 <div th:fragment="entity-details" class="container">
     <h1>Editar Ayuntamiento</h1>
-    <form th:action="@{/ayuntamiento/{id}(id=${id})}" th:method="post">
+    <form th:action="@{/ayuntamiento/create}" th:method="post" th:object="${entity}">
+        <input type="hidden" class="form-control" id="id" name="id" th:field="*{id}">
         <div class="mb-3">
             <label for="email" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="email" name="email" th:field="*{entity.nombre}">
+            <input type="text" class="form-control" id="email" name="email" th:field="*{nombre}">
         </div>
         <div class="mb-3">
             <label for="fotoCabecera" class="form-label">fotoCabecera</label>
-            <input type="text" class="form-control" id="fotoCabecera" name="fotoCabecera" th:field="*{entity.fotoCabecera}">
+            <input type="text" class="form-control" id="fotoCabecera" name="fotoCabecera" th:field="*{fotoCabecera}">
         </div>
         <div class="mb-3">
             <label for="fotoLogin" class="form-label">fotoLogin</label>
-            <input type="text" class="form-control" id="fotoLogin" name="fotoLogin" th:field="*{entity.fotoLogin}">
+            <input type="text" class="form-control" id="fotoLogin" name="fotoLogin" th:field="*{fotoLogin}">
         </div>
         <div class="mb-3">
             <label for="foto3" class="form-label">foto3</label>
-            <input type="text" class="form-control" id="foto3" name="foto3" th:field="*{entity.foto3}">
+            <input type="text" class="form-control" id="foto3" name="foto3" th:field="*{foto3}">
         </div>
         <div class="mb-3">
             <label for="foto4" class="form-label">foto4</label>
-            <input type="text" class="form-control" id="foto4" name="foto4" th:field="*{entity.foto4}">
+            <input type="text" class="form-control" id="foto4" name="foto4" th:field="*{foto4}">
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

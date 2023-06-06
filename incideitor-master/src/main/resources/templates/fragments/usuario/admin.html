@@ -5,9 +5,8 @@
         <div class="col-12 py-2 mx-3">
             <!--Header y filtros-->
             <div>
-                    <h1>Usuarios</h1>
-                    <button type="button" onclick="location.href='URL DESTINO'"
-                        class="btn btn-primary mb-1">Nueva Incidencia</button>
+                <h1>Usuarios</h1>
+                <button type="button" onclick="location.href='/usuario/create'" class="btn btn-primary mb-1">Nuevo Usuario</button>
                     <form action="#" method="get">
                         <input type="text" placeholder="Término a Filtrar" name="filtro">
                         <select name="tipoIncidencia" id="">
@@ -38,52 +37,33 @@
                 </div>
             <!--Tabla-->
             <div>
-                    <table class="table" id="myTable2">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">DNI</th>
-                                <th scope="col">Sexo</th>
-                                <th scope="col">Verificado</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td scope="row">1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@Otto</td>
-                                <td>74125896H</td>
-                                <td>V</td>
-                                <td>NN</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary mb-1 mb-lg-0 px-2"
-                                        onclick="location.href='URL DESTINO'"><i class="bi-eye me-2"></i>Ver</button>
-                                    <button type="button" class="btn btn-primary mb-1 mb-lg-0 px-md-2 py-md-1 px-0"
-                                        onclick="location.href='URL DESTINO'"><i
-                                            class="bi-pencil-square me-2"></i>Editar</button>
-                                    <button type="button" class="btn btn-danger px-md-2 py-md-1 px-0"
-                                        onclick="location.href='URL DESTINO'"><i
-                                            class="bi-trash3 me-2"></i>Borrar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">3</td>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Sexo</th>
+                        <th>Contrasena</th>
+                        <th>Acciones</th> <!-- Nueva columna para las acciones -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="usuario : ${entities}">
+                        <td th:text="${usuario.id}"></td>
+                        <td th:text="${usuario.email}"></td>
+                        <td th:text="${usuario.nombre}"></td>
+                        <td th:text="${usuario.apellido}"></td>
+                        <td th:text="${usuario.sexo}"></td>
+                        <td th:text="${usuario.contrasena}"></td>
+                        <td>
+                            <a th:href="@{/usuario/{id}(id=${usuario.id})}" class="btn btn-primary">Editar</a>
+                            <a th:href="@{/usuario/delete/{id}(id=${usuario.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta entidad?');">Eliminar</a>
+                        </td> <!-- Columna para los botones de edición y eliminación -->
+                    </tr>
+                    </tbody>
+                </table>
                 </div>
         </div>
     </main>

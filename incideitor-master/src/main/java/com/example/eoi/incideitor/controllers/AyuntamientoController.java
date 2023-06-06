@@ -71,16 +71,16 @@ public class AyuntamientoController extends MiControladorGenerico<Ayuntamiento> 
 
     @GetMapping("/create")
     public String mostrarFormulario(Model model) {
-        model.addAttribute("ayuntamiento", new Ayuntamiento());
+        model.addAttribute("entity", new Ayuntamiento());
         model.addAttribute("entityName", entityName);
-        model.addAttribute("nombreVista", "registro");
+        model.addAttribute("nombreVista", "entity-details");
         return "index";
     }
 
     @PostMapping("/create")
     public String crearUsuario(@ModelAttribute Ayuntamiento ayuntamiento) {
         service.create(ayuntamiento);
-        return "redirect:/ayuntamiento/all";
+        return "redirect:/ayuntamiento/admin";
     }
 
 }
