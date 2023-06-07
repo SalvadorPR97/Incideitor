@@ -2,46 +2,50 @@ INSERT INTO roles(nombre) VALUES ('Administrador');
 INSERT INTO roles(nombre) VALUES ('Usuario');
 
 
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ('Juan', 'Y medio', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ('Pepe', 'Caja', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ('Manolo', 'Bombo', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ('Messi', 'Dios', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ('Guardiola', 'Juan', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ('Rambo', 'Ak', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ('Shrek', 'Gordo', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (1, 'Juan', 'Y medio', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (2, 'Pepe', 'Caja', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (3, 'Manolo', 'Bombo', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (4, 'Messi', 'Dios', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (5, 'Guardiola', 'Juan', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (6, 'Rambo', 'Ak', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (7, 'Shrek', 'Gordo', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
 
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Chiclana', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Jerez', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Murcia', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Albacete', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Toledo', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Miami', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (1, 'Chiclana', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (2, 'Jerez', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (3, 'Murcia', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (4, 'Albacete', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (5, 'Toledo', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (6, 'Miami', 'Juan', 'Juan', 'Juan', 'Juan');
 
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Acerado',1);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Aguas', 2);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Alumbrado', 3);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Arquetas', 4);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Cableado', 5);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Calzada', 6 );
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Carril bici', 7);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Fuentes', 8);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Jardines y zonas verdes', 9);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Limpieza', 10);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Medio ambiente', 11);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Mobiliario urbano', 12);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Monumentos', 13);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Parada bus/taxi', 14);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Parques infantiles', 15);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Plagas', 16);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Playas', 17);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Saneamiento', 18);
-INSERT INTO tipos_incidencia(nombre, incidencia_padre_id) VALUES ('Semaforos', 19);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (999999, 'Padre', null, true, 0);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (1,'Acerado', 999999, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (2,'Aguas', 999999, true, 20);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (3,'Alumbrado', 999999, true, 30);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (4,'Arquetas', 999999, true, 40);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (5,'Cableado', 999999, true, 50);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (6, 'Calzada', 999999, true, 60 );
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (7, 'Carril bici', 999999, true, 70);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (8, 'Fuentes', 999999, true, 80);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (9, 'Jardines y zonas verdes', 999999, true, 90);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (10, 'Limpieza', 999999, true, 100);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (11, 'Medio ambiente', 999999, true, 110);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (12, 'Mobiliario urbano', 999999, true, 120);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (13, 'Monumentos', 999999, true, 130);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (14, 'Parada bus/taxi', 999999, true, 140);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (15, 'Parques infantiles', 999999, true, 150);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (16, 'Plagas', 999999, true, 160);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (17, 'Playas', 999999, true, 170);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (18, 'Saneamiento', 999999, true, 180);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (19, 'Semaforos', 999999, true, 190);
+
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (20, 'Baldosa', 1, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (21, 'Tuberia rota', 2, true, 20);
 
 INSERT INTO estados (nombre) VALUES ('Iniciado');
 INSERT INTO estados (nombre) VALUES ('Finalizado');
 
 
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Apocalipsis','Ha llegado Rambo con un ak-47','2023-06-01',1,1,1,1);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Apocalipsis','Ha llegado Rambo con un ak-47','2023-06-01',21,1,1,1);
 INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Afilador','Ha llegado el afilador','2023-06-01',2,2,3,1);
 INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Churreria','Problema en Churreria Hmnos Pernia','2023-06-01',3,3,4,1);
 INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Guerra nuclear','Y hizo pum ya esta aqui la guerra','2023-06-01',4,4,5,2);

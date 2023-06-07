@@ -56,7 +56,7 @@
                                     <td th:text="${incidencia.descripcion}"></td>
                                     <td th:text="${incidencia.fecha}"></td>
                                     <td>
-                                        <span th:if="${incidencia.tipoIncidencia != null}" th:text="${incidencia.tipoIncidencia.nombre}"></span>
+                                        <span th:if="${incidencia.tipoIncidencia != null}" th:text="${incidencia.tipoIncidencia}"></span>
                                     </td>
                                     <td>
                                         <span th:if="${incidencia.usuario != null}" th:text="${incidencia.usuario.nombre}"></span>

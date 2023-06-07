@@ -2,7 +2,10 @@ package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Incidencia;
+import com.example.eoi.incideitor.entities.TipoIncidencia;
+import com.example.eoi.incideitor.repositories.TipoIncidenciaRepository;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 
 @Controller
@@ -20,6 +25,10 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     private String url;
 
     private String entityName = "incidencia";
+
+    @Autowired
+    TipoIncidenciaRepository tipoIncidenciaRepository;
+
 
     /**
      * Constructor de la clase UsuarioController.
@@ -47,6 +56,8 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
     @GetMapping("/create")
     public String mostrarFormulario(Model model) {
+        List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAll();
+        model.addAttribute("tiposIncidencia", tiposIncidencias);
         model.addAttribute("entity", new Incidencia());
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "registro");
