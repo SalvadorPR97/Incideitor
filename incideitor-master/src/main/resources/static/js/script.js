@@ -7,4 +7,9 @@
      
     })
 
+    function recargarPagina(valorSeleccionado) {
+        // Redirigir a la misma página con el parámetro seleccionado
+        window.location.href = window.location.pathname + '?incidenciaPadre=' + valorSeleccionado;
+    }
+
 
