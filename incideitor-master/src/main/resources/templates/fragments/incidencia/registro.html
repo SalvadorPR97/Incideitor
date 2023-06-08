@@ -8,7 +8,7 @@
                 <form id="formulario_incidencia" action="/incidencia/create" method="post" enctype="multipart/form-data" onsubmit="alert('enviado!')">
                     <div class="row formulario_items mb-4">
                         <label for="tipo_incidencia" id="titulo">Selecciona el tipo de incidencia:*</label>
-                        <select name="tabla_incidencia" id="tipo_incidencia" onchange="crearListaDesplegable()" required th:field="*{entity.tiposIncidencia.padreIncidencia}">
+                        <select name="tabla_incidencia" id="tipo_incidencia" onchange="crearListaDesplegable()" required th:field="*{entity.tipoIncidencia.incidenciaPadre}">
                             <option value="">Seleccion incidencia</option>
                             <option value="0">Acerado</option>
                             <option value="1">Aguas</option>
@@ -33,10 +33,10 @@
                             <option value="20">Vallas de obra</option>
                         </select>
                     </div>
-                    <div class="row formulario_items mb-4" id="subLista" th:field="*{entity.tiposIncidencia.id}"></div>
+                    <div class="row formulario_items mb-4" id="subLista" th:field="*{entity.tipoIncidencia.id}"></div>
                     <div class="row tipo_incidencia mb-4">
                         <label for="titulo">Titulo:*</label>
-                        <input type="text" name="titulo" id="titulo_incidencia" placeholder="Introduce el título" size="20" minlength="15" maxlength="150" required th:field="*{titulo}">
+                        <input type="text" name="titulo" id="titulo_incidencia" placeholder="Introduce el título" size="20" minlength="15" maxlength="150" required th:field="*{entity.titulo}">
                     </div>
 <!--                    <div class="row direccion_incidencia mb-4">-->
 <!--                        <label for="direccion_incidencia">Dirección:*</label>-->
@@ -45,7 +45,7 @@
 
                     <div class="row descripcion mb-4">
                         <label for="textarea-descripcion">Descripcion:*</label>
-                        <textarea class="form-control" id="textarea-descripcion" rows="3" th:field="*{descripcion}"></textarea>
+                        <textarea class="form-control" id="textarea-descripcion" rows="3" th:field="*{entity.descripcion}"></textarea>
                     </div>
 
                     <div class="row fecha_incidencia mb-4">
