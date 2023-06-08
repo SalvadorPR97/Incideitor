@@ -70,6 +70,11 @@ footer{
     background-position: 100% 40%;
     background-repeat: no-repeat;
     background-size: cover;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
 }
 
 /* Administracion */
