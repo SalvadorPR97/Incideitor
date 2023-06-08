@@ -60,10 +60,10 @@
                     <td th:text="${incidencia.titulo}"></td>
                     <td th:text="${incidencia.fecha}"></td>
                     <td th:text="${incidencia.descripcion}"></td>
-                    <td th:text="${incidencia.tipoIncidencia.incidenciaPadre?.nombre}"></td>
+                    <td th:text="${incidencia.tipoIncidencia?.incidenciaPadre.nombre}"></td>
                     <td th:text="${incidencia.tipoIncidencia.nombre}"></td>
-                    <td th:text="${incidencia.usuario.nombre}"></td>
-                    <td th:text="${incidencia.ayuntamiento.nombre}"></td>
+<!--                    <td th:text="${incidencia.usuario.nombre}"></td>-->
+<!--                    <td th:text="${incidencia.ayuntamiento.nombre}"></td>-->
                     <td>19/05/2023</td>
                     <td>
                         <a th:href="@{/incidencia/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>

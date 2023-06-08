@@ -54,7 +54,9 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @GetMapping("/create")
     public String mostrarFormulario(@RequestParam(value = "incidenciaPadre", required = false) Long incidenciaPadre, Model model) {
         List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAll();
+
         model.addAttribute("tiposIncidencia", tiposIncidencias);
+        model.addAttribute("incidenciaPadre", incidenciaPadre);
         model.addAttribute("entity", new Incidencia());
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "registro");
