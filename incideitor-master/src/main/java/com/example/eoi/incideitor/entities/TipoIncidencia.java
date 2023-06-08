@@ -13,13 +13,19 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "TIPOS_INCIDENCIA")
+@Table(name = "TIPOINCIDENCIA")
 public class TipoIncidencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
     private String nombre;
+
+    @Basic(optional = false)
+    private boolean active;
+
+    private Integer orden;
 
     @ManyToOne
     @JoinColumn(name = "incidencia_padre_id")
