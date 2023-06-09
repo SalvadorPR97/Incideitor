@@ -41,10 +41,10 @@
     <!--                        <input type="date" name="fecha_incidencia" id="fecha_incidencia" size="5" required th:field="*{entity.fecha}">-->
     <!--                    </div>-->
 
-    <!--                    <div class="row fotos mb-4">-->
-    <!--                        <label for="imagenes_incidencia">Inserta imagen:</label>-->
-    <!--                        <input type="file" name="imagenes_incidencia" id="imagenes_incidencia">-->
-    <!--                    </div>-->
+                       <div class="row fotos mb-4">
+                           <label path="file">Inserta imagen:</label>
+                         <input type="file" name="file" id="imagenes_incidencia" accept="image/png, image/jpeg" >
+                      </div>
 
                         <div class="boton_guardar mb-1">
                             <button type="submit" name="guardar" class="btn btn-primary" value="Guardar los cambios">Guardar los cambios</button>
@@ -60,4 +60,3 @@
     </main>
 </div>
 </body>
-
