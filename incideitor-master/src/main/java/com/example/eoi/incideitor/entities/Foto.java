@@ -20,7 +20,7 @@ public class Foto {
     @ManyToOne
     @JoinColumn(name = "incidencia_id")
     private Incidencia incidencia;
-    private String foto;
+    private String url;
     private int orden;
 
 

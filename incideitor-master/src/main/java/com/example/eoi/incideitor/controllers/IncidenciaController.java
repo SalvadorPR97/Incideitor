@@ -3,15 +3,24 @@ package com.example.eoi.incideitor.controllers;
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.TipoIncidencia;
+import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.example.eoi.incideitor.filemanagement.controllers.AppUploadController;
 import com.example.eoi.incideitor.repositories.TipoIncidenciaRepository;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Controller
@@ -26,6 +35,8 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @Autowired
     TipoIncidenciaRepository tipoIncidenciaRepository;
 
+    @Autowired
+    AppUploadController appUploadController;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -70,10 +81,37 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
      * @param "model"  El objeto Model para agregar los atributos necesarios.
      * @return El nombre de la plantilla para mostrar los detalles de la entidad creada.
      */
+
     @PostMapping("/create")
-    public String crearIncidencia(@ModelAttribute Incidencia incidencia) {
+    public String crearIncidencia(@ModelAttribute Incidencia incidencia, @RequestParam(required = false) MultipartFile file, HttpSession session , Model model) throws IOException {
         service.create(incidencia);
+        appUploadController.uploadImgPost(file, session , model, incidencia.getId());
         return "redirect:/incidencia/admin";
+    }
+
+
+    @Override
+    @GetMapping("/{id}")
+    public String getById(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
+        try {
+            Set<String> listaFotos = listFilesUsingJavaIO("src/main/resources/static/uploads/"+id);
+            Incidencia entity = service.getById(id);
+            model.addAttribute("entity", entity);
+            model.addAttribute("entityName", entityName);
+            model.addAttribute("nombreVista", "entity-details");
+            model.addAttribute("listaFotos", listaFotos);
+            return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
+
+        } catch (MiEntidadNoEncontradaException ex) {
+            return "error"; // Nombre de la plantilla para mostrar la página de error
+        }
+    }
+
+    public Set<String> listFilesUsingJavaIO(String dir) {
+        return Stream.of(new File(dir).listFiles())
+                .filter(file -> !file.isDirectory())
+                .map(File::getName)
+                .collect(Collectors.toSet());
     }
 
 }

@@ -8,20 +8,14 @@
                 <div class="row col-12 mb-5">
                     <div class="col-md-5 col-sm-6 mt-4 mb-3 px-5">
                         <div id="carouselExample" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner" th:each="file, index : ${uploads}">
-                                <div class="carousel-item" th:classappend="${index == 0} ? 'active'">
-                                    <img class="d-block w-100" th:src="${file.originalFilename}"
-                                         th:alt="'Imagen ' + ${index + 1}" style="height: 425px;" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" th:src="${file.originalFilename}"
-                                         th:alt="'Imagen ' + ${index + 1}" style="height: 425px;" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" th:src="${file.originalFilename}"
-                                         th:alt="'Imagen ' + ${index + 1}" style="height: 425px;" />
+
+                            <div class="carousel-inner">
+                                <div th:each="picture, iterstat : ${listaFotos}">
+                                    <img th:src="@{'/uploads/'+${entity.id}+'/'+${picture}}" class="img-responsive" />
                                 </div>
                             </div>
+
+
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                                     data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

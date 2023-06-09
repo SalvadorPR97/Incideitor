@@ -27,19 +27,18 @@ public class AppUploadController {
     public String vistaGetImg( ){
         return "incidencia/registro";
     }
-    @PostMapping("/uploadimg")
-    public String uploadImgPost(@RequestParam MultipartFile file, HttpSession session , Model model) throws IOException {
+
+    public void uploadImgPost(@RequestParam MultipartFile file, HttpSession session , Model model, long id) throws IOException {
         String path=session.getServletContext().getRealPath("/");
         String filename=file.getOriginalFilename();
 
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        String uploadDir = "src/main/resources/static/uploads/";
+        String uploadDir = "src/main/resources/static/uploads/"+id;
 
         FileUploadUtil.saveFile(uploadDir, fileName, file);
 
         model.addAttribute("file",file);
-
-        //return new ModelAndView("upload/fileUploadView","filename",path+"/"+filename);
-        return "incidencia/entity-details";
     }
+
+
 }
