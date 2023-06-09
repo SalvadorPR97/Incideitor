@@ -63,6 +63,13 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         return "index";
     }
 
+    /**
+     * Maneja la solicitud POST para crear una nueva entidad.
+     *
+     * @param "entity" La entidad a crear.
+     * @param "model"  El objeto Model para agregar los atributos necesarios.
+     * @return El nombre de la plantilla para mostrar los detalles de la entidad creada.
+     */
     @PostMapping("/create")
     public String crearIncidencia(@ModelAttribute Incidencia incidencia) {
         service.create(incidencia);

@@ -58,7 +58,7 @@ public class Incidencia {
     @OneToMany(mappedBy = "incidencia")
     private Collection<Voto> votos;
 
-    //private int borradoLogico;
+    private int borrado_logico;
 
     @OneToOne(mappedBy = "incidencia")
     private Usuario idGestor;
