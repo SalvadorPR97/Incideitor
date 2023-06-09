@@ -7,4 +7,10 @@
      
     })
 
+    function recargarPagina(valorSeleccionado) {
+        // Redirigir a la misma página con el parámetro seleccionado
+        var valorSeleccionado = document.getElementById("incidenciaPadre").value;
+        window.location.href = window.location.pathname + '?incidenciaPadre=' + valorSeleccionado;
+    }
+
 

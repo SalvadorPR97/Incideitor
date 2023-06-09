@@ -21,7 +21,7 @@ public class Incidencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String titulo;
     private String descripcion;
@@ -58,7 +58,7 @@ public class Incidencia {
     @OneToMany(mappedBy = "incidencia")
     private Collection<Voto> votos;
 
-    //private int borradoLogico;
+    private int borrado_logico;
 
     @OneToOne(mappedBy = "incidencia")
     private Usuario idGestor;

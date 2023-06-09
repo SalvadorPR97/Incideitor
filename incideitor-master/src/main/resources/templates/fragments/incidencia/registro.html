@@ -5,65 +5,54 @@
     <main th:fragment="registro" >
         <div id="container" class="container-fluid col-8">
             <div class="col-sm-6">
+
                 <form id="formulario_incidencia" action="/incidencia/create" method="post" enctype="multipart/form-data" onsubmit="alert('enviado!')">
                     <div class="row formulario_items mb-4">
-                        <label for="tipo_incidencia" id="titulo">Selecciona el tipo de incidencia:*</label>
-                        <select name="tabla_incidencia" id="tipo_incidencia" onchange="crearListaDesplegable()" required th:field="*{entity.tipoIncidencia.incidenciaPadre}">
-                            <option value="">Seleccion incidencia</option>
-                            <option value="0">Acerado</option>
-                            <option value="1">Aguas</option>
-                            <option value="2">Alumbrado</option>
-                            <option value="3">Arquetas</option>
-                            <option value="4">Cableado</option>
-                            <option value="5">Calzada</option>
-                            <option value="6">Carril bici</option>
-                            <option value="7">Fuentes</option>
-                            <option value="8">Jardines y zonas verdes</option>
-                            <option value="9">Limpieza</option>
-                            <option value="10">Medio ambiente</option>
-                            <option value="11">Mobiliario urbano</option>
-                            <option value="12">Monumentos</option>
-                            <option value="13">Parada bus/taxi</option>
-                            <option value="14">Parques infantiles</option>
-                            <option value="15">Plagas</option>
-                            <option value="16">Playas</option>
-                            <option value="17">Saneamiento</option>
-                            <option value="18">Semáforos</option>
-                            <option value="19">Tráfico y señalización</option>
-                            <option value="20">Vallas de obra</option>
+<!--                        Primer desplegable, se recarga la pagina al elegir la opcion con js-->
+                        <label for="incidenciaPadre">Incidencia padre:</label>
+                        <select id="incidenciaPadre" name="incidenciaPadre" onchange="recargarPagina()">
+                            <option value="">Seleccionar</option>
+                            <option th:if="${tipo.incidenciaPadre?.id == 999999}" th:each="tipo : ${tiposIncidencia}" th:value="${tipo.id}" th:text="${tipo.nombre}" th:selected="${tipo.id} == ${incidenciaPadre}"></option>
                         </select>
-                    </div>
-                    <div class="row formulario_items mb-4" id="subLista" th:field="*{entity.tipoIncidencia.id}"></div>
-                    <div class="row tipo_incidencia mb-4">
-                        <label for="titulo">Titulo:*</label>
-                        <input type="text" name="titulo" id="titulo_incidencia" placeholder="Introduce el título" size="20" minlength="15" maxlength="150" required th:field="*{entity.titulo}">
-                    </div>
-<!--                    <div class="row direccion_incidencia mb-4">-->
-<!--                        <label for="direccion_incidencia">Dirección:*</label>-->
-<!--                        <input type="text" name="direccion_incidencia" id="direccion_incidencia" size="20" minlength="15" maxlength="200" required th:field="*{direccion}">-->
-<!--                    </div>-->
+    <!--                    Segundo desplegable, se genera según la primera opción-->
+                        <label for="incidenciaHijo">Incidencia hijo:</label>
+                        <select id="incidenciaHijo" name="incidenciaHijo" th:field="*{entity.tipoIncidencia}">
+                            <option value="">Seleccionar</option>
+                            <option th:each="tipo : ${tiposIncidencia}" th:if="${tipo.incidenciaPadre != null and tipo.incidenciaPadre.id == incidenciaPadre}"
+                                    th:value="${tipo.id}" th:text="${tipo.nombre}" ></option>
+                        </select>
 
-                    <div class="row descripcion mb-4">
-                        <label for="textarea-descripcion">Descripcion:*</label>
-                        <textarea class="form-control" id="textarea-descripcion" rows="3" th:field="*{entity.descripcion}"></textarea>
-                    </div>
+                        <div class="row tipo_incidencia mb-4">
+                            <label for="titulo">Titulo:*</label>
+                            <input type="text" name="titulo" id="titulo" placeholder="Introduce el título" size="20" minlength="15" maxlength="150" required th:field="*{entity.titulo}">
+                        </div>
+    <!--                    <div class="row direccion_incidencia mb-4">-->
+    <!--                        <label for="direccion_incidencia">Dirección:*</label>-->
+    <!--                        <input type="text" name="direccion_incidencia" id="direccion_incidencia" size="20" minlength="15" maxlength="200" required th:field="*{direccion}">-->
+    <!--                    </div>-->
 
-                    <div class="row fecha_incidencia mb-4">
-                        <label for="fecha_incidencia">Fecha:*</label>
-                        <input type="date" name="fecha_incidencia" id="fecha_incidencia" size="5" required>
-                    </div>
+                        <div class="row descripcion mb-4">
+                            <label for="textarea-descripcion">Descripcion:*</label>
+                            <textarea class="form-control" id="textarea-descripcion" rows="3" th:field="*{entity.descripcion}"></textarea>
+                        </div>
 
-                    <div class="row fotos mb-4">
-                        <label for="imagenes_incidencia">Inserta imagen:</label>
-                        <input type="file" name="imagenes_incidencia" id="imagenes_incidencia">
-                    </div>
+    <!--                    <div class="row fecha_incidencia mb-4">-->
+    <!--                        <label for="fecha_incidencia">Fecha:*</label>-->
+    <!--                        <input type="date" name="fecha_incidencia" id="fecha_incidencia" size="5" required th:field="*{entity.fecha}">-->
+    <!--                    </div>-->
 
-                    <div class="boton_guardar">
-                        <button type="submit" name="guardar" class="btn btn-primary" value="Guardar los cambios" onclick=mostrarMensaje()></button>
-                    </div>
+                       <div class="row fotos mb-4">
+                           <label path="file">Inserta imagen:</label>
+                         <input type="file" name="file" id="imagenes_incidencia" accept="image/png, image/jpeg" >
+                      </div>
 
-                    <div class="reseteo">
-                        <input type="reset" name="reseteo" class="btn btn-primary" value="Borrar los datos introducidos"/> <br>
+                        <div class="boton_guardar mb-1">
+                            <button type="submit" name="guardar" class="btn btn-primary" value="Guardar los cambios">Guardar los cambios</button>
+                        </div>
+
+                        <div class="reseteo">
+                            <input type="reset" name="reseteo" class="btn btn-primary" value="Borrar los datos introducidos"/> <br>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -71,4 +60,3 @@
     </main>
 </div>
 </body>
-

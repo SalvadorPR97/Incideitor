@@ -45,6 +45,8 @@
                     <th scope="col">Titulo</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Descripción</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Subtipo</th>
                     <th scope="col">IdUsuario</th>
                     <th scope="col">IdAyuntamiento</th>
                     <th scope="col">Fecha Resolucion</th>
@@ -58,8 +60,10 @@
                     <td th:text="${incidencia.titulo}"></td>
                     <td th:text="${incidencia.fecha}"></td>
                     <td th:text="${incidencia.descripcion}"></td>
-                    <td th:text="${incidencia.usuario}"></td>
-                    <td th:text="${incidencia.ayuntamiento}"></td>
+                    <td th:text="${incidencia.tipoIncidencia?.incidenciaPadre.nombre}"></td>
+                    <td th:text="${incidencia.tipoIncidencia.nombre}"></td>
+<!--                    <td th:text="${incidencia.usuario.nombre}"></td>-->
+<!--                    <td th:text="${incidencia.ayuntamiento.nombre}"></td>-->
                     <td>19/05/2023</td>
                     <td>
                         <a th:href="@{/incidencia/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>
