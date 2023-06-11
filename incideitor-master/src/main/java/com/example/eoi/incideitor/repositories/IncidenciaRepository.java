@@ -7,8 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface IncidenciaRepository extends JpaRepository<Incidencia, Integer> {
+public interface IncidenciaRepository extends JpaRepository<Incidencia, Long> {
 
     @Query("SELECT i FROM Incidencia i ORDER BY i.fecha DESC")
     List<Incidencia> obtenerUltimaIncidencia();
