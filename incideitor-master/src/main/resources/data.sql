@@ -55,4 +55,4 @@ INSERT INTO historicos (incidencia_id, estado_id) VALUES (1, 1);
 INSERT INTO historicos (incidencia_id, estado_id) VALUES (2, 2);
 
 
-INSERT INTO reportes (categoria, descripcion) VALUES ('0', 'No se ve la pantalla')
+INSERT INTO reportes (categoria, descripcion) VALUES ('0', 'No se ve la pantalla');
