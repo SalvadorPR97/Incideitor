@@ -1,12 +1,20 @@
 package com.example.eoi.incideitor.controllers;
 
 
+import com.example.eoi.incideitor.dtos.IncidenciaDatos;
+import com.example.eoi.incideitor.entities.Foto;
+import com.example.eoi.incideitor.entities.Incidencia;
+import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
+import com.example.eoi.incideitor.repositories.IncidenciaRepository;
 import com.example.eoi.incideitor.services.AyuntamientoService;
 import com.example.eoi.incideitor.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -17,15 +25,37 @@ public class MainController {
     @Autowired
     AyuntamientoService ayuntamientoService;
 
+    @Autowired
+    private IncidenciaRepository incidenciaRepository;
+
+    private FileUploadUtil fileUploadUtil;
 
 
     @GetMapping(value={"","/"})
     public String mostrarIndex(Model model)
     {
+        List<Incidencia> incidencias = incidenciaRepository.obtenerUltimaIncidencia();
+        if(!incidencias.isEmpty()){
+            Incidencia ultimaIncidencia = incidencias.get(0);
+            model.addAttribute("incidencia", ultimaIncidencia);
+            //Set<String> listaFotos1 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/"+ ultimaIncidencia.getId());
+            //model.addAttribute("listaFotos1", listaFotos1);
+
+            Incidencia penultimaIncidencia = incidencias.get(1);
+            model.addAttribute("incidencia1", penultimaIncidencia);
+            //Set<String> listaFotos2 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/"+ penultimaIncidencia.getId());
+            //model.addAttribute("listaFotos2", listaFotos2);
+
+            Incidencia antepenultimaIncidencia = incidencias.get(2);
+            model.addAttribute("incidencia2", antepenultimaIncidencia);
+            //Set<String> listaFotos3 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/"+ antepenultimaIncidencia.getId());
+            //model.addAttribute("listaFotos3", listaFotos3);
+        }
         model.addAttribute("entityName", "home");
         model.addAttribute("nombreVista", "principal");
         return "index";
     }
+
 
     @GetMapping(value={"/login","/acceso/login"})
     public String mostrarLogin(Model model)
