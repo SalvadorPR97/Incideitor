@@ -42,7 +42,7 @@ public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
             usuario.setBorradoLogico(usuarioBDD.get().getBorradoLogico());
             usuario.setDepartamento(usuarioBDD.get().getDepartamento());
             usuario.setExtension(usuarioBDD.get().getExtension());
-            usuario.setRoles(usuarioBDD.get().getRoles());
+            usuario.setRol(usuarioBDD.get().getRol());
             usuario.setVotos(usuarioBDD.get().getVotos());
             usuario.setIncidencia(usuarioBDD.get().getIncidencia());
         }

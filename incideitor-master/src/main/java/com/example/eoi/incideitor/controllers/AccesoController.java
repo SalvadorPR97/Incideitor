@@ -41,15 +41,15 @@ import java.util.Optional;
  * "@Author Alejandro Teixeira Muñoz
  */
 @Controller
-@RequestMapping("${url.usuario}")
-public class UsuarioController extends MiControladorGenerico<Usuario> {
+//@RequestMapping("acceso")
+public class AccesoController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    @Value("${url.usuario}")
+    @Value("acceso")
     private String url;
 
-    private String entityName = "usuario";
+    private String entityName = "acceso";
 
     @Autowired
     UsuarioService usuarioService;
@@ -61,7 +61,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
      * Constructor de la clase UsuarioController.
      * Se utiliza para crear una instancia del controlador.
      */
-    public UsuarioController() {
+    public AccesoController() {
         super();
     }
 
@@ -75,57 +75,15 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
      * En este caso, se utiliza para asegurar que entityName y entityPrefix se establezcan correctamente después de la construcción del objeto.
      * @Author Alejandro Teixeira Muñoz
      */
-    @PostConstruct
-    private void init() {
-        super.entityName = entityName;
-        super.url = url;
-    }
 
 
-    @GetMapping("/create")
-    public String mostrarFormulario(Model model) {
-        model.addAttribute("usuario", new Usuario());
-        model.addAttribute("entityName", entityName);
-        model.addAttribute("nombreVista", "registro");
+    @GetMapping("/acceso/login")
+    public String vistaLogin(Model model){
+        model.addAttribute("entityName", "acceso");
+        model.addAttribute("nombreVista", "login");
         return "index";
     }
-
-    @PostMapping("/create")
-    public String crearUsuario(@ModelAttribute Usuario usuario) {
-        service.create(usuario);
-        return "redirect:/usuario/admin";
-    }
-
-    @GetMapping("/edit/{id}")
-    public String editDto(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
-        try {
-
-            Usuario usuario = service.getById(id);
-            UsuarioDatosPrivados dto = this.usuarioService.leerUsuarioPrivado(usuario.getId());
-            model.addAttribute("entity", dto);
-            model.addAttribute("entityName", entityName);
-            model.addAttribute("nombreVista", "entity-details");
-            return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
-
-        } catch (MiEntidadNoEncontradaException ex) {
-            return "error"; // Nombre de la plantilla para mostrar la página de error
-        }
-    }
-
-    @PostMapping("/edit/{id}")
-    public String saveDto (@ModelAttribute UsuarioDatosPrivados dto){
-        this.usuarioService.guardarUsuarioDatosPrivados(dto);
-        return "redirect:/" + entityName + "/admin";
-
-    }
-
-
-    @GetMapping("/login")
-    public String vistaLogin(){
-        System.out.println("login");
-        return "acceso/login";
-    }
-    @PostMapping("/login")
+    @PostMapping("/acceso/login")
     public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
         String usr = loginDto.getUsername();
         System.out.println("usr :" + usr);

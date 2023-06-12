@@ -21,11 +21,7 @@ public class Rol {
 
     private String nombre;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "Usuario_has_rol",
-            joinColumns = @JoinColumn(name = "rol_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+    @OneToMany(mappedBy = "rol",fetch = FetchType.EAGER)
     private Collection<Usuario> usuariosRol;
 
 

@@ -57,13 +57,6 @@ public class MainController {
     }
 
 
-    @GetMapping(value={"/login","/acceso/login"})
-    public String mostrarLogin(Model model)
-    {
-        model.addAttribute("entityName", "acceso");
-        model.addAttribute("nombreVista", "login");
-        return "index";
-    }
 
     @GetMapping(value={"/about"})
     public String mostrarAbout(Model model)

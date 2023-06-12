@@ -55,9 +55,8 @@ public class Usuario {
     @JoinColumn(name = "mensaje_receptor_id",referencedColumnName = "id")
     private Mensaje mensaje_receptor;
 
-    @ManyToMany(mappedBy = "usuariosRol", fetch = FetchType.EAGER)
-
-    private Collection<Rol> roles;
+    @ManyToOne( fetch = FetchType.EAGER)
+    private Rol rol;
 
     @OneToMany(mappedBy = "usuario")
     private Collection<Voto> votos;
