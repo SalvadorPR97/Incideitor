@@ -41,7 +41,7 @@ public class Usuario {
     @Column(columnDefinition = "int default 0")
     private int permitirNotificaciones;
 
-    @Column(columnDefinition = "int default 0")
+    @Column(columnDefinition = "int default 1")
     private int borradoLogico;
 
     private String departamento;

@@ -46,6 +46,7 @@
                         <th>Apellido</th>
                         <th>Sexo</th>
                         <th>Contrasena</th>
+                        <th>Activo</th>
                         <th>Acciones</th> <!-- Nueva columna para las acciones -->
                     </tr>
                     </thead>
@@ -57,10 +58,11 @@
                         <td th:text="${usuario.apellido}"></td>
                         <td th:text="${usuario.sexo}"></td>
                         <td th:text="${usuario.contrasena}"></td>
+                        <td th:text="${usuario.borradoLogico}"></td>
                         <td>
                             <a th:href="@{/usuario/edit/{id}(id=${usuario.id})}" class="btn btn-primary">Editar</a>
-                            <a th:href="@{/usuario/delete/{id}(id=${usuario.id})}" class="btn btn-danger"
-                               onclick="return confirm('Seguro que quieres borrar esta entidad?');">Eliminar</a>
+                            <a th:href="@{/usuario/logic/{id}(id=${usuario.id})}" class="btn btn-danger"
+                               onclick="return confirm('Seguro que quieres activar/desactivar esta entidad?');">Activar/Desactivar</a>
                         </td> <!-- Columna para los botones de edición y eliminación -->
                     </tr>
                     </tbody>
