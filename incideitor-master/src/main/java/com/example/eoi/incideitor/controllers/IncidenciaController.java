@@ -4,7 +4,7 @@ import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.TipoIncidencia;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
-import com.example.eoi.incideitor.filemanagement.controllers.AppUploadController;
+import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.TipoIncidenciaRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
@@ -14,13 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 
 @Controller
@@ -36,7 +33,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     TipoIncidenciaRepository tipoIncidenciaRepository;
 
     @Autowired
-    AppUploadController appUploadController;
+    FileUploadUtil fileUploadUtil;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -85,7 +82,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @PostMapping("/create")
     public String crearIncidencia(@ModelAttribute Incidencia incidencia, @RequestParam(required = false) MultipartFile file, HttpSession session , Model model) throws IOException {
         service.create(incidencia);
-        appUploadController.uploadImgPost(file, session , model, incidencia.getId());
+        fileUploadUtil.uploadImgPost(file, session , model, incidencia.getId());
         return "redirect:/incidencia/admin";
     }
 
@@ -94,7 +91,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @GetMapping("/{id}")
     public String getById(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
         try {
-            Set<String> listaFotos = listFilesUsingJavaIO("src/main/resources/static/uploads/"+id);
+            Set<String> listaFotos = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/"+id);
             Incidencia entity = service.getById(id);
             model.addAttribute("entity", entity);
             model.addAttribute("entityName", entityName);
@@ -107,12 +104,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         }
     }
 
-    public Set<String> listFilesUsingJavaIO(String dir) {
-        return Stream.of(new File(dir).listFiles())
-                .filter(file -> !file.isDirectory())
-                .map(File::getName)
-                .collect(Collectors.toSet());
-    }
+
 
 }
 

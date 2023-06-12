@@ -28,17 +28,9 @@ public class AppUploadController {
         return "incidencia/registro";
     }
 
-    public void uploadImgPost(@RequestParam MultipartFile file, HttpSession session , Model model, long id) throws IOException {
-        String path=session.getServletContext().getRealPath("/");
-        String filename=file.getOriginalFilename();
 
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        String uploadDir = "src/main/resources/static/uploads/"+id;
 
-        FileUploadUtil.saveFile(uploadDir, fileName, file);
 
-        model.addAttribute("file",file);
-    }
 
 
 }
