@@ -142,6 +142,19 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         }
     }
 
+    @GetMapping("logic/{id}")
+    public String borradoLogico(@PathVariable Object id , Model model) {
+        Usuario usuario = service.getById(id);
+        if (usuario.getBorradoLogico() == 0){
+            usuario.setBorradoLogico(1);
+        } else {
+            usuario.setBorradoLogico(0);
+        }
+        service.update(usuario);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "admin");
+        return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+    }
 
 }
 
