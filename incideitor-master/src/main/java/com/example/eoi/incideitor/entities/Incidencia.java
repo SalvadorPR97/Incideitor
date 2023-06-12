@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
 
@@ -25,7 +27,8 @@ public class Incidencia {
 
     private String titulo;
     private String descripcion;
-    private Date fecha;
+
+        private LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")

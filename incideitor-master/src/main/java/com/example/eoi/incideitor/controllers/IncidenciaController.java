@@ -1,6 +1,7 @@
 package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
+import com.example.eoi.incideitor.entities.Foto;
 import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.TipoIncidencia;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
@@ -15,6 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -81,7 +85,18 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
     @PostMapping("/create")
     public String crearIncidencia(@ModelAttribute Incidencia incidencia, @RequestParam(required = false) MultipartFile file, HttpSession session , Model model) throws IOException {
+        // Generamos la fecha actual para añadirla como fecha de creacion
+        incidencia.setFecha(LocalDate.now());
+        // Creamos la colección de fotos para añadirla a la nueva incidencia
+        Collection<Foto> fotos = new HashSet<>();
+        Foto foto = new Foto();
+        fotos.add(foto);
+        incidencia.setFotos(fotos);
+        // Cremoas la incidencia en la BDD
         service.create(incidencia);
+//        nuevaIncidencia.setFecha(LocalDate.now());
+//        service.update(nuevaIncidencia);
+
         fileUploadUtil.uploadImgPost(file, session , model, incidencia.getId());
         return "redirect:/incidencia/admin";
     }
