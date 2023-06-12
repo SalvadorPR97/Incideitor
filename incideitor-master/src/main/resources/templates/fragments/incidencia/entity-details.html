@@ -10,8 +10,10 @@
                         <div id="carouselExample" class="carousel slide" data-ride="carousel">
 
                             <div class="carousel-inner">
-                                <div th:each="picture, iterstat : ${listaFotos}">
-                                    <img th:src="@{'/uploads/'+${entity.id}+'/'+${picture}}" class="img-responsive d-block w-100" style="width: 425px;"/>
+                                <div th:each="picture, iterStat : ${listaFotos}">
+                                    <div th:class="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                                        <img th:src="@{'/uploads/'+${entity.id}+'/'+${picture}}" class="img-responsive d-block w-100" style="width: 425px;"/>
+                                    </div>
                                 </div>
                             </div>
 
