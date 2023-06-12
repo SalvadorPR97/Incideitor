@@ -11,7 +11,7 @@
 
                             <div class="carousel-inner">
                                 <div th:each="picture, iterstat : ${listaFotos}">
-                                    <img th:src="@{'/uploads/'+${entity.id}+'/'+${picture}}" class="img-responsive" />
+                                    <img th:src="@{'/uploads/'+${entity.id}+'/'+${picture}}" class="img-responsive d-block w-100" style="width: 425px;"/>
                                 </div>
                             </div>
 

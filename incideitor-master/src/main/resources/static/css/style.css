@@ -400,15 +400,15 @@ button[type="submit"]:hover{
 
 @media (min-width: 992px) {
     .navbar-nav .nav-link {
-        margin-right: 10px;
-        margin-left: 10px;
+        margin-right: 1px;
+        margin-left: 1px;
         }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1100px) {
     .navbar-nav .nav-link {
-        margin-right: 25px;
-        margin-left: 25px;
+        margin-right: 7px;
+        margin-left: 7px;
         }
 }
 
@@ -416,8 +416,8 @@ button[type="submit"]:hover{
 
 @media (min-width: 1286px) {
     .navbar-nav .nav-link {
-    margin-right: 50px;
-    margin-left: 50px;
+    margin-right: 25px;
+    margin-left: 25px;
     }
 }
 
