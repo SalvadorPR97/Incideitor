@@ -32,7 +32,6 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @Autowired
     TipoIncidenciaRepository tipoIncidenciaRepository;
 
-    @Autowired
     FileUploadUtil fileUploadUtil;
 
     /**
