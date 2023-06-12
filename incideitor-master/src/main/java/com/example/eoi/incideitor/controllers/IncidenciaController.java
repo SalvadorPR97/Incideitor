@@ -84,7 +84,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
      */
 
     @PostMapping("/create")
-    public String crearIncidencia(@ModelAttribute Incidencia incidencia, @RequestParam(required = false) MultipartFile file, HttpSession session , Model model) throws IOException {
+    public String crearIncidencia(@ModelAttribute Incidencia incidencia, @RequestParam(required = false) MultipartFile file, @RequestParam(required = false) MultipartFile file2, @RequestParam(required = false) MultipartFile file3, HttpSession session , Model model) throws IOException {
         // Generamos la fecha actual para añadirla como fecha de creacion
         incidencia.setFecha(LocalDate.now());
         // Creamos la colección de fotos para añadirla a la nueva incidencia
@@ -97,7 +97,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 //        nuevaIncidencia.setFecha(LocalDate.now());
 //        service.update(nuevaIncidencia);
 
-        fileUploadUtil.uploadImgPost(file, session , model, incidencia.getId());
+        fileUploadUtil.uploadImgPost(file,file2,file3, session , model, incidencia.getId());
         return "redirect:/incidencia/admin";
     }
 

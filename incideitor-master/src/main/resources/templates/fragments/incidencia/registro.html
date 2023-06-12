@@ -36,10 +36,21 @@
                             <textarea class="form-control" id="textarea-descripcion" rows="3" th:field="*{entity.descripcion}"></textarea>
                         </div>
 
-                       <div class="row fotos mb-4">
+                        <div class="row fotos mb-4">
                            <label path="file">Inserta imagen:</label>
-                         <input type="file" name="file" id="imagenes_incidencia" accept="image/png, image/jpeg" >
-                      </div>
+                           <input type="file" name="file" id="imagenes_incidencia" accept="image/png, image/jpeg">
+                        </div>
+
+                        <div class="row fotos mb-4">
+                            <label path="file">Inserta imagen:</label>
+                            <input type="file" name="file2" id="imagenes_incidencia2" accept="image/png, image/jpeg">
+                        </div>
+
+                        <div class="row fotos mb-4">
+                            <label path="file">Inserta imagen:</label>
+                            <input type="file" name="file3" id="imagenes_incidencia3" accept="image/png, image/jpeg">
+                        </div>
+
 
                         <div class="boton_guardar mb-1">
                             <button type="submit" name="guardar" class="btn btn-primary" value="Guardar los cambios">Guardar los cambios</button>
