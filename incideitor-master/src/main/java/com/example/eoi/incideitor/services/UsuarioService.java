@@ -36,6 +36,7 @@ public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
         Optional<Usuario> usuarioBDD = this.repository.findById(dto.getId());
         if (usuarioBDD.isPresent()){
             usuario.setContrasena(usuarioBDD.get().getContrasena());
+            usuario.setDni(usuarioBDD.get().getDni());
             usuario.setAyuntamiento(usuarioBDD.get().getAyuntamiento());
             usuario.setReportes(usuarioBDD.get().getReportes());
             usuario.setIncidencias(usuarioBDD.get().getIncidencias());

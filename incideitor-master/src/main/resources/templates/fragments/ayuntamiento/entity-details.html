@@ -2,37 +2,35 @@
 
 <body xmlns:th="http://www.w3.org/1999/xhtml">
 <div th:fragment="entity-details" class="container">
-    <div th:fragment="entity-details" class="container-fluid">
-        <div class="fondo row">
-            <div class="border-bottom"></div>
-            <main class="row container align-items-center">
-                <div class="row col-12 mt-4 mb-3 px-5">
-                    <div class="row col-12">
-                        <div id="carouselExample" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="/img/mijas1.jpg" class="d-block w-100" alt="Imagen 1" style="height: 600px;">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/img/mijas2.jpg" class="d-block w-100" alt="Imagen 2" style="height: 600px;">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/img/mijas3.jpg" class="d-block w-100" alt="Imagen 3" style="height: 600px;">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
+    <h1>Editar Ayuntamiento</h1>
+    <form th:action="@{/ayuntamiento/edit/{id}(id=${id})}" th:method="post">
+        <div class="mb-3">
+            <label for="email" class="form-label">Nombre del ayuntamiento</label>
+            <input type="text" class="form-control" id="email" name="email" th:field="*{entity.nombre}">
+        </div>
+            <div id="carouselExample" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/img/mijas1.jpg" class="d-block w-100" alt="Imagen 1" style="height: 600px;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/img/mijas2.jpg" class="d-block w-100" alt="Imagen 2" style="height: 600px;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/img/mijas3.jpg" class="d-block w-100" alt="Imagen 3" style="height: 600px;">
                     </div>
                 </div>
-            </main>
-        </div>
-    </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
 </div>
 </body>
+</html>

@@ -41,11 +41,11 @@ public class Usuario {
     @Column(columnDefinition = "int default 0")
     private int permitirNotificaciones;
 
-    @Column(columnDefinition = "int default 1")
+    @Column(columnDefinition = "int default 0")
     private int borradoLogico;
 
     private String departamento;
-    private String extension;
+    private Integer extension;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mensaje_emisor_id",referencedColumnName = "id")
@@ -56,6 +56,7 @@ public class Usuario {
     private Mensaje mensaje_receptor;
 
     @ManyToOne( fetch = FetchType.EAGER)
+    @JoinColumn(name = "rol_id")
     private Rol rol;
 
     @OneToMany(mappedBy = "usuario")

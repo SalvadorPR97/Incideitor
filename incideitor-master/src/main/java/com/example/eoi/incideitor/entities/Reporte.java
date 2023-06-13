@@ -20,7 +20,7 @@ public class Reporte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private int categoria;
+    private String categoria;
     private String descripcion;
 
     @ManyToOne

@@ -28,7 +28,7 @@ public class Incidencia {
     private String titulo;
     private String descripcion;
 
-        private LocalDate fecha;
+    private LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -61,6 +61,7 @@ public class Incidencia {
     @OneToMany(mappedBy = "incidencia")
     private Collection<Voto> votos;
 
+    @Column(columnDefinition = "int default 0")
     private int borrado_logico;
 
     @OneToOne(mappedBy = "incidencia")

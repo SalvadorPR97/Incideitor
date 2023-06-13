@@ -17,7 +17,7 @@ public class AyuntamientoMapper {
         return dto;
     }
 
-    public Ayuntamiento toEntityUsuario(AyuntamientoDTO dto){
+    public Ayuntamiento toEntity(AyuntamientoDTO dto){
         final Ayuntamiento entity = new Ayuntamiento();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(dto, entity);
