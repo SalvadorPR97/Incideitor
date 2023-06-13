@@ -206,6 +206,7 @@ button[type="submit"]:hover{
     font-size: 16px;
     color: #000000;
 }
+
 .register a{
     font-size: 14px;
 }
@@ -298,95 +299,64 @@ button[type="submit"]:hover{
   background-color: #fcfcfc;
 }
 
-.row-notification{
-  margin:auto;
-  padding: 30px;
-  width: 80%;
-  display: flex;
-  flex-flow: column;
-  .card{
+.row-notification {
+    margin: auto;
+    padding: 30px;
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+}
+
+.card-usuario {
     width: 100%;
     margin-bottom: 5px;
     display: block;
     transition: opacity 0.3s;
-  }
 }
 
-
-.card-body{
-  padding: 0.5rem;
-  table{
+.card {
     width: 100%;
-    tr{
-      display:flex;
-      td{
-        a.btn{
-          font-size: 0.8rem;
-          padding: 3px;
-        }
-      }
-      td:nth-child(2){
-        text-align:right;
-        justify-content: space-around;
-      }
-    }
-  }
-
+    height: 400px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
-.card-title:before{
-  display:inline-block;
-  font-family: 'Font Awesome\ 5 Free';
-  font-weight:900;
-  font-size: 1.1rem;
-  text-align: center;
-  border: 2px solid grey;
-  border-radius: 100px;
-  width: 30px;
-  height: 30px;
-  padding-bottom: 3px;
-  margin-right: 10px;
+.card-img-top {
+    width: 100%;
+    height: 90%;
+    max-height: 350px;
 }
 
-.notification-invitation {
-  .card-body {
-    .card-title:before {
+
+.notification-invitation > .card-body > .card-title:before {
       color: #90CAF9;
       border-color: #90CAF9;
       content: "\f007";
     }
-  }
-}
 
-.notification-warning {
-  .card-body {
-    .card-title:before {
+
+.notification-warning > .card-body > .card-title:before {
       color: #FFE082;
       border-color: #FFE082;
       content: "\f071";
     }
-  }
-}
 
-.notification-danger {
-  .card-body {
-    .card-title:before {
+
+.notification-danger > .card-body > .card-title:before {
       color: #FFAB91;
       border-color: #FFAB91;
       content: "\f00d";
-    }
-  }
 }
 
-.notification-reminder {
-  .card-body {
-    .card-title:before {
+
+
+
+.notification-reminder >.card-body > .card-title:before {
       color: #CE93D8;
       border-color: #CE93D8;
       content: "\f017";
     }
-  }
-}
+
 
 .card.display-none{
   display: none;
