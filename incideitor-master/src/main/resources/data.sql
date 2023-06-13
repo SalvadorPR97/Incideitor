@@ -2,13 +2,13 @@ INSERT INTO roles(nombre) VALUES ('Administrador');
 INSERT INTO roles(nombre) VALUES ('Usuario');
 
 
-INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (1, 'Juan', 'Y medio', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (2, 'Pepe', 'Caja', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (3, 'Manolo', 'Bombo', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (4, 'Messi', 'Dios', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (5, 'Guardiola', 'Juan', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (6, 'Rambo', 'Ak', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (id, nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES (7, 'Shrek', 'Gordo', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Juan', 'Y medio', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios ( nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Pepe', 'Caja', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios ( nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Manolo', 'Bombo', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios ( nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Messi', 'Dios', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Guardiola', 'Juan', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios ( nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ('Rambo', 'Ak', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
+INSERT INTO usuarios ( nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Shrek', 'Gordo', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
 
 INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (1, 'Chiclana', 'Juan', 'Juan', 'Juan', 'Juan');
 INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (2, 'Jerez', 'Juan', 'Juan', 'Juan', 'Juan');
