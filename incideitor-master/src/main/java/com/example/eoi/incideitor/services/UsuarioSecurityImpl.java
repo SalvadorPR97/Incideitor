@@ -53,6 +53,7 @@ public class UsuarioSecurityImpl implements IUsuarioServicio, UserDetailsService
                     usuario.get().getContrasena(),
                     ga );
         }
+        System.out.println("springUser = " + springUser);
         return springUser;
     }
 

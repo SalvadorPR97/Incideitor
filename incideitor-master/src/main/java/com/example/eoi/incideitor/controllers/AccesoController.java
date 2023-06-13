@@ -79,6 +79,7 @@ public class AccesoController {
 
     @GetMapping("/login")
     public String vistaLogin(Model model){
+        model.addAttribute("usuariodto", new LoginDto());
         model.addAttribute("entityName", "acceso");
         model.addAttribute("nombreVista", "login");
         return "index";
@@ -99,6 +100,7 @@ public class AccesoController {
             return "acceso/login";
         }
     }
+    // Crear el accessDenied
 
 
 }

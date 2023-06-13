@@ -60,8 +60,10 @@ https://www.baeldung.com/spring-security-csrf
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/uploads/**").permitAll()
                 //.requestMatchers("/**").permitAll()
-                .requestMatchers("/*").permitAll()
+                //.requestMatchers("/").permitAll()
                 .requestMatchers("/usuario/create").permitAll()
+                .requestMatchers("/usuario/admin").hasAuthority("ROL_USUARIO")
+                .requestMatchers("/incidencia/admin").hasAuthority("ROL_ADMINISTRADOR")
                 .requestMatchers( HttpMethod.POST,"/**").permitAll()
                 //.requestMatchers( HttpMethod.POST,"/usuarios/*").hasAuthority("ROLE_ADMIN")
                 //.requestMatchers( HttpMethod.GET,"/usuarios/*").hasAuthority("ROLE_ADMIN")
@@ -70,7 +72,7 @@ https://www.baeldung.com/spring-security-csrf
 
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("/accessDenied")
+                .accessDeniedPage("/acceso/accessDenied")
 
                 .and()
                 .csrf().disable()
