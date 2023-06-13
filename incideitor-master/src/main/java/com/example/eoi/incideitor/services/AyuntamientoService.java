@@ -31,9 +31,13 @@ public class AyuntamientoService extends GenericServiceWithJPA<Ayuntamiento, Int
     }
 
     public AyuntamientoDTO guardarDatosAyuntamiento(AyuntamientoDTO dto){
-        Ayuntamiento ayuntamiento = this.ayuntamientoMapper.toEntityUsuario(dto);
+        Ayuntamiento ayuntamiento = this.ayuntamientoMapper.toEntity(dto);
         Optional<Ayuntamiento> ayuntamientoBDD = this.repository.findById(dto.getId());
         if(ayuntamientoBDD.isPresent()){
+            ayuntamiento.setFotoCabecera(ayuntamientoBDD.get().getFotoCabecera());
+            ayuntamiento.setFotoLogin(ayuntamientoBDD.get().getFotoLogin());
+            ayuntamiento.setFoto3(ayuntamientoBDD.get().getFoto3());
+            ayuntamiento.setFoto4(ayuntamientoBDD.get().getFoto4());
             ayuntamiento.setUsuarios(ayuntamientoBDD.get().getUsuarios());
         }
         //Guardamos el ayuntamiento
