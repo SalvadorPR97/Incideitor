@@ -89,7 +89,7 @@ https://www.baeldung.com/spring-security-csrf
     }
     @Bean
     static GrantedAuthorityDefaults grantedAuthorityDefaults() {
-        return new GrantedAuthorityDefaults("ROLE_");
+        return new GrantedAuthorityDefaults("ROL_");
     }
 
 

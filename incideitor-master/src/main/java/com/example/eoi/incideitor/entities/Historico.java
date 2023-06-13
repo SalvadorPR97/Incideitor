@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -28,10 +29,10 @@ public class Historico {
     @JoinColumn(name = "estado_id")
     private Estado estado;
 
-    @Column(name = "fechaCambioEstado")
-    private Date fechaCambioEstado;
+    @Column(name = "FECHACAMBIOESTADO")
+    private LocalDate fechaCambioEstado;
 
-
+    @Column(name = "MENSAJEADICIONAL")
     private String mensajeAdicional;
 
 
