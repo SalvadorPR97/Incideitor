@@ -1,21 +1,25 @@
-INSERT INTO roles(nombre) VALUES ('Administrador');
-INSERT INTO roles(nombre) VALUES ('Usuario');
+INSERT INTO roles(nombre) VALUES ('ROL_ADMINISTRADOR');
+INSERT INTO roles(nombre) VALUES ('ROL_USUARIO');
+INSERT INTO roles(nombre) VALUES ('ROL_ANONIMO');
+INSERT INTO roles(nombre) VALUES ('ROL_AYUNTAMIENTO_ADMIN');
+INSERT INTO roles(nombre) VALUES ('ROL_AYUNTAMIENTO_GESTOR');
+
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Chiclana', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Jerez', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Murcia', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Albacete', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Toledo', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Miami', 'Juan', 'Juan', 'Juan', 'Juan');
+
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Juan', 'Y medio', 'Juan', 'juan@gmail.com', '12345678A', 'Juan', '1', 1);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Pepe', 'Caja', 'Juan', 'pepe@gmail.com', '12345678B', 'Juan', '1', 2);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Manolo', 'Bombo', 'Juan', 'manolo@gmail.com', '12345678C', 'Juan', '1', 3);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Messi', 'Dios', 'Juan', 'messi@gmail.com', '12345678D', 'Juan', '1', 4);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension, rol_id) VALUES ('Guardiola', 'Juan', 'Juan', 'guardiola@gmail.com', '12345678E', 'Juan', '1', 'Urbanismo', 304, 5);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Rambo', 'Ak', 'Juan', 'rambo@gmail.com', '12345678F', 'Juan', '1', 2);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Shrek', 'Gordo', 'Juan', 'shrek@gmail.com', '12345678G', 'Juan', '1', 2);
 
 
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Juan', 'Y medio', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios ( nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Pepe', 'Caja', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios ( nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Manolo', 'Bombo', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios ( nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Messi', 'Dios', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Guardiola', 'Juan', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios ( nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ('Rambo', 'Ak', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-INSERT INTO usuarios ( nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension) VALUES ( 'Shrek', 'Gordo', 'Juan', 'mail.alejandro.teixeira@gmail.com', 'Juan', 'Juan', '1', 'Juan', 'Juan');
-
-INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (1, 'Chiclana', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (2, 'Jerez', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (3, 'Murcia', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (4, 'Albacete', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (5, 'Toledo', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (id, nombre, fotoCabecera, fotologin, foto3, foto4) VALUES (6, 'Miami', 'Juan', 'Juan', 'Juan', 'Juan');
 
 INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (999999, 'Padre', null, true, 0);
 INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (1,'Acerado', 999999, true, 10);
@@ -38,21 +42,38 @@ INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUE
 INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (18, 'Saneamiento', 999999, true, 180);
 INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (19, 'Semaforos', 999999, true, 190);
 
-INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (20, 'Baldosa', 1, true, 10);
-INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (21, 'Tuberia rota', 2, true, 20);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (20, 'Agrietado', 1, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (21, 'Baldosas', 1, true, 20);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (22, 'Socavón', 1, true, 30);
 
-INSERT INTO estados (nombre) VALUES ('Iniciado');
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (23, 'Corte del Servicio', 2, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (24, 'Mala calidad', 2, true, 20);
+
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (25, 'Cables al Descubierto', 3, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (26, 'Cristal Roto', 3, true, 20);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (27, 'Luminaria Apagada', 3, true, 30);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (28, 'Farol Roto', 3, true, 40);
+
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (29, 'Arqueta Abierta', 4, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (30, 'Arqueta en Mal Estado', 4, true, 20);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (31, 'Arqueta con Tapa Desaparecida', 4, true, 30);
+
+INSERT INTO estados (nombre) VALUES ('Registrado');
+INSERT INTO estados (nombre) VALUES ('En Curso');
 INSERT INTO estados (nombre) VALUES ('Finalizado');
 
 
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id, borrado_logico) VALUES ('Apocalipsis','Ha llegado Rambo con un ak-47','2023-06-01',21,1,1,1,1);
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id, borrado_logico) VALUES ('Afilador','Ha llegado el afilador','2023-06-01',2,2,3,1,1);
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id, borrado_logico) VALUES ('Churreria','Problema en Churreria Hmnos Pernia','2023-06-01',3,3,4,1,1);
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id, borrado_logico) VALUES ('Guerra nuclear','Y hizo pum ya esta aqui la guerra','2023-06-01',4,4,5,2,1);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Apocalipsis','Ha llegado Rambo con un ak-47','2023-06-01',21,1,1,1);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Afilador','Ha llegado el afilador','2023-06-01',2,2,3,1);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Churreria','Problema en Churreria Hmnos Pernia','2023-06-01',3,3,4,3);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Guerra nuclear','Y hizo pum ya esta aqui la guerra','2023-06-01',4,4,5,2);
 
 
-INSERT INTO historicos (incidencia_id, estado_id) VALUES (1, 1);
-INSERT INTO historicos (incidencia_id, estado_id) VALUES (2, 2);
+INSERT INTO historicos (incidencia_id, estado_id, fechaCambioEstado) VALUES (1, 1, '2023-06-01');
+INSERT INTO historicos (incidencia_id, estado_id, fechaCambioEstado, mensajeAdicional) VALUES (2, 2, '2023-06-01', 'Hermanos Rodriguez va a arreglarlo');
+INSERT INTO historicos (incidencia_id, estado_id, fechaCambioEstado, mensajeAdicional) VALUES (3, 3, '2023-06-01', 'Se ha sustituido la bombilla');
 
 
-INSERT INTO reportes (categoria, descripcion) VALUES ('0', 'No se ve la pantalla');
+INSERT INTO reportes (categoria, descripcion) VALUES ('Bug', 'No se ve la pantalla');
+INSERT INTO reportes (categoria, descripcion) VALUES ('Error', 'Incidencia con fotos borrosas');
+INSERT INTO reportes (categoria, descripcion) VALUES ('Error', 'La dirección está mal');

@@ -41,7 +41,7 @@ import java.util.Optional;
  * "@Author Alejandro Teixeira Muñoz
  */
 @Controller
-//@RequestMapping("acceso")
+@RequestMapping("acceso")
 public class AccesoController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -77,13 +77,13 @@ public class AccesoController {
      */
 
 
-    @GetMapping("/acceso/login")
+    @GetMapping("/login")
     public String vistaLogin(Model model){
         model.addAttribute("entityName", "acceso");
         model.addAttribute("nombreVista", "login");
         return "index";
     }
-    @PostMapping("/acceso/login")
+    @PostMapping("/login")
     public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
         String usr = loginDto.getUsername();
         System.out.println("usr :" + usr);

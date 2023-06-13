@@ -60,7 +60,7 @@ https://www.baeldung.com/spring-security-csrf
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/uploads/**").permitAll()
                 //.requestMatchers("/**").permitAll()
-                .requestMatchers("/**").permitAll()
+                .requestMatchers("/*").permitAll()
                 .requestMatchers("/usuario/create").permitAll()
                 .requestMatchers( HttpMethod.POST,"/**").permitAll()
                 //.requestMatchers( HttpMethod.POST,"/usuarios/*").hasAuthority("ROLE_ADMIN")
