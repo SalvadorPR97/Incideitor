@@ -55,6 +55,7 @@ public class UsuarioSecurityImpl implements IUsuarioServicio, UserDetailsService
         }
         return springUser;
     }
+
 }
 
 
