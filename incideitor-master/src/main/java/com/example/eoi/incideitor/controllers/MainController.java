@@ -39,17 +39,17 @@ public class MainController {
         if(!incidencias.isEmpty()){
             Incidencia ultimaIncidencia = incidencias.get(0);
             model.addAttribute("ultimaIncidencia", ultimaIncidencia);
-            Set<String> listaFotos1 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/"+ ultimaIncidencia.getId());
+            Set<String> listaFotos1 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/"+ ultimaIncidencia.getId());
             model.addAttribute("listaFotos1", listaFotos1);
 
             Incidencia penultimaIncidencia = incidencias.get(1);
             model.addAttribute("penultimaIncidencia", penultimaIncidencia);
-            Set<String> listaFotos2 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/"+ penultimaIncidencia.getId());
+            Set<String> listaFotos2 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/"+ penultimaIncidencia.getId());
             model.addAttribute("listaFotos2", listaFotos2);
 
             Incidencia antepenultimaIncidencia = incidencias.get(2);
             model.addAttribute("antepenultimaIncidencia", antepenultimaIncidencia);
-            Set<String> listaFotos3 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/"+ antepenultimaIncidencia.getId());
+            Set<String> listaFotos3 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/"+ antepenultimaIncidencia.getId());
             model.addAttribute("listaFotos3", listaFotos3);
         }
         model.addAttribute("entityName", "home");

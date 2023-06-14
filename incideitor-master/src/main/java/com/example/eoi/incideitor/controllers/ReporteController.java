@@ -88,9 +88,8 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
         return "redirect:/reporte/admin";
     }
 
-    @Override
-    @GetMapping("/admin")
-    public String getAllAdmin(Model model) {
+    @GetMapping("/reportError")
+    public String getAllError(Model model) {
         List<Reporte> entities = reporteRepository.getReportesByCategoriaEquals("Error");
         model.addAttribute("entities", entities);
         model.addAttribute("entityName", entityName);
