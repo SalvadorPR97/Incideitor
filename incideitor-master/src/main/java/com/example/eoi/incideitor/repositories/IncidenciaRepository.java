@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface IncidenciaRepository extends JpaRepository<Incidencia, Long> {
 
-    @Query("SELECT i FROM Incidencia i ORDER BY i.fecha DESC")
+    @Query("SELECT i FROM Incidencia i ORDER BY i.id DESC ")
     List<Incidencia> obtenerUltimaIncidencia();
+
 }
