@@ -3,6 +3,10 @@ package com.example.eoi.incideitor.abstractcomponents;
 
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.swing.text.html.parser.Entity;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Controlador genérico para entidades utilizando Spring MVC.
@@ -62,6 +68,9 @@ public abstract class MiControladorGenerico<T> {
         @Autowired
         protected GenericServiceWithJPA<T,?> service;
 
+        @Autowired
+        protected JpaRepository<T,?> jpaRepository;
+
 
         /**
          * Maneja la solicitud GET para obtener todas las entidades.
@@ -70,8 +79,22 @@ public abstract class MiControladorGenerico<T> {
          * @return El nombre de la plantilla para mostrar todas las entidades.
          */
         @GetMapping("/all")
-        public String getAll(Model model) {
-            List<T> entities = service.listAll();
+        public String getAll(@RequestParam(defaultValue = "1") int page,
+                             @RequestParam(defaultValue = "10") int size,
+                             Model model) {
+
+            Pageable pageable = PageRequest.of(page-1, size);
+            Page<T> entities = jpaRepository.findAll(pageable);
+
+            int totalPages = entities.getTotalPages();
+
+            if (totalPages > 0) {
+                List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                        .boxed()
+                        .collect(Collectors.toList());
+                model.addAttribute("pageNumbers", pageNumbers);
+            }
+
             model.addAttribute("entities", entities);
             model.addAttribute("entityName", entityName);
             model.addAttribute("nombreVista", "all-entities");
@@ -79,8 +102,22 @@ public abstract class MiControladorGenerico<T> {
         }
 
         @GetMapping("/admin")
-        public String getAllAdmin(Model model) {
-            List<T> entities = service.listAll();
+        public String getAllAdmin(@RequestParam(defaultValue = "1") int page,
+                                  @RequestParam(defaultValue = "10") int size,
+                                  Model model) {
+
+            Pageable pageable = PageRequest.of(page-1, size);
+            Page<T> entities = jpaRepository.findAll(pageable);
+
+            int totalPages = entities.getTotalPages();
+
+            if (totalPages > 0) {
+                List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                        .boxed()
+                        .collect(Collectors.toList());
+                model.addAttribute("pageNumbers", pageNumbers);
+            }
+
             model.addAttribute("entities", entities);
             model.addAttribute("entityName", entityName);
             model.addAttribute("nombreVista", "admin");
