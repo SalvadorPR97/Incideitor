@@ -15,6 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -37,24 +39,39 @@ public class FileUploadUtil {
         }
     }
 
-    public void uploadImgPost(@RequestParam MultipartFile file, @RequestParam MultipartFile file2, @RequestParam MultipartFile file3, HttpSession session , Model model, long id) throws IOException {
-        String path=session.getServletContext().getRealPath("/");
-        String filename=file.getOriginalFilename();
-        String filename2=file2.getOriginalFilename();
-        String filename3=file3.getOriginalFilename();
-
+    public List<String> uploadImgIncidencia(@RequestParam MultipartFile file, @RequestParam(required = false) MultipartFile file2, @RequestParam(required = false) MultipartFile file3, long id) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        String fileName2 = StringUtils.cleanPath(file2.getOriginalFilename());
-        String fileName3 = StringUtils.cleanPath(file3.getOriginalFilename());
-        String uploadDir = "src/main/resources/static/uploads/"+id;
+        String uploadDir = "src/main/resources/static/uploads/incidencia/"+id;
+        FileUploadUtil.saveFile(uploadDir, fileName, file);
+
+        List<String> listaUrls = new ArrayList<>();
+        listaUrls.add(uploadDir + fileName);
+
+        if (!file2.isEmpty()){
+            String fileName2 = StringUtils.cleanPath(file2.getOriginalFilename());
+            FileUploadUtil.saveFile(uploadDir, fileName2, file2);
+            listaUrls.add(uploadDir + fileName2);
+        }
+
+        if (!file3.isEmpty()){
+            String fileName3 = StringUtils.cleanPath(file3.getOriginalFilename());
+            FileUploadUtil.saveFile(uploadDir, fileName3, file3);
+            listaUrls.add(uploadDir + fileName3);
+
+        }
+
+
+        return listaUrls;
+    }
+
+    public String uploadImgAvatar(@RequestParam MultipartFile file, long id) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+        String uploadDir = "src/main/resources/static/uploads/avatarUsuario/"+id;
 
         FileUploadUtil.saveFile(uploadDir, fileName, file);
-        FileUploadUtil.saveFile(uploadDir, fileName2, file2);
-        FileUploadUtil.saveFile(uploadDir, fileName3, file3);
 
-        model.addAttribute("file", file);
-        model.addAttribute("file2", file2);
-        model.addAttribute("file3", file3);
+        return uploadDir + fileName;
     }
 
     public Set<String> listFilesUsingJavaIO(String dir) {

@@ -23,5 +23,8 @@ public class Foto {
     private String url;
     private int orden;
 
-
+    public Foto(String url, int orden) {
+        this.url = url;
+        this.orden = orden;
+    }
 }

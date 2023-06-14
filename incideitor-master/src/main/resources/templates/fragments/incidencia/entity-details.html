@@ -9,10 +9,10 @@
                     <div class="col-md-5 col-sm-6 mt-4 mb-3 px-5">
                         <div id="carouselExample" class="carousel slide" data-ride="carousel">
 
-                            <div class="carousel-inner">
+                            <div class="carousel-inner" >
                                 <div th:each="picture, iterStat : ${listaFotos}">
                                     <div th:class="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
-                                        <img th:src="@{'/uploads/'+${entity.id}+'/'+${picture}}" class="img-responsive d-block w-100" style="width: 425px;"/>
+                                        <img th:src="@{'/uploads/incidencia/'+${entity.id}+'/'+${picture}}" class="img-responsive d-block w-100" style="width: 425px;"/>
                                     </div>
                                 </div>
                             </div>
@@ -38,9 +38,8 @@
                                        th:field="*{entity.titulo}">
                             </div>
                             <div class="col-md-12 mt-4">
-                                <label for="fecha" class="form-label">Fecha: </label>
-                                <input type="date" class="form-control" id="fecha" name="fecha"
-                                       th:field="*{entity.fecha}">
+                                <label>Fecha de creación</label> <span th:text="*{entity.fecha}"></span>
+                                <input type="hidden" th:field="*{entity.fecha}">
                             </div>
                             <div class="col-md-12 mt-5">
                                 <label for="descripcion" class="form-label">Descripcion</label>

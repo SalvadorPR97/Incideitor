@@ -7,6 +7,7 @@ import com.example.eoi.incideitor.entities.TipoIncidencia;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.TipoIncidenciaRepository;
+import com.example.eoi.incideitor.services.FotoService;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,9 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
     @Autowired
     FileUploadUtil fileUploadUtil;
+
+    @Autowired
+    FotoService fotoService;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -84,20 +88,30 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
      */
 
     @PostMapping("/create")
-    public String crearIncidencia(@ModelAttribute Incidencia incidencia, @RequestParam(required = false) MultipartFile file, @RequestParam(required = false) MultipartFile file2, @RequestParam(required = false) MultipartFile file3, HttpSession session , Model model) throws IOException {
+    public String crearIncidencia(@ModelAttribute Incidencia incidencia, @RequestParam(required = false) MultipartFile file, @RequestParam(required = false) MultipartFile file2, @RequestParam(required = false) MultipartFile file3) throws IOException {
         // Generamos la fecha actual para añadirla como fecha de creacion
         incidencia.setFecha(LocalDate.now());
+        service.create(incidencia);
+        // Usamos el metodo de fileUploadutil para crear las fotos en su directorio correspondiente
+        List<String> listaurls = fileUploadUtil.uploadImgIncidencia(file,file2,file3, incidencia.getId());
+
         // Creamos la colección de fotos para añadirla a la nueva incidencia
         Collection<Foto> fotos = new HashSet<>();
-        Foto foto = new Foto();
-        fotos.add(foto);
-        incidencia.setFotos(fotos);
-        // Cremoas la incidencia en la BDD
-        service.create(incidencia);
-//        nuevaIncidencia.setFecha(LocalDate.now());
-//        service.update(nuevaIncidencia);
+        // Recorremos la lista de urls donde están las fotos para añadirlas a la colección
+        for (int i = 0; i < listaurls.size(); i++) {
+            String url = listaurls.get(i);
+            Foto foto = new Foto();
+            foto.setUrl(url);
+            foto.setOrden(i);
+            foto.setIncidencia(incidencia);
+            fotos.add(foto);
+            fotoService.create(foto);
 
-        fileUploadUtil.uploadImgPost(file,file2,file3, session , model, incidencia.getId());
+        }
+        // Añadimos la coleccion de fotos que rellenamos a la incidencia
+        incidencia.setFotos(fotos);
+        // Creamos la incidencia en la BDD
+        service.update(incidencia);
         return "redirect:/incidencia/admin";
     }
 
@@ -106,12 +120,13 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @GetMapping("/{id}")
     public String getById(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
         try {
-            Set<String> listaFotos = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/"+id);
+            Set<String> listaFotos = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/"+id);
             Incidencia entity = service.getById(id);
             model.addAttribute("entity", entity);
             model.addAttribute("entityName", entityName);
             model.addAttribute("nombreVista", "entity-details");
             model.addAttribute("listaFotos", listaFotos);
+
             return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
 
         } catch (MiEntidadNoEncontradaException ex) {
