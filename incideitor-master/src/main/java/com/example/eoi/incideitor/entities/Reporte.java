@@ -21,6 +21,9 @@ public class Reporte {
     private Integer id;
 
     private String categoria;
+
+    private String titulo;
+
     private String descripcion;
 
     @ManyToOne

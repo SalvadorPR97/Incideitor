@@ -1,70 +1,67 @@
 <html lang="en">
 
 <body>
-        <main class="container-fluid flex-nowrap d-flex" th:fragment="admin" xmlns:th="http://www.thymeleaf.org">
-            <!--Contenido-->
-            <div class="col-12 py-2 mx-3">
-                <!--Header y filtros-->
-                <div>
-                    <h1>Reportes Bugs</h1>
-                    <button type="button" onclick="location.href='reporte/create'"
-                        class="btn btn-primary mb-1">Nuevo Reporte</button>
-                    <form action="#" method="get">
-                        <input type="text" placeholder="Término a Filtrar" name="filtro">
-                        <select name="tipoIncidencia" id="">
-                            <option value="0">Acerado</option>
-                            <option value="1">Aguas</option>
-                            <option value="2">Alumbrado</option>
-                            <option value="3">Arquetas</option>
-                            <option value="4">Cableado</option>
-                            <option value="5">Calzada</option>
-                            <option value="6">Carril bici</option>
-                            <option value="7">Fuentes</option>
-                            <option value="8">Jardines y zonas verdes</option>
-                            <option value="9">Limpieza</option>
-                            <option value="10">Medio ambiente</option>
-                            <option value="11">Mobiliario urbano</option>
-                            <option value="12">Monumentos</option>
-                            <option value="13/taxi">Parada bus/taxi</option>
-                            <option value="14">Parques infantiles</option>
-                            <option value="15">Plagas</option>
-                            <option value="16">Playas</option>
-                            <option value="17">Saneamiento</option>
-                            <option value="18">Semáforos</option>
-                            <option value="19">Tráfico y señalización</option>
-                            <option value="20">Vallas de obra</option>
-                        </select>
-                        <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
-                    </form>
-                </div>
-                <!--Tabla-->
-                <div>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Categoría</th>
-                            <th>Descripción</th>
-                            <!--<th>Incidencia</th>-->
-                            <th>Acciones</th> <!-- Nueva columna para las acciones -->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="reporte : ${entities}">
-                            <td th:text="${reporte.id}"></td>
-                            <td th:text="${reporte.categoria}"></td>
-                            <td th:text="${reporte.descripcion}"></td>
-                            <!-- <td th:text="${reporte.incidencia}"></td>-->
-                            <td>
-                                <a th:href="@{/reporte/{id}(id=${reporte.id})}" class="btn btn-primary">Editar</a>
-                                <a th:href="@{/reporte/delete/{id}(id=${reporte.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta entidad?');">Eliminar</a>
-                            </td> <!-- Columna para los botones de edición y eliminación -->
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </main>
+<main class="container-fluid flex-nowrap d-flex" th:fragment="admin" xmlns:th="http://www.thymeleaf.org">
+    <!--Contenido-->
+    <div class="col-12 py-2 mx-3">
+        <!--Header y filtros-->
+        <div>
+            <h1>Reportes Incidencias</h1>
+            <button type="button" onclick="location.href='/reporte/create'" class="btn btn-primary mb-1">Nuevo Reporte</button>
+            <form action="#" method="get">
+                <input type="text" placeholder="Término a Filtrar" name="filtro">
+                <select name="tipoIncidencia" id="">
+                    <option value="0">Acerado</option>
+                    <option value="1">Aguas</option>
+                    <option value="2">Alumbrado</option>
+                    <option value="3">Arquetas</option>
+                    <option value="4">Cableado</option>
+                    <option value="5">Calzada</option>
+                    <option value="6">Carril bici</option>
+                    <option value="7">Fuentes</option>
+                    <option value="8">Jardines y zonas verdes</option>
+                    <option value="9">Limpieza</option>
+                    <option value="10">Medio ambiente</option>
+                    <option value="11">Mobiliario urbano</option>
+                    <option value="12">Monumentos</option>
+                    <option value="13/taxi">Parada bus/taxi</option>
+                    <option value="14">Parques infantiles</option>
+                    <option value="15">Plagas</option>
+                    <option value="16">Playas</option>
+                    <option value="17">Saneamiento</option>
+                    <option value="18">Semáforos</option>
+                    <option value="19">Tráfico y señalización</option>
+                    <option value="20">Vallas de obra</option>
+                </select>
+                <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
+            </form>
+        </div>
+        <!--Tabla-->
+        <div>
+            <table class="table table-striped" id="tablaOrdenar">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="reporte : ${entities}">
+                    <td th:text="${reporte.id}"></td>
+                    <td th:text="${reporte.titulo}"></td>
+                    <td th:text="${reporte.descripcion}"></td>
+                    <td>
+                        <a th:href="@{/reporte/{id}(id=${reporte.id})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/reporte/delete/{id}(id=${reporte.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta entidad?');">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 </body>
 
 </html>
