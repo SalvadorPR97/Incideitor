@@ -6,7 +6,8 @@
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                 <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                <span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                <span class="font-weight-bold">Edogaru</span>
+                <span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
@@ -15,23 +16,25 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6"><label class="labels">Nombre</label>
-                        <input type="text" class="form-control" value=""></div>
+                        <span th:text="${usuario.nombre}"></span></div>
 
                     <div class="col-md-6"><label class="labels">Apellido</label>
-                        <input type="text" class="form-control" value="" ></div>
+                        <span th:text="${usuario.apellido}"></span></div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Sexo</label>
-                        <input type="text" class="form-control" value=""></div>
+                        <span th:text="${usuario.sexo}"></span></div>
+                    
                     <div class="col-md-12"><label class="labels">Email</label>
-                        <input type="text" class="form-control" value=""></div>
+                        <span th:text="${usuario.email}"></span></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-6"><label class="labels">Rol</label>
-                        <input type="text" class="form-control" value=""></div>
+                        <span th:text="${usuario.rol?.nombre}"></span></div>
+                    
                     <div class="col-md-6"><label class="labels">Ayuntamiento</label>
-                        <input type="text" class="form-control" value=""></div>
+                        <span th:text="${usuario.ayuntamiento?.nombre}"></span></div>
                     </div>
 
                     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Permitir Notificaciones</button></div>
@@ -41,7 +44,7 @@
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Cambiar Contraseña</button></div>
 
                   </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Borrar Cuenta</button></div>
+                <div class="mt-5 text-center"><button class="btn btn-danger profile-button" type="button">Borrar Cuenta</button></div>
 
             </div>
             </div>

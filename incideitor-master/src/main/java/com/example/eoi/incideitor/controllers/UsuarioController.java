@@ -57,6 +57,10 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private ObtenerDatosUsuario obtenerDatosUsuario;
+
+
     /**
      * Constructor de la clase UsuarioController.
      * Se utiliza para crear una instancia del controlador.
@@ -154,6 +158,22 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "admin");
         return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+    }
+
+    @GetMapping("/miperfil")
+    public String miperfil(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
+        try {
+
+            Usuario usuario = service.getById(id);
+            UsuarioDatosPrivados dto = this.usuarioService.leerUsuarioPrivado(usuario.getId());
+            model.addAttribute("entity", dto);
+            model.addAttribute("entityName", entityName);
+            model.addAttribute("nombreVista", "entity-details");
+            return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
+
+        } catch (MiEntidadNoEncontradaException ex) {
+            return "error"; // Nombre de la plantilla para mostrar la página de error
+        }
     }
 
 }
