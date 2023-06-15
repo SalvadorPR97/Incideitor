@@ -13,7 +13,7 @@ INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES
 
 INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Juan', 'Y medio', 'Juan', 'juan@gmail.com', '12345678A', 'Juan', '1', 1);
 INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Pepe', 'Caja', 'Juan', 'pepe@gmail.com', '12345678B', 'Juan', '1', 2);
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Manolo', 'Bombo', 'Juan', 'manolo@gmail.com', '12345678C', 'Juan', '1', 3);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Manolo', 'Bombo', 'Juan', 'anonimo@anonimo.com', '12345678C', 'Juan', '1', 3);
 INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Messi', 'Dios', 'Juan', 'messi@gmail.com', '12345678D', 'Juan', '1', 4);
 INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension, rol_id) VALUES ('Guardiola', 'Juan', 'Juan', 'guardiola@gmail.com', '12345678E', 'Juan', '1', 'Urbanismo', 304, 5);
 INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Rambo', 'Ak', 'Juan', 'rambo@gmail.com', '12345678F', 'Juan', '1', 2);
