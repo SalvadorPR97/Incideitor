@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AppSendMailController {
+	@Autowired
 	EmailService service;
 
 	@Autowired
 	private JavaMailSender sender;
 
-	protected AppSendMailController(EmailService service) {
+	protected AppSendMailController() {
 		super();
-		this.service = service;
 	}
 
 	@GetMapping("/email/emailsimpleusr")
