@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT}/${MYSQL_DATABASE}
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3307/incideitor
     username: root
-    password: ${MYSQL_PASSWORD}
+    password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
@@ -10,7 +10,7 @@ spring:
   jpa:
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
       show-sql: true
     properties:
       hibernate:

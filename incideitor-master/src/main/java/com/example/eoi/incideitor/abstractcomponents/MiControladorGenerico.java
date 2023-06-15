@@ -8,11 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -148,13 +144,7 @@ public abstract class MiControladorGenerico<T> {
                 }
         }
 
-        /**
-         * Maneja la solicitud POST para crear una nueva entidad.
-         *
-         * @param "entity" La entidad a crear.
-         * @param model  El objeto Model para agregar los atributos necesarios.
-         * @return El nombre de la plantilla para mostrar los detalles de la entidad creada.
-         */
+
 
         /**
          * Maneja la solicitud PUT para actualizar una entidad existente.
