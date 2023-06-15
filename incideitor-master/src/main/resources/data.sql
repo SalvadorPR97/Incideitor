@@ -94,7 +94,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `reportes` WRITE;
 /*!40000 ALTER TABLE `reportes` DISABLE KEYS */;
-INSERT INTO `reportes` VALUES (1,'Bug','No se ve la pantalla',NULL,NULL),(2,'Error','Incidencia con fotos borrosas',NULL,NULL),(3,'Error','La dirección está mal',NULL,NULL);
+INSERT INTO `reportes` VALUES (1,'Bug','Pantalla','No se ve la pantalla',NULL,NULL),(2,'Error','Error','Incidencia con fotos borrosas',NULL,NULL),(3,'Error','Error','La dirección está mal',NULL,NULL);
 /*!40000 ALTER TABLE `reportes` ENABLE KEYS */;
 UNLOCK TABLES;
 
