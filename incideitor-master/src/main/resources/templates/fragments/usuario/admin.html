@@ -37,20 +37,20 @@
                 </div>
             <!--Tabla-->
             <div>
-                <table class="table table-striped">
+                <table class="table table-striped" id="tablaOrdenar">
                     <thead>
                     <tr>
-                        <th>ID</th>
+                        <th onclick="sortTable(0)">ID</th>
                         <th>Email</th>
                         <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Sexo</th>
+                        <th onclick="sortTable(3)">Apellido</th>
+                        <th onclick="sortTable(4)">Sexo</th>
                         <th>Contrasena</th>
                         <th>DNI</th>
                         <th>Extension</th>
-                        <th>Departamento</th>
-                        <th>Rol</th>
-                        <th>Borrado</th>
+                        <th onclick="sortTable(8)">Departamento</th>
+                        <th onclick="sortTable(9)">Rol</th>
+                        <th onclick="sortTable(10)">Borrado</th>
                         <th>Acciones</th> <!-- Nueva columna para las acciones -->
                     </tr>
                     </thead>
@@ -67,15 +67,27 @@
                         <td th:text="${usuario.departamento}"></td>
                         <td th:text="${usuario.rol?.nombre}"></td>
                         <td th:text="${usuario.borradoLogico}"></td>
-                        <td>
+                        <td><!-- Columna para los botones de edición y borrado logico -->
                             <a th:href="@{/usuario/edit/{id}(id=${usuario.id})}" class="btn btn-primary">Editar</a>
                             <a th:href="@{/usuario/logic/{id}(id=${usuario.id})}" class="btn btn-danger"
                                onclick="return confirm('Seguro que quieres activar/desactivar esta entidad?');">Activar/Desactivar</a>
-                        </td> <!-- Columna para los botones de edición y eliminación -->
+                        </td>
                     </tr>
                     </tbody>
                 </table>
                 </div>
+
+            <div th:if="${entities.totalPages > 0}" class="pagination justify-content-center">
+                <ul class="pagination justify-content-center" >
+                    <li class="page-item"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number})}">Previous</a></li>
+                    <li  class="page-item" th:each="pageNumber : ${pageNumbers}">
+                        <a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${pageNumber})}"
+                           th:text="${pageNumber}"
+                           th:classappend="${pageNumber==entities.number+1} ? active"></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number+2})}">Next</a></li>
+                </ul>
+            </div>
         </div>
     </main>
 

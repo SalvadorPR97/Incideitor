@@ -37,19 +37,19 @@
         </div>
         <!--Tabla-->
         <div>
-            <table class="table" id="myTable2">
+            <table class="table" id="tablaOrdenar">
                 <thead>
                 <tr>
-                    <th scope="col" onclick="sortTable(0)">#</th>
+                    <th scope="col" onclick="sortTable(0)">ID</th>
                     <th scope="col" onclick="sortTable(1)">Categoría</th>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Fecha</th>
+                    <th scope="col" onclick="sortTable(2)">Titulo</th>
+                    <th scope="col" onclick="sortTable(3)">Fecha Creación</th>
                     <th scope="col">Descripción</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Subtipo</th>
+                    <th scope="col" onclick="sortTable(5)">Tipo</th>
+                    <th scope="col" onclick="sortTable(6)">Subtipo</th>
                     <th scope="col">IdUsuario</th>
                     <th scope="col">Ayuntamiento</th>
-                    <th scope="col">Fecha Resolucion</th>
+                    <th scope="col" onclick="sortTable(7)">Fecha Resolucion</th>
                     <th scope="col">Acciones</th>
                 </tr>
                 </thead>
@@ -74,6 +74,17 @@
 
                 </tbody>
             </table>
+        </div>
+        <div th:if="${entities.totalPages > 0}" class="pagination justify-content-center">
+            <ul class="pagination justify-content-center" >
+                <li class="page-item"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number})}">Previous</a></li>
+                <li  class="page-item" th:each="pageNumber : ${pageNumbers}">
+                    <a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${pageNumber})}"
+                       th:text="${pageNumber}"
+                       th:classappend="${pageNumber==entities.number+1} ? active"></a>
+                </li>
+                <li class="page-item"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number+2})}">Next</a></li>
+            </ul>
         </div>
     </div>
 </main>

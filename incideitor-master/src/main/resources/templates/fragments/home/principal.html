@@ -27,7 +27,7 @@
                                 <div class="carousel-inner">
                                     <div th:each="picture, iterStat : ${listaFotos1}">
                                         <div th:class="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
-                                            <img th:src="@{'/uploads/'+${ultimaIncidencia.id}+'/'+${picture}}"
+                                            <img th:src="@{'/uploads/incidencia/'+${ultimaIncidencia.id}+'/'+${picture}}"
                                                  class="card-img-top">
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@
                                 <div class="carousel-inner">
                                     <div th:each="picture, iterStat : ${listaFotos2}">
                                         <div th:class="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
-                                            <img th:src="@{'/uploads/'+${penultimaIncidencia.id}+'/'+${picture}}"
+                                            <img th:src="@{'/uploads/incidencia/'+${penultimaIncidencia.id}+'/'+${picture}}"
                                                  class="card-img-top">
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                                 <div class="carousel-inner">
                                     <div th:each="picture, iterStat : ${listaFotos3}">
                                         <div th:class="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
-                                            <img th:src="@{'/uploads/'+${antepenultimaIncidencia.id}+'/'+${picture}}"
+                                            <img th:src="@{'/uploads/incidencia/'+${antepenultimaIncidencia.id}+'/'+${picture}}"
                                                  class="card-img-top">
                                         </div>
                                     </div>

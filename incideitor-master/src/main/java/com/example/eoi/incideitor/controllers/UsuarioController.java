@@ -4,6 +4,7 @@ package com.example.eoi.incideitor.controllers;
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.dtos.LoginDto;
 import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
+import com.example.eoi.incideitor.entities.Rol;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
@@ -96,6 +97,16 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
     @PostMapping("/create")
     public String crearUsuario(@ModelAttribute Usuario usuario) {
+
+        // Pone por defecto el Rol_Usuario a las nuevas cuentas
+        Rol rol = new Rol();
+        rol.setId(2);
+        usuario.setRol(rol);
+
+        // Hace que no se muestre la contraseña en el listado de usuarios
+        String contrasena = passwordEncoder.encode(usuario.getContrasena());
+        usuario.setContrasena(contrasena);
+
         service.create(usuario);
         return "redirect:/usuario/admin";
     }
@@ -130,7 +141,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         return "acceso/login";
     }
     @PostMapping("/login")
-    public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
+    public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto, Model model) {
         String usr = loginDto.getUsername();
         System.out.println("usr :" + usr);
         String password = loginDto.getPassword();
@@ -140,9 +151,11 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         //¿es correcta la password?
         if (usuarioOptional.isPresent())
         {
+            model.addAttribute("entityName", "home");
+            model.addAttribute("nombreVista", "principal");
             return "index";
         }else {
-            return "acceso/login";
+            return "redirect:/acceso/login";
         }
     }
 
