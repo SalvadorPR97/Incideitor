@@ -5,12 +5,15 @@ package com.example.eoi.incideitor.controllers;
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Reporte;
 import com.example.eoi.incideitor.entities.Usuario;
+import com.example.eoi.incideitor.repositories.ReporteRepository;
 import jakarta.annotation.PostConstruct;;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 /**
@@ -43,6 +46,9 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
     private String url;
 
     private String entityName = "reporte";
+
+    @Autowired
+    ReporteRepository reporteRepository;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -80,6 +86,24 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
     public String crearReporte(@ModelAttribute Reporte reporte) {
         service.create(reporte);
         return "redirect:/reporte/admin";
+    }
+
+    @GetMapping("/reportError")
+    public String getAllError(Model model) {
+        List<Reporte> entities = reporteRepository.getReportesByCategoriaEquals("Error");
+        model.addAttribute("entities", entities);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "admin");
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+    @GetMapping("/bugs")
+    public String getAllBugs(Model model) {
+        List<Reporte> entities = reporteRepository.getReportesByCategoriaEquals("Bug");
+        model.addAttribute("entities", entities);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "admin");
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
 
 
