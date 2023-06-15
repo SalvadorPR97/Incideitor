@@ -59,7 +59,7 @@ https://www.baeldung.com/spring-security-csrf
                 .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/uploads/**").permitAll()
-                //.requestMatchers("/**").permitAll()
+                .requestMatchers("/**").permitAll()
                 //.requestMatchers("/").permitAll()
                 .requestMatchers("/usuario/create").permitAll()
                 .requestMatchers("/usuario/admin").hasAuthority("ROL_USUARIO")

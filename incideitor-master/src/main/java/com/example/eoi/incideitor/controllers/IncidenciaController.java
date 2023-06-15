@@ -7,6 +7,7 @@ import com.example.eoi.incideitor.entities.TipoIncidencia;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.TipoIncidenciaRepository;
+import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,9 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @Autowired
     FileUploadUtil fileUploadUtil;
 
+    @Autowired
+    private ObtenerDatosUsuario obtenerDatosUsuario;
+
     /**
      * Constructor de la clase UsuarioController.
      * Se utiliza para crear una instancia del controlador.
@@ -66,6 +70,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @GetMapping("/create")
     public String mostrarFormulario(@RequestParam(value = "incidenciaPadre", required = false) Long incidenciaPadre, Model model) {
         List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAll();
+        System.out.println("usuario en la sesión:" + obtenerDatosUsuario.getUserData().getNombre());
 
         model.addAttribute("tiposIncidencia", tiposIncidencias);
         model.addAttribute("incidenciaPadre", incidenciaPadre);
