@@ -101,6 +101,11 @@ public class AccesoController {
         }
     }
     // Crear el accessDenied
+    @GetMapping("/accessDenied")
+    public String AccesoDenegado(Model model){
+
+        return "/accessDenied";
+    }
 
 
 }
