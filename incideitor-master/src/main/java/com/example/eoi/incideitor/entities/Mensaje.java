@@ -20,10 +20,10 @@ public class Mensaje {
     private Integer id;
 
     @OneToOne(mappedBy = "mensaje_emisor")
-    private Usuario usuario_emisor;
+    private Usuario usuarioEmisor;
 
     @OneToOne(mappedBy = "mensaje_receptor")
-    private Usuario usuario_receptor;
+    private Usuario usuarioReceptor;
 
     private Date fecha;
     private String contenido;

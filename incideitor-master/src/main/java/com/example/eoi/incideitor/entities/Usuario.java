@@ -49,11 +49,11 @@ public class Usuario {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mensaje_emisor_id",referencedColumnName = "id")
-    private Mensaje mensaje_emisor;
+    private Mensaje mensajeEmisor;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mensaje_receptor_id",referencedColumnName = "id")
-    private Mensaje mensaje_receptor;
+    private Mensaje mensajeReceptor;
 
     @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name = "rol_id")

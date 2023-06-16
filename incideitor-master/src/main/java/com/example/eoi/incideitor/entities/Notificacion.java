@@ -26,7 +26,6 @@ public class Notificacion {
     @JoinColumn(name = "incidencia_id")
     private Incidencia incidencia;
 
-    private LocalDateTime fecha_notificacion;
+    private LocalDateTime fechaNotificacion;
 
-    private String estado;
 }
