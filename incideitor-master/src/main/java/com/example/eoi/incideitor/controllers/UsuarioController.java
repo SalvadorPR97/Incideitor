@@ -4,11 +4,14 @@ package com.example.eoi.incideitor.controllers;
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.dtos.LoginDto;
 import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
+import com.example.eoi.incideitor.dtos.UsuarioMiPerfil;
 import com.example.eoi.incideitor.entities.Rol;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.example.eoi.incideitor.mapper.UsuarioMapper;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
 import com.example.eoi.incideitor.services.UsuarioService;
+import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,7 +64,8 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @Autowired
     private ObtenerDatosUsuario obtenerDatosUsuario;
 
-
+    @Autowired
+    private UsuarioMapper usuarioMapper;
     /**
      * Constructor de la clase UsuarioController.
      * Se utiliza para crear una instancia del controlador.
@@ -174,14 +178,14 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     }
 
     @GetMapping("/miperfil")
-    public String miperfil(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
+    public String miperfil(Model model) throws MiEntidadNoEncontradaException {
         try {
-
-            Usuario usuario = service.getById(id);
-            UsuarioDatosPrivados dto = this.usuarioService.leerUsuarioPrivado(usuario.getId());
-            model.addAttribute("entity", dto);
+            Integer id = obtenerDatosUsuario.getUserData().getId();
+            Usuario usuario = this.service.getById(id);
+            UsuarioMiPerfil dto = usuarioMapper.toDtoMiPerfil(usuario);
+            model.addAttribute("usuario", dto);
             model.addAttribute("entityName", entityName);
-            model.addAttribute("nombreVista", "entity-details");
+            model.addAttribute("nombreVista", "usuario-profile");
             return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
 
         } catch (MiEntidadNoEncontradaException ex) {
