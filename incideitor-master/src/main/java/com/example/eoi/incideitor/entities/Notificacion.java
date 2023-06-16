@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -25,5 +26,7 @@ public class Notificacion {
     @JoinColumn(name = "incidencia_id")
     private Incidencia incidencia;
 
-    private Date fecha_notificacion;
+    private LocalDateTime fecha_notificacion;
+
+    private String estado;
 }
