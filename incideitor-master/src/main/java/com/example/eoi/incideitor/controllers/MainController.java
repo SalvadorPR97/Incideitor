@@ -8,6 +8,7 @@ import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.IncidenciaRepository;
 import com.example.eoi.incideitor.services.AyuntamientoService;
 import com.example.eoi.incideitor.services.UsuarioService;
+import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,9 +33,14 @@ public class MainController {
     private FileUploadUtil fileUploadUtil;
 
 
+
+
     @GetMapping(value={"","/"})
     public String mostrarIndex(Model model)
     {
+        //Lectura del usuaro activo en la sesión
+
+
         List<Incidencia> incidencias = incidenciaRepository.obtenerUltimaIncidencia();
         if(!incidencias.isEmpty()){
             Incidencia ultimaIncidencia = incidencias.get(0);

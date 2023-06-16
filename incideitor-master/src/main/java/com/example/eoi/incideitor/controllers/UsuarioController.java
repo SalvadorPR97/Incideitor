@@ -6,8 +6,11 @@ import com.example.eoi.incideitor.dtos.Email;
 import com.example.eoi.incideitor.dtos.LoginDto;
 import com.example.eoi.incideitor.dtos.UsuarioCambioPassword;
 import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
+import com.example.eoi.incideitor.entities.Foto;
+import com.example.eoi.incideitor.entities.Rol;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
 import com.example.eoi.incideitor.services.EmailService;
 import com.example.eoi.incideitor.services.UsuarioService;
@@ -19,7 +22,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -63,6 +68,9 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     UsuarioRepository usuarioRepository;
 
     @Autowired
+    FileUploadUtil fileUploadUtil;
+
+    @Autowired
     EmailService emailService;
 
     /**
@@ -99,8 +107,28 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     }
 
     @PostMapping("/create")
-    public String crearUsuario(@ModelAttribute Usuario usuario) {
+    public String crearUsuario(@ModelAttribute Usuario usuario, @RequestParam(required = false) MultipartFile file) throws IOException {
+
+        // Pone por defecto el Rol_Usuario a las nuevas cuentas
+        Rol rol = new Rol();
+        rol.setId(2);
+        usuario.setRol(rol);
+
+        // Hace que no se muestre la contraseña en el listado de usuarios
+        String contrasena = passwordEncoder.encode(usuario.getContrasena());
+        usuario.setContrasena(contrasena);
+
+        // Creamos el usuario para poder obtener el id
         service.create(usuario);
+
+        //Guardamos la imagen
+        String fileName = fileUploadUtil.uploadImgAvatar(file, usuario.getId());
+
+        // Añadimos el nombre de la imagen al usuario
+        usuario.setAvatar(fileName);
+        // Y actualizamos el usuario
+        service.update(usuario);
+
         return "redirect:/usuario/admin";
     }
 
@@ -134,7 +162,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         return "acceso/login";
     }
     @PostMapping("/login")
-    public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
+    public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto, Model model) {
         String usr = loginDto.getUsername();
         System.out.println("usr :" + usr);
         String password = loginDto.getPassword();
@@ -144,9 +172,11 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         //¿es correcta la password?
         if (usuarioOptional.isPresent())
         {
+            model.addAttribute("entityName", "home");
+            model.addAttribute("nombreVista", "principal");
             return "index";
         }else {
-            return "acceso/login";
+            return "redirect:/acceso/login";
         }
     }
 

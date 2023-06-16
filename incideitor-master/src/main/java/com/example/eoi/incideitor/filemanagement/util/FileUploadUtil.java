@@ -45,34 +45,34 @@ public class FileUploadUtil {
         String uploadDir = "src/main/resources/static/uploads/incidencia/"+id;
         FileUploadUtil.saveFile(uploadDir, fileName, file);
 
-        List<String> listaUrls = new ArrayList<>();
-        listaUrls.add(uploadDir + fileName);
+        List<String> listaFileName = new ArrayList<>();
+        listaFileName.add(fileName);
 
         if (!file2.isEmpty()){
             String fileName2 = StringUtils.cleanPath(file2.getOriginalFilename());
             FileUploadUtil.saveFile(uploadDir, fileName2, file2);
-            listaUrls.add(uploadDir + fileName2);
+            listaFileName.add(fileName2);
         }
 
         if (!file3.isEmpty()){
             String fileName3 = StringUtils.cleanPath(file3.getOriginalFilename());
             FileUploadUtil.saveFile(uploadDir, fileName3, file3);
-            listaUrls.add(uploadDir + fileName3);
+            listaFileName.add(fileName3);
 
         }
 
 
-        return listaUrls;
+        return listaFileName;
     }
 
-    public String uploadImgAvatar(@RequestParam MultipartFile file, long id) throws IOException {
+    public String uploadImgAvatar(@RequestParam MultipartFile file, Integer id) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
-        String uploadDir = "src/main/resources/static/uploads/avatarUsuario/"+id;
+        String uploadDir = "src/main/resources/static/uploads/avatar/"+id;
 
         FileUploadUtil.saveFile(uploadDir, fileName, file);
 
-        return uploadDir + fileName;
+        return fileName;
     }
 
     public Set<String> listFilesUsingJavaIO(String dir) {

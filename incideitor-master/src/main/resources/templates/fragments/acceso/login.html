@@ -13,21 +13,21 @@
                         <div class="row justify-content-center d-block">
                             <div class="formulario">
                                 <h1>Iniciar sesión</h1>
-                                <form method="post">
+                                <form method="post" action="/acceso/login">
                                     <div class="email">
-                                        <input type="email" required placeholder="Correo electrónico" />
+                                        <input type="email" th:field="*{usuariodto.username}" required placeholder="Correo electrónico" />
 
                                         <img src="/img/mail.png" alt="mail" class="mail" width="20px">
                                     </div>
                                     <div class="password__class">
-                                        <input type="password" id="password" placeholder="Contraseña" required />
+                                        <input type="password" th:field="*{usuariodto.password}" id="password" placeholder="Contraseña" required />
 
                                         <img src="/img/view.png" alt="view" id="view" class="view" width="23px">
                                     </div>
                                     <div class="remember"><a href="/usuario/resetpass">¿Has olvidado tu contraseña?</a></div>
                                     <button type="submit">Iniciar sesión</button>
                                     <div class="register">
-                                        ¿Todavía no te has registrado? <a href="#">Registrarse</a>
+                                        ¿Todavía no te has registrado? <a href="/usuario/create">Registrarse</a>
                                     </div>
                                 </form>
                             </div>
