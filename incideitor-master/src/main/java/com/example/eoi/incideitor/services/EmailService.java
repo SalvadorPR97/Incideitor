@@ -4,6 +4,7 @@ import com.example.eoi.incideitor.dtos.Email;
 import freemarker.template.Configuration;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -75,7 +76,7 @@ public class EmailService {
 			//send the email message
 			System.out.println("sendMail antes de Transport; " + mail.getContent());
 			Transport.send(message);
-			System.out.println("Email Message Sent Successfully");
+			System.out.println("Mensaje enviado correctamente");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -111,4 +112,5 @@ public class EmailService {
 		}
 
 	}
+
 }

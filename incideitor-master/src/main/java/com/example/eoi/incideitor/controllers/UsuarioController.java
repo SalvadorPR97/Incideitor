@@ -2,11 +2,14 @@ package com.example.eoi.incideitor.controllers;
 
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
+import com.example.eoi.incideitor.dtos.Email;
 import com.example.eoi.incideitor.dtos.LoginDto;
+import com.example.eoi.incideitor.dtos.UsuarioCambioPassword;
 import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
+import com.example.eoi.incideitor.services.EmailService;
 import com.example.eoi.incideitor.services.UsuarioService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +17,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Controlador para la entidad Usuario.
@@ -56,6 +61,9 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
     @Autowired
     UsuarioRepository usuarioRepository;
+
+    @Autowired
+    EmailService emailService;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -155,6 +163,58 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         model.addAttribute("nombreVista", "admin");
         return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
     }
+
+    // RESETEAR PASSWORD
+
+    public static int numeroAleatorioEnRango(int minimo, int maximo) {
+        // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1
+        return ThreadLocalRandom.current().nextInt(minimo, maximo + 1);
+    }
+
+    public  String cadenaAleatoria(int longitud) {
+        // El banco de caracteres
+        String banco = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        // La cadena en donde iremos agregando un carácter aleatorio
+        String cadena = "";
+        for (int x = 0; x < longitud; x++) {
+            int indiceAleatorio = numeroAleatorioEnRango(0, banco.length() - 1);
+            char caracterAleatorio = banco.charAt(indiceAleatorio);
+            cadena += caracterAleatorio;
+        }
+        return cadena;
+    }
+
+    //Generar la url para cambio de password
+
+    @GetMapping("/resetpass/")
+    public String formResetPass(Model model){
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "recuperarPass");
+        return "index";
+    }
+    @PostMapping("/resetpass/")
+    public String cambiopass(String email) throws Exception {
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
+        Usuario usuarioNuevoToken = new Usuario();
+        //Cambiamos el token
+        String newtoken = this.cadenaAleatoria(50);
+        if (usuario.isPresent()){
+            usuarioNuevoToken = usuario.get();
+            usuarioNuevoToken.setToken(newtoken);
+            usuarioService.update(usuarioNuevoToken);
+            Email emailRecPass = new Email();
+            emailRecPass.setFrom("jose.manuel.aroca.fernandez@gmail.com");
+            emailRecPass.setTo(usuarioNuevoToken.getEmail());
+            emailRecPass.setSubject("Cambio de contraseña");
+            emailRecPass.setContent("localhost:8080/usuario/resetpass/"+newtoken);
+            emailService.sendMail(emailRecPass);
+            return "redirect:/";
+        }else {
+            //Mostrar página usuario no existe
+            return "/error";
+        }
+    }
+
 
 }
 
