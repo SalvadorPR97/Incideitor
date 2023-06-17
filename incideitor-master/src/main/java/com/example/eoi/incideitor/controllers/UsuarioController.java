@@ -2,21 +2,32 @@ package com.example.eoi.incideitor.controllers;
 
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
+import com.example.eoi.incideitor.dtos.ListaNotificacionesUsuarioDTO;
 import com.example.eoi.incideitor.dtos.LoginDto;
 import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
 import com.example.eoi.incideitor.entities.Foto;
 import com.example.eoi.incideitor.dtos.UsuarioMiPerfil;
 import com.example.eoi.incideitor.entities.Rol;
 import com.example.eoi.incideitor.entities.Usuario;
+import com.example.eoi.incideitor.entities.*;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
 import com.example.eoi.incideitor.mapper.UsuarioMapper;
+import com.example.eoi.incideitor.repositories.NotificacionRepository;
+import com.example.eoi.incideitor.mapper.UsuarioMapper;
+import com.example.eoi.incideitor.repositories.NotificacionRepository;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
 import com.example.eoi.incideitor.services.UsuarioService;
 import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
+import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import jakarta.annotation.PostConstruct;
+import org.hibernate.sql.ast.tree.expression.Collation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +35,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Controlador para la entidad Usuario.
@@ -73,6 +86,11 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
     @Autowired
     private UsuarioMapper usuarioMapper;
+    @Autowired
+    NotificacionRepository notificacionRepository;
+
+
+
     /**
      * Constructor de la clase UsuarioController.
      * Se utiliza para crear una instancia del controlador.
@@ -209,6 +227,68 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
             return "error"; // Nombre de la plantilla para mostrar la página de error
         }
     }
+
+
+    @GetMapping("/notificaciones")
+    public String misIncidencias(@RequestParam(defaultValue = "1") int page,
+                                @RequestParam(defaultValue = "10") int size,
+                                Model model) {
+
+        //Obtenemos el usuario de la sesion
+        Usuario usuario = obtenerDatosUsuario.getUserData();
+
+
+        //Generamos la lista a mostrar en la pantalla
+        Collection<Incidencia> listaIncidencias = usuario.getIncidencias();
+        List<ListaNotificacionesUsuarioDTO> listaNotificacionesUsuarioDTOS = new ArrayList<ListaNotificacionesUsuarioDTO>();
+
+        for (Iterator<Incidencia> iterator = listaIncidencias.iterator();
+             iterator.hasNext();){
+                Incidencia incidenciaLectura = iterator.next();
+                 Collection<Notificacion> notificacions = incidenciaLectura.getNotificaciones();
+                 for (Iterator<Notificacion> iteratorN = notificacions.iterator();
+                      iteratorN.hasNext();){
+                     Notificacion notificacionLectura = iteratorN.next();
+
+                     ListaNotificacionesUsuarioDTO dto = new ListaNotificacionesUsuarioDTO();
+                     dto.setIdIncidencia(incidenciaLectura.getId());
+                     dto.setTituloIncidencia(incidenciaLectura.getDescripcion());
+                     dto.setId(notificacionLectura.getId());
+                     dto.setDescripcion(notificacionLectura.getDescripcion());
+                     dto.setFechaNotificacion(notificacionLectura.getFechaNotificacion());
+                     listaNotificacionesUsuarioDTOS.add(dto);
+                 }
+        }
+
+
+        Pageable pageable = PageRequest.of(page-1, size);
+        int lowerBound = pageable.getPageNumber() * pageable.getPageSize();
+        int upperBound = Math.min(lowerBound + pageable.getPageSize() - 1, listaNotificacionesUsuarioDTOS.size());
+
+        List<ListaNotificacionesUsuarioDTO> subList = listaNotificacionesUsuarioDTOS.subList(lowerBound, upperBound);
+
+        Page<ListaNotificacionesUsuarioDTO> listaNotificacionesUsuarioDTOPage = new PageImpl<ListaNotificacionesUsuarioDTO>(subList, pageable, subList.size());
+
+
+        int totalPages = listaNotificacionesUsuarioDTOPage.getTotalPages();
+
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
+        model.addAttribute("entities", listaNotificacionesUsuarioDTOPage);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "notificaciones");
+
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+
+
+
 
 }
 

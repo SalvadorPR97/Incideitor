@@ -43,6 +43,8 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/usuario/miperfil">
                                     Mi perfil</a></li>
+                                <li><a class="dropdown-item" href="/usuario/notificaciones">Mis notificaciones
+                                    <span th:text="${contador != null ? '(' + contador + ')' : ''}"></span> </a></li>
                                 <li><a class="dropdown-item" href="/incidencia/all">Mis incidencias</a></li>
                                 <li><a class="dropdown-item" href="/incidencia/create">Nueva incidencia</a></li>
                                 <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>

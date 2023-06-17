@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Controller
@@ -32,11 +34,13 @@ public class MainController {
     @Autowired
     private FileUploadUtil fileUploadUtil;
 
-
+    @Autowired
+    NotificacionController notificacionController;
 
 
     @GetMapping(value={"","/"})
-    public String mostrarIndex(Model model)
+    public String mostrarIndex(@RequestParam(defaultValue = "1") int page,
+                               @RequestParam(defaultValue = "10") int size,Model model)
     {
         //Lectura del usuaro activo en la sesión
 
@@ -58,6 +62,14 @@ public class MainController {
             Set<String> listaFotos3 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/"+ antepenultimaIncidencia.getId());
             model.addAttribute("listaFotos3", listaFotos3);
         }
+
+
+
+        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+            String contador = notificacionController.contarNotificaciones(model);
+            model.addAttribute("contador",contador);
+        }
+
         model.addAttribute("entityName", "home");
         model.addAttribute("nombreVista", "principal");
         return "index";

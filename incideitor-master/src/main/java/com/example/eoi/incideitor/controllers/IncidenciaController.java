@@ -1,6 +1,7 @@
 package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
+import com.example.eoi.incideitor.entities.Ayuntamiento;
 import com.example.eoi.incideitor.entities.Foto;
 import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.TipoIncidencia;
@@ -8,6 +9,8 @@ import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaE
 import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.TipoIncidenciaRepository;
 import com.example.eoi.incideitor.services.FotoService;
+import com.example.eoi.incideitor.services.NotificacionService;
+import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +45,12 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
     @Autowired
     FotoService fotoService;
+
+    @Autowired
+    ObtenerDatosUsuario obtenerDatosUsuario;
+
+    @Autowired
+    NotificacionService notificacionService;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -91,7 +100,13 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     public String crearIncidencia(@ModelAttribute Incidencia incidencia, @RequestParam(required = false) MultipartFile file, @RequestParam(required = false) MultipartFile file2, @RequestParam(required = false) MultipartFile file3) throws IOException {
         // Generamos la fecha actual para añadirla como fecha de creacion
         incidencia.setFecha(LocalDate.now());
+        //Obtenemos el usuario de la sesión y la añadimos a la incidencia
+        incidencia.setUsuario(obtenerDatosUsuario.getUserData());
         service.create(incidencia);
+
+        notificacionService.crearNotificacion(incidencia,"Incidencia creada");
+
+
         // Usamos el metodo de fileUploadutil para crear las fotos en su directorio correspondiente
         List<String> listaurls = fileUploadUtil.uploadImgIncidencia(file,file2,file3, incidencia.getId());
 
