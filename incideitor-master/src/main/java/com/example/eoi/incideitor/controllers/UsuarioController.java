@@ -209,6 +209,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         //Obtenemos el usuario de la sesion
         Usuario usuario = obtenerDatosUsuario.getUserData();
 
+
         //Generamos la lista a mostrar en la pantalla
         Collection<Incidencia> listaIncidencias = usuario.getIncidencias();
         List<ListaNotificacionesUsuarioDTO> listaNotificacionesUsuarioDTOS = new ArrayList<ListaNotificacionesUsuarioDTO>();
@@ -228,9 +229,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
                      dto.setDescripcion(notificacionLectura.getDescripcion());
                      dto.setFechaNotificacion(notificacionLectura.getFechaNotificacion());
                      listaNotificacionesUsuarioDTOS.add(dto);
-
                  }
-
         }
 
 
@@ -255,8 +254,12 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         model.addAttribute("entities", listaNotificacionesUsuarioDTOPage);
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "notificaciones");
+
         return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
+
+
+
 
 
 }

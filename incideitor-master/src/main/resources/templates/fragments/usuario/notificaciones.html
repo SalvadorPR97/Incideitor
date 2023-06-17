@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <body>
-    <div th:fragment="all-entities" class="container-fluid">
+    <div th:fragment="notificaciones" class="container-fluid">
         <div class="border-bottom"></div>
         <main class="container">
             <div class="row">
@@ -20,12 +20,11 @@
                                 <tr th:each="notificacion: ${entities}">
                                     <td th:text="${notificacion.id}"></td>
                                     <td th:text="${notificacion.descripcion}"></td>
-                                    <td th:text="${notificacion.fecha}"></td>
-                                    <td th:text="${notificacion.incidencia?.id}"></td>
+                                    <td th:text="${notificacion.fechaNotificacion}"></td>
+                                    <td th:text="${notificacion.tituloIncidencia}"></td>
 
                                     <td>
-                                        <a th:href="@{/notificacion/{id}(id=${notificacion.id})}" class="btn btn-primary">Editar</a>
-                                        <a th:href="@{/notificacion/delete/{id}(id=${notificacion.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta incidencia?');">Eliminar</a>
+                                        <a th:href="@{/notificacion/delete/{id}(id=${notificacion.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres eliminar esta notificacion?');">Eliminar</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -34,14 +33,13 @@
 
                 <div th:if="${entities.totalPages > 0}" class="pagination justify-content-center">
                     <ul class="pagination justify-content-center" >
-                        <li class="page-item"><a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${entities.number})}">Previous</a></li>
+                        <li class="page-item"><a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${entities.number})}">Anterior</a></li>
                         <li  class="page-item" th:each="pageNumber : ${pageNumbers}">
                             <a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${pageNumber})}"
                                th:text="${pageNumber}"
                                th:classappend="${pageNumber==entities.number+1} ? active"></a>
                         </li>
-                        <li class="page-item"><a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${entities.number+2})}">Next</a></li>
-                    </ul>
+                        <li class="page-item" th:if="${entities.number < entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${entities.number + 2})}">Siguiente</a></li></ul>
                 </div>
             </div>
         </main>

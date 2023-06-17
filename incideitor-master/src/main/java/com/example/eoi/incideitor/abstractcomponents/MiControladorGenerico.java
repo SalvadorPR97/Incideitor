@@ -1,6 +1,7 @@
 package com.example.eoi.incideitor.abstractcomponents;
 
 
+import com.example.eoi.incideitor.controllers.NotificacionController;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.swing.text.html.parser.Entity;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -71,6 +73,9 @@ public abstract class MiControladorGenerico<T> {
         @Autowired
         protected JpaRepository<T,?> jpaRepository;
 
+        @Autowired
+        NotificacionController notificacionController;
+
 
         /**
          * Maneja la solicitud GET para obtener todas las entidades.
@@ -82,6 +87,11 @@ public abstract class MiControladorGenerico<T> {
         public String getAll(@RequestParam(defaultValue = "1") int page,
                              @RequestParam(defaultValue = "10") int size,
                              Model model) {
+
+            if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+                String contador = notificacionController.contarNotificaciones(model);
+                model.addAttribute("contador",contador);
+            }
 
             Pageable pageable = PageRequest.of(page-1, size);
             Page<T> entities = jpaRepository.findAll(pageable);
@@ -105,6 +115,11 @@ public abstract class MiControladorGenerico<T> {
         public String getAllAdmin(@RequestParam(defaultValue = "1") int page,
                                   @RequestParam(defaultValue = "10") int size,
                                   Model model) {
+
+            if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+                String contador = notificacionController.contarNotificaciones(model);
+                model.addAttribute("contador",contador);
+            }
 
             Pageable pageable = PageRequest.of(page-1, size);
             Page<T> entities = jpaRepository.findAll(pageable);
@@ -185,6 +200,8 @@ public abstract class MiControladorGenerico<T> {
             model.addAttribute("nombreVista", "admin");
             return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
         }
+
+
 
 }
 

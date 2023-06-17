@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface NotificacionRepository extends PagingAndSortingRepository<Notificacion, Integer>, JpaRepository<Notificacion, Integer> {
 
-public Page<Notificacion> findNotificacionByIncidenciaBy
+
 
 
 

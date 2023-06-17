@@ -1,7 +1,12 @@
 package com.example.eoi.incideitor.controllers;
 
+import com.example.eoi.incideitor.abstractcomponents.GenericServiceWithJPA;
+import com.example.eoi.incideitor.dtos.ListaNotificacionesUsuarioDTO;
+import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.Notificacion;
+import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.repositories.NotificacionRepository;
+import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -9,88 +14,60 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Log4j2
 @Controller
 public class NotificacionController {
-//
-//    @Autowired
-//    NotificacionRepository notificacionRepository;
-//
-//    /**
-//     * Obtiene el número de notificaciones pendientes para el usuario actual.
-//     *
-//     * @param principal El objeto principal que representa al usuario actual.
-//     * @return El número de notificaciones pendientes en formato de texto.
-//     */
-//    @GetMapping("/numeroNotificaciones")
-//    @ResponseBody
-//    @PreAuthorize("isAuthenticated()")
-//    public String contarNotificacionesPendientes(Principal principal) {
-//        List<Notificacion> listaNotificaciones =
-//                notificacionRepository.findByIncidencia_Usuario_Id(
-//                        Integer.valueOf(principal.getName()),
-//                        "Pendiente"
-//                );
-//        return String.valueOf(listaNotificaciones.size());
-//    }
-
-
-    /**
-     * Marca todas las notificaciones pendientes como leídas para el usuario actual.
-     *
-     * @param principal El objeto principal que representa al usuario actual.
-     * @param model     El modelo utilizado para pasar los datos a la vista.
-     * @return La vista que muestra la lista de notificaciones pendientes actualizada.
-     */
-    /* @GetMapping("/leerNotificaciones")
-    public String leerNotificacionesPendientes(Principal principal, Model model) {
-
-        List<Notificacion> listaNotificaciones =
-                notificacionRepository.findByIncidencia_IdAndEstado(
-                        Integer.valueOf(principal.getName()),
-                        "Pendiente"
-                );
-        listaNotificaciones.forEach(notificacion -> {
-            notificacion.setEstado("READ");
-            notificacionRepository.save(notificacion);
-            log.debug("La notificación {} ha sido marcada como leída", notificacion.getId());
-        });
-        model.addAttribute("listaNotificaciones", listaNotificaciones);
-        return "notificaciones/list";
-    }
-
-
-    /**
-     * Marca una notificación específica como leída para el usuario actual.
-     *
-     * @param id        El ID de la notificación a marcar como leída.
-     * @param principal El objeto principal que representa al usuario actual.
-     * @param model     El modelo utilizado para pasar los datos a la vista.
-     * @return La redirección a la página de notificaciones.
-     */
 
 
 
-    /*
-    @GetMapping("/leerNotificacion/{id}")
-    public String leerNotificacion(@PathVariable("id") Integer id, Principal principal, Model model) {
-        Optional<Notificacion> notificacion = notificacionRepository.findById(id);
+    @Autowired
+    ObtenerDatosUsuario obtenerDatosUsuario;
 
-        if (notificacion.isPresent()) {
-            log.debug("La notificación {} ha sido marcada como leída", id);
-            notificacion.get().setEstado("READ");
-            notificacionRepository.save(notificacion.get());
+
+    public String contarNotificaciones(Model model) {
+
+        //Obtenemos el usuario de la sesion
+        Usuario usuario = obtenerDatosUsuario.getUserData();
+
+        //Inicializamos la variable para contar las notificaciones
+        String numeroNotificaciones = "0";
+
+        //Generamos la lista a mostrar en la pantalla
+        Collection<Incidencia> listaIncidencias = usuario.getIncidencias();
+        List<ListaNotificacionesUsuarioDTO> listaNotificacionesUsuarioDTOS = new ArrayList<ListaNotificacionesUsuarioDTO>();
+
+        for (Iterator<Incidencia> iterator = listaIncidencias.iterator();
+             iterator.hasNext(); ) {
+            Incidencia incidenciaLectura = iterator.next();
+            Collection<Notificacion> notificacions = incidenciaLectura.getNotificaciones();
+            for (Iterator<Notificacion> iteratorN = notificacions.iterator();
+                 iteratorN.hasNext(); ) {
+                Notificacion notificacionLectura = iteratorN.next();
+
+                ListaNotificacionesUsuarioDTO dto = new ListaNotificacionesUsuarioDTO();
+                dto.setIdIncidencia(incidenciaLectura.getId());
+                dto.setTituloIncidencia(incidenciaLectura.getDescripcion());
+                dto.setId(notificacionLectura.getId());
+                dto.setDescripcion(notificacionLectura.getDescripcion());
+                dto.setFechaNotificacion(notificacionLectura.getFechaNotificacion());
+                listaNotificacionesUsuarioDTOS.add(dto);
+            }
+
+            if (!listaNotificacionesUsuarioDTOS.isEmpty()){
+                numeroNotificaciones = String.valueOf(listaNotificacionesUsuarioDTOS.size());
+            }
+
         }
-
-        return "redirect:/notificaciones";
+        return numeroNotificaciones;
     }
 
-  */
+
+
 }

@@ -1,6 +1,7 @@
 package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
+import com.example.eoi.incideitor.entities.Ayuntamiento;
 import com.example.eoi.incideitor.entities.Foto;
 import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.TipoIncidencia;
