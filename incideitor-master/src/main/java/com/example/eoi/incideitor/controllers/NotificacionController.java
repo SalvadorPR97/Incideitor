@@ -39,15 +39,25 @@ public class NotificacionController {
         String numeroNotificaciones = "0";
 
         //Generamos la lista a mostrar en la pantalla
+
+        //Creamos una lista de tipo collection y guardamos en ella las incidencias del usuario
         Collection<Incidencia> listaIncidencias = usuario.getIncidencias();
+        //Creamos una lista para almacenar el objeto DTO
         List<ListaNotificacionesUsuarioDTO> listaNotificacionesUsuarioDTOS = new ArrayList<ListaNotificacionesUsuarioDTO>();
 
+        //Se inicia un bucle for para recorrer la lista de incidencias utilizando un iterador.
         for (Iterator<Incidencia> iterator = listaIncidencias.iterator();
              iterator.hasNext(); ) {
+
+            //Para cada incidencia obtenemos la coleccion de notificaciones que tenga asociada
             Incidencia incidenciaLectura = iterator.next();
             Collection<Notificacion> notificacions = incidenciaLectura.getNotificaciones();
+
+            //Se inicia otro bucle for para recorrer la colección de notificaciones utilizando un iterador.
             for (Iterator<Notificacion> iteratorN = notificacions.iterator();
                  iteratorN.hasNext(); ) {
+
+                //Para cada notificacion creamos un objeto "dto" al que asignamos los valores correspondientes de la incidencia y de la notificacion.
                 Notificacion notificacionLectura = iteratorN.next();
 
                 ListaNotificacionesUsuarioDTO dto = new ListaNotificacionesUsuarioDTO();
@@ -56,14 +66,19 @@ public class NotificacionController {
                 dto.setId(notificacionLectura.getId());
                 dto.setDescripcion(notificacionLectura.getDescripcion());
                 dto.setFechaNotificacion(notificacionLectura.getFechaNotificacion());
+
+                //Añadimos el dto a la lista
                 listaNotificacionesUsuarioDTOS.add(dto);
             }
 
+            //Comprobamos si la lista no esta vacia, si no lo esta, asignamos el tamaño de la lista a numeroNotificaciones
             if (!listaNotificacionesUsuarioDTOS.isEmpty()){
                 numeroNotificaciones = String.valueOf(listaNotificacionesUsuarioDTOS.size());
             }
 
         }
+
+        //Devolvemos el numero de notificaciones
         return numeroNotificaciones;
     }
 
