@@ -2,10 +2,10 @@ package com.example.eoi.incideitor.controllers;
 
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
+import com.example.eoi.incideitor.dtos.Email;
 import com.example.eoi.incideitor.dtos.ListaNotificacionesUsuarioDTO;
 import com.example.eoi.incideitor.dtos.LoginDto;
 import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
-import com.example.eoi.incideitor.entities.Foto;
 import com.example.eoi.incideitor.dtos.UsuarioMiPerfil;
 import com.example.eoi.incideitor.entities.Rol;
 import com.example.eoi.incideitor.entities.Usuario;
@@ -14,14 +14,11 @@ import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaE
 import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
 import com.example.eoi.incideitor.mapper.UsuarioMapper;
 import com.example.eoi.incideitor.repositories.NotificacionRepository;
-import com.example.eoi.incideitor.mapper.UsuarioMapper;
-import com.example.eoi.incideitor.repositories.NotificacionRepository;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
+import com.example.eoi.incideitor.services.EmailService;
 import com.example.eoi.incideitor.services.UsuarioService;
 import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
-import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import jakarta.annotation.PostConstruct;
-import org.hibernate.sql.ast.tree.expression.Collation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -35,6 +32,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -86,10 +85,14 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
     @Autowired
     private UsuarioMapper usuarioMapper;
+
     @Autowired
     NotificacionRepository notificacionRepository;
 
 
+
+    @Autowired
+    EmailService emailService;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -173,18 +176,23 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
     }
 
-
+    // Creamos el GetMapping que te va a redireccionar al html de login
     @GetMapping("/login")
     public String vistaLogin(){
         System.out.println("login");
         return "acceso/login";
     }
+
+
     @PostMapping("/login")
     public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto, Model model) {
+        //Obtenemos el usuario y la contraseña respectivamente
         String usr = loginDto.getUsername();
         System.out.println("usr :" + usr);
         String password = loginDto.getPassword();
         System.out.println("pass :" + password);
+        //Aqui buscamos en el repositorio un objeto Usuario que coincida con ese nombre de usuario y contraseña y pasamos
+        // la contraseña por codificador para compararla con la version codificada de la BBDD.
         Optional<Usuario> usuarioOptional = usuarioRepository.findUsuarioByEmailAndContrasena(loginDto.getUsername(),
                 passwordEncoder.encode(loginDto.getPassword()));
         //¿es correcta la password?
@@ -288,6 +296,58 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
 
 
+
+
+    // RESETEAR PASSWORD
+
+    public static int numeroAleatorioEnRango(int minimo, int maximo) {
+        // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1
+        return ThreadLocalRandom.current().nextInt(minimo, maximo + 1);
+    }
+
+    public  String cadenaAleatoria(int longitud) {
+        // Los caracteres que queremos que tenga nuestro token
+        String banco = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        // La cadena en donde iremos agregando un carácter aleatorio
+        String cadena = "";
+        for (int x = 0; x < longitud; x++) {
+            int indiceAleatorio = numeroAleatorioEnRango(0, banco.length() - 1);
+            char caracterAleatorio = banco.charAt(indiceAleatorio);
+            cadena += caracterAleatorio;
+        }
+        return cadena;
+    }
+
+    //Generar la url para cambio de password
+
+    @GetMapping("/resetpass")
+    public String formResetPass(Model model){
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "recuperarPass");
+        return "index";
+    }
+    @PostMapping("/resetpass")
+    public String cambiopass(String email) throws Exception {
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
+        Usuario usuarioNuevoToken = new Usuario();
+        //Cambiamos el token
+        String newtoken = this.cadenaAleatoria(50);
+        if (usuario.isPresent()){
+            usuarioNuevoToken = usuario.get();
+            usuarioNuevoToken.setToken(newtoken);
+            usuarioService.update(usuarioNuevoToken);
+            Email emailRecPass = new Email();
+            emailRecPass.setFrom("jose.manuel.aroca.fernandez@gmail.com");
+            emailRecPass.setTo(usuarioNuevoToken.getEmail());
+            emailRecPass.setSubject("Cambio de contraseña");
+            emailRecPass.setContent("localhost:8080/usuario/resetpass/"+newtoken);
+            emailService.sendMail(emailRecPass);
+            return "redirect:/";
+        }else {
+            //Mostrar página usuario no existe
+            return "/error";
+        }
+    }
 
 
 }

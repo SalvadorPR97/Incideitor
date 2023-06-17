@@ -66,5 +66,8 @@ public class Usuario {
     @JoinColumn(name = "incidencia_id",referencedColumnName = "id")
     private Incidencia incidencia;
 
+    @Column (name ="token",length = 250)
+    private String token;
+
 
 }

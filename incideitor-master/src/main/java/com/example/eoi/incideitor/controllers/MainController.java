@@ -44,19 +44,24 @@ public class MainController {
     {
         //Lectura del usuaro activo en la sesión
 
-
+        //Sacamos del repositorio todas las incidencias ordenadas de por id en orden descendente
         List<Incidencia> incidencias = incidenciaRepository.obtenerUltimaIncidencia();
         if(!incidencias.isEmpty()){
+            //Buscamos si hay incidencias presentes y en caso afirmativo cogemos la primera que nos encontremos
             Incidencia ultimaIncidencia = incidencias.get(0);
             model.addAttribute("ultimaIncidencia", ultimaIncidencia);
+            //De la incidencia que hemos cogido sacamos de su colección de fotos las que tenga asociadas para
+            //mostrarlas en un carrusel en la pagina principal
             Set<String> listaFotos1 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/"+ ultimaIncidencia.getId());
             model.addAttribute("listaFotos1", listaFotos1);
 
+            //Buscamos la siguiente incidencia y repetimos el mismo proceso
             Incidencia penultimaIncidencia = incidencias.get(1);
             model.addAttribute("penultimaIncidencia", penultimaIncidencia);
             Set<String> listaFotos2 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/"+ penultimaIncidencia.getId());
             model.addAttribute("listaFotos2", listaFotos2);
 
+            //Buscamos la siguiente incidencia y repetimos el mismo proceso
             Incidencia antepenultimaIncidencia = incidencias.get(2);
             model.addAttribute("antepenultimaIncidencia", antepenultimaIncidencia);
             Set<String> listaFotos3 = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/"+ antepenultimaIncidencia.getId());
@@ -64,12 +69,13 @@ public class MainController {
         }
 
 
-
         if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
             String contador = notificacionController.contarNotificaciones(model);
             model.addAttribute("contador",contador);
         }
 
+        //Aquí al Model le pasamos el entityName de home y al nombrevista lo llamamos principal para que el index
+        //nos muestre el resultado en la pagina principal
         model.addAttribute("entityName", "home");
         model.addAttribute("nombreVista", "principal");
         return "index";

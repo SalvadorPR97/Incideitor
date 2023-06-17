@@ -2,9 +2,7 @@ package com.example.eoi.incideitor.services;
 
 
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
-import com.example.eoi.incideitor.entities.Rol;
 import com.example.eoi.incideitor.entities.Usuario;
-import com.example.eoi.incideitor.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
