@@ -26,7 +26,6 @@ import java.util.*;
 public class NotificacionController {
 
 
-
     @Autowired
     ObtenerDatosUsuario obtenerDatosUsuario;
 
