@@ -27,7 +27,7 @@
     <th:div th:unless="${nombreVista}  == 'admin' or ${entityName}  == 'admin'">
     <div th:replace="~{fragments/__${entityName}__/__${nombreVista}__ :: __${nombreVista}__}">Contenido principal</div>
     </th:div>
-    <div th:replace="~{fragments/footer :: footer}"></div>
+    <div style="position: fixed; bottom: 0;" th:replace="~{fragments/footer :: footer}"></div>
 </div>
 </body>
 </html>
