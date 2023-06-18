@@ -1,8 +1,8 @@
-INSERT INTO roles(nombre) VALUES ('ROL_ADMINISTRADOR');
-INSERT INTO roles(nombre) VALUES ('ROL_USUARIO');
-INSERT INTO roles(nombre) VALUES ('ROL_ANONIMO');
-INSERT INTO roles(nombre) VALUES ('ROL_AYUNTAMIENTO_ADMIN');
-INSERT INTO roles(nombre) VALUES ('ROL_AYUNTAMIENTO_GESTOR');
+INSERT INTO roles(nombre) VALUES ('ADMINISTRADOR');
+INSERT INTO roles(nombre) VALUES ('USUARIO');
+INSERT INTO roles(nombre) VALUES ('ANONIMO');
+INSERT INTO roles(nombre) VALUES ('AYUNTAMIENTO_ADMIN');
+INSERT INTO roles(nombre) VALUES ('AYUNTAMIENTO_GESTOR');
 
 INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Chiclana', 'Juan', 'Juan', 'Juan', 'Juan');
 INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Jerez', 'Juan', 'Juan', 'Juan', 'Juan');

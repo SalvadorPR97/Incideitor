@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-    <div th:fragment="navbar" class="col-12">
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+    <div th:fragment="navbar" class="row">
         <nav class="nav navbar navbar-expand-lg" aria-label="Eleventh navbar example">
             <div class="container-fluid d-flex">
                 <a class="navbar-brand" href="index.html"> <img src="/img/Escudo_de_Mijas_(Málaga).svg.png" alt="logo"
@@ -15,25 +17,28 @@
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="/">INICIO</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" sec:authorize="hasAuthority('ADMINISTRADOR')">
                             <a class="nav-link text-black" href="/incidencia/admin">INCIDENCIAS</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" sec:authorize="hasAuthority('USUARIO')">
+                            <a class="nav-link text-black" href="/incidencia/all">MIS INCIDENCIAS</a>
+                        </li>
+                        <li class="nav-item" sec:authorize="hasAuthority('ADMINISTRADOR')">
                             <a class="nav-link text-black" href="/usuario/admin">USUARIOS</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" sec:authorize="hasAuthority('ADMINISTRADOR')">
                             <a class="nav-link text-black" href="/reporte/admin">REPORTES</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" sec:authorize="hasAuthority('ADMINISTRADOR')">
                             <a class="nav-link text-black" href="/ayuntamiento/admin">AYUNTAMIENTO</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" >
                             <a class="nav-link text-black" href="/incidencia/create">NUEVA INCIDENCIA</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" sec:authorize="isAnonymous()">
                             <a class="nav-link text-black" href="/acceso/login">ACCESO</a>
                         </li>
-                        <li class="nav-item dropdown ">
+                        <li class="nav-item dropdown " sec:authorize="isAuthenticated()">
                             <a class="nav-link dropdown-toggle text-black" href="#" role="button" id="dropdown"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="/img/logoUsuario.png" alt="Logo" width="20" height="20"
@@ -47,7 +52,7 @@
                                     <span th:text="${contador != null ? '(' + contador + ')' : ''}"></span> </a></li>
                                 <li><a class="dropdown-item" href="/incidencia/all">Mis incidencias</a></li>
                                 <li><a class="dropdown-item" href="/incidencia/create">Nueva incidencia</a></li>
-                                <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                                <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
                             </ul>
                         </li>
                     </ul>

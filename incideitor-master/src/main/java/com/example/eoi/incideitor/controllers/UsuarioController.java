@@ -200,6 +200,9 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         }
     }
 
+
+
+
     @GetMapping("logic/{id}")
     public String borradoLogico(@PathVariable Object id , Model model) {
         Usuario usuario = service.getById(id);

@@ -6,11 +6,22 @@ import com.example.eoi.incideitor.dtos.LoginDto;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
 import com.example.eoi.incideitor.services.UsuarioService;
+import jakarta.annotation.PostConstruct;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
 import java.util.Optional;
 
 /**
@@ -99,6 +110,20 @@ public class AccesoController {
     public String AccesoDenegado(Model model) {
 
         return "/accessDenied";
+    }
+
+    //Metodo para hacer Logout
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        // Obtenemos la autenticación actualmente activa en el contexto de seguridad
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // Verificamos si hay una autenticación válida
+        if (authentication != null) {
+            // Creamos un objeto SecurityContextLogoutHandler para cerrar sesion
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
+        // Redirigimos a la página de inicio
+        return "redirect:/";
     }
 
 

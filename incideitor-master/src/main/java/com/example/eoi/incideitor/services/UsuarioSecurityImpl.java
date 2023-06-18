@@ -44,6 +44,7 @@ public class UsuarioSecurityImpl implements IUsuarioServicio, UserDetailsService
         Set<GrantedAuthority> ga = new HashSet<>();
         if (usuario.isPresent()){
             System.out.println("loadUserByUsername usuario : " + usuario.get().getNombre());
+            System.out.println("loadUserByRole rol : " + usuario.get().getRol().getNombre());
             ga.add(new SimpleGrantedAuthority(usuario.get().getRol().getNombre()));
 
             springUser = new org.springframework.security.core.userdetails.User(
