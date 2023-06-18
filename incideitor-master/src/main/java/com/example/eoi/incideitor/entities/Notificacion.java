@@ -28,4 +28,5 @@ public class Notificacion {
 
     private LocalDateTime fechaNotificacion;
 
+    private int borradoLogico;
 }

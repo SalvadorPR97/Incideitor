@@ -12,9 +12,8 @@ import java.util.List;
 @Repository
 public interface NotificacionRepository extends PagingAndSortingRepository<Notificacion, Integer>, JpaRepository<Notificacion, Integer> {
 
-
-
-
+    // Método para obtener las notificaciones no borradas
+    List<Notificacion> findByBorradoLogico(int borradoLogico);
 
 
 

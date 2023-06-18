@@ -66,6 +66,9 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Value("${url.usuario}")
+    private String url;
+
     private String entityName = "usuario";
 
     @Autowired
@@ -85,6 +88,9 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
     @Autowired
     NotificacionRepository notificacionRepository;
+
+    @Autowired
+    NotificacionController notificacionController;
 
     @Autowired
     EmailService emailService;
@@ -110,6 +116,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @PostConstruct
     private void init() {
         super.entityName = entityName;
+        super.url = url;
     }
 
 
