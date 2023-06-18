@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
     <div th:fragment="navbar" class="row">
         <nav class="nav navbar navbar-expand-lg" aria-label="Eleventh navbar example">
             <div class="container-fluid d-flex">
@@ -30,10 +32,10 @@
                         <li class="nav-item" sec:authorize="hasAuthority('ADMINISTRADOR')">
                             <a class="nav-link text-black" href="/ayuntamiento/admin">AYUNTAMIENTO</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" >
                             <a class="nav-link text-black" href="/incidencia/create">NUEVA INCIDENCIA</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" sec:authorize="isAnonymous()">
                             <a class="nav-link text-black" href="/acceso/login">ACCESO</a>
                         </li>
                         <li class="nav-item dropdown " sec:authorize="isAuthenticated()">
