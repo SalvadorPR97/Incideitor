@@ -17,4 +17,7 @@ public interface IncidenciaRepository extends JpaRepository<Incidencia, Long> {
 
     @Override
     Page<Incidencia> findAll(Pageable pageable);
+
+    Page<Incidencia> findAllByTipoIncidencia_Id(Object tipoIncidencia,
+                                                Pageable pageable);
 }

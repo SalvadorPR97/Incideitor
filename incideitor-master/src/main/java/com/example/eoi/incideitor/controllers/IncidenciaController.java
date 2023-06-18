@@ -7,6 +7,7 @@ import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.TipoIncidencia;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
+import com.example.eoi.incideitor.repositories.IncidenciaRepository;
 import com.example.eoi.incideitor.repositories.TipoIncidenciaRepository;
 import com.example.eoi.incideitor.services.FotoService;
 import com.example.eoi.incideitor.services.NotificacionService;
@@ -15,17 +16,19 @@ import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 @Controller
@@ -51,6 +54,12 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
     @Autowired
     NotificacionService notificacionService;
+
+    @Autowired
+    private IncidenciaRepository incidenciaRepository;
+
+    @Autowired
+    NotificacionController notificacionController;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -147,6 +156,48 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         } catch (MiEntidadNoEncontradaException ex) {
             return "error"; // Nombre de la plantilla para mostrar la página de error
         }
+    }
+
+
+
+
+    @GetMapping("/adminBusq")
+    public String getAllAdmin(@RequestParam(required = false) Integer tipoIncidencia, @RequestParam(defaultValue = "1") int page,
+                              @RequestParam(defaultValue = "10") int size,
+                              Model model) {
+
+        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+            String contador = notificacionController.contarNotificaciones(model);
+            model.addAttribute("contador",contador);
+        }
+
+        Pageable pageable = PageRequest.of(page-1, size);
+
+
+        Page<Incidencia> entities;
+        if (tipoIncidencia == null){
+            entities = incidenciaRepository.findAll(pageable);
+        } else {
+            entities = incidenciaRepository.findAllByTipoIncidencia_Id(tipoIncidencia, pageable);
+        }
+
+
+        int totalPages = entities.getTotalPages();
+
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
+        List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAllByIncidenciaPadre_IdBetween(1,999998);
+
+        model.addAttribute("tiposIncidencia", tiposIncidencias);
+        model.addAttribute("entities", entities);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "admin");
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
 
 
