@@ -62,7 +62,7 @@ https://www.baeldung.com/spring-security-csrf
                 .requestMatchers("/**").permitAll() // Desactivamos restricciones temporalmente para trabajar más fluido
                 .requestMatchers("/","").permitAll()
                 .requestMatchers("/usuario/create").permitAll()
-                .requestMatchers("/usuario/perfil").hasAuthority("ROL_USUARIO")
+                .requestMatchers("/usuario/miperfil").hasAuthority("ROL_USUARIO")
                 .requestMatchers("/usuario/all").hasAuthority("ROL_USUARIO")
                 .requestMatchers("/*/admin").hasAuthority("ROL_ADMINISTRADOR")
 //                .requestMatchers( HttpMethod.POST,"/*/admin").hasAuthority("ROL_ADMINISTRADOR")
