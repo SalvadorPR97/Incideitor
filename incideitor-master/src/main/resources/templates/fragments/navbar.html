@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <div th:fragment="navbar" class="col-12">
+    <div th:fragment="navbar" class="row">
         <nav class="nav navbar navbar-expand-lg" aria-label="Eleventh navbar example">
             <div class="container-fluid d-flex">
                 <a class="navbar-brand" href="index.html"> <img src="/img/Escudo_de_Mijas_(Málaga).svg.png" alt="logo"
@@ -50,7 +50,7 @@
                                     <span th:text="${contador != null ? '(' + contador + ')' : ''}"></span> </a></li>
                                 <li><a class="dropdown-item" href="/incidencia/all">Mis incidencias</a></li>
                                 <li><a class="dropdown-item" href="/incidencia/create">Nueva incidencia</a></li>
-                                <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                                <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
                             </ul>
                         </li>
                     </ul>
