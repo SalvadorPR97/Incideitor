@@ -39,6 +39,10 @@ public class NotificacionController{
 
     @Autowired
     ObtenerDatosUsuario obtenerDatosUsuario;
+
+    @Autowired
+    private NotificacionRepository notificacionRepository;
+
     @ModelAttribute("notificaciones")
     public List<ListaNotificacionesUsuarioDTO> obtenerNotificaciones(Model model) {
 
@@ -108,7 +112,6 @@ public class NotificacionController{
     }
 
 
-
     //Metodo para mostrar la lista de notificaciones de forma paginada
     @GetMapping("/notificaciones")
     public String misIncidencias(@RequestParam(defaultValue = "1") int page,
@@ -118,6 +121,7 @@ public class NotificacionController{
 
         //Obtenemos las notificaciones
         List<ListaNotificacionesUsuarioDTO> listaNotificacionesUsuarioDTOS = obtenerNotificaciones(model);
+
 
         //Contamos las notificaciones
         if (!Objects.equals(contarNotificaciones(model), "0")){
@@ -153,6 +157,7 @@ public class NotificacionController{
 
 
         //Añadimos los model para poder mostrar en la vista y redirigimos a la plantilla "index"
+        model.addAttribute("entities", listaNotificacionesUsuarioDTOPage);
         model.addAttribute("entityName", "usuario");
         model.addAttribute("nombreVista", "notificaciones");
         return "index"; // Nombre de la plantilla para mostrar todas las entidades
