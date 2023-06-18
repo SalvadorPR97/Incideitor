@@ -47,7 +47,7 @@ https://www.baeldung.com/spring-security-csrf
                         .permitAll()
                 );
         http.logout(logout -> logout
-                        .logoutUrl("/acceso/logout")
+                        .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
                         /*.logoutSuccessHandler(logoutSuccessHandler)
                         .invalidateHttpSession(true)
@@ -99,11 +99,12 @@ https://www.baeldung.com/spring-security-csrf
     ///nos saltamos la restricion para entrar a h2-console///
 
     @Bean
-
     public WebSecurityCustomizer webSecurityCustomizer() {
 
         return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
 
     }
+
+
 
 }
