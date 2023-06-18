@@ -13,7 +13,6 @@ import com.example.eoi.incideitor.services.NotificacionService;
 import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -32,10 +31,7 @@ import java.util.stream.IntStream;
 @RequestMapping("${url.incidencia}")
 public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
-    @Value("${url.incidencia}")
-    private String url;
-
-    private String entityName = "incidencia";
+    private final String entityName = "incidencia";
 
     @Autowired
     TipoIncidenciaRepository tipoIncidenciaRepository;
@@ -79,7 +75,6 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @PostConstruct
     private void init() {
         super.entityName = entityName;
-        super.url = url;
     }
 
     @GetMapping("/create")

@@ -4,11 +4,9 @@ package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Reporte;
-import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.repositories.ReporteRepository;
-import jakarta.annotation.PostConstruct;;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,10 +40,8 @@ import java.util.List;
 @RequestMapping("${url.reporte}")
 public class ReporteController extends MiControladorGenerico<Reporte> {
 
-    @Value("${url.reporte}")
-    private String url;
 
-    private String entityName = "reporte";
+    private final String entityName = "reporte";
 
     @Autowired
     ReporteRepository reporteRepository;
@@ -71,7 +67,6 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
     @PostConstruct
     private void init() {
         super.entityName = entityName;
-        super.url = url;
     }
 
     @GetMapping("/create")

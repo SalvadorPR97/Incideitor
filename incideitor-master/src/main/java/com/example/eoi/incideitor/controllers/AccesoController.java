@@ -3,19 +3,14 @@ package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.dtos.LoginDto;
-import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
 import com.example.eoi.incideitor.entities.Usuario;
-import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
 import com.example.eoi.incideitor.services.UsuarioService;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 /**
@@ -36,20 +31,18 @@ import java.util.Optional;
  *     común de las operaciones CRUD para la entidad Usuario. Esto facilita la reutilización de código y mejora la consistencia en
  *     la implementación de controladores.</li>
  * </ul>
- *
+ * <p>
  * "@param <Usuario>" El tipo de entidad gestionada por el controlador.
  * "@Author Alejandro Teixeira Muñoz
  */
 @Controller
-@RequestMapping("acceso")
+@RequestMapping("${url.acceso}")
 public class AccesoController {
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    @Value("acceso")
-    private String url;
-
-    private String entityName = "acceso";
+    private final String entityName = "acceso";
 
     @Autowired
     UsuarioService usuarioService;
@@ -78,14 +71,15 @@ public class AccesoController {
 
 
     @GetMapping("/login")
-    public String vistaLogin(Model model){
+    public String vistaLogin(Model model) {
         model.addAttribute("usuariodto", new LoginDto());
-        model.addAttribute("entityName", "acceso");
+        model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "login");
         return "index";
     }
+
     @PostMapping("/login")
-    public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
+    public String validarPasswordPst(@ModelAttribute(name = "loginForm") LoginDto loginDto) {
         String usr = loginDto.getUsername();
         System.out.println("usr :" + usr);
         String password = loginDto.getPassword();
@@ -93,16 +87,16 @@ public class AccesoController {
         Optional<Usuario> usuarioOptional = usuarioRepository.findUsuarioByEmailAndContrasena(loginDto.getUsername(),
                 passwordEncoder.encode(loginDto.getPassword()));
         //¿es correcta la password?
-        if (usuarioOptional.isPresent())
-        {
+        if (usuarioOptional.isPresent()) {
             return "index";
-        }else {
+        } else {
             return "acceso/login";
         }
     }
+
     // Crear el accessDenied
     @GetMapping("/accessDenied")
-    public String AccesoDenegado(Model model){
+    public String AccesoDenegado(Model model) {
 
         return "/accessDenied";
     }

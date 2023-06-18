@@ -3,14 +3,11 @@ package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.dtos.AyuntamientoDTO;
-import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
 import com.example.eoi.incideitor.entities.Ayuntamiento;
-import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.services.AyuntamientoService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -41,10 +38,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("${url.ayuntamiento}")
 public class AyuntamientoController extends MiControladorGenerico<Ayuntamiento> {
 
-    @Value("${url.ayuntamiento}")
-    private String url;
-
-    private String entityName = "ayuntamiento";
+    private final String entityName = "ayuntamiento";
 
     @Autowired
     AyuntamientoService ayuntamientoService;
@@ -70,7 +64,6 @@ public class AyuntamientoController extends MiControladorGenerico<Ayuntamiento> 
     @PostConstruct
     private void init() {
         super.entityName = entityName;
-        super.url = url;
     }
 
 

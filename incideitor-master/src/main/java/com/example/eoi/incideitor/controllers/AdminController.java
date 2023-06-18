@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Objects;
 
 @Controller
+@RequestMapping("${url.admin}")
 public class AdminController {
+
+    private final String entityName = "admin";
 
     @Autowired
     UsuarioService usuarioService;
@@ -18,7 +22,7 @@ public class AdminController {
     @Autowired
     NotificacionController notificacionController;
 
-    @GetMapping(value={"/admin"})
+    @GetMapping(value={"/",""})
     public String mostrarIndex(Model model)
     {
 
@@ -26,7 +30,7 @@ public class AdminController {
             String contador = notificacionController.contarNotificaciones(model);
             model.addAttribute("contador",contador);
         }
-        model.addAttribute("entityName", "admin");
+        model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "principal");
         return "index";
     }

@@ -65,7 +65,6 @@ public abstract class MiControladorGenerico<T> {
         protected Class<T> tClass;
 
         protected String entityName;
-        protected String url;
 
         @Autowired
         protected GenericServiceWithJPA<T,?> service;
