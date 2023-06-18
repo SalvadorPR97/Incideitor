@@ -1,14 +1,11 @@
 package com.example.eoi.incideitor.controllers;
 
 
-import com.example.eoi.incideitor.dtos.IncidenciaDatos;
-import com.example.eoi.incideitor.entities.Foto;
 import com.example.eoi.incideitor.entities.Incidencia;
-import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
+import com.example.eoi.incideitor.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.IncidenciaRepository;
 import com.example.eoi.incideitor.services.AyuntamientoService;
 import com.example.eoi.incideitor.services.UsuarioService;
-import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

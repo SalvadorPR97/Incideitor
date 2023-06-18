@@ -1,19 +1,41 @@
-    let wall = document.getElementById("wall_dos");
+    // Registro Usuario:
+    // Comprobación de que las contraseñas coinciden
+    function validarFormulario() {
+        var password = document.getElementById("contrasena").value;
+        var confirmPassword = document.getElementById("confirmarContrasena").value;
 
-     window.addEventListener('scroll',function(){
-        var value = window.scrollY;
-        wall.style.bottom = value * 0.05 + 'px';
-        
-     
-    })
+        if (password !== confirmPassword) {
+            alert("Las contraseñas no coinciden");
+            return false; // Evita enviar el formulario
+        }
 
-    // Script usado en el registro para generar la sublista
+        return true; // Permite enviar el formulario
+    }
+
+    // Registro Incidencia:
+    // Genera la sublista de tipos de incidencias
     function recargarPagina(valorSeleccionado) {
         // Redirigir a la misma página con el parámetro seleccionado
         var valorSeleccionado = document.getElementById("incidenciaPadre").value;
         window.location.href = window.location.pathname + '?incidenciaPadre=' + valorSeleccionado;
     }
 
+    // Login:
+    // Alterna entre mostrar o no la contraseña
+    document.querySelector('#view').addEventListener('click', e => {
+        const passwordInput = document.querySelector('#password');
+        if (e.target.classList.contains('show')) {
+            e.target.classList.remove('show');
+            passwordInput.type = 'text';
+            view.style.opacity = 0.8
+        } else {
+            e.target.classList.add('show');
+            passwordInput.type = 'password';
+            view.style.opacity = 0.2
+        }
+    });
+
+    // Tablas:
     // Script para ordenar los valores de las tablas
     function sortTable(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;

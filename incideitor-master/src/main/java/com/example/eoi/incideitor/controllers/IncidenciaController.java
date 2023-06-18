@@ -1,23 +1,20 @@
 package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
-import com.example.eoi.incideitor.entities.Ayuntamiento;
 import com.example.eoi.incideitor.entities.Foto;
 import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.TipoIncidencia;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
-import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
+import com.example.eoi.incideitor.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.IncidenciaRepository;
 import com.example.eoi.incideitor.repositories.TipoIncidenciaRepository;
 import com.example.eoi.incideitor.services.FotoService;
 import com.example.eoi.incideitor.services.NotificacionService;
 import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import jakarta.annotation.PostConstruct;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;

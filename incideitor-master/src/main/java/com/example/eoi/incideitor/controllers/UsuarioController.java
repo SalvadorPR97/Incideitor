@@ -11,7 +11,7 @@ import com.example.eoi.incideitor.entities.Rol;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.entities.*;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
-import com.example.eoi.incideitor.filemanagement.util.FileUploadUtil;
+import com.example.eoi.incideitor.util.FileUploadUtil;
 import com.example.eoi.incideitor.mapper.UsuarioMapper;
 import com.example.eoi.incideitor.repositories.NotificacionRepository;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
@@ -66,9 +66,6 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    @Value("${url.usuario}")
-    private String url;
-
     private String entityName = "usuario";
 
     @Autowired
@@ -88,8 +85,6 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
     @Autowired
     NotificacionRepository notificacionRepository;
-
-
 
     @Autowired
     EmailService emailService;
@@ -115,7 +110,6 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @PostConstruct
     private void init() {
         super.entityName = entityName;
-        super.url = url;
     }
 
 
@@ -235,87 +229,6 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
             return "error"; // Nombre de la plantilla para mostrar la página de error
         }
     }
-
-
-    //Metodo para mostrar la lista de notificaciones de forma paginada
-    @GetMapping("/notificaciones")
-    public String misIncidencias(@RequestParam(defaultValue = "1") int page,
-                                @RequestParam(defaultValue = "10") int size,
-                                Model model) {
-
-        //Obtenemos el usuario de la sesion
-        Usuario usuario = obtenerDatosUsuario.getUserData();
-
-
-        //Generamos la lista a mostrar en la pantalla
-
-        //Creamos una lista de tipo collection y guardamos en ella las incidencias del usuario
-        Collection<Incidencia> listaIncidencias = usuario.getIncidencias();
-        //Creamos una lista para almacenar el objeto DTO
-        List<ListaNotificacionesUsuarioDTO> listaNotificacionesUsuarioDTOS = new ArrayList<ListaNotificacionesUsuarioDTO>();
-
-        //Se inicia un bucle for para recorrer la lista de incidencias utilizando un iterador.
-        for (Iterator<Incidencia> iterator = listaIncidencias.iterator();
-             iterator.hasNext();){
-
-                //Para cada incidencia obtenemos la coleccion de notificaciones que tenga asociada
-                Incidencia incidenciaLectura = iterator.next();
-                 Collection<Notificacion> notificacions = incidenciaLectura.getNotificaciones();
-
-                 //Se inicia otro bucle for para recorrer la colección de notificaciones utilizando un iterador.
-                 for (Iterator<Notificacion> iteratorN = notificacions.iterator();
-                      iteratorN.hasNext();){
-
-                     //Para cada notificacion creamos un objeto "dto" al que asignamos los valores correspondientes de la incidencia y de la notificacion.
-                     Notificacion notificacionLectura = iteratorN.next();
-                     ListaNotificacionesUsuarioDTO dto = new ListaNotificacionesUsuarioDTO();
-                     dto.setIdIncidencia(incidenciaLectura.getId());
-                     dto.setTituloIncidencia(incidenciaLectura.getDescripcion());
-                     dto.setId(notificacionLectura.getId());
-                     dto.setDescripcion(notificacionLectura.getDescripcion());
-                     dto.setFechaNotificacion(notificacionLectura.getFechaNotificacion());
-
-                     //Añadimos el dto a la lista
-                     listaNotificacionesUsuarioDTOS.add(dto);
-                 }
-        }
-
-        //Creamos la paginacion para la lista de notificaciones
-
-        //Creamos un objeto pageable y ajustamos el índice de página a base cero
-        Pageable pageable = PageRequest.of(page-1, size);
-
-        //Se calcula el límite inferior y superior para la sublista que crearemos a continuacion
-        int lowerBound = pageable.getPageNumber() * pageable.getPageSize();
-        int upperBound = Math.min(lowerBound + pageable.getPageSize() - 1, listaNotificacionesUsuarioDTOS.size());
-
-        //Creamos la sublista
-        List<ListaNotificacionesUsuarioDTO> subList = listaNotificacionesUsuarioDTOS.subList(lowerBound, upperBound);
-
-        //Creamos un objeto "PageImpl" con la sublista, el indice de la pagina y el tamaño de la sublista
-        Page<ListaNotificacionesUsuarioDTO> listaNotificacionesUsuarioDTOPage = new PageImpl<ListaNotificacionesUsuarioDTO>(subList, pageable, subList.size());
-
-        //Obtenemos el numero total de paginas
-        int totalPages = listaNotificacionesUsuarioDTOPage.getTotalPages();
-
-        //Si el número total de páginas es mayor que cero, se crea una lista de números de página llamada "pageNumbers" y añadimos el model
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
-
-        //Añadimos los model para poder mostrar en la vista y redirigimos a la plantilla "index"
-        model.addAttribute("entities", listaNotificacionesUsuarioDTOPage);
-        model.addAttribute("entityName", entityName);
-        model.addAttribute("nombreVista", "notificaciones");
-
-        return "index"; // Nombre de la plantilla para mostrar todas las entidades
-    }
-
-
-
 
 
     // RESETEAR PASSWORD
