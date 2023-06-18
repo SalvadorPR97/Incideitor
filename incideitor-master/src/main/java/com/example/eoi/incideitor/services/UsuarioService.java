@@ -7,6 +7,8 @@ import com.example.eoi.incideitor.dtos.UsuarioDatosPrivadosAyuntamiento;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.mapper.UsuarioMapper;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,9 +19,11 @@ public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
 
     private final UsuarioMapper usuarioMapper;
 
-    public UsuarioService(UsuarioMapper usuarioMapper,
-                          UsuarioRepository usuarioRepository) {
+    private final UsuarioRepository usuarioRepository;
+
+    public UsuarioService(UsuarioMapper usuarioMapper, UsuarioRepository usuarioRepository) {
         this.usuarioMapper = usuarioMapper;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public UsuarioDatosPrivados leerUsuarioPrivado (Integer id){
@@ -46,6 +50,7 @@ public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
             usuario.setRol(usuarioBDD.get().getRol());
             usuario.setVotos(usuarioBDD.get().getVotos());
             usuario.setIncidencia(usuarioBDD.get().getIncidencia());
+            usuario.setToken(usuarioBDD.get().getToken());
         }
         // Vamos a guardar el usuario
         Usuario usuarioGuardado = update(usuario);
@@ -78,6 +83,8 @@ public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
         Usuario usuarioGuardado = update(usuario);
         return this.usuarioMapper.toDtoAyuntamiento(usuarioGuardado);
 
-
     }
+
+
+
 }

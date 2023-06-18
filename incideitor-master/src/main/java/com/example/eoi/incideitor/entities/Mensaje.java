@@ -19,11 +19,11 @@ public class Mensaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(mappedBy = "mensaje_emisor")
-    private Usuario usuario_emisor;
+    @OneToOne(mappedBy = "mensajeEmisor")
+    private Usuario usuarioEmisor;
 
-    @OneToOne(mappedBy = "mensaje_receptor")
-    private Usuario usuario_receptor;
+    @OneToOne(mappedBy = "mensajeReceptor")
+    private Usuario usuarioReceptor;
 
     private Date fecha;
     private String contenido;

@@ -62,7 +62,7 @@ public class Incidencia {
     private Collection<Voto> votos;
 
     @Column(columnDefinition = "int default 0")
-    private int borrado_logico;
+    private int borradoLogico;
 
     @OneToOne(mappedBy = "incidencia")
     private Usuario idGestor;
