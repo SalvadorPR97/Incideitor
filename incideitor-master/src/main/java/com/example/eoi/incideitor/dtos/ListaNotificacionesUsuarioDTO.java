@@ -20,5 +20,6 @@ public class ListaNotificacionesUsuarioDTO {
     private Long idIncidencia;
     private String tituloIncidencia;
     private LocalDateTime fechaNotificacion;
+    private int borradoLogico;
 
 }
