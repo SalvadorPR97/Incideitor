@@ -390,6 +390,12 @@ button[type="submit"]:hover{
 
 /*-----------------FIN CSS NOTIFICATION----------------------------*/
 
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
 /*Media Querys Nav*/
 
 

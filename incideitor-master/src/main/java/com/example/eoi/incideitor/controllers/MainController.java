@@ -95,6 +95,12 @@ public class MainController {
         model.addAttribute("nombreVista", "terminos-y-condiciones");
         return "index";
     }
+    @GetMapping(value={"/maps"})
+    public String mostrarMapa()
+    {
+
+        return "maps";
+    }
 
 
 

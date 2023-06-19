@@ -18,8 +18,8 @@ public class Lugar {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne(mappedBy = "lugar")
-    private Incidencia incidencia;
+//    @OneToOne(mappedBy = "lugar")
+//    private Incidencia incidencia;
 
     private double latitud;
     private double longitud;

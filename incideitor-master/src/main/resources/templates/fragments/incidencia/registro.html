@@ -26,6 +26,11 @@
                             <label for="titulo">Titulo:*</label>
                             <input type="text" name="titulo" id="titulo" placeholder="Introduce el título" size="20" minlength="15" maxlength="150" required th:field="*{entity.titulo}">
                         </div>
+
+                        <label for="titulo">Dirección:*</label>
+                        <input type="text" id="address-input" placeholder="Ingrese una dirección" th:field="*{entity.direccion}" required>
+
+                        <div id="map"></div>
     <!--                    <div class="row direccion_incidencia mb-4">-->
     <!--                        <label for="direccion_incidencia">Dirección:*</label>-->
     <!--                        <input type="text" name="direccion_incidencia" id="direccion_incidencia" size="20" minlength="15" maxlength="200" required th:field="*{direccion}">-->
