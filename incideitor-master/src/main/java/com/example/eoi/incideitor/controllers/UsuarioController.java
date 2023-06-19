@@ -2,11 +2,7 @@ package com.example.eoi.incideitor.controllers;
 
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
-import com.example.eoi.incideitor.dtos.Email;
-import com.example.eoi.incideitor.dtos.ListaNotificacionesUsuarioDTO;
-import com.example.eoi.incideitor.dtos.LoginDto;
-import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
-import com.example.eoi.incideitor.dtos.UsuarioMiPerfil;
+import com.example.eoi.incideitor.dtos.*;
 import com.example.eoi.incideitor.entities.Rol;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.entities.*;
@@ -19,6 +15,7 @@ import com.example.eoi.incideitor.services.EmailService;
 import com.example.eoi.incideitor.services.UsuarioService;
 import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -28,6 +25,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -239,8 +237,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         }
     }
 
-
-    // RESETEAR PASSWORD
+    // Con mis dos funciones genero el token para el posterior cambio de contraseña
 
     public static int numeroAleatorioEnRango(int minimo, int maximo) {
         // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1
@@ -260,26 +257,34 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         return cadena;
     }
 
-    //Generar la url para cambio de password
+    //URL PARA EL CAMBIO DE CONTRASEÑA
 
-    @GetMapping("/resetpass")
+    @GetMapping("/olvidarPass")
     public String formResetPass(Model model){
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "recuperarPass");
         return "index";
     }
-    @PostMapping("/resetpass")
+
+    @PostMapping("/olvidarPass")
     public String cambiopass(String email) throws Exception {
+        //Busco mi usuario en la BBDD
         Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
+
+        //Instancio un objeto Usuario para posteriormente añadirle la información
         Usuario usuarioNuevoToken = new Usuario();
-        //Cambiamos el token
+
+        //Generamos un token de 50 carácteres que se le añadirá al usuario encontrado para el cambio de contraseña
         String newtoken = this.cadenaAleatoria(50);
         if (usuario.isPresent()){
+            //Añado los datos del usuario al objeto Usuario creado anteriormente y lo actualizo
             usuarioNuevoToken = usuario.get();
             usuarioNuevoToken.setToken(newtoken);
             usuarioService.update(usuarioNuevoToken);
+
+            //Generamos el contenido del email que vamos a enviar para posibilitar el cambio de contraseña
             Email emailRecPass = new Email();
-            emailRecPass.setFrom("jose.manuel.aroca.fernandez@gmail.com");
+            emailRecPass.setFrom("notificaciones@agestturnos.es");
             emailRecPass.setTo(usuarioNuevoToken.getEmail());
             emailRecPass.setSubject("Cambio de contraseña");
             emailRecPass.setContent("localhost:8080/usuario/resetpass/"+newtoken);
@@ -290,6 +295,66 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
             return "/error";
         }
     }
+
+    // Ahora vamos a cambiar la contraseña con el nuevo token proporcionado
+    @GetMapping("/resetpass/{token}")
+    public String cambiopass(@PathVariable("token") String token, Model model) {
+        //Buscamos al usuario en la BBDD por el token proporcionado
+        Optional<Usuario> usuario = usuarioRepository.findByToken(token);
+
+        //Creamos un dto con el usuario, la contraseña y la nueva contraseña
+        UsuarioCambioPassword usuarioCambioPsw = new UsuarioCambioPassword();
+
+        if (usuario.isPresent()){
+            System.out.println("Cambio de contraseña para: "+usuario.get().getNombre() + ", con token: " + token );
+            usuarioCambioPsw.setUsuario(usuario.get().getEmail());
+            usuarioCambioPsw.setContrasena("******************");
+            usuarioCambioPsw.setNewcontrasena("******************");
+            model.addAttribute("datos", usuarioCambioPsw);
+            model.addAttribute("entityName", entityName);
+            model.addAttribute("nombreVista", "resetearpasswordlogin");
+            return "index";
+        }else {
+            //Mostrar página usuario no existe
+            return "/error";
+        }
+    }
+
+    @PostMapping("/resetpass")
+    public String guardarUsuario(@ModelAttribute UsuarioCambioPassword dto, HttpServletRequest request) throws Exception {
+
+        //Si las password no coinciden a la pag de error
+        if (dto.getContrasena().equals(dto.getNewcontrasena())){
+            //Busco el usuario en la bbdd
+            Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(dto.getUsuario());
+
+            if (usuarioOptional.isPresent()) {
+                Usuario usuario = usuarioOptional.get();
+
+                // Actualizo la contraseña después de codificarla
+                usuario.setContrasena(passwordEncoder.encode(dto.getContrasena()));
+
+                // Modifico el token de nuevo
+                String tokenNuevo = this.cadenaAleatoria(40);
+                usuario.setToken(tokenNuevo);
+
+                // Guardo el usuario
+                usuarioService.update(usuario);
+
+                return "redirect:/";
+            } else {
+                // Mostrar página de error de usuario no existe
+                return "error";
+            }
+        } else {
+            //Mostrar página usuario no existe
+            return "error";
+        }
+
+    }
+
+
+
 
 
 }
