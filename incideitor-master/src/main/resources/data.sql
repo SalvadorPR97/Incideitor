@@ -12,13 +12,13 @@ INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES
 INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Miami', 'Juan', 'Juan', 'Juan', 'Juan');
 
 -- la contraseña es: No12345..
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Juan', 'Y medio', 'Juan', 'juan@gmail.com', '12345678A', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', '1', 1);
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id, ayuntamiento_id) VALUES ('Pepe', 'Caja', 'juan.jpg', 'pepe@gmail.com', '12345678B', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', '1', 2, 1);
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Manolo', 'Bombo', 'Juan', 'anonimo@anonimo.com', '12345678C', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', '1', 3);
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Messi', 'Dios', 'Juan', 'messi@gmail.com', '12345678D', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', '1', 4);
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension, rol_id) VALUES ('Guardiola', 'Juan', 'Juan', 'guardiola@gmail.com', '12345678E', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', '1', 'Urbanismo', 304, 5);
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Rambo', 'Ak', 'Juan', 'rambo@gmail.com', '12345678F', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', '1', 2);
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Shrek', 'Gordo', 'Juan', 'shrek@gmail.com', '12345678G', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', '1', 2);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Juan', 'Y medio', 'Juan', 'juan@gmail.com', '12345678A', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 1);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id, ayuntamiento_id) VALUES ('Pepe', 'Caja', 'juan.jpg', 'pepe@gmail.com', '12345678B', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 2, 1);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Manolo', 'Bombo', 'Juan', 'anonimo@anonimo.com', '12345678C', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Otro', 3);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Messi', 'Dios', 'Juan', 'messi@gmail.com', '12345678D', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Mujer', 4);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension, rol_id) VALUES ('Guardiola', 'Juan', 'Juan', 'guardiola@gmail.com', '12345678E', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 'Urbanismo', 304, 5);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Rambo', 'Ak', 'Juan', 'rambo@gmail.com', '12345678F', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 2);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Shrek', 'Gordo', 'Juan', 'shrek@gmail.com', '12345678G', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Otro', 2);
 
 
 

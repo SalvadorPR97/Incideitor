@@ -24,7 +24,7 @@ public class UsuarioDatosPrivados {
     private String apellido;
     private String avatar;
     private String email;
-    private int sexo;
+    private String sexo;
     private int permitirNotificaciones;
 
 

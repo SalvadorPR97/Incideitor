@@ -24,7 +24,7 @@ public class UsuarioMiPerfil {
     private String apellido;
     private String avatar;
     private String email;
-    private int sexo;
+    private String sexo;
     private int permitirNotificaciones;
 
     private Ayuntamiento ayuntamiento;
