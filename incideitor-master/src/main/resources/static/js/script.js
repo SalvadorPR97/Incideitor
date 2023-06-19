@@ -41,50 +41,48 @@
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         table = document.getElementById("tablaOrdenar");
         switching = true;
-        // Establecemos la direccion de la ordenación a ascendente:
+        // Establecemos la dirección de la ordenación como ascendente:
         dir = "asc";
-        /* Make a loop that will continue until
-        no switching has been done: */
+        /* Hacemos un bucle que continuará hasta que no se cambie el valor de switching: */
         while (switching) {
-            // Start by saying: no switching is done:
+            // Comenzamos diciendo que no se ha realizado ningún switch:
             switching = false;
             rows = table.rows;
-            /* Loop through all table rows (except the
-            first, which contains table headers): */
+            /* Recorremos todas las filas de la tabla (excepto la primera, que contiene los encabezados de la tabla): */
             for (i = 1; i < (rows.length - 1); i++) {
-                // Start by saying there should be no switching:
+                // Comenzamos diciendo que no debería haber switch:
                 shouldSwitch = false;
-                /* Get the two elements you want to compare,
-                one from current row and one from the next: */
+                /* Obtenemos los dos elementos que queremos comparar,
+                uno de la fila actual y otro de la siguiente: */
                 x = rows[i].getElementsByTagName("TD")[n];
                 y = rows[i + 1].getElementsByTagName("TD")[n];
-                /* Check if the two rows should switch place,
-                based on the direction, asc or desc: */
+                /* Comprobamos si las dos filas deben intercambiarse de lugar,
+                en función de la dirección, ascendente o descendente: */
 
                 if (dir == "asc") {
                     if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        // If so, mark as a switch and break the loop:
+                        // Si es así, marcamos como un switch y rompemos el bucle:
                         shouldSwitch = true;
                         break;
                     }
                 } else if (dir == "desc") {
                     if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        // If so, mark as a switch and break the loop:
+                        // Si es así, marcamos como un switch y rompemos el bucle:
                         shouldSwitch = true;
                         break;
                     }
                 }
             }
             if (shouldSwitch) {
-                /* If a switch has been marked, make the switch
-                and mark that a switch has been done: */
+                /* Si se ha marcado un switch, realizamos el intercambio
+                y marcamos que se ha realizado un intercambio: */
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                 switching = true;
-                // Each time a switch is done, increase this count by 1:
+                // Cada vez que se realiza un intercambio, aumentamos esta cuenta en 1:
                 switchcount++;
             } else {
-                /* If no switching has been done AND the direction is "asc",
-                set the direction to "desc" and run the while loop again. */
+                /* Si no se ha realizado ningún switch Y la dirección es "asc",
+                establecemos la dirección como "desc" y ejecutamos el bucle while nuevamente. */
                 if (switchcount == 0 && dir == "asc") {
                     dir = "desc";
                     switching = true;
