@@ -16,17 +16,21 @@
 </head>
 <body>
 
-<div class="container-fluid" >
+<div class="container-fluid contenedor_principal" >
     <header th:replace="~{fragments/header :: header}"></header>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
-    <th:div th:if="${nombreVista}  == 'admin' or ${entityName}  == 'admin'" class="d-flex">
-        <div th:replace="~{fragments/sidebar :: sidebar}">Sidebar</div>
+    <div class="content row">
+        <th:div th:if="${nombreVista}  == 'admin' or ${entityName}  == 'admin'" class="d-flex">
+            <div th:replace="~{fragments/sidebar :: sidebar}">Sidebar</div>
+            <div th:replace="~{fragments/__${entityName}__/__${nombreVista}__ :: __${nombreVista}__}">Contenido principal</div>
+        </th:div>
+        <th:div th:unless="${nombreVista}  == 'admin' or ${entityName}  == 'admin'">
         <div th:replace="~{fragments/__${entityName}__/__${nombreVista}__ :: __${nombreVista}__}">Contenido principal</div>
-    </th:div>
-    <th:div th:unless="${nombreVista}  == 'admin' or ${entityName}  == 'admin'">
-    <div th:replace="~{fragments/__${entityName}__/__${nombreVista}__ :: __${nombreVista}__}">Contenido principal</div>
-    </th:div>
-    <div th:replace="~{fragments/footer :: footer}"></div>
+        </th:div>
+    </div>
+    <div class="footer">
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
