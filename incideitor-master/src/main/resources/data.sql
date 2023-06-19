@@ -64,10 +64,10 @@ INSERT INTO estados (nombre) VALUES ('En Curso');
 INSERT INTO estados (nombre) VALUES ('Finalizado');
 
 
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Apocalipsis','Ha llegado Rambo con un ak-47','2023-06-01',21,1,1,1);
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Afilador','Ha llegado el afilador','2023-06-01',22,2,3,1);
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Churreria','Problema en Churreria Hmnos Pernia','2023-06-01',30,3,4,3);
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Guerra nuclear','Y hizo pum ya esta aqui la guerra','2023-06-01',30,4,5,2);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Baldosa rota','La baldosa de la calle está levantada y se puede caer alguien','2023-06-01',21,1,1,1);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Tapa de arqueta desaparecida','La tapa de la arqueta de la calle no está','2023-06-01',31,2,3,1);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Cristal de farola roto','El cristal de la farola está roto','2023-06-01',26,3,4,3);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Bombilla fundida','La bombilla no funciona','2023-06-01',27,4,5,2);
 
 
 INSERT INTO historicos (incidencia_id, estado_id, fechaCambioEstado) VALUES (1, 1, '2023-06-01');
