@@ -2,10 +2,8 @@ package com.example.eoi.incideitor.services;
 
 import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.Notificacion;
-import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.repositories.NotificacionRepository;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,8 +12,12 @@ import java.time.LocalDateTime;
 @Log4j2
 public class NotificacionService {
 
-    @Autowired
-    private NotificacionRepository notificacionRepository;
+
+    private final NotificacionRepository notificacionRepository;
+
+    public NotificacionService(NotificacionRepository notificacionRepository) {
+        this.notificacionRepository = notificacionRepository;
+    }
 
 
     /**

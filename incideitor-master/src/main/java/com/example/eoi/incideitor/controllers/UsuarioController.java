@@ -85,12 +85,6 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     private UsuarioMapper usuarioMapper;
 
     @Autowired
-    NotificacionRepository notificacionRepository;
-
-    @Autowired
-    NotificacionController notificacionController;
-
-    @Autowired
     EmailService emailService;
 
     /**
