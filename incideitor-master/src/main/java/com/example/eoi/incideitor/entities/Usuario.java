@@ -26,7 +26,7 @@ public class Usuario {
     private String email;
     private String dni;
     private String contrasena;
-    private int sexo;
+    private String sexo;
 
     @ManyToOne
     @JoinColumn(name = "ayuntamiento_id")
