@@ -4,33 +4,33 @@
   <div th:fragment="sidebar" class="col-2 px-0 mt-2 bg-body-secondary rounded-1 border">
     <div class="d-flex flex-column m-2">
       <a href="/admin" class="d-flex align-items-center mb-md-0 me-md-auto text-black text-decoration-none">
-        <span class="fs-5 d-none d-md-inline">Panel de <br class="d-lg-none"> Administración</span>
+        <span th:text="#{sidebar.panel}" class="fs-5 d-none d-md-inline"> <br class="d-lg-none"></span>
       </a>
       <hr class="p-0 d-none d-md-inline">
       <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
         <li class="nav-item">
           <a href="/admin" class="nav-link align-middle px-0">
-            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+            <i th:text="#{sidebar.home}" class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"></span>
           </a>
         </li>
         <li>
           <a href="/incidencia/admin" class="nav-link px-0 align-middle">
-            <i class="fs-4 bi-card-list"></i> <span class="ms-1 d-none d-sm-inline">Incidencias</span></a>
+            <i th:text="#{sidebar.incidencias}" class="fs-4 bi-card-list"></i> <span class="ms-1 d-none d-sm-inline"></span></a>
         </li>
         <li>
           <a href="/usuario/admin" class="nav-link px-0 align-middle">
-            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Usuarios</span> </a>
+            <i th:text="#{sidebar.usuarios}" class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline"></span> </a>
         </li>
         <li>
           <a href="/ayuntamiento/admin" class="nav-link px-0 align-middle">
-            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Ayuntamientos</span> </a>
+            <i th:text="#{sidebar.ayuntamientos}" class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline"></span> </a>
         </li>
         <li class="dropdown">
           <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-danger">
-            <i class="fs-4 bi-flag"></i> <span class="ms-1 d-none d-sm-inline">Reportes</span> </a>
+            <i th:text="#{sidebar.reportes}" class="fs-4 bi-flag"></i> <span class="ms-1 d-none d-sm-inline"></span> </a>
           <ul class="collapse flex-column ms-1 ps-2" id="submenu1" data-bs-parent="#menu">
             <li>
-              <a href="/reporte/reportError" class="nav-link px-0 text-danger"><i class="fs-4 bi-list-check"></i> <span class="d-none d-sm-inline">Incidencias</span></a>
+              <a  href="/reporte/reportError" class="nav-link px-0 text-danger"><i class="fs-4 bi-list-check"></i> <span class="d-none d-sm-inline">Incidencias</span></a>
             </li>
             <li>
               <a href="/reporte/bugs" class="nav-link px-0 text-danger"><i class="fs-4 bi-bug"></i> <span class="d-none d-sm-inline">Bugs</span></a>

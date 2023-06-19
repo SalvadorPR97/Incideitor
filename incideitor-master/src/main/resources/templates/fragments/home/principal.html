@@ -10,14 +10,12 @@
                 <video src="video/videoPortada.mp4" class="video_tutorial" controls> Video</video>
             </div>
             <div class="col-md-6 d-none d-lg-block">
-                    <span> Incideitor permite a los ciudadanos reportar incidencias de manera fácil y rápida.
-                        Además, la plataforma cuenta con un sistema de seguimiento de las incidencias reportadas,
-                        lo que permitirá a los ciudadanos tener información actualizada sobre la solución de su problema.</span>
+                    <span th:text="#{home.texto}"> </span>
             </div>
         </div>
         <section class="row noticias">
             <div class="arreglos col-12">
-                <h3 class="text-center">Incidencias recientes</h3>
+                <h3 th:text="#{home.incidencias}" class="text-center"></h3>
             </div>
 
             <!--

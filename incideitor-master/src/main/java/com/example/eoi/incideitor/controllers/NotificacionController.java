@@ -8,6 +8,7 @@ import com.example.eoi.incideitor.entities.Notificacion;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.repositories.NotificacionRepository;
 import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,11 +29,11 @@ import java.util.stream.IntStream;
 
 @Log4j2
 @Controller
-@RequestMapping("${url.usuario}")
+@RequestMapping("${url.notificacion}")
 public class NotificacionController{
 
 
-    @Value("usuario")
+    @Value("misNotificaciones")
     private String url;
 
     private String entityName = "notificacion";
@@ -43,7 +44,7 @@ public class NotificacionController{
     @Autowired
     private NotificacionRepository notificacionRepository;
 
-    @ModelAttribute("notificaciones")
+    @ModelAttribute("misNotificaciones")
     public List<ListaNotificacionesUsuarioDTO> obtenerNotificaciones(Model model) {
 
         //Obtenemos el usuario de la sesion
@@ -114,7 +115,7 @@ public class NotificacionController{
 
 
     //Metodo para mostrar la lista de notificaciones de forma paginada
-    @GetMapping("/notificaciones")
+    @GetMapping("/misNotificaciones")
     public String misIncidencias(@RequestParam(defaultValue = "1") int page,
                                  @RequestParam(defaultValue = "10") int size,
                                  Model model) {
@@ -159,8 +160,8 @@ public class NotificacionController{
 
         //Añadimos los model para poder mostrar en la vista y redirigimos a la plantilla "index"
         model.addAttribute("entities", listaNotificacionesUsuarioDTOPage);
-        model.addAttribute("entityName", "usuario");
-        model.addAttribute("nombreVista", "notificaciones");
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", url);
         return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
 

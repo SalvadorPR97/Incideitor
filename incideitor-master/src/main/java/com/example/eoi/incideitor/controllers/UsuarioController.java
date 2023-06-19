@@ -116,7 +116,6 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @PostConstruct
     private void init() {
         super.entityName = entityName;
-        super.url = url;
     }
 
 
