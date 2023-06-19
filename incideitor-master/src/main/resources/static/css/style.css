@@ -5,28 +5,12 @@
     box-sizing: border-box;
 }
 
-/*Arreglo del footer*/
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
-.contenedor_principal{
-    min-height: 100%;
-    position: relative;
-}
-
-.content {
-    padding-bottom: 11em; /* Ajusta este valor según la altura de tu footer */
-}
-
-.footer{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-}
 
 /*Header*/
 .ayuntamiento{
@@ -92,6 +76,7 @@ header[class~=tittle]{
     text-transform: uppercase;
 }
 
+
 /*Footer*/
 
 footer{
@@ -99,6 +84,24 @@ footer{
     background-position: 100% 40%;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+/*Arreglo del footer*/
+
+.contenedor_principal{
+    min-height: 100%;
+    position: relative;
+}
+
+.content {
+    padding-bottom: 11em; /* Ajusta este valor según la altura de tu footer */
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 /* Administracion */

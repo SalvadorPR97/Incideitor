@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-
 <body>
-    <main th:fragment="admin" class="container-fluid flex-nowrap d-flex">
-        <div class="col-12 py-2 mx-3">
+    <main th:fragment="admin" class="container-fluid">
+
             <!--Header y filtros-->
             <div>
                 <h1>Usuarios</h1>
@@ -36,7 +35,7 @@
                     </form>
                 </div>
             <!--Tabla-->
-            <div>
+            <div class="row">
                 <table class="table table-striped" id="tablaOrdenar">
                     <thead>
                     <tr>
@@ -73,7 +72,7 @@
                     </tr>
                     </tbody>
                 </table>
-                </div>
+            </div>
 
             <div th:if="${entities.totalPages > 0}" class="pagination justify-content-center">
                 <ul class="pagination justify-content-center" >
@@ -83,10 +82,9 @@
                            th:text="${pageNumber}"
                            th:classappend="${pageNumber==entities.number+1} ? active"></a>
                     </li>
-                    <li class="page-item" th:if="${entities.number < entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number + 2})}">Siguiente</a></li>                </ul>
+                    <li class="page-item" th:if="${entities.number < entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number + 2})}">Siguiente</a></li>
+                </ul>
             </div>
-        </div>
     </main>
-
 </body>
 </html>
