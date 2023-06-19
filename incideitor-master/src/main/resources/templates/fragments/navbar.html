@@ -55,8 +55,11 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a th:text="#{navbar.miperfil}" class="dropdown-item" href="/usuario/miperfil"></a></li>
-                                <li><a th:text="#{navbar.misnotificaciones}" class="dropdown-item" href="/notificacion/misNotificaciones">
-                                    <span th:text="${contador != null ? '(' + contador + ')' : ''}"></span> </a></li>
+                                <li><a class="dropdown-item" href="/notificacion/misNotificaciones">
+                                        <span th:text="#{navbar.misnotificaciones}"></span>
+                                        <span th:if="${contador != null}" th:text="${' (' + contador + ')'}"></span>
+                                    </a>
+                                </li>
                                 <li><a th:text="#{navbar.misindicencias}" class="dropdown-item" href="/incidencia/all"></a></li>
                                 <li><a th:text="#{navbar.nuevaincidencia}" class="dropdown-item" href="/incidencia/create"></a></li>
                                 <li><a th:text="#{navbar.logout}" class="dropdown-item" href="/logout"></a></li>
