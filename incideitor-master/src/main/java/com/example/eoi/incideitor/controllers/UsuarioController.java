@@ -148,7 +148,15 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         // Y actualizamos el usuario
         service.update(usuario);
 
-        return "redirect:/usuario/admin";
+        //Generamos el contenido del email que vamos a enviar para darle la bienvenida
+        Email emailRecPass = new Email();
+        emailRecPass.setFrom("notificaciones@agestturnos.es");
+        emailRecPass.setTo(usuario.getEmail());
+        emailRecPass.setSubject("Confirmación de registro");
+        emailRecPass.setContent("Muchas gracias por registrarte en nuestra aplicacion, "+usuario.getNombre());
+        emailService.sendMail(emailRecPass);
+
+        return "redirect:/";
     }
 
     @GetMapping("/edit/{id}")
