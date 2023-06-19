@@ -20,7 +20,7 @@ public class UsuarioDatosPrivadosAyuntamiento {
     private String avatar;
     private String email;
     private String dni;
-    private int sexo;
+    private String sexo;
     private Ayuntamiento ayuntamiento;
 
     private int permitirNotificaciones;
