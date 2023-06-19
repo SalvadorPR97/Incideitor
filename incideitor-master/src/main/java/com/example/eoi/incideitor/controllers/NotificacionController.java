@@ -1,14 +1,13 @@
 package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.GenericServiceWithJPA;
-import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.dtos.ListaNotificacionesUsuarioDTO;
 import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.Notificacion;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.repositories.NotificacionRepository;
+import com.example.eoi.incideitor.services.NotificacionService;
 import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,12 +15,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -30,19 +27,22 @@ import java.util.stream.IntStream;
 @Log4j2
 @Controller
 @RequestMapping("${url.notificacion}")
-public class NotificacionController{
+public class NotificacionController extends GenericServiceWithJPA<Notificacion, Integer>{
 
 
     @Value("misNotificaciones")
     private String url;
 
-    private String entityName = "notificacion";
+    private final String entityName = "notificacion";
 
     @Autowired
     ObtenerDatosUsuario obtenerDatosUsuario;
 
     @Autowired
-    private NotificacionRepository notificacionRepository;
+    NotificacionService notificacionService;
+
+    @Autowired
+    NotificacionRepository notificacionRepository;
 
     @ModelAttribute("misNotificaciones")
     public List<ListaNotificacionesUsuarioDTO> obtenerNotificaciones(Model model) {
@@ -72,6 +72,8 @@ public class NotificacionController{
             for (Iterator<Notificacion> iteratorN = notificacions.iterator();
                  iteratorN.hasNext(); ) {
 
+
+
                 //Para cada notificacion creamos un objeto "dto" al que asignamos los valores correspondientes de la incidencia y de la notificacion.
                 Notificacion notificacionLectura = iteratorN.next();
 
@@ -88,12 +90,15 @@ public class NotificacionController{
                     listaNotificacionesUsuarioDTOS.add(dto);
                 }
 
+
             }
 
         }
 
-        //Devolvemos la lista de notificaciones
-        return listaNotificacionesUsuarioDTOS;
+        // Devolvemos la lista de notificaciones excluyendo las notificaciones con borrado lógico igual a 0
+        return listaNotificacionesUsuarioDTOS.stream()
+                .filter(dto -> dto.getBorradoLogico() != 1)
+                .collect(Collectors.toList());
     }
 
 
@@ -163,6 +168,25 @@ public class NotificacionController{
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", url);
         return "index"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+
+    //Metodo para descartar las notificaciones mediante el borradoLogico
+    @GetMapping("/descartar/{id}")
+    public String borradoLogico(Model model, @PathVariable int id){
+        //Buscamos la notificacion por el id que recibimos de la vista
+        Notificacion notificacion = notificacionRepository.findById(id).orElse(null);
+
+        //Si la notificacion no es nula, le asignamos el valor "1" y lo actualizamos en la base de datos
+        if (notificacion != null) {
+            notificacion.setBorradoLogico(1);
+            update(notificacion);
+        }
+
+        //Añadimos el entityName para redirigir a la vista
+        model.addAttribute("entityName", entityName);
+
+        return "redirect:/"+entityName+"/misNotificaciones";
     }
 
 }
