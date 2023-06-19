@@ -64,6 +64,8 @@ header[class~=tittle]{
     background-image: url(../img/wall.jpg);
 }
 .video_tutorial{
+    height: 400px;
+    width: 600px;
     min-height: 300px;
     max-width: 100%;
 }
