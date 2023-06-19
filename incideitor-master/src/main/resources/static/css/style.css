@@ -10,6 +10,11 @@
     text-transform: uppercase; 
     color: black;
     padding: 0.5em;
+    background-image: url("../img/VistaPanoramicaMijas.jpg");
+    background-position: 50% 15%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
        
 }
 
@@ -34,7 +39,6 @@ header[class~=tittle]{
 
 .tutorial{
     background-image: url(../img/wall.jpg);
-    background-position: 50%;
 }
 .video_tutorial{
     min-height: 300px;
