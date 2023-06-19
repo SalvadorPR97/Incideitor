@@ -12,6 +12,8 @@
             crossorigin="anonymous"></script>
     <link rel="shortcut icon" type="image/ico" th:href="@{/favicon.ico}"/>
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBliL-r7xGNv8j3h-EmmDKCJBa5HoYImU8&libraries=places"></script>
+
     <script src="/js/script.js"></script>
 
 </head>
@@ -33,6 +35,9 @@
         <div th:replace="~{fragments/footer :: footer}"></div>
     </div>
 </div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBliL-r7xGNv8j3h-EmmDKCJBa5HoYImU8&libraries=places&callback=initMap"></script>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">

@@ -40,10 +40,8 @@ public class Incidencia {
 
     @OneToMany(mappedBy = "incidencia")
     private Collection<Historico> historicos;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "lugar_id",referencedColumnName = "id")
-    private Lugar lugar;
+    
+    private String direccion;
 
     @OneToMany(mappedBy = "incidencia")
     private Collection<Foto> fotos;
