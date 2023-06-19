@@ -1,13 +1,12 @@
 <!DOCTYPE html >
 <body>
 
-<div th:fragment="usuario-profile" class="container rounded bg-white mt-5 mb-5">
+<div th:fragment="usuario-profile" class="container-fluid rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                 <img class="rounded-circle mt-5" width="150px" th:src="@{'/uploads/avatar/'+${usuario.id}+'/'+${usuario.avatar}}">
-                <span class="font-weight-bold">Edogaru</span>
-                <span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+            </div>
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
@@ -15,40 +14,37 @@
                     <h4 class="text-right">Información de perfil</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Nombre</label>
+                    <div class="col-md-6"><label class="labels">Nombre: </label>
                         <span th:text="${usuario.nombre}"></span></div>
 
-                    <div class="col-md-6"><label class="labels">Apellido</label>
+                    <div class="col-md-6"><label class="labels">Apellido: </label>
                         <span th:text="${usuario.apellido}"></span></div>
                 </div>
 
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Sexo</label>
+                    <div class="col-md-12"><label class="labels">Sexo: </label>
                         <span th:text="${usuario.sexo}"></span></div>
                     
-                    <div class="col-md-12"><label class="labels">Email</label>
+                    <div class="col-md-12"><label class="labels">Email: </label>
                         <span th:text="${usuario.email}"></span></div>
                 </div>
                 <div class="row mt-3">
 
-                    <div class="col-md-6"><label class="labels">Ayuntamiento</label>
+                    <div class="col-md-6"><label class="labels">Ayuntamiento: </label>
                         <span th:text="${usuario.ayuntamiento?.nombre}"></span></div>
                     </div>
 
-                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Permitir Notificaciones</button></div>
+
                 </div>
 
-                    </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Cambiar Contraseña</button></div>
+        </div>
 
-                  </div>
-                <div class="mt-5 text-center"><button class="btn btn-danger profile-button" type="button">Borrar Cuenta</button></div>
+        <div class="col-md-4 border-right">
+            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Permitir Notificaciones</button></div>
+            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Cambiar Contraseña</button></div>
+            <div class="mt-5 text-center"><button class="btn btn-danger profile-button" type="button">Borrar Cuenta</button></div>
 
-            </div>
-            </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 </body>
