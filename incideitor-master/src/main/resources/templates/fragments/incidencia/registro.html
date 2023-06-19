@@ -3,8 +3,8 @@
 <body>
 <div class="container-fluid">
     <main th:fragment="registro" >
-        <div id="container" class="container-fluid col-8">
-            <div class="col-sm-6">
+        <div id="container" class="container-fluid col-8 d-flex align-content-between">
+            <div class="col-6">
 
                 <form id="formulario_incidencia" action="/incidencia/create" method="post" enctype="multipart/form-data">
                     <div class="row formulario_items mb-4">
@@ -30,7 +30,6 @@
                         <label for="titulo">Dirección:*</label>
                         <input type="text" id="address-input" placeholder="Ingrese una dirección" th:field="*{entity.direccion}" required>
 
-                        <div id="map"></div>
     <!--                    <div class="row direccion_incidencia mb-4">-->
     <!--                        <label for="direccion_incidencia">Dirección:*</label>-->
     <!--                        <input type="text" name="direccion_incidencia" id="direccion_incidencia" size="20" minlength="15" maxlength="200" required th:field="*{direccion}">-->
@@ -65,6 +64,9 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="col-6">
+                <div id="map"></div>
             </div>
         </div>
     </main>
