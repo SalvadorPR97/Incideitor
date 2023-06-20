@@ -110,43 +110,6 @@ public abstract class MiControladorGenerico<T> {
 
 
     /**
-     * Obtiene todos los registros de entidades para administradores con paginación.
-     *
-     * @param page  Número de página (por defecto: 1).
-     * @param size  Tamaño de la página (por defecto: 10).
-     * @param model El modelo para agregar atributos.
-     * @return La plantilla "index" para mostrar todas las entidades.
-     */
-    @GetMapping("/admin")
-    public String getAllAdmin(@RequestParam(defaultValue = "1") int page,
-                              @RequestParam(defaultValue = "10") int size,
-                              Model model) {
-
-        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")) {
-            String contador = notificacionController.contarNotificaciones(model);
-            model.addAttribute("contador", contador);
-        }
-
-        Pageable pageable = PageRequest.of(page - 1, size);
-        Page<T> entities = jpaRepository.findAll(pageable);
-
-        int totalPages = entities.getTotalPages();
-
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
-
-        model.addAttribute("entities", entities);
-        model.addAttribute("entityName", entityName);
-        model.addAttribute("nombreVista", "admin");
-        return "index"; // Nombre de la plantilla para mostrar todas las entidades
-    }
-
-
-    /**
      * Maneja la solicitud GET para obtener una entidad por su identificador.
      *
      * @param id    El identificador de la entidad.

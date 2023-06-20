@@ -87,6 +87,9 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @Autowired
     EmailService emailService;
 
+    @Autowired
+    NotificacionController notificacionController;
+
     /**
      * Constructor de la clase UsuarioController.
      * Se utiliza para crear una instancia del controlador.
@@ -108,6 +111,44 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @PostConstruct
     private void init() {
         super.entityName = entityName;
+    }
+
+
+    @GetMapping("/admin")
+    public String getAllAdmin(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
+                              @RequestParam(defaultValue = "10") int size,
+                              Model model) {
+
+        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+            String contador = notificacionController.contarNotificaciones(model);
+            model.addAttribute("contador",contador);
+        }
+
+        Pageable pageable = PageRequest.of(page-1, size);
+
+
+        Page<Usuario> entities;
+        if (nombre == null){
+            entities = usuarioRepository.findAll(pageable);
+        } else {
+            entities = usuarioRepository.findAllByNombreContainsIgnoreCase(nombre, pageable);
+        }
+
+
+        int totalPages = entities.getTotalPages();
+
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
+
+        model.addAttribute("entities", entities);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "admin");
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
 
 
@@ -354,6 +395,8 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         }
 
     }
+
+
 
 
 

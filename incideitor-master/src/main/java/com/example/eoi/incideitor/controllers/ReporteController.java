@@ -3,15 +3,23 @@ package com.example.eoi.incideitor.controllers;
 
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
+import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.Reporte;
+import com.example.eoi.incideitor.entities.TipoIncidencia;
 import com.example.eoi.incideitor.repositories.ReporteRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 /**
@@ -45,6 +53,9 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
 
     @Autowired
     ReporteRepository reporteRepository;
+
+    @Autowired
+    NotificacionController notificacionController;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -83,18 +94,72 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
         return "redirect:/reporte/admin";
     }
 
-    @GetMapping("/reportError")
-    public String getAllError(Model model) {
-        List<Reporte> entities = reporteRepository.getReportesByCategoriaEquals("Error");
+    @GetMapping("/adminError")
+    public String getAllAdminError(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
+                              @RequestParam(defaultValue = "10") int size,
+                              Model model) {
+
+
+            if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+                String contador = notificacionController.contarNotificaciones(model);
+                model.addAttribute("contador",contador);
+            }
+
+            Pageable pageable = PageRequest.of(page-1, size);
+
+        Page<Reporte> entities;
+        if (nombre == null){
+            entities = reporteRepository.findAllByCategoriaEquals("Error",pageable);
+        } else {
+            entities = reporteRepository.findAllByCategoriaEqualsAndTituloContainsIgnoreCase("Error", nombre, pageable);
+        }
+
+
+        int totalPages = entities.getTotalPages();
+
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
         model.addAttribute("entities", entities);
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "admin");
         return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
 
-    @GetMapping("/bugs")
-    public String getAllBugs(Model model) {
-        List<Reporte> entities = reporteRepository.getReportesByCategoriaEquals("Bug");
+    @GetMapping("/adminBugs")
+    public String getAllAdminBugs(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
+                                   @RequestParam(defaultValue = "10") int size,
+                                   Model model) {
+
+
+        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+            String contador = notificacionController.contarNotificaciones(model);
+            model.addAttribute("contador",contador);
+        }
+
+        Pageable pageable = PageRequest.of(page-1, size);
+
+        Page<Reporte> entities;
+        if (nombre == null){
+            entities = reporteRepository.findAllByCategoriaEquals("Bug",pageable);
+        } else {
+            entities = reporteRepository.findAllByCategoriaEqualsAndTituloContainsIgnoreCase("Bug", nombre, pageable);
+        }
+
+
+        int totalPages = entities.getTotalPages();
+
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
         model.addAttribute("entities", entities);
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "admin");

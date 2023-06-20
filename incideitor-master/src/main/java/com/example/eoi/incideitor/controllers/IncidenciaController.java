@@ -153,7 +153,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
 
 
-    @GetMapping("/adminBusq")
+    @GetMapping("/admin")
     public String getAllAdmin(@RequestParam(required = false) Integer tipoIncidencia, @RequestParam(defaultValue = "1") int page,
                               @RequestParam(defaultValue = "10") int size,
                               Model model) {

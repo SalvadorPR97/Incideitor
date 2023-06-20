@@ -75,6 +75,6 @@ INSERT INTO historicos (incidencia_id, estado_id, fechaCambioEstado, mensajeAdic
 INSERT INTO historicos (incidencia_id, estado_id, fechaCambioEstado, mensajeAdicional) VALUES (3, 3, '2023-06-01', 'Se ha sustituido la bombilla');
 
 
-INSERT INTO reportes (categoria, descripcion) VALUES ('Bug', 'No se ve la pantalla');
-INSERT INTO reportes (categoria, descripcion) VALUES ('Error', 'Incidencia con fotos borrosas');
-INSERT INTO reportes (categoria, descripcion) VALUES ('Error', 'La dirección está mal');
+INSERT INTO reportes (titulo, categoria, descripcion) VALUES ('Pantalla', 'Bug', 'No se ve la pantalla');
+INSERT INTO reportes (titulo, categoria, descripcion) VALUES ('Fotos en la incidencia', 'Error', 'Incidencia con fotos borrosas');
+INSERT INTO reportes (titulo, categoria, descripcion) VALUES ('Dirección', 'Error', 'La dirección está mal');

@@ -4,13 +4,24 @@ package com.example.eoi.incideitor.controllers;
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.dtos.AyuntamientoDTO;
 import com.example.eoi.incideitor.entities.Ayuntamiento;
+import com.example.eoi.incideitor.entities.Incidencia;
+import com.example.eoi.incideitor.entities.TipoIncidencia;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.example.eoi.incideitor.repositories.AyuntamientoRepository;
 import com.example.eoi.incideitor.services.AyuntamientoService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
 
@@ -44,6 +55,11 @@ public class AyuntamientoController extends MiControladorGenerico<Ayuntamiento> 
     @Autowired
     AyuntamientoService ayuntamientoService;
 
+    @Autowired
+    NotificacionController notificacionController;
+    @Autowired
+    private AyuntamientoRepository ayuntamientoRepository;
+
     /**
 
      Constructor de la clase AyuntamientoController.
@@ -66,6 +82,45 @@ public class AyuntamientoController extends MiControladorGenerico<Ayuntamiento> 
     private void init() {
         super.entityName = entityName;
     }
+
+
+
+    @GetMapping("/admin")
+    public String getAllAdmin(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
+                              @RequestParam(defaultValue = "10") int size,
+                              Model model) {
+
+        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+            String contador = notificacionController.contarNotificaciones(model);
+            model.addAttribute("contador",contador);
+        }
+
+        Pageable pageable = PageRequest.of(page-1, size);
+
+
+        Page<Ayuntamiento> entities;
+        if (nombre == null){
+            entities = ayuntamientoRepository.findAll(pageable);
+        } else {
+            entities = ayuntamientoRepository.findAllByNombreContainsIgnoreCase(nombre, pageable);
+        }
+
+
+        int totalPages = entities.getTotalPages();
+
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
+        model.addAttribute("entities", entities);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "admin");
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
     /**
 
      Muestra el formulario para crear un nuevo Ayuntamiento.

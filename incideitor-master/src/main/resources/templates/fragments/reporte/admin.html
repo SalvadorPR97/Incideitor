@@ -6,33 +6,11 @@
             <div class="col-12 py-2 mx-3">
                 <!--Header y filtros-->
                 <div>
-                    <h1>Reportes Incidencias</h1>
-                    <button type="button" onclick="location.href='/reporte/create'" class="btn btn-primary mb-1">Nuevo Reporte</button>
-                    <form action="#" method="get">
-                        <input type="text" placeholder="Término a Filtrar" name="filtro">
-                        <select name="tipoIncidencia" id="">
-                            <option value="0">Acerado</option>
-                            <option value="1">Aguas</option>
-                            <option value="2">Alumbrado</option>
-                            <option value="3">Arquetas</option>
-                            <option value="4">Cableado</option>
-                            <option value="5">Calzada</option>
-                            <option value="6">Carril bici</option>
-                            <option value="7">Fuentes</option>
-                            <option value="8">Jardines y zonas verdes</option>
-                            <option value="9">Limpieza</option>
-                            <option value="10">Medio ambiente</option>
-                            <option value="11">Mobiliario urbano</option>
-                            <option value="12">Monumentos</option>
-                            <option value="13/taxi">Parada bus/taxi</option>
-                            <option value="14">Parques infantiles</option>
-                            <option value="15">Plagas</option>
-                            <option value="16">Playas</option>
-                            <option value="17">Saneamiento</option>
-                            <option value="18">Semáforos</option>
-                            <option value="19">Tráfico y señalización</option>
-                            <option value="20">Vallas de obra</option>
-                        </select>
+                    <h1>Usuarios</h1>
+                    <button type="button" onclick="location.href='/reporte/create'" class="btn btn-primary mb-1">Nuevo Reporte
+                    </button>
+                    <form th:action="@{/reporte/adminError}" method="get">
+                        <input type="text" placeholder="Nombre a Filtrar" name="nombre">
                         <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
                     </form>
                 </div>
