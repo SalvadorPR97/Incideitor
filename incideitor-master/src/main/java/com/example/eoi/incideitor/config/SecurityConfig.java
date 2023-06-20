@@ -63,12 +63,13 @@ public class SecurityConfig {
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/uploads/**").permitAll()
                 // Añadimos la siguiente línea para poder acceder más facilmente
-                .requestMatchers("/**").permitAll()
+//                .requestMatchers("/**").permitAll()
                 .requestMatchers("/","").permitAll()
                 .requestMatchers("/usuario/create").permitAll()
                 .requestMatchers("/usuario/miperfil").hasAuthority("ROL_USUARIO")
                 .requestMatchers("/usuario/all").hasAuthority("ROL_USUARIO")
                 .requestMatchers("/*/admin").hasAuthority("ROL_ADMINISTRADOR")
+                .requestMatchers("/ayuntamiento/datosayuntamiento").hasAuthority("AYUNTAMIENTO_ADMIN")
                 .anyRequest().authenticated()
 
                 .and()
