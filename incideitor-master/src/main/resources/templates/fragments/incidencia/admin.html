@@ -8,7 +8,7 @@
         <div>
             <h1>Incidencias</h1>
             <button type="button" onclick="location.href='/incidencia/create'" class="btn btn-primary mb-1">Nueva Incidencia</button>
-            <form th:action="@{/incidencia/adminBusq}" method="get">
+            <form th:action="@{/incidencia/admin}" method="get">
                 <label for="tipoIncidencia">Incidencia hijo:</label>
                 <select id="tipoIncidencia" name="tipoIncidencia">
                     <option value="">Seleccionar</option>
@@ -19,7 +19,7 @@
         </div>
         <!--Tabla-->
         <div>
-            <table class="table" id="tablaOrdenar">
+            <table class="table table-striped" id="tablaOrdenar">
                 <thead>
                 <tr>
                     <th scope="col" onclick="sortTable(0)">ID</th>
