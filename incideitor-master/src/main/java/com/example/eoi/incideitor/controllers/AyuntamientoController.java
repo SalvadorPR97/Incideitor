@@ -4,8 +4,6 @@ package com.example.eoi.incideitor.controllers;
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.dtos.AyuntamientoDTO;
 import com.example.eoi.incideitor.entities.Ayuntamiento;
-import com.example.eoi.incideitor.entities.Incidencia;
-import com.example.eoi.incideitor.entities.TipoIncidencia;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.repositories.AyuntamientoRepository;
 import com.example.eoi.incideitor.services.AyuntamientoService;
@@ -57,6 +55,7 @@ public class AyuntamientoController extends MiControladorGenerico<Ayuntamiento> 
 
     @Autowired
     NotificacionController notificacionController;
+
     @Autowired
     private AyuntamientoRepository ayuntamientoRepository;
 
@@ -85,6 +84,15 @@ public class AyuntamientoController extends MiControladorGenerico<Ayuntamiento> 
 
 
 
+    /**
+     * Obtiene todos los Ayuntamientos en modo de administrador.
+     *
+     * @param nombre El nombre del Ayuntamiento a buscar (opcional).
+     * @param page   El número de página a mostrar.
+     * @param size   El tamaño de la página.
+     * @param model  El modelo para agregar atributos.
+     * @return El nombre de la plantilla para mostrar todas las entidades.
+     */
     @GetMapping("/admin")
     public String getAllAdmin(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
                               @RequestParam(defaultValue = "10") int size,
