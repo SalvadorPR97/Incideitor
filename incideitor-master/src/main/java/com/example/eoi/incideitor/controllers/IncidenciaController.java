@@ -77,6 +77,13 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         super.entityName = entityName;
     }
 
+    /**
+     * Muestra el formulario para crear una nueva Incidencia.
+     *
+     * @param incidenciaPadre El ID de la incidencia padre (opcional).
+     * @param model           El modelo de datos para la vista.
+     * @return El nombre de la plantilla de la vista.
+     */
     @GetMapping("/create")
     public String mostrarFormulario(@RequestParam(value = "incidenciaPadre", required = false) Long incidenciaPadre, Model model) {
         List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAll();
@@ -90,26 +97,29 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     }
 
     /**
-     * Maneja la solicitud POST para crear una nueva entidad.
+     * Crea una nueva Incidencia.
      *
-     * @param "entity" La entidad a crear.
-     * @param "model"  El objeto Model para agregar los atributos necesarios.
-     * @return El nombre de la plantilla para mostrar los detalles de la entidad creada.
+     * @param incidencia La incidencia a crear.
+     * @param file       El archivo adjunto (opcional).
+     * @param file2      El segundo archivo adjunto (opcional).
+     * @param file3      El tercer archivo adjunto (opcional).
+     * @return La redirección a la página de administración de incidencias.
+     * @throws IOException Si ocurre un error al manejar los archivos adjuntos.
      */
-
     @PostMapping("/create")
-    public String crearIncidencia(@ModelAttribute Incidencia incidencia, @RequestParam(required = false) MultipartFile file, @RequestParam(required = false) MultipartFile file2, @RequestParam(required = false) MultipartFile file3) throws IOException {
+    public String crearIncidencia(@ModelAttribute Incidencia incidencia, @RequestParam(required = false) MultipartFile file,
+                                  @RequestParam(required = false) MultipartFile file2,
+                                  @RequestParam(required = false) MultipartFile file3) throws IOException {
         // Generamos la fecha actual para añadirla como fecha de creacion
         incidencia.setFecha(LocalDate.now());
-        //Obtenemos el usuario de la sesión y la añadimos a la incidencia
+        // Obtenemos el usuario de la sesión y lo añadimos a la incidencia
         incidencia.setUsuario(obtenerDatosUsuario.getUserData());
         service.create(incidencia);
 
-        notificacionService.crearNotificacion(incidencia,"Incidencia creada");
+        notificacionService.crearNotificacion(incidencia, "Incidencia creada");
 
-
-        // Usamos el metodo de fileUploadutil para crear las fotos en su directorio correspondiente
-        List<String> listaurls = fileUploadUtil.uploadImgIncidencia(file,file2,file3, incidencia.getId());
+        // Usamos el método de fileUploadutil para crear las fotos en su directorio correspondiente
+        List<String> listaurls = fileUploadUtil.uploadImgIncidencia(file, file2, file3, incidencia.getId());
 
         // Creamos la colección de fotos para añadirla a la nueva incidencia
         Collection<Foto> fotos = new HashSet<>();
@@ -122,21 +132,27 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
             foto.setIncidencia(incidencia);
             fotos.add(foto);
             fotoService.create(foto);
-
         }
-        // Añadimos la coleccion de fotos que rellenamos a la incidencia
+        // Añadimos la colección de fotos a la incidencia
         incidencia.setFotos(fotos);
-        // Creamos la incidencia en la BDD
+        // Actualizamos la incidencia en la base de datos
         service.update(incidencia);
         return "redirect:/incidencia/admin";
     }
 
-
+    /**
+     * Obtiene una incidencia por su ID y muestra los detalles.
+     *
+     * @param id    El ID de la incidencia a obtener.
+     * @param model El modelo de datos para la vista.
+     * @return El nombre de la plantilla de la vista.
+     * @throws MiEntidadNoEncontradaException Si no se encuentra la incidencia.
+     */
     @Override
     @GetMapping("/{id}")
-    public String getById(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
+    public String getById(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
         try {
-            Set<String> listaFotos = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/"+id);
+            Set<String> listaFotos = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/" + id);
             Incidencia entity = service.getById(id);
             model.addAttribute("entity", entity);
             model.addAttribute("entityName", entityName);
@@ -150,29 +166,33 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         }
     }
 
-
-
-
+    /**
+     * Obtiene todas las incidencias en modo administrador.
+     *
+     * @param tipoIncidencia El ID del tipo de incidencia para filtrar (opcional).
+     * @param page           El número de página a mostrar.
+     * @param size           El tamaño de página.
+     * @param model          El modelo de datos para la vista.
+     * @return El nombre de la plantilla de la vista.
+     */
     @GetMapping("/admin")
     public String getAllAdmin(@RequestParam(required = false) Integer tipoIncidencia, @RequestParam(defaultValue = "1") int page,
                               @RequestParam(defaultValue = "10") int size,
                               Model model) {
 
-        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")) {
             String contador = notificacionController.contarNotificaciones(model);
-            model.addAttribute("contador",contador);
+            model.addAttribute("contador", contador);
         }
 
-        Pageable pageable = PageRequest.of(page-1, size);
-
+        Pageable pageable = PageRequest.of(page - 1, size);
 
         Page<Incidencia> entities;
-        if (tipoIncidencia == null){
+        if (tipoIncidencia == null) {
             entities = incidenciaRepository.findAll(pageable);
         } else {
             entities = incidenciaRepository.findAllByTipoIncidencia_Id(tipoIncidencia, pageable);
         }
-
 
         int totalPages = entities.getTotalPages();
 
@@ -183,7 +203,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAllByIncidenciaPadre_IdBetween(1,999998);
+        List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAllByIncidenciaPadre_IdBetween(1, 999998);
 
         model.addAttribute("tiposIncidencia", tiposIncidencias);
         model.addAttribute("entities", entities);

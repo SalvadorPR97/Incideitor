@@ -114,6 +114,15 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     }
 
 
+
+    /**
+     * Método que devuelve una vista con todos los usuarios en modo administrador, con filtros y paginados.
+     * @param nombre    Nombre de usuario (opcional)
+     * @param page      Número de página
+     * @param size      Tamaño de página
+     * @param model     Modelo de la vista
+     * @return  Vista de la lista de usuarios
+     */
     @GetMapping("/admin")
     public String getAllAdmin(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
                               @RequestParam(defaultValue = "10") int size,
@@ -128,6 +137,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
 
         Page<Usuario> entities;
+        // Si el nombre está informado, devuelve los usuarios filtrados por ese nombre.
         if (nombre == null){
             entities = usuarioRepository.findAll(pageable);
         } else {
@@ -152,6 +162,12 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     }
 
 
+
+    /**
+     * Método que muestra el formulario para crear un nuevo usuario.
+     * @param model Modelo de la vista
+     * @return  Vista del formulario de creación de usuario
+     */
     @GetMapping("/create")
     public String mostrarFormulario(Model model) {
         model.addAttribute("usuario", new Usuario());
@@ -160,6 +176,14 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         return "index";
     }
 
+
+    /**
+     * Método que crea un nuevo usuario.
+     * @param usuario   Usuario a crear
+     * @param file      Archivo de imagen de avatar (opcional)
+     * @return  Redirección a la página principal
+     * @throws IOException  Excepción de E/S si ocurre un error al guardar la imagen
+     */
     @PostMapping("/create")
     public String crearUsuario(@ModelAttribute Usuario usuario, @RequestParam(required = false) MultipartFile file) throws IOException {
 
@@ -194,6 +218,13 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         return "redirect:/";
     }
 
+    /**
+     * Método que muestra los detalles de un usuario para editar.
+     * @param id    ID del usuario a editar
+     * @param model Modelo de la vista
+     * @return  Vista de los detalles del usuario
+     * @throws MiEntidadNoEncontradaException    Excepción personalizada si no se encuentra el usuario
+     */
     @GetMapping("/edit/{id}")
     public String editDto(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
         try {
@@ -210,6 +241,13 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         }
     }
 
+
+    /**
+     * Método que guarda los detalles editados de un usuario.
+     * @param dto   Datos editados del usuario
+     * @return  Redirección a la página de administración de usuarios
+     */
+
     @PostMapping("/edit/{id}")
     public String saveDto (@ModelAttribute UsuarioDatosPrivados dto){
         this.usuarioService.guardarUsuarioDatosPrivados(dto);
@@ -217,38 +255,12 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
     }
 
-    // Creamos el GetMapping que te va a redireccionar al html de login
-    @GetMapping("/login")
-    public String vistaLogin(){
-        System.out.println("login");
-        return "acceso/login";
-    }
 
-
-    @PostMapping("/login")
-    public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto, Model model) {
-        //Obtenemos el usuario y la contraseña respectivamente
-        String usr = loginDto.getUsername();
-        System.out.println("usr :" + usr);
-        String password = loginDto.getPassword();
-        System.out.println("pass :" + password);
-        //Aqui buscamos en el repositorio un objeto Usuario que coincida con ese nombre de usuario y contraseña y pasamos
-        // la contraseña por codificador para compararla con la version codificada de la BBDD.
-        Optional<Usuario> usuarioOptional = usuarioRepository.findUsuarioByEmailAndContrasena(loginDto.getUsername(),
-                passwordEncoder.encode(loginDto.getPassword()));
-        //¿es correcta la password?
-        if (usuarioOptional.isPresent())
-        {
-            model.addAttribute("entityName", "home");
-            model.addAttribute("nombreVista", "principal");
-            return "index";
-        }else {
-            return "redirect:/acceso/login";
-        }
-    }
-
-
-
+    /**
+     * Método que guarda los detalles editados de un usuario.
+     * @param model Modelo de la vista
+     * @return  Redirección a la página de administración de usuarios
+     */
 
     @GetMapping("logic/{id}")
     public String borradoLogico(@PathVariable Object id , Model model) {
@@ -264,6 +276,13 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
     }
 
+
+    /**
+     * Método que muestra la vista de "Mi Perfil" del usuario.
+     * @param model Modelo de la vista
+     * @return  Vista de "Mi Perfil"
+     * @throws MiEntidadNoEncontradaException    Excepción personalizada si no se encuentra el usuario
+     */
     @GetMapping("/miperfil")
     public String miperfil(Model model) throws MiEntidadNoEncontradaException {
         try {
@@ -300,8 +319,11 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         return cadena;
     }
 
-    //URL PARA EL CAMBIO DE CONTRASEÑA
-
+    /**
+     * Método que muestra la vista para restablecer la contraseña.
+     * @param model Modelo de la vista
+     * @return Vista de restablecer contraseña
+     */
     @GetMapping("/olvidarPass")
     public String formResetPass(Model model){
         model.addAttribute("entityName", entityName);
@@ -309,6 +331,13 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         return "index";
     }
 
+
+    /**
+     * Método que realiza el cambio de contraseña del usuario.
+     * @param email Correo electrónico del usuario
+     * @return Redirecciona a la página principal
+     * @throws Exception Excepción general
+     */
     @PostMapping("/olvidarPass")
     public String cambiopass(String email) throws Exception {
         //Busco mi usuario en la BBDD
@@ -339,6 +368,12 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         }
     }
 
+    /**
+     * Método que muestra la vista para el cambio de contraseña.
+     * @param token Token proporcionado para el cambio de contraseña
+     * @param model Modelo de la vista
+     * @return Vista de cambio de contraseña
+     */
     // Ahora vamos a cambiar la contraseña con el nuevo token proporcionado
     @GetMapping("/resetpass/{token}")
     public String cambiopass(@PathVariable("token") String token, Model model) {
@@ -363,6 +398,14 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         }
     }
 
+
+    /**
+     * Método que guarda la nueva contraseña del usuario.
+     * @param dto Datos del cambio de contraseña
+     * @param request Solicitud HTTP
+     * @return Redirecciona a la página principal
+     * @throws Exception Excepción general
+     */
     @PostMapping("/resetpass")
     public String guardarUsuario(@ModelAttribute UsuarioCambioPassword dto, HttpServletRequest request) throws Exception {
 

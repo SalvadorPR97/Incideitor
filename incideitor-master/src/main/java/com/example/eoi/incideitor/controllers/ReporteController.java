@@ -3,9 +3,7 @@ package com.example.eoi.incideitor.controllers;
 
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
-import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.entities.Reporte;
-import com.example.eoi.incideitor.entities.TipoIncidencia;
 import com.example.eoi.incideitor.repositories.ReporteRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +78,13 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
         super.entityName = entityName;
     }
 
+
+    /**
+     * Maneja una solicitud GET a "/create" y muestra un formulario para crear un nuevo informe.
+     *
+     * @param model El modelo que se va a poblar con atributos para renderizar la vista.
+     * @return El nombre de la plantilla de vista.
+     */
     @GetMapping("/create")
     public String mostrarFormulario(Model model) {
         model.addAttribute("entity", new Reporte());
@@ -88,12 +93,29 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
         return "index";
     }
 
+
+    /**
+     * Maneja una solicitud POST a "/create" y crea un nuevo informe.
+     *
+     * @param reporte El objeto Reporte recibido desde el formulario.
+     * @return El nombre de la plantilla de vista de redirección.
+     */
     @PostMapping("/create")
     public String crearReporte(@ModelAttribute Reporte reporte) {
         service.create(reporte);
         return "redirect:/reporte/admin";
     }
 
+
+    /**
+     * Maneja una solicitud GET a "/adminError" y muestra todos los reportes de categoría "Error".
+     *
+     * @param nombre El nombre del informe a buscar (opcional).
+     * @param page El número de página actual.
+     * @param size El tamaño de página.
+     * @param model El modelo que se va a poblar con atributos para renderizar la vista.
+     * @return El nombre de la plantilla de vista.
+     */
     @GetMapping("/adminError")
     public String getAllAdminError(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
                               @RequestParam(defaultValue = "10") int size,
@@ -108,6 +130,7 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
             Pageable pageable = PageRequest.of(page-1, size);
 
         Page<Reporte> entities;
+        // Si nos viene informado el nombre, devolveremos la lista filtrada.
         if (nombre == null){
             entities = reporteRepository.findAllByCategoriaEquals("Error",pageable);
         } else {
@@ -130,6 +153,16 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
         return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
 
+
+    /**
+     * Maneja una solicitud GET a "/adminError" y muestra todos los reportes de categoría "Error".
+     *
+     * @param nombre El nombre del informe a buscar (opcional).
+     * @param page El número de página actual.
+     * @param size El tamaño de página.
+     * @param model El modelo que se va a poblar con atributos para renderizar la vista.
+     * @return El nombre de la plantilla de vista.
+     */
     @GetMapping("/adminBugs")
     public String getAllAdminBugs(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
                                    @RequestParam(defaultValue = "10") int size,
@@ -144,6 +177,7 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
         Pageable pageable = PageRequest.of(page-1, size);
 
         Page<Reporte> entities;
+        // Si nos viene informado el nombre, devolveremos la lista filtrada.
         if (nombre == null){
             entities = reporteRepository.findAllByCategoriaEquals("Bug",pageable);
         } else {

@@ -35,12 +35,18 @@ public class MainController {
     NotificacionController notificacionController;
 
 
+    /**
+     * Muestra la página de inicio y carga las últimas incidencias y sus fotos.
+     *
+     * @param page  El número de página a mostrar.
+     * @param size  El tamaño de página.
+     * @param model El modelo de datos para la vista.
+     * @return El nombre de la plantilla de la vista.
+     */
     @GetMapping(value={"","/"})
     public String mostrarIndex(@RequestParam(defaultValue = "1") int page,
                                @RequestParam(defaultValue = "10") int size,Model model)
     {
-        //Lectura del usuaro activo en la sesión
-
         //Sacamos del repositorio todas las incidencias ordenadas de por id en orden descendente
         List<Incidencia> incidencias = incidenciaRepository.obtenerUltimaIncidencia();
         if(!incidencias.isEmpty()){
@@ -80,26 +86,30 @@ public class MainController {
 
 
 
-    @GetMapping(value={"/about"})
-    public String mostrarAbout(Model model)
-    {
+    /**
+     * Muestra la página "Acerca de".
+     *
+     * @param model El modelo de datos para la vista.
+     * @return El nombre de la plantilla de la vista.
+     */
+    @GetMapping(value = {"/about"})
+    public String mostrarAbout(Model model) {
         model.addAttribute("entityName", "home");
         model.addAttribute("nombreVista", "about");
         return "index";
     }
 
-    @GetMapping(value={"/terminos-y-condiciones"})
-    public String mostrarTerminos(Model model)
-    {
+    /**
+     * Muestra la página de "Términos y Condiciones".
+     *
+     * @param model El modelo de datos para la vista.
+     * @return El nombre de la plantilla de la vista.
+     */
+    @GetMapping(value = {"/terminos-y-condiciones"})
+    public String mostrarTerminos(Model model) {
         model.addAttribute("entityName", "home");
         model.addAttribute("nombreVista", "terminos-y-condiciones");
         return "index";
-    }
-    @GetMapping(value={"/maps"})
-    public String mostrarMapa()
-    {
-
-        return "maps";
     }
 
 

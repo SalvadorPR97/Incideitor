@@ -44,6 +44,14 @@ public class NotificacionController extends GenericServiceWithJPA<Notificacion, 
     @Autowired
     NotificacionRepository notificacionRepository;
 
+
+    /**
+     * Obtiene la lista de notificaciones del usuario, accediendo a cada incidencia de cada usuario. Así evitamos una
+     * relación circular en nuestro modelo.
+     *
+     * @param model El modelo de datos para la vista.
+     * @return La lista de notificaciones del usuario.
+     */
     @ModelAttribute("misNotificaciones")
     public List<ListaNotificacionesUsuarioDTO> obtenerNotificaciones(Model model) {
 
@@ -102,6 +110,13 @@ public class NotificacionController extends GenericServiceWithJPA<Notificacion, 
     }
 
 
+
+    /**
+     * Cuenta el número de notificaciones del usuario.
+     *
+     * @param model El modelo de datos para la vista.
+     * @return El número de notificaciones del usuario.
+     */
     public String contarNotificaciones(Model model) {
         // Obtener la lista de notificaciones
         List<ListaNotificacionesUsuarioDTO> listaNotificaciones = obtenerNotificaciones(model);
@@ -118,8 +133,14 @@ public class NotificacionController extends GenericServiceWithJPA<Notificacion, 
         return numeroNotificaciones;
     }
 
-
-    //Metodo para mostrar la lista de notificaciones de forma paginada
+    /**
+     * Muestra la lista de notificaciones del usuario de forma paginada.
+     *
+     * @param page  El número de página actual.
+     * @param size  El tamaño de página.
+     * @param model El modelo de datos para la vista.
+     * @return El nombre de la plantilla de la vista.
+     */
     @GetMapping("/misNotificaciones")
     public String misIncidencias(@RequestParam(defaultValue = "1") int page,
                                  @RequestParam(defaultValue = "10") int size,
@@ -171,7 +192,13 @@ public class NotificacionController extends GenericServiceWithJPA<Notificacion, 
     }
 
 
-    //Metodo para descartar las notificaciones mediante el borradoLogico
+    /**
+     * Descarta una notificación mediante el borrado lógico.
+     *
+     * @param model El modelo de datos para la vista.
+     * @param id    El ID de la notificación a descartar.
+     * @return El nombre de la plantilla de la vista.
+     */
     @GetMapping("/descartar/{id}")
     public String borradoLogico(Model model, @PathVariable int id){
         //Buscamos la notificacion por el id que recibimos de la vista
