@@ -4,12 +4,12 @@ INSERT INTO roles(nombre) VALUES ('ANONIMO');
 INSERT INTO roles(nombre) VALUES ('AYUNTAMIENTO_ADMIN');
 INSERT INTO roles(nombre) VALUES ('AYUNTAMIENTO_GESTOR');
 
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Chiclana', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Jerez', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Murcia', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Albacete', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Toledo', 'Juan', 'Juan', 'Juan', 'Juan');
-INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Miami', 'Juan', 'Juan', 'Juan', 'Juan');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Chiclana', 'chiclana.png', 'chiclana2.png', 'chiclana3.png', 'chiclana3.png');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Jerez', 'jerez.png', 'jerez2.png', 'jerez3.png', 'jerez4.png');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Murcia', 'murcia.png', 'murcia2.png', 'murcia3.png', 'murcia4.png');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Albacete', 'albacete.png', 'albacete2.png', 'albacete3.png', 'albacete4.png');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Toledo', 'toledo.png', 'toledo2.png', 'toledo3.png', 'toledo4.png');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Sevilla', 'sevilla.png', 'sevilla2.png', 'sevilla3.png', 'sevilla4.png');
 
 -- la contraseña es: No12345..
 INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Juan', 'Y medio', 'juan.png', 'juan@gmail.com', '12345678A', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 1);
