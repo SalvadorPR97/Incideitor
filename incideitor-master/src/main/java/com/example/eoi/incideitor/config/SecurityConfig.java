@@ -66,9 +66,10 @@ public class SecurityConfig {
 //                .requestMatchers("/**").permitAll()
                 .requestMatchers("/","").permitAll()
                 .requestMatchers("/usuario/create").permitAll()
-                .requestMatchers("/usuario/miperfil").hasAuthority("ROL_USUARIO")
-                .requestMatchers("/usuario/all").hasAuthority("ROL_USUARIO")
-                .requestMatchers("/*/admin").hasAuthority("ROL_ADMINISTRADOR")
+                .requestMatchers("/usuario/miperfil").hasAuthority("USUARIO")
+                .requestMatchers("/usuario/miperfil").hasAuthority("ADMINISTRADOR")
+                .requestMatchers("/usuario/all").hasAuthority("USUARIO")
+                .requestMatchers("/*/admin").hasAuthority("ADMINISTRADOR")
                 .requestMatchers("/ayuntamiento/datosayuntamiento").hasAuthority("AYUNTAMIENTO_ADMIN")
                 .anyRequest().authenticated()
 
