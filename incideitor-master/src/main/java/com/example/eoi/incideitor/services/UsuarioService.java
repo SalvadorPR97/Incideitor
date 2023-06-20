@@ -7,8 +7,6 @@ import com.example.eoi.incideitor.dtos.UsuarioDatosPrivadosAyuntamiento;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.mapper.UsuarioMapper;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,13 +17,15 @@ public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
 
     private final UsuarioMapper usuarioMapper;
 
-    private final UsuarioRepository usuarioRepository;
-
     public UsuarioService(UsuarioMapper usuarioMapper, UsuarioRepository usuarioRepository) {
         this.usuarioMapper = usuarioMapper;
-        this.usuarioRepository = usuarioRepository;
     }
 
+    /**
+     * Lee los datos privados de un usuario por su identificador.
+     * @param id El identificador del usuario.
+     * @return Un objeto UsuarioDatosPrivados que contiene los datos privados del usuario.
+     */
     public UsuarioDatosPrivados leerUsuarioPrivado (Integer id){
         UsuarioDatosPrivados usuarioDatosPrivados = new UsuarioDatosPrivados();
         Optional<Usuario> usuario = this.repository.findById(id);
@@ -34,6 +34,12 @@ public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
         }
         return usuarioDatosPrivados;
     }
+
+    /**
+     * Guarda los datos privados de un usuario.
+     * @param dto Un objeto UsuarioDatosPrivados que contiene los datos privados a guardar.
+     * @return Un objeto UsuarioDatosPrivados que representa los datos privados del usuario guardado.
+     */
     public  UsuarioDatosPrivados guardarUsuarioDatosPrivados(UsuarioDatosPrivados dto){
         Usuario usuario = this.usuarioMapper.toEntity(dto);
         // Vamos a conseguir los datos que nos faltan
@@ -59,6 +65,11 @@ public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
 
     }
 
+    /**
+     * Lee los datos de un usuario del ayuntamiento por su identificador.
+     * @param id El identificador del usuario.
+     * @return Un objeto UsuarioDatosPrivadosAyuntamiento que contiene los datos del usuario del ayuntamiento.
+     */
     public UsuarioDatosPrivadosAyuntamiento leerUsuarioAyuntamiento (Integer id){
         UsuarioDatosPrivadosAyuntamiento usuarioDatosPrivadosAyuntamiento = new UsuarioDatosPrivadosAyuntamiento();
         Optional<Usuario> usuario = this.repository.findById(id);
@@ -68,9 +79,14 @@ public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
         return usuarioDatosPrivadosAyuntamiento;
     }
 
+    /**
+     * Guarda los datos de un usuario del ayuntamiento.
+     * @param dto Un objeto UsuarioDatosPrivadosAyuntamiento que contiene los datos a guardar.
+     * @return Un objeto UsuarioDatosPrivadosAyuntamiento que representa los datos del usuario del ayuntamiento guardado.
+     */
     public  UsuarioDatosPrivadosAyuntamiento guardarUsuarioAyuntamiento(UsuarioDatosPrivadosAyuntamiento dto){
         Usuario usuario = this.usuarioMapper.toEntityAyuntamiento(dto);
-        // Vamos a conseguir los datos que nos faltan
+        // Conseguimos los datos que nos faltan
         Optional<Usuario> usuarioBDD = this.repository.findById(dto.getId());
         if (usuarioBDD.isPresent()){
             usuario.setDepartamento(usuarioBDD.get().getDepartamento());
@@ -79,7 +95,7 @@ public class UsuarioService extends GenericServiceWithJPA<Usuario, Integer> {
             usuario.setReportes(usuarioBDD.get().getReportes());
             usuario.setIncidencias(usuarioBDD.get().getIncidencias());
         }
-        // Vamos a guardar el usuario
+        // Guardamos el usuario
         Usuario usuarioGuardado = update(usuario);
         return this.usuarioMapper.toDtoAyuntamiento(usuarioGuardado);
 

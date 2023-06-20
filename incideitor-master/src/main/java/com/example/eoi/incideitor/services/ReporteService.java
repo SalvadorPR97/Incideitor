@@ -17,6 +17,11 @@ public class ReporteService extends GenericServiceWithJPA<Reporte, Integer> {
     public ReporteService(ReporteMapper reporteMapper){this.reporteMapper = reporteMapper;}
 
 
+    /**
+     * Lee un reporte por su ID y lo devuelve como un DTO de reporte.
+     * @param id El ID del reporte a leer.
+     * @return El DTO de reporte correspondiente al reporte encontrado, o un DTO vacío si no se encuentra.
+     */
     public ReporteDTO leerReporte (Integer id){
         ReporteDTO reporteDTO = new ReporteDTO();
         Optional<Reporte> reporte = this.repository.findById(id);
@@ -26,11 +31,16 @@ public class ReporteService extends GenericServiceWithJPA<Reporte, Integer> {
         return reporteDTO;
     }
 
-    public ReporteDTO guardarReporte (ReporteDTO dto){
+    /**
+     * Guarda un reporte a partir de un DTO de reporte.
+     * @param dto El DTO de reporte que contiene los datos del reporte a guardar.
+     * @return El DTO de reporte correspondiente al reporte guardado.
+     */
+    public ReporteDTO guardarReporte(ReporteDTO dto) {
         Reporte reporte = this.reporteMapper.toEntityReporte(dto);
 
-    // Guardar Reporte
-    Reporte reporteGuardado = update(reporte);
-    return this.reporteMapper.toDto(reporteGuardado);
+        // Guardar Reporte
+        Reporte reporteGuardado = update(reporte);
+        return this.reporteMapper.toDto(reporteGuardado);
     }
 }

@@ -15,7 +15,10 @@ public class ObtenerDatosUsuario {
     @Autowired
      UsuarioRepository usuarioRepository;
 
-    //Metodo para obtener los datos del usuario que se encuentra actualmente autenticado
+    /**
+     * Método para obtener los datos del usuario autenticado.
+     * @return El objeto Usuario que representa al usuario autenticado.
+     */
     public Usuario getUserData(){
         String  userName = "no informado";
 

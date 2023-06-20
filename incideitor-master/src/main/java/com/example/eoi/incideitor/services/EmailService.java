@@ -4,7 +4,6 @@ import com.example.eoi.incideitor.dtos.Email;
 import freemarker.template.Configuration;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +20,10 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import org.json.simple.JSONObject;
 
+
+/**
+ * Servicio para enviar correos electrónicos utilizando JavaMailSender.
+ */
 @Service
 public class EmailService {
 	private Session session;
@@ -36,6 +39,9 @@ public class EmailService {
 	}
 
 
+	/**
+	 * Inicializa la sesión de correo electrónico utilizando las credenciales y la configuración de Mailtrap.
+	 */
 	public void initSesion(){
 		//provide Mailtrap's username
 		final String username = "api";
@@ -59,6 +65,10 @@ public class EmailService {
 	}
 
 
+	/**
+	 * Envía un correo electrónico utilizando la sesión de correo electrónico inicializada.
+	 * @param mail El objeto Email que contiene los datos del correo electrónico a enviar.
+	 */
 	public void sendMail(Email mail) {
 
 		initSesion();
@@ -84,6 +94,11 @@ public class EmailService {
 
 	}
 
+	/**
+	 * Envía un correo electrónico utilizando la API de Mailtrap.
+	 * @param mail El objeto Email que contiene los datos del correo electrónico a enviar.
+	 * @throws IOException Si se produce un error al realizar la solicitud HTTP.
+	 */
 	public void sendAPIMail(Email mail) throws IOException {
 		OkHttpClient client = new OkHttpClient().newBuilder()
 				.build();
