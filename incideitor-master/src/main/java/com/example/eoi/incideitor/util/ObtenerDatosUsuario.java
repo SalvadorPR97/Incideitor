@@ -3,7 +3,6 @@ package com.example.eoi.incideitor.util;
 import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;

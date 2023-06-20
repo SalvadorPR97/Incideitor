@@ -23,6 +23,15 @@ import java.util.stream.Stream;
 @Component
 public class FileUploadUtil {
 
+
+    /**
+     * Método para guardar un archivo en una ubicación específica del sistema de archivos.
+     *
+     * @param uploadDir    Directorio de subida donde se guardará el archivo
+     * @param fileName     Nombre del archivo a guardar
+     * @param multipartFile Archivo MultipartFile que se va a guardar
+     * @throws IOException Si ocurre un error al guardar el archivo
+     */
     //Método para guardar un archivo en una ubicación específica del sistema de archivos.
     public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
         //Se crea un objeto Path utilizando la direccion del directorio de subida proporcionada.
@@ -45,7 +54,17 @@ public class FileUploadUtil {
         }
     }
 
-    //Método para subir imágenes de incidencias
+
+    /**
+     * Método para subir imágenes de incidencias.
+     *
+     * @param file  Archivo MultipartFile del primer archivo
+     * @param file2 Archivo MultipartFile del segundo archivo (opcional)
+     * @param file3 Archivo MultipartFile del tercer archivo (opcional)
+     * @param id    ID de la incidencia a la cual se asocian los archivos
+     * @return Lista de nombres de archivos guardados
+     * @throws IOException Si ocurre un error al guardar los archivos
+     */
     public List<String> uploadImgIncidencia(@RequestParam MultipartFile file, @RequestParam(required = false) MultipartFile file2, @RequestParam(required = false) MultipartFile file3, long id) throws IOException {
         //Se obtiene el nombre de archivo original,limpiando la ruta y dejando solo el nombre del archivo.
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -80,7 +99,14 @@ public class FileUploadUtil {
         return listaFileName;
     }
 
-    //Método para subir imagen de avatar
+    /**
+     * Método para subir una imagen de avatar.
+     *
+     * @param file Archivo MultipartFile del avatar
+     * @param id   ID del usuario al cual se asocia el avatar
+     * @return Nombre del archivo guardado
+     * @throws IOException Si ocurre un error al guardar el archivo
+     */
     public String uploadImgAvatar(@RequestParam MultipartFile file, Integer id) throws IOException {
         //Se obtiene el nombre de archivo original,limpiando la ruta y dejando solo el nombre del archivo.
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -93,7 +119,12 @@ public class FileUploadUtil {
         return fileName;
     }
 
-    //Método que se encarga de listar los archivos en un directorio específico utilizando Java IO
+    /**
+     * Método que se encarga de listar los archivos en un directorio específico utilizando Java IO.
+     *
+     * @param dir Directorio del cual se listarán los archivos
+     * @return Set de nombres de archivos en el directorio
+     */
     public Set<String> listFilesUsingJavaIO(String dir) {
         //Se crea un Set vacío para almacenar los nombres de archivo
         Set<String> strout = new HashSet<>();
@@ -112,7 +143,12 @@ public class FileUploadUtil {
         return strout;
     }
 
-    //Método para comprobar si hay archivos en un directorio específico
+    /**
+     * Método para comprobar si hay archivos en un directorio específico.
+     *
+     * @param dir Directorio a comprobar
+     * @return true si hay archivos en el directorio, false si no
+     */
     public boolean HayArchivos(String dir) {
         //Se crea un objeto File utilizando la ruta del directorio proporcionada.
         File directory = new File(dir);
