@@ -7,10 +7,18 @@
     <main class="container-fluid">
         <div class="text-center row py-5">
             <div class="col-12 col-lg-6 p-lg-12 mx-auto ">
-                <video src="video/videoPortada.mp4" class="video_tutorial" controls> Video</video>
+                <video src="video/video.mp4" class="video_tutorial" controls> Video</video>
             </div>
             <div class="col-md-6 d-none d-lg-block">
-                    <span th:text="#{home.texto}"> </span>
+                <div class="mt-5 texto_principal">
+                    <div class="col-12 texto_principal_titulo">
+                        <h2 th:text="#{home.bienvenida}"> </h2>
+                    </div>
+                    <div class="col-12 texto_principal_texto">
+                        <span th:text="#{home.texto}"> </span>
+                    </div>
+                </div>
+
             </div>
         </div>
         <section class="row noticias">

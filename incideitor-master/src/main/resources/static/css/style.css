@@ -54,6 +54,19 @@ header[class~=tittle]{
     max-width: 100%;
 }
 
+.texto_principal{
+    background-color: #ffffff;
+    padding: 2em;
+
+}
+.texto_principal_titulo{
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+.texto_principal_texto{
+    font-size: 17px;
+}
+
 
 .texto{
     background-color: #ffffff;
