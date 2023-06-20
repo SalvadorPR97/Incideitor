@@ -9,7 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AyuntamientoMapper {
 
-    //CONVERTIMOS LA ENTIDAD A DTO
+    /**
+     * Convierte una entidad Ayuntamiento a un DTO AyuntamientoDTO.
+     *
+     * @param entidad Entidad Ayuntamiento
+     * @return DTO AyuntamientoDTO
+     */
     public AyuntamientoDTO toDto(Ayuntamiento entidad){
         final AyuntamientoDTO dto = new AyuntamientoDTO();
         ModelMapper modelMapper = new ModelMapper();
@@ -17,6 +22,12 @@ public class AyuntamientoMapper {
         return dto;
     }
 
+    /**
+     * Convierte un DTO AyuntamientoDTO a una entidad Ayuntamiento.
+     *
+     * @param dto DTO AyuntamientoDTO
+     * @return Entidad Ayuntamiento
+     */
     public Ayuntamiento toEntity(AyuntamientoDTO dto){
         final Ayuntamiento entity = new Ayuntamiento();
         ModelMapper modelMapper = new ModelMapper();
@@ -24,6 +35,9 @@ public class AyuntamientoMapper {
         return entity;
     }
 
+    /**
+     * Constructor por defecto de la clase AyuntamientoMapper.
+     */
     public AyuntamientoMapper(){
 
     }

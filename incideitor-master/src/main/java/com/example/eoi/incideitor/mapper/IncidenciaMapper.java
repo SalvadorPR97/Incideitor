@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class IncidenciaMapper {
 
-    //Conversiones de entidad a DTO y de DTO a Entidad
-
+    /**
+     * Convierte una entidad Incidencia a un DTO IncidenciaUsuarioDTO.
+     *
+     * @param entidad Entidad Incidencia
+     * @return DTO IncidenciaUsuarioDTO
+     */
     public IncidenciaUsuarioDTO toDtoUsuario(Incidencia entidad){
         final IncidenciaUsuarioDTO dto = new IncidenciaUsuarioDTO();
         ModelMapper modelMapper = new ModelMapper();
@@ -18,6 +22,12 @@ public class IncidenciaMapper {
         return dto;
     }
 
+    /**
+     * Convierte un DTO IncidenciaUsuarioDTO a una entidad Incidencia.
+     *
+     * @param dto DTO IncidenciaUsuarioDTO
+     * @return Entidad Incidencia
+     */
     public Incidencia toEntityIncidenciaUsuario(IncidenciaUsuarioDTO dto){
         final Incidencia entity = new Incidencia();
         ModelMapper modelMapper = new ModelMapper();
@@ -25,6 +35,12 @@ public class IncidenciaMapper {
         return entity;
     }
 
+    /**
+     * Convierte una entidad Incidencia a un DTO IncidenciaDatos.
+     *
+     * @param entidad Entidad Incidencia
+     * @return DTO IncidenciaDatos
+     */
     public IncidenciaDatos toDtoIncidenciaDatos(Incidencia entidad){
         final IncidenciaDatos dto = new IncidenciaDatos();
         ModelMapper modelMapper = new ModelMapper();
@@ -32,6 +48,12 @@ public class IncidenciaMapper {
         return dto;
     }
 
+    /**
+     * Convierte un DTO IncidenciaDatos a una entidad Incidencia.
+     *
+     * @param dto DTO IncidenciaDatos
+     * @return Entidad Incidencia
+     */
     public Incidencia toEntityIncidenciaDatos(IncidenciaDatos dto){
         final Incidencia entity = new Incidencia();
         ModelMapper modelMapper = new ModelMapper();
@@ -39,7 +61,9 @@ public class IncidenciaMapper {
         return entity;
     }
 
-
+    /**
+     * Constructor por defecto de la clase IncidenciaMapper.
+     */
     public IncidenciaMapper() {
     }
 }
