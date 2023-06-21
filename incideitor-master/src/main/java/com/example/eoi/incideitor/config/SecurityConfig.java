@@ -46,7 +46,7 @@ public class SecurityConfig {
         http.formLogin(form -> form
                 .loginPage("/acceso/login")
                 .failureUrl("/login-error")
-                .defaultSuccessUrl("/",true)
+                .defaultSuccessUrl("/", true)
                 .permitAll()
         );
 
@@ -64,13 +64,13 @@ public class SecurityConfig {
                 .requestMatchers("/uploads/**").permitAll()
                 // Añadimos la siguiente línea para poder acceder más facilmente
 //                .requestMatchers("/**").permitAll()
-                .requestMatchers("/","").permitAll()
+                .requestMatchers("/", "").permitAll()
                 .requestMatchers("/usuario/create").permitAll()
                 .requestMatchers("/about").permitAll()
                 .requestMatchers("/terminos-y-condiciones").permitAll()
                 .requestMatchers("/*/admin").hasAuthority("ADMINISTRADOR")
                 .requestMatchers("/*/all").hasAuthority("ADMINISTRADOR")
-                .requestMatchers("/ayuntamiento/datos").hasAnyAuthority("ADMINISTRADOR","AYUNTAMIENTO_ADMIN")
+                .requestMatchers("/ayuntamiento/datos").hasAnyAuthority("ADMINISTRADOR", "AYUNTAMIENTO_ADMIN")
                 .anyRequest().authenticated()
 
                 .and()
