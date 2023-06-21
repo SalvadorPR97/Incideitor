@@ -66,7 +66,7 @@ INSERT INTO estados (nombre) VALUES ('Finalizado');
 
 INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Baldosa rota','La baldosa de la calle está levantada y se puede caer alguien','2023-06-10',21, 'Calle Ópalo, Mijas, España',1,1,1);
 INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Tapa de arqueta desaparecida','La tapa de la arqueta de la calle no está','2023-06-11',31, 'Calle Diamante, Mijas, España',2,3,1);
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Cristal de farola roto','El cristal de la farola está roto','2023-06-11',26, 'Calle Ónice, Mijas, España',3,4,3);
+INSERT INTO incidencias(titulo, descripcion, fecha, fechaResolucion, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Cristal de farola roto','El cristal de la farola está roto','2023-06-11','2023-06-18',26, 'Calle Ónice, Mijas, España',3,4,3);
 INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Bombilla fundida','La bombilla no funciona','2023-06-21',27, 'Calle Zafiro, Mijas, España',4,5,2);
 
 

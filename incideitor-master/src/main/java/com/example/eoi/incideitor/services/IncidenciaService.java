@@ -7,6 +7,7 @@ import com.example.eoi.incideitor.entities.Incidencia;
 import com.example.eoi.incideitor.mapper.IncidenciaMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 
@@ -35,6 +36,7 @@ public class IncidenciaService extends GenericServiceWithJPA<Incidencia, Long> {
         Optional<Incidencia> incidenciBDD = this.repository.findById(dto.getId());
         if (incidenciBDD.isPresent()){
             incidencia.setFecha(incidenciBDD.get().getFecha());
+            incidencia.setFechaResolucion(incidenciBDD.get().getFechaResolucion());
             incidencia.setUsuario(incidenciBDD.get().getUsuario());
             incidencia.setAyuntamiento(incidenciBDD.get().getAyuntamiento());
             incidencia.setHistoricos(incidenciBDD.get().getHistoricos());
@@ -47,6 +49,11 @@ public class IncidenciaService extends GenericServiceWithJPA<Incidencia, Long> {
             incidencia.setBorradoLogico(incidenciBDD.get().getBorradoLogico());
             incidencia.setIdGestor(incidenciBDD.get().getIdGestor());
             incidencia.setTipoIncidencia(incidenciBDD.get().getTipoIncidencia());
+        }
+        if (incidencia.getEstado().getId() == 3){
+            incidencia.setFechaResolucion(LocalDate.now());
+        } else {
+            incidencia.setFechaResolucion(null);
         }
         // Vamos a guardar el usuario
         Incidencia incidenciaGuardada = update(incidencia);

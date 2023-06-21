@@ -184,6 +184,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
     @PostMapping("/edit/{id}")
     public String saveDto (@ModelAttribute IncidenciaDatos dto){
+
         incidenciaService.guardarIncidenciaDatos(dto);
         return "redirect:/" + entityName + "/admin";
     }

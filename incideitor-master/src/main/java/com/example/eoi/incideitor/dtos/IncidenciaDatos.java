@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -17,6 +17,6 @@ public class IncidenciaDatos {
     private String titulo;
     private String descripcion;
     private Estado estado;
-    private Date fecha;
+    private LocalDate fecha;
 
 }
