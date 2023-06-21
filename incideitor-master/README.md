@@ -3,11 +3,12 @@
 Aplicación web diseñada para facilitar la gestión de incidencias relacionadas con los ayuntamientos.
 
 ## Modo de empleo:
-Al ser una aplicación web no necetita instalación previa, 
-solo la url del ayuntamiento el cual decidada contar con los servicios 
-de Incideitor.
-Una vez se encuentre en la página tendrá un acceso limitado mientras no
-se registre en la misma.
+Para usar la aplicación necesitará el jdk 20 y Docker instalado. Primero 
+abre docker, después ve a la línea de comandos he introduce:
+*$ docker compose up -d*. Ejecutar la aplicación pulsando "Run".
+
+
+
 
 ### Registro
 Es muy sencillo registrarse ya que cuando intente entrar en cualquier 
@@ -53,25 +54,25 @@ Se divide en funcionalidades:
 Esta carpeta se divide en las siguentes funcionalidades:
 
 - abstractComponents
-  - > 
+  - > Controladores y servicios genericos para Spring
 - confing
-  - > 
+  - >  Configuración de la App, del Modelo Vista controlador y de seguridad.
 - controllers
-  - > 
+  - > Controladores de las distintas entidades.
 - dtos
-  - >
+  - > Data Transfer Objet.
 - entities
-  - > 
+  - > Las diferentes clases o tablas utilizadas.
 - errorcontrol
-  - >
+  - > Controlador de errores y excepciones.
 - mapper
-  - > 
+  - > Sirve para cambiar de DTO a entidad y viceversa
 - repositories
-  - >
+  - > Interfaz que es un intermediario entre la Base de Datos y la aplicación.
 - services
-  - >
+  - > Métodos específicos usados en los controladores.
 - util
-  - > 
+  - > Clases comodin en las que se reunen métodos comunes.
 
 ### Resources
 
