@@ -1,9 +1,7 @@
 package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
-import com.example.eoi.incideitor.entities.Foto;
-import com.example.eoi.incideitor.entities.Incidencia;
-import com.example.eoi.incideitor.entities.TipoIncidencia;
+import com.example.eoi.incideitor.entities.*;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.IncidenciaRepository;
@@ -114,6 +112,17 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         incidencia.setFecha(LocalDate.now());
         // Obtenemos el usuario de la sesión y lo añadimos a la incidencia
         incidencia.setUsuario(obtenerDatosUsuario.getUserData());
+        // Seteamos por defecto el estado de la incidencia como "Registrado"
+        Estado estado = new Estado();
+        estado.setId(1);
+        incidencia.setEstado(estado);
+
+        // Añadimos que el ayuntamiento sea el ayuntamiento del usuario que crea la incidencia
+        Ayuntamiento ayuntamiento = new Ayuntamiento();
+        ayuntamiento.setId(obtenerDatosUsuario.getUserData().getAyuntamiento().getId());
+        incidencia.setAyuntamiento(ayuntamiento);
+
+        // Creamos la incidencia, la BDD se encargará de generarle el Id
         service.create(incidencia);
 
         notificacionService.crearNotificacion(incidencia, "Incidencia creada");
@@ -209,6 +218,46 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         model.addAttribute("entities", entities);
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "admin");
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+
+    @GetMapping("/misincidencias")
+    public String getMisIncidencias(@RequestParam(required = false) Integer tipoIncidencia, @RequestParam(defaultValue = "1") int page,
+                         @RequestParam(defaultValue = "10") int size,
+                         Model model) {
+
+        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")) {
+            String contador = notificacionController.contarNotificaciones(model);
+            model.addAttribute("contador", contador);
+        }
+        int id = obtenerDatosUsuario.getUserData().getId();
+
+        Pageable pageable = PageRequest.of(page - 1, size);
+
+        Page<Incidencia> entities;
+        if (tipoIncidencia == null) {
+            entities = incidenciaRepository.findAllByUsuarioId(id ,pageable);
+
+        } else {
+            entities = incidenciaRepository.findAllByUsuarioIdAndTipoIncidencia_Id(id, tipoIncidencia, pageable);
+        }
+
+        int totalPages = entities.getTotalPages();
+
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
+        List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAllByIncidenciaPadre_IdBetween(1, 999998);
+
+        model.addAttribute("tiposIncidencia", tiposIncidencias);
+        model.addAttribute("entities", entities);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "misincidencias");
         return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
 

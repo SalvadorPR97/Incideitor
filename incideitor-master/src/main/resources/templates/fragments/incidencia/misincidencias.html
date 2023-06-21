@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <body>
-<main th:fragment="admin" class="container-fluid flex-nowrap d-flex">
+<main th:fragment="misincidencias" class="container-fluid flex-nowrap d-flex">
 
 
     <div class="col-12 py-2 mx-3">
@@ -8,7 +8,7 @@
         <div>
             <h1>Incidencias</h1>
             <button type="button" onclick="location.href='/incidencia/create'" class="btn btn-primary mb-1">Nueva Incidencia</button>
-            <form th:action="@{/incidencia/admin}" method="get">
+            <form th:action="@{/incidencia/misincidencias}" method="get">
                 <label for="tipoIncidencia">Incidencia hijo:</label>
                 <select id="tipoIncidencia" name="tipoIncidencia">
                     <option value="">Seleccionar</option>
@@ -29,11 +29,8 @@
                     <th scope="col" onclick="sortTable(5)">Tipo</th>
                     <th scope="col" onclick="sortTable(6)">Subtipo</th>
                     <th scope="col">Direccion</th>
-                    <th scope="col">IdUsuario</th>
-                    <th scope="col">Ayuntamiento</th>
                     <th scope="col">Estado</th>
                     <th scope="col" onclick="sortTable(7)">Fecha Resolucion</th>
-                    <th scope="col">Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,15 +42,8 @@
                     <td th:text="${incidencia.tipoIncidencia?.incidenciaPadre.nombre}"></td>
                     <td th:text="${incidencia.tipoIncidencia.nombre}"></td>
                     <td th:text="${incidencia.direccion}"></td>
-                    <td th:text="${incidencia.usuario?.id}"></td>
-                    <td th:text="${incidencia.ayuntamiento?.nombre}"></td>
                     <td th:text="${incidencia.estado?.nombre}"></td>
                     <td>19/05/2023</td>
-                    <td>
-                        <a th:href="@{/incidencia/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>
-                        <a th:href="@{/incidencia/delete/{id}(id=${incidencia.id})}" class="btn btn-danger"
-                           onclick="return confirm('Seguro que quieres borrar esta entidad?')" ;>Eliminar</a>
-                    </td>
                 </tr>
 
                 </tbody>

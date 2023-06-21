@@ -29,6 +29,8 @@ public class Incidencia {
     private String descripcion;
 
     private LocalDate fecha;
+    private LocalDate fechaResolucion;
+
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")

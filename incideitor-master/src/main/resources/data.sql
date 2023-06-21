@@ -12,7 +12,7 @@ INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES
 INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Sevilla', 'sevilla.png', 'sevilla2.png', 'sevilla3.png', 'sevilla4.png');
 
 -- la contraseña es: No12345..
-INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Juan', 'Y medio', 'juan.png', 'juan@gmail.com', '12345678A', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 1);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id, ayuntamiento_id) VALUES ('Juan', 'Y medio', 'juan.png', 'juan@gmail.com', '12345678A', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 1,2);
 INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id, ayuntamiento_id) VALUES ('Manuel', 'Valles', 'manuel.png', 'manuel@gmail.com', '12345678B', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 2, 1);
 INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Manolo', 'Suarez', 'manolo.png', 'anonimo@anonimo.com', '12345678C', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Otro', 3);
 INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Carmelo', 'Cobo', 'carmelo.png', 'carmelo@gmail.com', '12345678D', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Mujer', 4);
@@ -64,10 +64,10 @@ INSERT INTO estados (nombre) VALUES ('En Curso');
 INSERT INTO estados (nombre) VALUES ('Finalizado');
 
 
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Baldosa rota','La baldosa de la calle está levantada y se puede caer alguien','2023-06-01',21,1,1,1);
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Tapa de arqueta desaparecida','La tapa de la arqueta de la calle no está','2023-06-01',31,2,3,1);
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Cristal de farola roto','El cristal de la farola está roto','2023-06-01',26,3,4,3);
-INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, usuario_id, ayuntamiento_id, estado_id) VALUES ('Bombilla fundida','La bombilla no funciona','2023-06-01',27,4,5,2);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Baldosa rota','La baldosa de la calle está levantada y se puede caer alguien','2023-06-10',21, 'Calle Ópalo, Mijas, España',1,1,1);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Tapa de arqueta desaparecida','La tapa de la arqueta de la calle no está','2023-06-11',31, 'Calle Diamante, Mijas, España',2,3,1);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Cristal de farola roto','El cristal de la farola está roto','2023-06-11',26, 'Calle Ónice, Mijas, España',3,4,3);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Bombilla fundida','La bombilla no funciona','2023-06-21',27, 'Calle Zafiro, Mijas, España',4,5,2);
 
 
 INSERT INTO historicos (incidencia_id, estado_id, fechaCambioEstado) VALUES (1, 1, '2023-06-01');

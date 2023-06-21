@@ -31,4 +31,8 @@ public interface IncidenciaRepository extends JpaRepository<Incidencia, Long> {
      * @return Página de incidencias del tipo especificado
      */
     Page<Incidencia> findAllByTipoIncidencia_Id(Object tipoIncidencia, Pageable pageable);
+
+    Page<Incidencia> findAllByUsuarioId(int idUsuario, Pageable pageable);
+
+    Page<Incidencia> findAllByUsuarioIdAndTipoIncidencia_Id(int idUsuario, Object tipoIncidencia, Pageable pageable);
 }
