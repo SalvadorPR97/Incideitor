@@ -42,7 +42,7 @@
                     <td th:text="${incidencia.titulo}"></td>
                     <td th:text="${incidencia.fecha}"></td>
                     <td th:text="${incidencia.descripcion}"></td>
-                    <td th:text="${incidencia.tipoIncidencia?.incidenciaPadre.nombre}"></td>
+                    <td th:text="${incidencia.tipoIncidencia?.incidenciaPadre?.nombre}"></td>
                     <td th:text="${incidencia.tipoIncidencia.nombre}"></td>
                     <td th:text="${incidencia.direccion}"></td>
                     <td th:text="${incidencia.usuario?.id}"></td>
@@ -50,7 +50,7 @@
                     <td th:text="${incidencia.estado?.nombre}"></td>
                     <td>19/05/2023</td>
                     <td>
-                        <a th:href="@{/incidencia/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/incidencia/edit/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>
                         <a th:href="@{/incidencia/delete/{id}(id=${incidencia.id})}" class="btn btn-danger"
                            onclick="return confirm('Seguro que quieres borrar esta entidad?')" ;>Eliminar</a>
                     </td>
