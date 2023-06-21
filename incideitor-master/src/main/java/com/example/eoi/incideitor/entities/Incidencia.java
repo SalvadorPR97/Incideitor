@@ -29,6 +29,8 @@ public class Incidencia {
     private String descripcion;
 
     private LocalDate fecha;
+
+    @Column(name = "FECHARESOLUCION")
     private LocalDate fechaResolucion;
 
 

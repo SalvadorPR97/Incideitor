@@ -1,8 +1,11 @@
 package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
+import com.example.eoi.incideitor.dtos.IncidenciaDatos;
+import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
 import com.example.eoi.incideitor.entities.*;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.example.eoi.incideitor.services.IncidenciaService;
 import com.example.eoi.incideitor.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.IncidenciaRepository;
 import com.example.eoi.incideitor.repositories.TipoIncidenciaRepository;
@@ -11,6 +14,7 @@ import com.example.eoi.incideitor.services.NotificacionService;
 import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +32,11 @@ import java.util.stream.IntStream;
 @Controller
 @RequestMapping("${url.incidencia}")
 public class IncidenciaController extends MiControladorGenerico<Incidencia> {
+
+
+    @Value("${google.maps.api.key}")
+    private String googleMapsApiKey;
+
 
     private final String entityName = "incidencia";
 
@@ -51,6 +60,9 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
     @Autowired
     NotificacionController notificacionController;
+
+    @Autowired
+    IncidenciaService incidenciaService;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -86,6 +98,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     public String mostrarFormulario(@RequestParam(value = "incidenciaPadre", required = false) Long incidenciaPadre, Model model) {
         List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAll();
 
+        model.addAttribute("googleMapsApiKey", googleMapsApiKey);
         model.addAttribute("tiposIncidencia", tiposIncidencias);
         model.addAttribute("incidenciaPadre", incidenciaPadre);
         model.addAttribute("entity", new Incidencia());
@@ -157,13 +170,14 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
      * @return El nombre de la plantilla de la vista.
      * @throws MiEntidadNoEncontradaException Si no se encuentra la incidencia.
      */
-    @Override
-    @GetMapping("/{id}")
-    public String getById(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
+
+    @GetMapping("/edit/{id}")
+    public String editDto(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
         try {
             Set<String> listaFotos = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/" + id);
-            Incidencia entity = service.getById(id);
-            model.addAttribute("entity", entity);
+            Incidencia incidencia = service.getById(id);
+            IncidenciaDatos dto = this.incidenciaService.leerIncidenciaDatos(incidencia.getId());
+            model.addAttribute("entity", dto);
             model.addAttribute("entityName", entityName);
             model.addAttribute("nombreVista", "entity-details");
             model.addAttribute("listaFotos", listaFotos);
@@ -173,6 +187,13 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         } catch (MiEntidadNoEncontradaException ex) {
             return "error"; // Nombre de la plantilla para mostrar la página de error
         }
+    }
+
+    @PostMapping("/edit/{id}")
+    public String saveDto (@ModelAttribute IncidenciaDatos dto){
+
+        incidenciaService.guardarIncidenciaDatos(dto);
+        return "redirect:/" + entityName + "/admin";
     }
 
     /**
