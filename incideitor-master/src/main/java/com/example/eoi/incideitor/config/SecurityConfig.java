@@ -72,6 +72,7 @@ public class SecurityConfig {
                 .requestMatchers("/usuario/olvidarPass").permitAll()
                 .requestMatchers("/usuario/recuperarPass").permitAll()
                 .requestMatchers("/usuario/resetearpasswordlogin").permitAll()
+                .requestMatchers("/usuario/resetpass/**").permitAll()
                 .requestMatchers("/*/admin").hasAuthority("ADMINISTRADOR")
                 .requestMatchers("/*/all").hasAuthority("ADMINISTRADOR")
                 .requestMatchers("/ayuntamiento/datos").hasAnyAuthority("ADMINISTRADOR", "AYUNTAMIENTO_ADMIN")

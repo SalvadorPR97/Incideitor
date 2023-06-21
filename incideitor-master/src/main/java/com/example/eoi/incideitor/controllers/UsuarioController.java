@@ -200,13 +200,16 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         // Creamos el usuario para poder obtener el id
         service.create(usuario);
 
-        //Guardamos la imagen
-        String fileName = fileUploadUtil.uploadImgAvatar(file, usuario.getId());
+        if(!file.isEmpty()){
+            //Guardamos la imagen
+            String fileName = fileUploadUtil.uploadImgAvatar(file, usuario.getId());
 
-        // Añadimos el nombre de la imagen al usuario
-        usuario.setAvatar(fileName);
-        // Y actualizamos el usuario
-        service.update(usuario);
+            // Añadimos el nombre de la imagen al usuario
+            usuario.setAvatar(fileName);
+            // Y actualizamos el usuario
+            service.update(usuario);
+        }
+
 
         //Generamos el contenido del email que vamos a enviar para darle la bienvenida
         Email emailRecPass = new Email();
