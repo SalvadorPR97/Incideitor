@@ -97,7 +97,6 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @GetMapping("/create")
     public String mostrarFormulario(@RequestParam(value = "incidenciaPadre", required = false) Long incidenciaPadre, Model model) {
         List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAll();
-        System.out.println("googleMapsApiKey = " + googleMapsApiKey);
 
         model.addAttribute("googleMapsApiKey", googleMapsApiKey);
         model.addAttribute("tiposIncidencia", tiposIncidencias);
