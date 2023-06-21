@@ -21,6 +21,13 @@ public class IncidenciaService extends GenericServiceWithJPA<Incidencia, Long> {
         this.incidenciaMapper = incidenciaMapper;
     }
 
+
+    /**
+     * Lee los datos de una incidencia a partir de su ID.
+     *
+     * @param id el ID de la incidencia a leer.
+     * @return los datos de la incidencia en forma de objeto IncidenciaDatos.
+     */
     public IncidenciaDatos leerIncidenciaDatos (Long id){
         IncidenciaDatos incidenciaDatos = new IncidenciaDatos();
         Optional<Incidencia> usuario = this.repository.findById(id);
@@ -30,6 +37,13 @@ public class IncidenciaService extends GenericServiceWithJPA<Incidencia, Long> {
         return incidenciaDatos;
     }
 
+
+    /**
+     * Usando el DTO y con la incidencias de la BDD, recuperamos el resto de campos de la entidad y la actualiza.
+     *
+     * @param dto los datos de la incidencia a guardar en forma de objeto IncidenciaDatos.
+     * @return los datos de la incidencia guardada en forma de objeto IncidenciaDatos.
+     */
     public  IncidenciaDatos guardarIncidenciaDatos(IncidenciaDatos dto){
         Incidencia incidencia = this.incidenciaMapper.toEntityIncidenciaDatos(dto);
         // Vamos a conseguir los datos que nos faltan

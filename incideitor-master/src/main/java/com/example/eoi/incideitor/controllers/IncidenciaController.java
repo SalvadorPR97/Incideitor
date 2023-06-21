@@ -159,7 +159,7 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         incidencia.setFotos(fotos);
         // Actualizamos la incidencia en la base de datos
         service.update(incidencia);
-        return "redirect:/incidencia/admin";
+        return "redirect:/incidencia/misincidencias";
     }
 
     /**

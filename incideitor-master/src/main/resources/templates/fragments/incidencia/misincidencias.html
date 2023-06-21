@@ -9,7 +9,7 @@
             <h1>Incidencias</h1>
             <button type="button" onclick="location.href='/incidencia/create'" class="btn btn-primary mb-1">Nueva Incidencia</button>
             <form th:action="@{/incidencia/misincidencias}" method="get">
-                <label for="tipoIncidencia">Incidencia hijo:</label>
+                <label for="tipoIncidencia">Subtipo Incidencia:</label>
                 <select id="tipoIncidencia" name="tipoIncidencia">
                     <option value="">Seleccionar</option>
                     <option th:each="tipo : ${tiposIncidencia}" th:value="${tipo.id}" th:text="${tipo.nombre}" ></option>
@@ -43,7 +43,7 @@
                     <td th:text="${incidencia.tipoIncidencia.nombre}"></td>
                     <td th:text="${incidencia.direccion}"></td>
                     <td th:text="${incidencia.estado?.nombre}"></td>
-                    <td>19/05/2023</td>
+                    <td th:text="${incidencia.fechaResolucion}"></td>
                 </tr>
 
                 </tbody>

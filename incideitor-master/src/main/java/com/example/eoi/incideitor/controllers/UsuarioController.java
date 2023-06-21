@@ -196,6 +196,10 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         String contrasena = passwordEncoder.encode(usuario.getContrasena());
         usuario.setContrasena(contrasena);
 
+        Ayuntamiento ayuntamiento = new Ayuntamiento();
+        ayuntamiento.setId(1);
+        usuario.setAyuntamiento(ayuntamiento);
+
         // Creamos el usuario para poder obtener el id
         service.create(usuario);
 

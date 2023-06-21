@@ -4,6 +4,7 @@ INSERT INTO roles(nombre) VALUES ('ANONIMO');
 INSERT INTO roles(nombre) VALUES ('AYUNTAMIENTO_ADMIN');
 INSERT INTO roles(nombre) VALUES ('AYUNTAMIENTO_GESTOR');
 
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Mijas', 'mijas.png', 'mijas2.png', 'mijas3.png', 'mijas4.png');
 INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Chiclana', 'chiclana.png', 'chiclana2.png', 'chiclana3.png', 'chiclana3.png');
 INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Jerez', 'jerez.png', 'jerez2.png', 'jerez3.png', 'jerez4.png');
 INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Murcia', 'murcia.png', 'murcia2.png', 'murcia3.png', 'murcia4.png');
