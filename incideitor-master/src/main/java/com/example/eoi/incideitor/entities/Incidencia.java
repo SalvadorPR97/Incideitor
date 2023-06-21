@@ -29,6 +29,8 @@ public class Incidencia {
     private String descripcion;
 
     private LocalDate fecha;
+    private LocalDate fechaResolucion;
+
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -40,10 +42,8 @@ public class Incidencia {
 
     @OneToMany(mappedBy = "incidencia")
     private Collection<Historico> historicos;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "lugar_id",referencedColumnName = "id")
-    private Lugar lugar;
+    
+    private String direccion;
 
     @OneToMany(mappedBy = "incidencia")
     private Collection<Foto> fotos;
@@ -62,7 +62,7 @@ public class Incidencia {
     private Collection<Voto> votos;
 
     @Column(columnDefinition = "int default 0")
-    private int borrado_logico;
+    private int borradoLogico;
 
     @OneToOne(mappedBy = "incidencia")
     private Usuario idGestor;

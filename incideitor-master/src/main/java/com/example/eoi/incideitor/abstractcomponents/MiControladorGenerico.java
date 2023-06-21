@@ -1,6 +1,7 @@
 package com.example.eoi.incideitor.abstractcomponents;
 
 
+import com.example.eoi.incideitor.controllers.NotificacionController;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -56,125 +58,110 @@ import java.util.stream.IntStream;
  */
 public abstract class MiControladorGenerico<T> {
 
-        protected Class<T> tClass;
+    protected Class<T> tClass;
 
-        protected String entityName;
-        protected String url;
+    protected String entityName;
 
-        @Autowired
-        protected GenericServiceWithJPA<T,?> service;
+    @Autowired
+    protected GenericServiceWithJPA<T, ?> service;
 
-        @Autowired
-        protected JpaRepository<T,?> jpaRepository;
+    @Autowired
+    protected JpaRepository<T, ?> jpaRepository;
+
+    @Autowired
+    NotificacionController notificacionController;
 
 
-        /**
-         * Maneja la solicitud GET para obtener todas las entidades.
-         *
-         * @param model El objeto Model para agregar los atributos necesarios.
-         * @return El nombre de la plantilla para mostrar todas las entidades.
-         */
-        @GetMapping("/all")
-        public String getAll(@RequestParam(defaultValue = "1") int page,
-                             @RequestParam(defaultValue = "10") int size,
-                             Model model) {
+    /**
+     * Obtiene todos los registros de entidades con paginación.
+     *
+     * @param page  Número de página (por defecto: 1).
+     * @param size  Tamaño de la página (por defecto: 10).
+     * @param model El modelo para agregar atributos.
+     * @return La plantilla "index" para mostrar todas las entidades.
+     */
+    @GetMapping("/all")
+    public String getAll(@RequestParam(defaultValue = "1") int page,
+                         @RequestParam(defaultValue = "10") int size,
+                         Model model) {
 
-            Pageable pageable = PageRequest.of(page-1, size);
-            Page<T> entities = jpaRepository.findAll(pageable);
+        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")) {
+            String contador = notificacionController.contarNotificaciones(model);
+            model.addAttribute("contador", contador);
+        }
 
-            int totalPages = entities.getTotalPages();
+        Pageable pageable = PageRequest.of(page - 1, size);
+        Page<T> entities = jpaRepository.findAll(pageable);
 
-            if (totalPages > 0) {
-                List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                        .boxed()
-                        .collect(Collectors.toList());
-                model.addAttribute("pageNumbers", pageNumbers);
-            }
+        int totalPages = entities.getTotalPages();
 
-            model.addAttribute("entities", entities);
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
+        model.addAttribute("entities", entities);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "all-entities");
+        return "index"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+
+    /**
+     * Maneja la solicitud GET para obtener una entidad por su identificador.
+     *
+     * @param id    El identificador de la entidad.
+     * @param model El objeto Model para agregar los atributos necesarios.
+     * @return El nombre de la plantilla para mostrar los detalles de una entidad.
+     * @throws MiEntidadNoEncontradaException Si la entidad no se encuentra en la base de datos.
+     */
+    @GetMapping("/{id}")
+    public String getById(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
+        try {
+
+            T entity = service.getById(id);
+            model.addAttribute("entity", entity);
             model.addAttribute("entityName", entityName);
-            model.addAttribute("nombreVista", "all-entities");
-            return "index"; // Nombre de la plantilla para mostrar todas las entidades
+            model.addAttribute("nombreVista", "entity-details");
+            return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
+
+        } catch (MiEntidadNoEncontradaException ex) {
+            return "error"; // Nombre de la plantilla para mostrar la página de error
         }
+    }
 
-        @GetMapping("/admin")
-        public String getAllAdmin(@RequestParam(defaultValue = "1") int page,
-                                  @RequestParam(defaultValue = "10") int size,
-                                  Model model) {
+    /**
+     * Maneja la solicitud POST para actualizar una entidad por su identificador.
+     *
+     * @param id    El identificador de la entidad.
+     * @param model El objeto Model para agregar los atributos necesarios.
+     * @return La URL de redirección a la página de listar todas las entidades después de eliminar una entidad.
+     * @throws MiEntidadNoEncontradaException Si la entidad no se encuentra en la base de datos.
+     */
+    @PostMapping("/{id}")
+    public String update(@PathVariable Object id, Model model, T entity) throws MiEntidadNoEncontradaException {
+        service.update(entity);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "admin");
+        return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+    }
 
-            Pageable pageable = PageRequest.of(page-1, size);
-            Page<T> entities = jpaRepository.findAll(pageable);
+    /**
+     * Maneja la solicitud DELETE para eliminar una entidad por su identificador.
+     *
+     * @param id El identificador de la entidad a eliminar.
+     * @return La URL de redirección a la página de listar todas las entidades después de eliminar una entidad.
+     */
+    @GetMapping("delete/{id}")
+    public String delete(@PathVariable Object id, Model model) {
+        service.delete(id);
+        model.addAttribute("entityName", entityName);
+        model.addAttribute("nombreVista", "admin");
+        return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
+    }
 
-            int totalPages = entities.getTotalPages();
-
-            if (totalPages > 0) {
-                List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                        .boxed()
-                        .collect(Collectors.toList());
-                model.addAttribute("pageNumbers", pageNumbers);
-            }
-
-            model.addAttribute("entities", entities);
-            model.addAttribute("entityName", entityName);
-            model.addAttribute("nombreVista", "admin");
-            return "index"; // Nombre de la plantilla para mostrar todas las entidades
-        }
-
-
-        /**
-         * Maneja la solicitud GET para obtener una entidad por su identificador.
-         *
-         * @param id     El identificador de la entidad.
-         * @param model  El objeto Model para agregar los atributos necesarios.
-         * @return El nombre de la plantilla para mostrar los detalles de una entidad.
-         * @throws MiEntidadNoEncontradaException Si la entidad no se encuentra en la base de datos.
-         */
-        @GetMapping("/{id}")
-        public String getById(@PathVariable Object id,  Model model) throws MiEntidadNoEncontradaException {
-                try {
-
-                    T entity = service.getById(id);
-                    model.addAttribute("entity", entity);
-                    model.addAttribute("entityName", entityName);
-                    model.addAttribute("nombreVista", "entity-details");
-                    return "index"; // Nombre de la plantilla para mostrar los detalles de una entidad
-
-                } catch (MiEntidadNoEncontradaException ex) {
-                    return "error"; // Nombre de la plantilla para mostrar la página de error
-                }
-        }
-
-
-
-        /**
-         * Maneja la solicitud PUT para actualizar una entidad existente.
-         *
-         * @param id     El identificador de la entidad a actualizar.
-         * @param entity La entidad actualizada.
-         * @param model  El objeto Model para agregar los atributos necesarios.
-         * @return El nombre de la plantilla para mostrar los detalles de la entidad actualizada.
-         */
-        @PostMapping("/{id}")
-        public String update(@PathVariable Object id, Model model, T entity) throws MiEntidadNoEncontradaException {
-            service.update(entity);
-            model.addAttribute("entityName", entityName);
-            model.addAttribute("nombreVista", "admin");
-            return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
-        }
-
-        /**
-         * Maneja la solicitud DELETE para eliminar una entidad por su identificador.
-         *
-         * @param id El identificador de la entidad a eliminar.
-         * @return La URL de redirección a la página de listar todas las entidades después de eliminar una entidad.
-         */
-        @GetMapping("delete/{id}")
-        public String delete(@PathVariable Object id , Model model) {
-            service.delete(id);
-            model.addAttribute("entityName", entityName);
-            model.addAttribute("nombreVista", "admin");
-            return "redirect:/" + entityName + "/admin"; // Redireccionar a la página de listar todas las entidades después de eliminar una entidad
-        }
 
 }
 

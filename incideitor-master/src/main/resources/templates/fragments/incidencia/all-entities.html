@@ -56,7 +56,7 @@
                                     <td th:text="${incidencia.descripcion}"></td>
                                     <td th:text="${incidencia.fecha}"></td>
                                     <td>
-                                        <span th:if="${incidencia.tipoIncidencia != null}" th:text="${incidencia.tipoIncidencia}"></span>
+                                        <span th:if="${incidencia.tipoIncidencia != null}" th:text="${incidencia.tipoIncidencia?.nombre}"></span>
                                     </td>
                                     <td>
                                         <span th:if="${incidencia.usuario != null}" th:text="${incidencia.usuario.nombre}"></span>
@@ -78,14 +78,13 @@
 
                 <div th:if="${entities.totalPages > 0}" class="pagination justify-content-center">
                     <ul class="pagination justify-content-center" >
-                        <li class="page-item"><a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${entities.number})}">Previous</a></li>
+                        <li class="page-item" th:if="${entities.number > entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${entities.number})}">Anterior</a></li>
                         <li  class="page-item" th:each="pageNumber : ${pageNumbers}">
                             <a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${pageNumber})}"
                                th:text="${pageNumber}"
                                th:classappend="${pageNumber==entities.number+1} ? active"></a>
                         </li>
-                        <li class="page-item"><a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${entities.number+2})}">Next</a></li>
-                    </ul>
+                        <li class="page-item" th:if="${entities.number < entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${entities.number + 2})}">Siguiente</a></li>                    </ul>
                 </div>
             </div>
         </main>

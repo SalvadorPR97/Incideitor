@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<body>
+<main th:fragment="misincidencias" class="container-fluid flex-nowrap d-flex">
+
+
+    <div class="col-12 py-2 mx-3">
+        <!--Header y filtros-->
+        <div>
+            <h1>Incidencias</h1>
+            <button type="button" onclick="location.href='/incidencia/create'" class="btn btn-primary mb-1">Nueva Incidencia</button>
+            <form th:action="@{/incidencia/misincidencias}" method="get">
+                <label for="tipoIncidencia">Incidencia hijo:</label>
+                <select id="tipoIncidencia" name="tipoIncidencia">
+                    <option value="">Seleccionar</option>
+                    <option th:each="tipo : ${tiposIncidencia}" th:value="${tipo.id}" th:text="${tipo.nombre}" ></option>
+                    <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
+                </select>
+            </form>
+        </div>
+        <!--Tabla-->
+        <div>
+            <table class="table table-striped" id="tablaOrdenar">
+                <thead>
+                <tr>
+                    <th scope="col" onclick="sortTable(0)">ID</th>
+                    <th scope="col" onclick="sortTable(2)">Titulo</th>
+                    <th scope="col" onclick="sortTable(3)">Fecha Creación</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col" onclick="sortTable(5)">Tipo</th>
+                    <th scope="col" onclick="sortTable(6)">Subtipo</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col" onclick="sortTable(7)">Fecha Resolucion</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="incidencia: ${entities}">
+                    <td th:text="${incidencia.id}"></td>
+                    <td th:text="${incidencia.titulo}"></td>
+                    <td th:text="${incidencia.fecha}"></td>
+                    <td th:text="${incidencia.descripcion}"></td>
+                    <td th:text="${incidencia.tipoIncidencia?.incidenciaPadre.nombre}"></td>
+                    <td th:text="${incidencia.tipoIncidencia.nombre}"></td>
+                    <td th:text="${incidencia.direccion}"></td>
+                    <td th:text="${incidencia.estado?.nombre}"></td>
+                    <td>19/05/2023</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${entities.totalPages > 0}" class="pagination justify-content-center">
+            <ul class="pagination justify-content-center" >
+                <li class="page-item" th:if="${entities.number > entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number})}">Anterior</a></li>
+                <li  class="page-item" th:each="pageNumber : ${pageNumbers}">
+                    <a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${pageNumber})}"
+                       th:text="${pageNumber}"
+                       th:classappend="${pageNumber==entities.number+1} ? active"></a>
+                </li>
+                <li class="page-item" th:if="${entities.number < entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number + 2})}">Siguiente</a></li></ul>
+        </div>
+    </div>
+</main>
+</body>
+</html>

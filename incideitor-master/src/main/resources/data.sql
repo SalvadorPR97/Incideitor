@@ -1,168 +1,80 @@
--- MySQL dump 10.13  Distrib 8.0.33, for Linux (x86_64)
---
--- Host: 127.0.0.1    Database: incideitor
--- ------------------------------------------------------
--- Server version	8.0.33
+INSERT INTO roles(nombre) VALUES ('ADMINISTRADOR');
+INSERT INTO roles(nombre) VALUES ('USUARIO');
+INSERT INTO roles(nombre) VALUES ('ANONIMO');
+INSERT INTO roles(nombre) VALUES ('AYUNTAMIENTO_ADMIN');
+INSERT INTO roles(nombre) VALUES ('AYUNTAMIENTO_GESTOR');
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Chiclana', 'chiclana.png', 'chiclana2.png', 'chiclana3.png', 'chiclana3.png');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Jerez', 'jerez.png', 'jerez2.png', 'jerez3.png', 'jerez4.png');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Murcia', 'murcia.png', 'murcia2.png', 'murcia3.png', 'murcia4.png');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Albacete', 'albacete.png', 'albacete2.png', 'albacete3.png', 'albacete4.png');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Toledo', 'toledo.png', 'toledo2.png', 'toledo3.png', 'toledo4.png');
+INSERT INTO ayuntamientos (nombre, fotoCabecera, fotologin, foto3, foto4) VALUES ('Sevilla', 'sevilla.png', 'sevilla2.png', 'sevilla3.png', 'sevilla4.png');
 
-
---
--- Dumping data for table `roles`
---
-
-LOCK TABLES `roles` WRITE;
-/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'ROL_ADMINISTRADOR'),(2,'ROL_USUARIO'),(3,'ROL_ANONIMO'),(4,'ROL_AYUNTAMIENTO_ADMIN'),(5,'ROL_AYUNTAMIENTO_GESTOR');
-/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `ayuntamientos`
---
-
-LOCK TABLES `ayuntamientos` WRITE;
-/*!40000 ALTER TABLE `ayuntamientos` DISABLE KEYS */;
-INSERT INTO `ayuntamientos` VALUES (1,'Juan','Juan','Juan','Juan','Chiclana'),(2,'Juan','Juan','Juan','Juan','Jerez'),(3,'Juan','Juan','Juan','Juan','Murcia'),(4,'Juan','Juan','Juan','Juan','Albacete'),(5,'Juan','Juan','Juan','Juan','Toledo'),(6,'Juan','Juan','Juan','Juan','Miami');
-/*!40000 ALTER TABLE `ayuntamientos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `usuarios`
---
-
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Y medio','Juan',0,'Juan',NULL,'12345678A','juan@gmail.com',NULL,'Juan',0,1,NULL,NULL,NULL,NULL,1),(2,'Caja','Juan',0,'Juan',NULL,'12345678B','pepe@gmail.com',NULL,'Pepe',0,1,NULL,NULL,NULL,NULL,2),(3,'Bombo','Juan',0,'Juan',NULL,'12345678C','manolo@gmail.com',NULL,'Manolo',0,1,NULL,NULL,NULL,NULL,3),(4,'Dios','Juan',0,'Juan',NULL,'12345678D','messi@gmail.com',NULL,'Messi',0,1,NULL,NULL,NULL,NULL,4),(5,'Juan','Juan',0,'Juan','Urbanismo','12345678E','guardiola@gmail.com',304,'Guardiola',0,1,NULL,NULL,NULL,NULL,5),(6,'Ak','Juan',0,'Juan',NULL,'12345678F','rambo@gmail.com',NULL,'Rambo',0,1,NULL,NULL,NULL,NULL,2),(7,'Gordo','Juan',0,'Juan',NULL,'12345678G','shrek@gmail.com',NULL,'Shrek',0,1,NULL,NULL,NULL,NULL,2);
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
---
--- Dumping data for table `estados`
---
-
-LOCK TABLES `estados` WRITE;
-/*!40000 ALTER TABLE `estados` DISABLE KEYS */;
-INSERT INTO `estados` VALUES (1,'Registrado'),(2,'En Curso'),(3,'Finalizado');
-/*!40000 ALTER TABLE `estados` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `tipoincidencia`
---
-
-LOCK TABLES `tipoincidencia` WRITE;
-/*!40000 ALTER TABLE `tipoincidencia` DISABLE KEYS */;
-INSERT INTO `tipoincidencia` VALUES (999999,_binary '','Padre',0,NULL), (1,_binary '','Acerado',10,999999),(2,_binary '','Aguas',20,999999),(3,_binary '','Alumbrado',30,999999),(4,_binary '','Arquetas',40,999999),(5,_binary '','Cableado',50,999999),(6,_binary '','Calzada',60,999999),(7,_binary '','Carril bici',70,999999),(8,_binary '','Fuentes',80,999999),(9,_binary '','Jardines y zonas verdes',90,999999),(10,_binary '','Limpieza',100,999999),(11,_binary '','Medio ambiente',110,999999),(12,_binary '','Mobiliario urbano',120,999999),(13,_binary '','Monumentos',130,999999),(14,_binary '','Parada bus/taxi',140,999999),(15,_binary '','Parques infantiles',150,999999),(16,_binary '','Plagas',160,999999),(17,_binary '','Playas',170,999999),(18,_binary '','Saneamiento',180,999999),(19,_binary '','Semaforos',190,999999),(20,_binary '','Agrietado',10,1),(21,_binary '','Baldosas',20,1),(22,_binary '','Socavón',30,1),(23,_binary '','Corte del Servicio',10,2),(24,_binary '','Mala calidad',20,2),(25,_binary '','Cables al Descubierto',10,3),(26,_binary '','Cristal Roto',20,3),(27,_binary '','Luminaria Apagada',30,3),(28,_binary '','Farol Roto',40,3),(29,_binary '','Arqueta Abierta',10,4),(30,_binary '','Arqueta en Mal Estado',20,4),(31,_binary '','Arqueta con Tapa Desaparecida',30,4);
-/*!40000 ALTER TABLE `tipoincidencia` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `incidencias`
---
-
-LOCK TABLES `incidencias` WRITE;
-/*!40000 ALTER TABLE `incidencias` DISABLE KEYS */;
-INSERT INTO `incidencias` VALUES (1,0,'Ha llegado Rambo con un ak-47','2023-06-01','Apocalipsis',1,1,NULL,NULL,21,1),(2,0,'Ha llegado el afilador','2023-06-01','Afilador',3,1,NULL,NULL,2,2),(3,0,'Problema en Churreria Hmnos Pernia','2023-06-01','Churreria',4,3,NULL,NULL,3,3),(4,0,'Y hizo pum ya esta aqui la guerra','2023-06-01','Guerra nuclear',5,2,NULL,NULL,4,4);
-/*!40000 ALTER TABLE `incidencias` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `historicos`
---
-
-LOCK TABLES `historicos` WRITE;
-/*!40000 ALTER TABLE `historicos` DISABLE KEYS */;
-INSERT INTO `historicos` VALUES (1,'2023-06-01',NULL,1,1),(2,'2023-06-01','Hermanos Rodriguez va a arreglarlo',2,2),(3,'2023-06-01','Se ha sustituido la bombilla',3,3);
-/*!40000 ALTER TABLE `historicos` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
---
--- Dumping data for table `reportes`
---
-
-LOCK TABLES `reportes` WRITE;
-/*!40000 ALTER TABLE `reportes` DISABLE KEYS */;
-INSERT INTO `reportes` VALUES (1,'Bug','Pantalla','No se ve la pantalla',NULL,NULL),(2,'Error','Error','Incidencia con fotos borrosas',NULL,NULL),(3,'Error','Error','La dirección está mal',NULL,NULL);
-/*!40000 ALTER TABLE `reportes` ENABLE KEYS */;
-UNLOCK TABLES;
+-- la contraseña es: No12345..
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id, ayuntamiento_id) VALUES ('Juan', 'Y medio', 'juan.png', 'juan@gmail.com', '12345678A', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 1,2);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id, ayuntamiento_id) VALUES ('Manuel', 'Valles', 'manuel.png', 'manuel@gmail.com', '12345678B', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 2, 1);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Manolo', 'Suarez', 'manolo.png', 'anonimo@anonimo.com', '12345678C', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Otro', 3);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Carmelo', 'Cobo', 'carmelo.png', 'carmelo@gmail.com', '12345678D', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Mujer', 4);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, departamento, extension, rol_id) VALUES ('Domingo', 'Lima', 'domingo.png', 'domingo@gmail.com', '12345678E', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 'Urbanismo', 304, 5);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Lola', 'Aguado', 'lola.png', 'lola@gmail.com', '12345678F', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Hombre', 2);
+INSERT INTO usuarios (nombre, apellido, avatar, email, dni, contrasena, sexo, rol_id) VALUES ('Andrea', 'Barros', 'kirby.png', 'andrea@gmail.com', '12345678G', '$2a$10$lqrr0Uu.I/qLKWu8pPCLL.1Ll7ORZSr3BC4OCaRmGK1FQQ4Qu4R8a', 'Otro', 2);
 
 
 
---
--- Dumping data for table `fotos`
---
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (999999, 'Padre', null, true, 0);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (1,'Acerado', 999999, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (2,'Aguas', 999999, true, 20);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (3,'Alumbrado', 999999, true, 30);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (4,'Arquetas', 999999, true, 40);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (5,'Cableado', 999999, true, 50);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (6, 'Calzada', 999999, true, 60 );
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (7, 'Carril bici', 999999, true, 70);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (8, 'Fuentes', 999999, true, 80);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (9, 'Jardines y zonas verdes', 999999, true, 90);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (10, 'Limpieza', 999999, true, 100);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (11, 'Medio ambiente', 999999, true, 110);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (12, 'Mobiliario urbano', 999999, true, 120);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (13, 'Monumentos', 999999, true, 130);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (14, 'Parada bus/taxi', 999999, true, 140);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (15, 'Parques infantiles', 999999, true, 150);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (16, 'Plagas', 999999, true, 160);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (17, 'Playas', 999999, true, 170);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (18, 'Saneamiento', 999999, true, 180);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (19, 'Semaforos', 999999, true, 190);
 
-LOCK TABLES `fotos` WRITE;
-/*!40000 ALTER TABLE `fotos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `fotos` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (20, 'Agrietado', 1, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (21, 'Baldosas', 1, true, 20);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (22, 'Socavón', 1, true, 30);
 
---
--- Dumping data for table `votos`
---
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (23, 'Corte del Servicio', 2, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (24, 'Mala calidad', 2, true, 20);
 
-LOCK TABLES `votos` WRITE;
-/*!40000 ALTER TABLE `votos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `votos` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (25, 'Cables al Descubierto', 3, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (26, 'Cristal Roto', 3, true, 20);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (27, 'Luminaria Apagada', 3, true, 30);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (28, 'Farol Roto', 3, true, 40);
 
---
--- Dumping data for table `lugares`
---
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (29, 'Arqueta Abierta', 4, true, 10);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (30, 'Arqueta en Mal Estado', 4, true, 20);
+INSERT INTO tipoincidencia(id, nombre, incidencia_padre_id, active, orden) VALUES (31, 'Arqueta con Tapa Desaparecida', 4, true, 30);
 
-LOCK TABLES `lugares` WRITE;
-/*!40000 ALTER TABLE `lugares` DISABLE KEYS */;
-/*!40000 ALTER TABLE `lugares` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `mensajes`
---
-
-LOCK TABLES `mensajes` WRITE;
-/*!40000 ALTER TABLE `mensajes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mensajes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `notificaciones`
---
-
-LOCK TABLES `notificaciones` WRITE;
-/*!40000 ALTER TABLE `notificaciones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `notificaciones` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `parametros_incidencia`
---
-
-LOCK TABLES `parametros_incidencia` WRITE;
-/*!40000 ALTER TABLE `parametros_incidencia` DISABLE KEYS */;
-/*!40000 ALTER TABLE `parametros_incidencia` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO estados (nombre) VALUES ('Registrado');
+INSERT INTO estados (nombre) VALUES ('En Curso');
+INSERT INTO estados (nombre) VALUES ('Finalizado');
 
 
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Baldosa rota','La baldosa de la calle está levantada y se puede caer alguien','2023-06-10',21, 'Calle Ópalo, Mijas, España',1,1,1);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Tapa de arqueta desaparecida','La tapa de la arqueta de la calle no está','2023-06-11',31, 'Calle Diamante, Mijas, España',2,3,1);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Cristal de farola roto','El cristal de la farola está roto','2023-06-11',26, 'Calle Ónice, Mijas, España',3,4,3);
+INSERT INTO incidencias(titulo, descripcion, fecha, tipo_incidencia_id, direccion, usuario_id, ayuntamiento_id, estado_id) VALUES ('Bombilla fundida','La bombilla no funciona','2023-06-21',27, 'Calle Zafiro, Mijas, España',4,5,2);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-15 11:49:47
+INSERT INTO historicos (incidencia_id, estado_id, fechaCambioEstado) VALUES (1, 1, '2023-06-01');
+INSERT INTO historicos (incidencia_id, estado_id, fechaCambioEstado, mensajeAdicional) VALUES (2, 2, '2023-06-01', 'Hermanos Rodriguez va a arreglarlo');
+INSERT INTO historicos (incidencia_id, estado_id, fechaCambioEstado, mensajeAdicional) VALUES (3, 3, '2023-06-01', 'Se ha sustituido la bombilla');
+
+
+INSERT INTO reportes (titulo, categoria, descripcion) VALUES ('Pantalla', 'Bug', 'No se ve la pantalla');
+INSERT INTO reportes (titulo, categoria, descripcion) VALUES ('Fotos en la incidencia', 'Error', 'Incidencia con fotos borrosas');
+INSERT INTO reportes (titulo, categoria, descripcion) VALUES ('Dirección', 'Error', 'La dirección está mal');

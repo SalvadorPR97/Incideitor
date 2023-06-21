@@ -4,16 +4,20 @@ package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
 import com.example.eoi.incideitor.entities.Reporte;
-import com.example.eoi.incideitor.entities.Usuario;
 import com.example.eoi.incideitor.repositories.ReporteRepository;
-import jakarta.annotation.PostConstruct;;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 /**
@@ -42,13 +46,14 @@ import java.util.List;
 @RequestMapping("${url.reporte}")
 public class ReporteController extends MiControladorGenerico<Reporte> {
 
-    @Value("${url.reporte}")
-    private String url;
 
-    private String entityName = "reporte";
+    private final String entityName = "reporte";
 
     @Autowired
     ReporteRepository reporteRepository;
+
+    @Autowired
+    NotificacionController notificacionController;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -71,9 +76,15 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
     @PostConstruct
     private void init() {
         super.entityName = entityName;
-        super.url = url;
     }
 
+
+    /**
+     * Maneja una solicitud GET a "/create" y muestra un formulario para crear un nuevo informe.
+     *
+     * @param model El modelo que se va a poblar con atributos para renderizar la vista.
+     * @return El nombre de la plantilla de vista.
+     */
     @GetMapping("/create")
     public String mostrarFormulario(Model model) {
         model.addAttribute("entity", new Reporte());
@@ -82,24 +93,107 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
         return "index";
     }
 
+
+    /**
+     * Maneja una solicitud POST a "/create" y crea un nuevo informe.
+     *
+     * @param reporte El objeto Reporte recibido desde el formulario.
+     * @return El nombre de la plantilla de vista de redirección.
+     */
     @PostMapping("/create")
     public String crearReporte(@ModelAttribute Reporte reporte) {
         service.create(reporte);
         return "redirect:/reporte/admin";
     }
 
-    @GetMapping("/reportError")
-    public String getAllError(Model model) {
-        List<Reporte> entities = reporteRepository.getReportesByCategoriaEquals("Error");
+
+    /**
+     * Maneja una solicitud GET a "/adminError" y muestra todos los reportes de categoría "Error".
+     *
+     * @param nombre El nombre del informe a buscar (opcional).
+     * @param page El número de página actual.
+     * @param size El tamaño de página.
+     * @param model El modelo que se va a poblar con atributos para renderizar la vista.
+     * @return El nombre de la plantilla de vista.
+     */
+    @GetMapping("/adminError")
+    public String getAllAdminError(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
+                              @RequestParam(defaultValue = "10") int size,
+                              Model model) {
+
+
+            if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+                String contador = notificacionController.contarNotificaciones(model);
+                model.addAttribute("contador",contador);
+            }
+
+            Pageable pageable = PageRequest.of(page-1, size);
+
+        Page<Reporte> entities;
+        // Si nos viene informado el nombre, devolveremos la lista filtrada.
+        if (nombre == null){
+            entities = reporteRepository.findAllByCategoriaEquals("Error",pageable);
+        } else {
+            entities = reporteRepository.findAllByCategoriaEqualsAndTituloContainsIgnoreCase("Error", nombre, pageable);
+        }
+
+
+        int totalPages = entities.getTotalPages();
+
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
         model.addAttribute("entities", entities);
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "admin");
         return "index"; // Nombre de la plantilla para mostrar todas las entidades
     }
 
-    @GetMapping("/bugs")
-    public String getAllBugs(Model model) {
-        List<Reporte> entities = reporteRepository.getReportesByCategoriaEquals("Bug");
+
+    /**
+     * Maneja una solicitud GET a "/adminError" y muestra todos los reportes de categoría "Error".
+     *
+     * @param nombre El nombre del informe a buscar (opcional).
+     * @param page El número de página actual.
+     * @param size El tamaño de página.
+     * @param model El modelo que se va a poblar con atributos para renderizar la vista.
+     * @return El nombre de la plantilla de vista.
+     */
+    @GetMapping("/adminBugs")
+    public String getAllAdminBugs(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
+                                   @RequestParam(defaultValue = "10") int size,
+                                   Model model) {
+
+
+        if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){
+            String contador = notificacionController.contarNotificaciones(model);
+            model.addAttribute("contador",contador);
+        }
+
+        Pageable pageable = PageRequest.of(page-1, size);
+
+        Page<Reporte> entities;
+        // Si nos viene informado el nombre, devolveremos la lista filtrada.
+        if (nombre == null){
+            entities = reporteRepository.findAllByCategoriaEquals("Bug",pageable);
+        } else {
+            entities = reporteRepository.findAllByCategoriaEqualsAndTituloContainsIgnoreCase("Bug", nombre, pageable);
+        }
+
+
+        int totalPages = entities.getTotalPages();
+
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
         model.addAttribute("entities", entities);
         model.addAttribute("entityName", entityName);
         model.addAttribute("nombreVista", "admin");

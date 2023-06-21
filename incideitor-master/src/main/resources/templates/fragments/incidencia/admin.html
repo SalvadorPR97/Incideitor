@@ -2,68 +2,52 @@
 <body>
 <main th:fragment="admin" class="container-fluid flex-nowrap d-flex">
 
+
     <div class="col-12 py-2 mx-3">
         <!--Header y filtros-->
         <div>
             <h1>Incidencias</h1>
             <button type="button" onclick="location.href='/incidencia/create'" class="btn btn-primary mb-1">Nueva Incidencia</button>
-            <form action="#" method="get">
-                <input type="text" placeholder="Término a Filtrar" name="filtro">
-                <select name="tipoIncidencia" id="">
-                    <option value="0">Acerado</option>
-                    <option value="1">Aguas</option>
-                    <option value="2">Alumbrado</option>
-                    <option value="3">Arquetas</option>
-                    <option value="4">Cableado</option>
-                    <option value="5">Calzada</option>
-                    <option value="6">Carril bici</option>
-                    <option value="7">Fuentes</option>
-                    <option value="8">Jardines y zonas verdes</option>
-                    <option value="9">Limpieza</option>
-                    <option value="10">Medio ambiente</option>
-                    <option value="11">Mobiliario urbano</option>
-                    <option value="12">Monumentos</option>
-                    <option value="13/taxi">Parada bus/taxi</option>
-                    <option value="14">Parques infantiles</option>
-                    <option value="15">Plagas</option>
-                    <option value="16">Playas</option>
-                    <option value="17">Saneamiento</option>
-                    <option value="18">Semáforos</option>
-                    <option value="19">Tráfico y señalización</option>
-                    <option value="20">Vallas de obra</option>
+            <form th:action="@{/incidencia/admin}" method="get">
+                <label for="tipoIncidencia">Incidencia hijo:</label>
+                <select id="tipoIncidencia" name="tipoIncidencia">
+                    <option value="">Seleccionar</option>
+                    <option th:each="tipo : ${tiposIncidencia}" th:value="${tipo.id}" th:text="${tipo.nombre}" ></option>
+                    <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
                 </select>
-                <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
             </form>
         </div>
         <!--Tabla-->
         <div>
-            <table class="table" id="tablaOrdenar">
+            <table class="table table-striped" id="tablaOrdenar">
                 <thead>
                 <tr>
                     <th scope="col" onclick="sortTable(0)">ID</th>
-                    <th scope="col" onclick="sortTable(1)">Categoría</th>
                     <th scope="col" onclick="sortTable(2)">Titulo</th>
                     <th scope="col" onclick="sortTable(3)">Fecha Creación</th>
                     <th scope="col">Descripción</th>
                     <th scope="col" onclick="sortTable(5)">Tipo</th>
                     <th scope="col" onclick="sortTable(6)">Subtipo</th>
+                    <th scope="col">Direccion</th>
                     <th scope="col">IdUsuario</th>
                     <th scope="col">Ayuntamiento</th>
+                    <th scope="col">Estado</th>
                     <th scope="col" onclick="sortTable(7)">Fecha Resolucion</th>
                     <th scope="col">Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="incidencia: ${entities}">
-                    <td th:text="${incidencia.id}" scope="row"></td>
-                    <td>5</td>
+                    <td th:text="${incidencia.id}"></td>
                     <td th:text="${incidencia.titulo}"></td>
                     <td th:text="${incidencia.fecha}"></td>
                     <td th:text="${incidencia.descripcion}"></td>
                     <td th:text="${incidencia.tipoIncidencia?.incidenciaPadre.nombre}"></td>
                     <td th:text="${incidencia.tipoIncidencia.nombre}"></td>
+                    <td th:text="${incidencia.direccion}"></td>
                     <td th:text="${incidencia.usuario?.id}"></td>
                     <td th:text="${incidencia.ayuntamiento?.nombre}"></td>
+                    <td th:text="${incidencia.estado?.nombre}"></td>
                     <td>19/05/2023</td>
                     <td>
                         <a th:href="@{/incidencia/{id}(id=${incidencia.id})}" class="btn btn-primary">Editar</a>
@@ -77,14 +61,13 @@
         </div>
         <div th:if="${entities.totalPages > 0}" class="pagination justify-content-center">
             <ul class="pagination justify-content-center" >
-                <li class="page-item"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number})}">Previous</a></li>
+                <li class="page-item" th:if="${entities.number > entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number})}">Anterior</a></li>
                 <li  class="page-item" th:each="pageNumber : ${pageNumbers}">
                     <a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${pageNumber})}"
                        th:text="${pageNumber}"
                        th:classappend="${pageNumber==entities.number+1} ? active"></a>
                 </li>
-                <li class="page-item"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number+2})}">Next</a></li>
-            </ul>
+                <li class="page-item" th:if="${entities.number < entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number + 2})}">Siguiente</a></li></ul>
         </div>
     </div>
 </main>

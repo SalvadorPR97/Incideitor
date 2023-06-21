@@ -3,29 +3,31 @@
 <body>
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-3 px-5 border-top ">
 
-  <div class="col mb-1">
-    <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
-      <img src="/static/img/incidencia_logo.png" alt="" style="width: 120px; filter: hue-rotate(250deg);">
-    </a>
-    <p style="font-weight: 400;">© Incideitor 2023</p>
-  </div>
+    <div class="col mb-1">
+        <img src="/img/incideitor-logo.png" alt="" style="width:200px; height:80px;">
+    </div>
 
-  <div class="col mb-1 pt-2">
-    <ul class="nav flex-column" style="background: none;">
-      <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-body-secondary">Inicio</a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Mi Cuenta</a></li>
-      <li class="nav-item mb-2"><a href="/incidencia/create" class="nav-link p-0 text-body-secondary">Mis incidencias</a></li>
-    </ul>
-  </div>
+    <div class="col mb-1 pt-2">
+        <ul class="nav flex-column" style="background: none;">
+            <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-body-secondary"
+                                         th:text="#{footer.inicio}"></a></li>
+            <li class="nav-item mb-2"><a href="usuario/miperfil" class="nav-link p-0 text-body-secondary"
+                                         th:text="#{footer.cuenta}"></a></li>
+            <li class="nav-item mb-2"><a href="/incidencia/misincidencias" class="nav-link p-0 text-body-secondary"
+                                         th:text="#{footer.incidencias}"></a></li>
+        </ul>
+    </div>
 
-  <div class="col mb-1 pt-2">
-    <ul class="nav flex-column" style="background: none;">
-      <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-body-secondary">Sobre Nosotros</a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Preguntas frecuentes</a></li>
-      <li class="nav-item mb-2"><a href="/terminos-y-condiciones" class="nav-link p-0 text-body-secondary">Términos y condiciones</a></li>
-
-    </ul>
-  </div>
+    <div class="col mb-1 pt-2">
+        <ul class="nav flex-column" style="background: none;">
+            <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-body-secondary"
+                                         th:text="#{footer.nosotros}"></a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary" th:text="#{footer.faq}"></a>
+            </li>
+            <li class="nav-item mb-2"><a href="/terminos-y-condiciones" class="nav-link p-0 text-body-secondary"
+                                         th:text="#{footer.terminos}"></a></li>
+        </ul>
+    </div>
 
 </footer>
 </body>

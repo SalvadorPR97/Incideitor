@@ -1,42 +1,19 @@
 <!DOCTYPE html>
-
 <body>
-    <main th:fragment="admin" class="container-fluid flex-nowrap d-flex">
-        <div class="col-12 py-2 mx-3">
+    <main th:fragment="admin" class="container-fluid">
+
             <!--Header y filtros-->
-            <div>
-                <h1>Usuarios</h1>
-                <button type="button" onclick="location.href='/usuario/create'" class="btn btn-primary mb-1">Nuevo Usuario</button>
-                    <form action="#" method="get">
-                        <input type="text" placeholder="Término a Filtrar" name="filtro">
-                        <select name="tipoIncidencia" id="">
-                            <option value="0">Acerado</option>
-                            <option value="1">Aguas</option>
-                            <option value="2">Alumbrado</option>
-                            <option value="3">Arquetas</option>
-                            <option value="4">Cableado</option>
-                            <option value="5">Calzada</option>
-                            <option value="6">Carril bici</option>
-                            <option value="7">Fuentes</option>
-                            <option value="8">Jardines y zonas verdes</option>
-                            <option value="9">Limpieza</option>
-                            <option value="10">Medio ambiente</option>
-                            <option value="11">Mobiliario urbano</option>
-                            <option value="12">Monumentos</option>
-                            <option value="13/taxi">Parada bus/taxi</option>
-                            <option value="14">Parques infantiles</option>
-                            <option value="15">Plagas</option>
-                            <option value="16">Playas</option>
-                            <option value="17">Saneamiento</option>
-                            <option value="18">Semáforos</option>
-                            <option value="19">Tráfico y señalización</option>
-                            <option value="20">Vallas de obra</option>
-                        </select>
-                        <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
-                    </form>
-                </div>
+        <div>
+            <h1>Usuarios</h1>
+            <button type="button" onclick="location.href='/usuario/create'" class="btn btn-primary mb-1">Nuevo Usuario
+            </button>
+            <form th:action="@{/usuario/admin}" method="get">
+                <input type="text" placeholder="Nombre a Filtrar" name="nombre">
+                <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
+            </form>
+        </div>
             <!--Tabla-->
-            <div>
+            <div class="row">
                 <table class="table table-striped" id="tablaOrdenar">
                     <thead>
                     <tr>
@@ -45,7 +22,6 @@
                         <th>Nombre</th>
                         <th onclick="sortTable(3)">Apellido</th>
                         <th onclick="sortTable(4)">Sexo</th>
-                        <th>Contrasena</th>
                         <th>DNI</th>
                         <th>Extension</th>
                         <th onclick="sortTable(8)">Departamento</th>
@@ -61,7 +37,6 @@
                         <td th:text="${usuario.nombre}"></td>
                         <td th:text="${usuario.apellido}"></td>
                         <td th:text="${usuario.sexo}"></td>
-                        <td th:text="${usuario.contrasena}"></td>
                         <td th:text="${usuario.dni}"></td>
                         <td th:text="${usuario.extension}"></td>
                         <td th:text="${usuario.departamento}"></td>
@@ -75,21 +50,19 @@
                     </tr>
                     </tbody>
                 </table>
-                </div>
+            </div>
 
             <div th:if="${entities.totalPages > 0}" class="pagination justify-content-center">
                 <ul class="pagination justify-content-center" >
-                    <li class="page-item"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number})}">Previous</a></li>
+                    <li class="page-item" th:if="${entities.number > entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number})}">Anterior</a></li>
                     <li  class="page-item" th:each="pageNumber : ${pageNumbers}">
                         <a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${pageNumber})}"
                            th:text="${pageNumber}"
                            th:classappend="${pageNumber==entities.number+1} ? active"></a>
                     </li>
-                    <li class="page-item"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number+2})}">Next</a></li>
+                    <li class="page-item" th:if="${entities.number < entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number + 2})}">Siguiente</a></li>
                 </ul>
             </div>
-        </div>
     </main>
-
 </body>
 </html>

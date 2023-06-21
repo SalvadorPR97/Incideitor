@@ -7,8 +7,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReporteMapper {
-    //Convertir de entidad a dto
-
+    /**
+     * Convierte una entidad Reporte a un DTO ReporteDTO.
+     *
+     * @param entidad Entidad Reporte
+     * @return DTO ReporteDTO
+     */
     public ReporteDTO toDto(Reporte entidad){
         final ReporteDTO dto = new ReporteDTO();
         ModelMapper modelMapper = new ModelMapper();
@@ -16,6 +20,12 @@ public class ReporteMapper {
         return dto;
     }
 
+    /**
+     * Convierte un DTO ReporteDTO a una entidad Reporte.
+     *
+     * @param dto DTO ReporteDTO
+     * @return Entidad Reporte
+     */
     public Reporte toEntityReporte (ReporteDTO dto){
         final Reporte entity = new Reporte();
         ModelMapper modelMapper = new ModelMapper();

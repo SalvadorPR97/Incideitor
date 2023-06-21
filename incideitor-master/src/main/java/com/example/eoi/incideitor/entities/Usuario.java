@@ -26,7 +26,7 @@ public class Usuario {
     private String email;
     private String dni;
     private String contrasena;
-    private int sexo;
+    private String sexo;
 
     @ManyToOne
     @JoinColumn(name = "ayuntamiento_id")
@@ -49,11 +49,11 @@ public class Usuario {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mensaje_emisor_id",referencedColumnName = "id")
-    private Mensaje mensaje_emisor;
+    private Mensaje mensajeEmisor;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mensaje_receptor_id",referencedColumnName = "id")
-    private Mensaje mensaje_receptor;
+    private Mensaje mensajeReceptor;
 
     @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name = "rol_id")
@@ -65,6 +65,9 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "incidencia_id",referencedColumnName = "id")
     private Incidencia incidencia;
+
+    @Column (name ="token",length = 250)
+    private String token;
 
 
 }

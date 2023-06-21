@@ -20,6 +20,10 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import org.json.simple.JSONObject;
 
+
+/**
+ * Servicio para enviar correos electrónicos utilizando JavaMailSender.
+ */
 @Service
 public class EmailService {
 	private Session session;
@@ -35,11 +39,14 @@ public class EmailService {
 	}
 
 
+	/**
+	 * Inicializa la sesión de correo electrónico utilizando las credenciales y la configuración de Mailtrap.
+	 */
 	public void initSesion(){
 		//provide Mailtrap's username
 		final String username = "api";
 		//provide Mailtrap's password
-		final String password = "b411b9132ea86b8cb2cbada15bfcbfd1";
+		final String password ="dd05f45be13af56332d53dec9b2ab3d2";
 		//provide Mailtrap's host address
 		String host = "live.smtp.mailtrap.io";
 		//configure Mailtrap's SMTP server details
@@ -58,6 +65,10 @@ public class EmailService {
 	}
 
 
+	/**
+	 * Envía un correo electrónico utilizando la sesión de correo electrónico inicializada.
+	 * @param mail El objeto Email que contiene los datos del correo electrónico a enviar.
+	 */
 	public void sendMail(Email mail) {
 
 		initSesion();
@@ -75,7 +86,7 @@ public class EmailService {
 			//send the email message
 			System.out.println("sendMail antes de Transport; " + mail.getContent());
 			Transport.send(message);
-			System.out.println("Email Message Sent Successfully");
+			System.out.println("Mensaje enviado correctamente");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -83,6 +94,11 @@ public class EmailService {
 
 	}
 
+	/**
+	 * Envía un correo electrónico utilizando la API de Mailtrap.
+	 * @param mail El objeto Email que contiene los datos del correo electrónico a enviar.
+	 * @throws IOException Si se produce un error al realizar la solicitud HTTP.
+	 */
 	public void sendAPIMail(Email mail) throws IOException {
 		OkHttpClient client = new OkHttpClient().newBuilder()
 				.build();
@@ -111,4 +127,5 @@ public class EmailService {
 		}
 
 	}
+
 }
