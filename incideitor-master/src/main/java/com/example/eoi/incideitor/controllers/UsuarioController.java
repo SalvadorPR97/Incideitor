@@ -122,7 +122,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
      */
     @GetMapping("/admin")
     public String getAllAdmin(@RequestParam(required = false) String nombre, @RequestParam(defaultValue = "1") int page,
-                              @RequestParam(defaultValue = "10") int size,
+                              @RequestParam(defaultValue = "5") int size,
                               Model model) {
 
         if (!Objects.equals(notificacionController.contarNotificaciones(model), "0")){

@@ -110,7 +110,7 @@ footer {
 }
 
 .content {
-    padding-bottom: 20em; /* Ajustamos este valor según la altura del footer */
+    padding-bottom: 10em; /* Ajustamos este valor según la altura del footer */
 }
 
 .footer {
