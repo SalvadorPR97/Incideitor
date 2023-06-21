@@ -1,7 +1,6 @@
 package com.example.eoi.incideitor.dtos;
 
-import com.example.eoi.incideitor.entities.Ayuntamiento;
-import com.example.eoi.incideitor.entities.Usuario;
+import com.example.eoi.incideitor.entities.Estado;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +13,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IncidenciaDatos {
-    private Integer id;
+    private Long id;
     private String titulo;
     private String descripcion;
+    private Estado estado;
     private Date fecha;
-    private Ayuntamiento ayuntamiento;
-    private Usuario usuario;
+
 }

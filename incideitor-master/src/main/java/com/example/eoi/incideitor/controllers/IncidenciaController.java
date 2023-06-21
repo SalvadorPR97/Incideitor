@@ -1,8 +1,11 @@
 package com.example.eoi.incideitor.controllers;
 
 import com.example.eoi.incideitor.abstractcomponents.MiControladorGenerico;
+import com.example.eoi.incideitor.dtos.IncidenciaDatos;
+import com.example.eoi.incideitor.dtos.UsuarioDatosPrivados;
 import com.example.eoi.incideitor.entities.*;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.example.eoi.incideitor.services.IncidenciaService;
 import com.example.eoi.incideitor.util.FileUploadUtil;
 import com.example.eoi.incideitor.repositories.IncidenciaRepository;
 import com.example.eoi.incideitor.repositories.TipoIncidenciaRepository;
@@ -51,6 +54,9 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
 
     @Autowired
     NotificacionController notificacionController;
+
+    @Autowired
+    IncidenciaService incidenciaService;
 
     /**
      * Constructor de la clase UsuarioController.
@@ -157,13 +163,14 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
      * @return El nombre de la plantilla de la vista.
      * @throws MiEntidadNoEncontradaException Si no se encuentra la incidencia.
      */
-    @Override
-    @GetMapping("/{id}")
-    public String getById(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
+
+    @GetMapping("/edit/{id}")
+    public String editDto(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
         try {
             Set<String> listaFotos = fileUploadUtil.listFilesUsingJavaIO("src/main/resources/static/uploads/incidencia/" + id);
-            Incidencia entity = service.getById(id);
-            model.addAttribute("entity", entity);
+            Incidencia incidencia = service.getById(id);
+            IncidenciaDatos dto = this.incidenciaService.leerIncidenciaDatos(incidencia.getId());
+            model.addAttribute("entity", dto);
             model.addAttribute("entityName", entityName);
             model.addAttribute("nombreVista", "entity-details");
             model.addAttribute("listaFotos", listaFotos);
@@ -173,6 +180,12 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
         } catch (MiEntidadNoEncontradaException ex) {
             return "error"; // Nombre de la plantilla para mostrar la página de error
         }
+    }
+
+    @PostMapping("/edit/{id}")
+    public String saveDto (@ModelAttribute IncidenciaDatos dto){
+        incidenciaService.guardarIncidenciaDatos(dto);
+        return "redirect:/" + entityName + "/admin";
     }
 
     /**

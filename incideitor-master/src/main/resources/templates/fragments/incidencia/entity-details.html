@@ -31,21 +31,61 @@
                         </div>
                     </div>
                     <div class="col-md-7 col-sm-6 mt-4 mb-5 px-4" style="background-color: #ffffff;">
-                        <form th:action="@{/incidencia/{id}(id=${id})}" th:method="post" >
+                        <form th:action="@{/incidencia/edit/{id}(id=${id})}" th:method="post" >
                             <div class="col-md-12 mt-3 border-bottom">
                                 <label for="titulo" class="form-label">Titulo</label>
                                 <input type="text" class="form-control" id="titulo" name="titulo"
                                        th:field="*{entity.titulo}">
                             </div>
                             <div class="col-md-12 mt-4">
-                                <label>Fecha de creación</label> <span th:text="*{entity.fecha}"></span>
-                                <input type="hidden" th:field="*{entity.fecha}">
+                                <label>Fecha de creación: </label> <span th:text="*{entity.fecha}"></span>
                             </div>
                             <div class="col-md-12 mt-5">
                                 <label for="descripcion" class="form-label">Descripcion</label>
                                 <textarea class="form-control" id="descripcion" name="descripcion"
                                           th:field="*{entity.descripcion}"> </textarea>
                             </div>
+                            <div class="d-flex flex-row align-items-center mb-5 ">
+                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                <h6 class="mb-0 me-4">Género: </h6>
+                                <div class="form-check form-check-inline mb-0 me-4">
+                                    <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="inlineRadioOptions"
+                                            id="femaleGender"
+                                            value="1"
+                                            th:field="*{entity.estado}"
+                                            required
+                                    />
+                                    <label class="form-check-label" for="femaleGender">Registrado</label>
+                                </div>
+
+                                <div class="form-check form-check-inline mb-0 me-4">
+                                    <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="inlineRadioOptions"
+                                            id="maleGender"
+                                            value="2"
+                                            th:field="*{entity.estado}"
+                                            required
+                                    />
+                                    <label class="form-check-label" for="maleGender">En curso</label>
+                                </div>
+
+                                <div class="form-check form-check-inline mb-0">
+                                    <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="inlineRadioOptions"
+                                            id="otherGender"
+                                            value="3"
+                                            th:field="*{entity.estado}"
+                                            required
+                                    />
+                                    <label class="form-check-label" for="otherGender">Finalizado</label>
+                                </div>
                             <button type="submit" class="btn btn-primary mt-5">Guardar</button>
                         </form>
                     </div>
