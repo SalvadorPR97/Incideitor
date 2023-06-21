@@ -62,6 +62,7 @@ public class SecurityConfig {
                 .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/uploads/**").permitAll()
+                .requestMatchers("/video/**").permitAll()
                 // Añadimos la siguiente línea para poder acceder más facilmente
 //                .requestMatchers("/**").permitAll()
                 .requestMatchers("/", "").permitAll()
