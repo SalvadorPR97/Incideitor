@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+
+<body>
+    <div th:fragment="login" class="row body-login">
+            <main class=" container row login mx-auto">
+                <div class="row mx-auto mt-5">
+                    <div class="col-xl-5 col-md-6 d-flex mt-5 mb-5">
+                        <img src="/img/incidencia.png" alt="Image" class="img-fluid mx-auto d-block" id="imagen">
+                    </div>
+
+                    <div class="col-xl-5 col-md-6 mb-5 contents offset-xl-2">
+                        <div class="row justify-content-center d-block">
+                            <div class="formulario">
+                                <h1>Iniciar sesión</h1>
+                                <form method="post" action="/acceso/login">
+                                    <div class="email">
+                                        <input type="email" th:field="*{usuariodto.username}" required placeholder="Correo electrónico" />
+
+                                        <img src="/img/mail.png" alt="mail" class="mail" width="20px">
+                                    </div>
+                                    <div class="password__class">
+                                        <input type="password" th:field="*{usuariodto.password}" id="password" placeholder="Contraseña" required />
+
+                                        <img src="/img/view.png" alt="view" id="view" class="view" width="23px">
+                                    </div>
+                                    <div class="remember"><a href="/usuario/olvidarPass">¿Has olvidado tu contraseña?</a></div>
+                                    <button type="submit">Iniciar sesión</button>
+                                    <div class="register">
+                                        ¿Todavía no te has registrado? <a href="/usuario/create">Registrarse</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        <script src="/js/script_login.js"></script>
+    </div>
+</body>

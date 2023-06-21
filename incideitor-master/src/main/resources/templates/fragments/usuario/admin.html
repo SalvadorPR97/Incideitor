@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<body>
+    <main th:fragment="admin" class="container-fluid">
+
+            <!--Header y filtros-->
+        <div>
+            <h1>Usuarios</h1>
+            <button type="button" onclick="location.href='/usuario/create'" class="btn btn-primary mb-1">Nuevo Usuario
+            </button>
+            <form th:action="@{/usuario/admin}" method="get">
+                <input type="text" placeholder="Nombre a Filtrar" name="nombre">
+                <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
+            </form>
+        </div>
+            <!--Tabla-->
+            <div class="row">
+                <table class="table table-striped" id="tablaOrdenar">
+                    <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">ID</th>
+                        <th>Email</th>
+                        <th>Nombre</th>
+                        <th onclick="sortTable(3)">Apellido</th>
+                        <th onclick="sortTable(4)">Sexo</th>
+                        <th>DNI</th>
+                        <th>Extension</th>
+                        <th onclick="sortTable(8)">Departamento</th>
+                        <th onclick="sortTable(9)">Rol</th>
+                        <th onclick="sortTable(10)">Borrado</th>
+                        <th>Acciones</th> <!-- Nueva columna para las acciones -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="usuario : ${entities}">
+                        <td th:text="${usuario.id}"></td>
+                        <td th:text="${usuario.email}"></td>
+                        <td th:text="${usuario.nombre}"></td>
+                        <td th:text="${usuario.apellido}"></td>
+                        <td th:text="${usuario.sexo}"></td>
+                        <td th:text="${usuario.dni}"></td>
+                        <td th:text="${usuario.extension}"></td>
+                        <td th:text="${usuario.departamento}"></td>
+                        <td th:text="${usuario.rol?.nombre}"></td>
+                        <td th:text="${usuario.borradoLogico}"></td>
+                        <td><!-- Columna para los botones de edición y borrado logico -->
+                            <a th:href="@{/usuario/edit/{id}(id=${usuario.id})}" class="btn btn-primary">Editar</a>
+                            <a th:href="@{/usuario/logic/{id}(id=${usuario.id})}" class="btn btn-danger"
+                               onclick="return confirm('Seguro que quieres activar/desactivar esta entidad?');">Activar/Desactivar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div th:if="${entities.totalPages > 0}" class="pagination justify-content-center">
+                <ul class="pagination justify-content-center" >
+                    <li class="page-item" th:if="${entities.number > entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number})}">Anterior</a></li>
+                    <li  class="page-item" th:each="pageNumber : ${pageNumbers}">
+                        <a class="page-link" th:href="@{/entities/all(size=${entities.size}, page=${pageNumber})}"
+                           th:text="${pageNumber}"
+                           th:classappend="${pageNumber==entities.number+1} ? active"></a>
+                    </li>
+                    <li class="page-item" th:if="${entities.number < entities.totalPages - 1}"><a class="page-link" th:href="@{/entities/admin(size=${entities.size}, page=${entities.number + 2})}">Siguiente</a></li>
+                </ul>
+            </div>
+    </main>
+</body>
+</html>

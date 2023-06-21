@@ -1,0 +1,23 @@
+<!DOCTYPE html >
+
+<body>
+<div th:fragment="entity-details" class="container">
+    <h1>Editar Empleado</h1>
+    <form th:action="@{/reporte/create}" th:method="post" th:object="${entity}">
+        <div class="mb-3">
+            <label for="id" class="form-label">Categoría</label>
+            <input type="hidden" class="form-control" id="id" name="id" th:field="*{id}">
+        </div>
+        <div class="mb-3">
+            <label for="categoria" class="form-label">Categoría</label>
+            <input type="text" class="form-control" id="categoria" name="categoria" th:field="*{categoria}">
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="descripcion" name="descripcion" th:field="*{descripcion}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+</body>
+</html>

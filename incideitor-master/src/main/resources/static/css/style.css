@@ -1,0 +1,463 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*Header*/
+.ayuntamiento {
+    text-transform: uppercase;
+    color: black;
+    padding: 0.5em;
+    background-image: url("../img/VistaPanoramicaMijas.jpg");
+    background-position: 50% 15%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
+
+
+/*Nav*/
+header[class~=tittle] {
+    height: 75px;
+    background-image: url("../img/131392-light-blue-polygon-background.jpg");
+    background-position: 50% 5%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*Nav hover*/
+.navbar-nav .nav-link:hover {
+    opacity: 80%;
+
+}
+
+
+/* Tutorial*/
+
+.tutorial {
+    background-image: url(../img/wall.jpg);
+}
+
+.video_tutorial {
+    height: 400px;
+    width: 600px;
+    min-height: 300px;
+    max-width: 100%;
+}
+
+.texto_principal {
+    background-color: #ffffff;
+    padding: 2em;
+
+}
+
+.texto_principal_titulo {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.texto_principal_texto {
+    font-size: 17px;
+}
+
+
+.texto {
+    background-color: #ffffff;
+    padding: 1em;
+    border-radius: 2px;
+}
+
+/*Seccion noticias*/
+.noticias {
+    background: #ffffff;
+    padding: 1em;
+    color: #333;
+}
+
+
+.noticias h3 {
+    background: #83B5D1;
+    padding: 0.5em;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+
+/*Footer*/
+
+footer {
+    background-image: url(/img/YyTLwz.jpg);
+    background-position: 100% 40%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*Arreglo del footer*/
+
+.contenedor_principal {
+    min-height: 100%;
+    position: relative;
+}
+
+.content {
+    padding-bottom: 20em; /* Ajustamos este valor según la altura del footer */
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Administracion */
+tr {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.sidebar {
+}
+
+li::marker {
+    font-size: 0px;
+}
+
+/*----------------------CSS Login---------------------------------*/
+
+
+/*Imagen de fondo*/
+.body-login {
+    background-image: url(/img/wall.jpg);
+}
+
+
+/*Imagen de la izquierda*/
+
+#imagen-login {
+    object-fit: contain;
+}
+
+
+/*Formulario Login*/
+
+.formulario {
+    padding: 1em;
+    width: 380px;
+    background: #ffff;
+
+    font-size: 14px;
+}
+
+.formulario h1 {
+    margin-top: 0.2em;
+    text-align: center;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid silver;
+}
+
+/*Centrar correo y contraseña haciendolas mas pequeñas*/
+.formulario form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+/*Lineas de correo y contraseña con margenes entre elementos*/
+form .email {
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+form .password__class {
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+/*Tamaño de los input*/
+
+.formulario input {
+    width: 90%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+/*Iconos de correo y mostrar contraseña*/
+
+#view {
+    cursor: pointer;
+    opacity: 0.3;
+}
+
+#view:hover {
+    opacity: 0.8;
+}
+
+.mail {
+    opacity: 0.3;
+}
+
+
+/*¿Has olvidado tu contraseña?*/
+
+.remember {
+    margin: -5px 0 20px 5px;
+    color: #0000ff;
+    cursor: pointer;
+}
+
+.remember:hover {
+    text-decoration: underline;
+}
+
+/*Boton de iniciar sesión*/
+
+button[type="submit"] {
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #6C3483;
+    border-radius: 25px;
+    font-size: 15px;
+    color: #ffff;
+    cursor: pointer;
+    outline: none;
+}
+
+button[type="submit"]:hover {
+    border-color: #800080;
+    transition: .5s;
+}
+
+/*¿Todavía no te has registrado?*/
+
+.register {
+    margin: 30px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #000000;
+}
+
+.register a {
+    font-size: 14px;
+}
+
+/*----------------------FIN CSS LOGIN------------------------------*/
+
+/*----------------------CSS SOBRE NOSOTROS-------------------------*/
+
+/*Contenedor Sobre Nosotros*/
+
+.about {
+    background-image: url(/img/131392-light-blue-polygon-background.jpg);
+    background-position: 100% 40%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 12px;
+
+}
+
+.display-2 {
+    font-size: 3.5em;
+}
+
+.display-3 {
+    font-size: 3.5em;
+}
+
+.aboutimg {
+    max-height: 400px;
+}
+
+/*Contenedor Nuestro Equipo*/
+
+/*Titulo*/
+.ourteam {
+    background-image: url(/img/130991-abstract-blue-and-white-polygonal-background-design.jpg);
+    background-position: 100% 15%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*Fondo donde se colocan las tarjetas*/
+.team {
+    background: #7ccdfd;
+    padding: 2em;
+}
+
+/*Circulos donde estan los iconos de las redes sociales*/
+
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7ccdfd;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.social-link:hover, .social-link:focus {
+    background: #1591d8;
+    text-decoration: none;
+    color: #555;
+}
+
+
+.linkedin {
+    background-image: url(/img/linkedin.png);
+    background-size: cover;
+    background-position-x: center;
+    border-radius: 50%;
+}
+
+.github {
+    background-image: url(/img/Github-Logo-Transparent-Background-PNG.png);
+    background-size: cover;
+    border-radius: 50%;
+    background-position-x: center;
+}
+
+.infojobs {
+    background-image: url(/img/th-3840748636.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    border-radius: 50%;
+}
+
+.gmail {
+    background-image: url(/img/logo-gmail-2048.png);
+    background-size: cover;
+    border-radius: 50%;
+    background-position-x: center;
+}
+
+/*-----------------FIN CSS SOBRE NOSOTROS-------------------------*/
+
+
+/*-----------------CSS NOTIFICATION-------------------------------*/
+
+.body-notification {
+    background-color: #fcfcfc;
+}
+
+.row-notification {
+    margin: auto;
+    padding: 30px;
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+}
+
+.card-usuario {
+    width: 100%;
+    margin-bottom: 5px;
+    display: block;
+    transition: opacity 0.3s;
+}
+
+.card {
+    width: 100%;
+    height: 400px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 90%;
+    max-height: 350px;
+}
+
+
+.notification-invitation > .card-body > .card-title:before {
+    color: #90CAF9;
+    border-color: #90CAF9;
+    content: "\f007";
+}
+
+
+.notification-warning > .card-body > .card-title:before {
+    color: #FFE082;
+    border-color: #FFE082;
+    content: "\f071";
+}
+
+
+.notification-danger > .card-body > .card-title:before {
+    color: #FFAB91;
+    border-color: #FFAB91;
+    content: "\f00d";
+}
+
+
+.notification-reminder > .card-body > .card-title:before {
+    color: #CE93D8;
+    border-color: #CE93D8;
+    content: "\f017";
+}
+
+
+.card.display-none {
+    display: none;
+    transition: opacity 2s;
+}
+
+/*-----------------FIN CSS NOTIFICATION----------------------------*/
+
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+/*Media Querys Nav*/
+
+
+@media (min-width: 992px) {
+    .navbar-nav .nav-link {
+        margin-right: 1px;
+        margin-left: 1px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .navbar-nav .nav-link {
+        margin-right: 7px;
+        margin-left: 7px;
+    }
+}
+
+
+@media (min-width: 1286px) {
+    .navbar-nav .nav-link {
+        margin-right: 25px;
+        margin-left: 25px;
+    }
+}
+
+
+/*Media Query foto footer borrosa*/
+
+@media (max-width: 768px) {
+    footer {
+        background-image: url(/img/cielos_despejados_y_calor.jpg);
+    }
+}

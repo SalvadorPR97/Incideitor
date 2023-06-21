@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<body xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <div th:fragment="admin" class="container-fluid flex-nowrap d-flex">
+        <div class="col-12 py-2 mx-3">
+        <!--Header y filtros-->
+            <div>
+                <h1>Ayuntamientos</h1>
+                <button type="button" onclick="location.href='/ayuntamiento/create'" class="btn btn-primary mb-1">Nuevo Ayuntamiento
+                </button>
+                <form th:action="@{/ayuntamiento/admin}" method="get">
+                    <input type="text" placeholder="Nombre a Filtrar" name="nombre">
+                    <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
+                </form>
+            </div>
+            <!--Tabla-->
+            <table class="table table-striped" id="tablaOrdenar">
+                <thead>
+                <tr>
+                    <th onclick="sortTable(0)">ID</th>
+                    <th onclick="sortTable(1)">Nombre</th>
+                    <th>fotoCabecera</th>
+                    <th>fotoLogin</th>
+                    <th>foto3</th>
+                    <th>foto4</th>
+                    <th>Acciones</th> <!-- Nueva columna para las acciones -->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ayuntamiento : ${entities}">
+                    <td th:text="${ayuntamiento.id}"></td>
+                    <td th:text="${ayuntamiento.nombre}"></td>
+                    <td th:text="${ayuntamiento.fotoCabecera}"></td>
+                    <td th:text="${ayuntamiento.fotoLogin}"></td>
+                    <td th:text="${ayuntamiento.foto3}"></td>
+                    <td th:text="${ayuntamiento.foto4}"></td>
+                    <td>
+                        <a th:href="@{/ayuntamiento/edit/{id}(id=${ayuntamiento.id})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/ayuntamiento/delete/{id}(id=${ayuntamiento.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta entidad?');">Eliminar</a>
+                    </td> <!-- Columna para los botones de edición y eliminación -->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html lang="en">
+
+<body>
+        <main class="container-fluid flex-nowrap d-flex" th:fragment="admin" xmlns:th="http://www.thymeleaf.org">
+            <!--Contenido-->
+            <div class="col-12 py-2 mx-3">
+                <!--Header y filtros-->
+                <div>
+                    <h1>Reportes</h1>
+                    <button type="button" onclick="location.href='/reporte/create'" class="btn btn-primary mb-1">Nuevo Reporte
+                    </button>
+                    <form th:action="@{/reporte/adminError}" method="get">
+                        <input type="text" placeholder="Nombre a Filtrar" name="nombre">
+                        <input type="submit" value="Filtrar" class="btn btn-secondary ms-2 mt-1">
+                    </form>
+                </div>
+                <!--Tabla-->
+                <div>
+                    <table class="table table-striped" id="tablaOrdenar">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="reporte : ${entities}">
+                            <td th:text="${reporte.id}"></td>
+                            <td th:text="${reporte.titulo}"></td>
+                            <td th:text="${reporte.descripcion}"></td>
+                            <td>
+                                <a th:href="@{/reporte/{id}(id=${reporte.id})}" class="btn btn-primary">Editar</a>
+                                <a th:href="@{/reporte/delete/{id}(id=${reporte.id})}" class="btn btn-danger" onclick="return confirm('Seguro que quieres borrar esta entidad?');">Eliminar</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </main>
+</body>
+
+</html>
