@@ -103,7 +103,7 @@ public class ReporteController extends MiControladorGenerico<Reporte> {
     @PostMapping("/create")
     public String crearReporte(@ModelAttribute Reporte reporte) {
         service.create(reporte);
-        return "redirect:/reporte/admin";
+        return "redirect:/";
     }
 
 

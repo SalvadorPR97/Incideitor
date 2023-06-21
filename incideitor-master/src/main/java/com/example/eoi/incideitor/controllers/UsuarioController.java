@@ -9,7 +9,6 @@ import com.example.eoi.incideitor.entities.*;
 import com.example.eoi.incideitor.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.example.eoi.incideitor.util.FileUploadUtil;
 import com.example.eoi.incideitor.mapper.UsuarioMapper;
-import com.example.eoi.incideitor.repositories.NotificacionRepository;
 import com.example.eoi.incideitor.repositories.UsuarioRepository;
 import com.example.eoi.incideitor.services.EmailService;
 import com.example.eoi.incideitor.services.UsuarioService;
@@ -19,13 +18,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -195,6 +192,10 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         // Hace que no se muestre la contraseña en el listado de usuarios
         String contrasena = passwordEncoder.encode(usuario.getContrasena());
         usuario.setContrasena(contrasena);
+
+        Ayuntamiento ayuntamiento = new Ayuntamiento();
+        ayuntamiento.setId(1);
+        usuario.setAyuntamiento(ayuntamiento);
 
         // Creamos el usuario para poder obtener el id
         service.create(usuario);
