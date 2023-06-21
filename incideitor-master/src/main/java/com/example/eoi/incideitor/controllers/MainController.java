@@ -48,7 +48,7 @@ public class MainController {
                                @RequestParam(defaultValue = "10") int size,Model model)
     {
         //Sacamos del repositorio todas las incidencias ordenadas de por id en orden descendente
-        List<Incidencia> incidencias = incidenciaRepository.obtenerUltimaIncidencia();
+        List<Incidencia> incidencias = incidenciaRepository.obtenerUltimaIncidenciaArreglada();
         if(!incidencias.isEmpty()){
             //Buscamos si hay incidencias presentes y en caso afirmativo cogemos la primera que nos encontremos
             Incidencia ultimaIncidencia = incidencias.get(0);
