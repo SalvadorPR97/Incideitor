@@ -14,6 +14,7 @@ import com.example.eoi.incideitor.services.NotificacionService;
 import com.example.eoi.incideitor.util.ObtenerDatosUsuario;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +32,11 @@ import java.util.stream.IntStream;
 @Controller
 @RequestMapping("${url.incidencia}")
 public class IncidenciaController extends MiControladorGenerico<Incidencia> {
+
+
+    @Value("${google.maps.api.key}")
+    private String googleMapsApiKey;
+
 
     private final String entityName = "incidencia";
 
@@ -91,7 +97,9 @@ public class IncidenciaController extends MiControladorGenerico<Incidencia> {
     @GetMapping("/create")
     public String mostrarFormulario(@RequestParam(value = "incidenciaPadre", required = false) Long incidenciaPadre, Model model) {
         List<TipoIncidencia> tiposIncidencias = tipoIncidenciaRepository.findAll();
+        System.out.println("googleMapsApiKey = " + googleMapsApiKey);
 
+        model.addAttribute("googleMapsApiKey", googleMapsApiKey);
         model.addAttribute("tiposIncidencia", tiposIncidencias);
         model.addAttribute("incidenciaPadre", incidenciaPadre);
         model.addAttribute("entity", new Incidencia());
