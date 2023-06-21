@@ -31,7 +31,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `ayuntamientos` WRITE;
 /*!40000 ALTER TABLE `ayuntamientos` DISABLE KEYS */;
-INSERT INTO `ayuntamientos` VALUES (1,'chiclana3.png','chiclana3.png','chiclana.png','chiclana2.png','Chiclana'),(2,'jerez3.png','jerez4.png','jerez.png','jerez2.png','Jerez'),(3,'murcia3.png','murcia4.png','murcia.png','murcia2.png','Murcia'),(4,'albacete3.png','albacete4.png','albacete.png','albacete2.png','Albacete'),(5,'toledo3.png','toledo4.png','toledo.png','toledo2.png','Toledo'),(6,'sevilla3.png','sevilla4.png','sevilla.png','sevilla2.png','Sevilla');
+INSERT INTO `ayuntamientos` VALUES (1,'mijas3.png','mijas2.png','mijas.png','mijas4.png','Mijas'),(2,'chiclana3.png','chiclana3.png','chiclana.png','chiclana2.png','Chiclana'),(3,'jerez3.png','jerez4.png','jerez.png','jerez2.png','Jerez'),(4,'murcia3.png','murcia4.png','murcia.png','murcia2.png','Murcia'),(5,'albacete3.png','albacete4.png','albacete.png','albacete2.png','Albacete'),(6,'toledo3.png','toledo4.png','toledo.png','toledo2.png','Toledo'),(7,'sevilla3.png','sevilla4.png','sevilla.png','sevilla2.png','Sevilla');
 /*!40000 ALTER TABLE `ayuntamientos` ENABLE KEYS */;
 UNLOCK TABLES;
 

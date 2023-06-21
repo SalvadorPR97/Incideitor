@@ -11,7 +11,8 @@
                         <label for="incidenciaPadre">Incidencia padre:</label>
                         <select id="incidenciaPadre" name="incidenciaPadre" onchange="recargarPagina()">
                             <option value="">Seleccionar</option>
-                            <option th:if="${tipo.incidenciaPadre?.id == 999999}" th:each="tipo : ${tiposIncidencia}" th:value="${tipo.id}" th:text="${tipo.nombre}" th:selected="${tipo.id} == ${incidenciaPadre}"></option>
+                            <option th:if="${tipo.incidenciaPadre?.id == 999999}" th:each="tipo : ${tiposIncidencia}"
+                                    th:value="${tipo.id}" th:text="${tipo.nombre}" th:selected="${tipo.id} == ${incidenciaPadre}"></option>
                         </select>
                         <!--                    Segundo desplegable, se genera según la primera opción-->
                         <label for="incidenciaHijo">Incidencia hijo:</label>

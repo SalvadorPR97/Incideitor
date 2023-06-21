@@ -17,7 +17,7 @@ public interface IncidenciaRepository extends JpaRepository<Incidencia, Long> {
      *
      * @return Lista de las últimas incidencias
      */
-    @Query("SELECT i FROM Incidencia i ORDER BY i.id ASC")
+    @Query("SELECT i FROM Incidencia i ORDER BY i.id DESC ")
     List<Incidencia> obtenerUltimaIncidenciaArreglada();
 
     @Override
