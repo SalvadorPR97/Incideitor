@@ -2,6 +2,14 @@
 
 Aplicación web diseñada para facilitar la gestión de incidencias relacionadas con los ayuntamientos.
 
+Desarrollado por:
+https://github.com/SalvadorPR97
+https://github.com/agomezgomez
+https://github.com/DOR-23
+https://github.com/XorySh
+
+
+
 ## Modo de empleo:
 1º. En la declaración de "google.maps.api.key=" en "application.properties" hay que 
 introducir una API KEY de google maps.
