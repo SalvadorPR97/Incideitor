@@ -2,7 +2,7 @@
 
 Aplicación web diseñada para facilitar la gestión de incidencias relacionadas con los ayuntamientos.
 
-Desarrollado por:
+Desarrollado por: <br>
 Salvador Perez Ranchal https://github.com/SalvadorPR97 <br>
 Alejandro Gomez Gomez https://github.com/agomezgomez <br>
 Diego Ortega de la Rosa https://github.com/DOR-23 <br>
