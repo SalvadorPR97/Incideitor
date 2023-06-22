@@ -129,7 +129,7 @@ public class FileUploadUtil {
         //Se crea un Set vacío para almacenar los nombres de archivo
         Set<String> strout = new HashSet<>();
         //Comprobar si hay archivos, si hay archivos los lista
-        if ( HayArchivos(dir)){
+        if ( hayArchivos(dir)){
             //Se utiliza un Stream para realizar las operaciones de listado
             strout = Stream.of(new File(dir).listFiles())
                     //Comprobamos que un archivo no sea un directorio
@@ -149,15 +149,16 @@ public class FileUploadUtil {
      * @param dir Directorio a comprobar
      * @return true si hay archivos en el directorio, false si no
      */
-    public boolean HayArchivos(String dir) {
+    public boolean hayArchivos(String dir) {
         //Se crea un objeto File utilizando la ruta del directorio proporcionada.
         File directory = new File(dir);
         //Si es un directorio, se procede a realizar la verificación adicional.
         if (directory.isDirectory()) {
-            //Si la longitud del directorio es mayor que 0, significa que contiene archivos y devuelve true
-            if (directory.length() > 0) {
+            //Si el tamaño del directorio es mayor que 0, significa que contiene archivos y devuelve true
+            if (directory.getTotalSpace() > 0) {
                 return true;
             } else {
+                System.out.println("tamaño menor que 0, no hay archivos");
                 return false;
             }
         }
