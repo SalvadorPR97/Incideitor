@@ -9,7 +9,6 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Id</th>
                                     <th scope="col">Descripcion</th>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Incidencia</th>
@@ -18,7 +17,6 @@
                             </thead>
                             <tbody>
                                 <tr th:each="notificacion: ${entities}">
-                                    <td th:text="${notificacion.id}"></td>
                                     <td th:text="${notificacion.descripcion}"></td>
                                     <td th:text="${notificacion.fechaNotificacion}"></td>
                                     <td th:text="${notificacion.tituloIncidencia}"></td>

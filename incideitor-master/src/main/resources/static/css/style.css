@@ -277,6 +277,9 @@ button[type="submit"]:hover {
 .display-3 {
     font-size: 3.5em;
 }
+.display-4 {
+    font-size: 3.5em;
+}
 
 .aboutimg {
     max-height: 400px;
